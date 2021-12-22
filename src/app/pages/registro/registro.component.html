@@ -1,5 +1,43 @@
 <ion-content class="content-main">
-  <h3 class="title-register">
-    CREAR UNA CUENTA
-  </h3>
+  <h2 class="title-register">
+    CREAR UNA CUENTA 
+    <br>NUEVA
+  </h2>
+
+  <div class="card-container" mode="ios">
+    
+    <ion-item lines="none" class="item-input" >
+      <ion-input placeholder="Usuario">
+      </ion-input>
+      <ion-icon slot="end" color="white" name="person-outline" ></ion-icon>
+    </ion-item>
+    
+    <ion-item lines="none" class="item-input" >
+      <ion-input placeholder="Celular">
+      </ion-input>
+      <ion-icon slot="end" color="white" name="call-outline" ></ion-icon>
+    </ion-item>
+    
+    <ion-item lines="none" >
+      <ion-input placeholder="Contraseña">
+      </ion-input>
+      <ion-icon slot="end" color="white" name="lock-closed-outline" ></ion-icon>
+    </ion-item>
+    
+    <ion-item lines="none" class="item-input" >
+      <ion-input placeholder="Confirmar Contraseña">
+      </ion-input>
+      <ion-icon slot="end" color="white" name="lock-closed-outline" ></ion-icon>
+    </ion-item>
+  </div>
+
+  <div>
+    <ion-button class="register-button" mode="ios">
+      CREAR CUENTA
+    </ion-button>
+  </div>
+  <div class="url-content">
+    <u routerlink="/login" >Iniciar Sesion</u>
+  </div>
+
 </ion-content>

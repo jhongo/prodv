@@ -1,8 +1,37 @@
 .content-main{
     --background: #075E54;
-}
-.title-register{
-    font-size: 30px;
     text-align: center;
-    margin-top: 70px;
+}
+
+.card-container{
+    --background: #075E54;
+    padding: 30px;
+}
+
+.item-input{
+    --background: #128C7E;
+    border-radius: 10px;
+    margin-top: 25px;
+}
+
+.register-button{
+    --background: #34B7F1;
+    border-radius: 10px;
+    width: 85%;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.title-register{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 150px;
+    padding-left: 25px;
+    padding-right: 25px;
+    text-align: center;
+}
+
+.url-content{
+    margin-top: 90px;
 }
