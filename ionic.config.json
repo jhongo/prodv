@@ -1,0 +1,7 @@
+{
+  "name": "prodv",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
