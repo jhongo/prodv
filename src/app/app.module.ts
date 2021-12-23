@@ -13,8 +13,14 @@ import { environment } from 'src/environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { FormsModule } from '@angular/forms';
-import { MainComponent } from './pages/main/main.component';
 // import { AngularFirestoreModule } from '@angular/fire/storage';
+import { HeaderComponent } from './componentes/header/header.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
+import { MainComponent } from './pages/main/main.component';
+import { CampeonatosComponent } from './pages/campeonatos/campeonatos.component';
+import { InternacionalComponent } from './pages/internacional/internacional.component';
+import { NacionalComponent } from './pages/nacional/nacional.component';
+import { NoticiasComponent } from './pages/noticias/noticias.component';
 
 
 @NgModule({
@@ -22,7 +28,14 @@ import { MainComponent } from './pages/main/main.component';
     AppComponent,
     RegistroComponent,
     LoginComponent,
-    MainComponent
+    HeaderComponent,
+    PerfilComponent,
+    MainComponent,
+    CampeonatosComponent,
+    InternacionalComponent,
+    NacionalComponent,
+    NoticiasComponent
+
   ],
   entryComponents: [],
   imports: [BrowserModule, 

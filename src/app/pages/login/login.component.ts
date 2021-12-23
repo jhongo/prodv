@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { Usuario } from 'src/app/models';
 import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -29,9 +30,13 @@ export class LoginComponent implements OnInit {
     public loadingController: LoadingController,
     public toastController: ToastController,
     public alertController: AlertController,
+    private menuL: MenuController,
     public router: Router, ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+    this.menuL.enable(false);
+  }
 
   async ingresar(){
     const credenciales ={
@@ -40,6 +45,7 @@ export class LoginComponent implements OnInit {
     }
     await this.firebaseauthService.login(credenciales.email, credenciales.password).then( res=> {
       console.log('Ingreso con exito');
+      this.menuL.enable(true);
       this.router.navigate(['/main']);
       this.usuarios={
         uid: null,
