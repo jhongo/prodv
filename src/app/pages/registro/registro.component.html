@@ -7,37 +7,43 @@
   <div class="card-container" mode="ios">
     
     <ion-item lines="none" class="item-input" >
-      <ion-input placeholder="Usuario">
+      <ion-input [(ngModel)]="usuarios.usuario" placeholder="Usuario">
       </ion-input>
       <ion-icon slot="end" color="white" name="person-outline" ></ion-icon>
     </ion-item>
+
+    <ion-item lines="none" class="item-input" >
+      <ion-input  [(ngModel)]="usuarios.email" type="email" placeholder="Email">
+      </ion-input>
+      <ion-icon slot="end" color="white" name="at-outline" ></ion-icon>
+    </ion-item>
     
     <ion-item lines="none" class="item-input" >
-      <ion-input placeholder="Celular">
+      <ion-input maxlength="10" [(ngModel)]="usuarios.movil" placeholder="Celular">
       </ion-input>
       <ion-icon slot="end" color="white" name="call-outline" ></ion-icon>
     </ion-item>
     
     <ion-item lines="none" >
-      <ion-input placeholder="Contraseña">
+      <ion-input [(ngModel)]="usuarios.password" type="password" placeholder="Contraseña">
       </ion-input>
       <ion-icon slot="end" color="white" name="lock-closed-outline" ></ion-icon>
     </ion-item>
     
     <ion-item lines="none" class="item-input" >
-      <ion-input placeholder="Confirmar Contraseña">
+      <ion-input [(ngModel)]="usuarios.confirm_password" type="password" placeholder="Confirmar Contraseña" >
       </ion-input>
       <ion-icon slot="end" color="white" name="lock-closed-outline" ></ion-icon>
     </ion-item>
   </div>
 
   <div>
-    <ion-button class="register-button" mode="ios">
+    <ion-button (click)="registrarse()" class="register-button" mode="ios">
       CREAR CUENTA
     </ion-button>
   </div>
   <div class="url-content">
-    <u routerlink="/login" >Iniciar Sesion</u>
+    <u routerLink="/login" >Iniciar Sesion</u>
   </div>
 
 </ion-content>
