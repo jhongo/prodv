@@ -8,3 +8,35 @@
 
     --background: white;
 }
+
+.ionc-card{
+    --background: #f1faee;
+    padding: 5%;
+}
+
+.ionic-content{
+    
+    --background: #e2eafc;
+    text-align: center;
+ 
+}
+.ionic-sub{
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    color: black;
+}
+.items{
+
+    display: inline-flexbox;    
+    --background: #fff;
+    color: black;
+    border-radius: 30px;
+    margin-left: auto;
+    margin-right: auto;  
+    margin-top: 3%;       
+    width: 350px;
+}   
+

@@ -1,10 +1,16 @@
 
 
-export interface Usuario{
+export interface User{
     uid: string,
-    usuario: string,
     email: string,
-    movil: string,
-    password: string,
-    confirm_password: string,
+    displayName:string;
+    emailVerified: boolean;
+}
+
+export interface DataUser{
+    uid: string,
+    email: string,
+    name:string;
+    password:string;
+    referencia:string;
 }

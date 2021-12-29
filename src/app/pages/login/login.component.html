@@ -8,17 +8,17 @@
   <div class="content_items" mode="ios">
 
     <ion-item class="Item_input">
-      <ion-input [(ngModel)]="usuarios.email" type="email" placeholder="Usuario">  </ion-input>
+      <ion-input  type="email" placeholder="Usuario" #email required>  </ion-input>
       <ion-icon class="icon" name="person-outline"></ion-icon>
     </ion-item>
 
     <ion-item class="Item_input">
-      <ion-input [(ngModel)]="usuarios.password" type="password" placeholder="Contraseña">  </ion-input>
+      <ion-input type="password" placeholder="Contraseña" #password required>  </ion-input>
       <ion-icon class="icon" name="lock-closed-outline"></ion-icon>
     </ion-item>
 
     <div class="div_boton">
-      <ion-button (click)="ingresar()" class="boton">INICIAR SESIÓN</ion-button>
+      <ion-button (click)="ingresar(email,password)" class="boton">INICIAR SESIÓN</ion-button>
     </div>
 
     <div class="div_nueva_cuenta">

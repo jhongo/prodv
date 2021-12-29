@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
-import { Usuario } from 'src/app/models';
+import { User } from 'src/app/models';
 import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { MenuController } from '@ionic/angular';
@@ -14,13 +14,11 @@ import { MenuController } from '@ionic/angular';
 })
 export class LoginComponent implements OnInit {
   
-  usuarios: Usuario={
+  usuarios: User={
     uid: '',
-    usuario: '',
     email: '',
-    movil: '',
-    password: '',
-    confirm_password:'',
+    displayName:'',
+    emailVerified: null,
   };
   uid= '';
   suscriberUserInfo : Subscription;
@@ -38,22 +36,17 @@ export class LoginComponent implements OnInit {
     this.menuL.enable(false);
   }
 
-  async ingresar(){
-    const credenciales ={
-      email: this.usuarios.email,
-      password: this.usuarios.password,
-    }
-    await this.firebaseauthService.login(credenciales.email, credenciales.password).then( res=> {
+  async ingresar(email,password){
+   
+    await this.firebaseauthService.login(email.value, password.value).then( res=> {
       console.log('Ingreso con exito');
       this.menuL.enable(true);
       this.router.navigate(['/main']);
       this.usuarios={
         uid: null,
-        usuario: null,
         email: null,
-        movil: null,
-        password: null,
-        confirm_password: null
+        displayName:null,
+        emailVerified:null,
       };
     }).catch( res=> {
       console.log('erros => ', res.message)

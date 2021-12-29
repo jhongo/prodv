@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
 import { FirestoreService } from './services/firestore.service';
-import { Usuario } from './models';
+import { User } from './models';
 import { Subscription } from 'rxjs';
 import { LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -14,13 +14,11 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  usuario: Usuario = { 
+  usuario: User = { 
     uid: '',
-    usuario: '',
     email:'',
-    movil: '',
-    confirm_password: '',
-    password: '', 
+    displayName:'',
+    emailVerified:null,
   };
 
   uid='';
@@ -51,18 +49,16 @@ export class AppComponent {
       this.uid='';
       this.usuario = { 
         uid: '',
-        usuario: '',
         email:'',
-        movil: '',
-        confirm_password: '',
-        password: '',  
+        displayName:'',
+      emailVerified:null,
       };
   
      }
 
     getUserInfo(uid:string ){
       const path = 'Usuarios';
-      this.suscriberUserInfo= this.firestoreService.getDoc<Usuario>(path, uid).subscribe(res =>{
+      this.suscriberUserInfo= this.firestoreService.getDoc<User>(path, uid).subscribe(res =>{
         this.usuario = res ;
       });
     }
@@ -73,11 +69,9 @@ export class AppComponent {
     this.firebaseauthService.logout();
     this.usuario = { 
       uid: null,
-      usuario: null,
       email:null,
-      movil: null,
-      confirm_password: null,
-      password: null, 
+      displayName:null,
+      emailVerified:null,
     };
     await this.suscriberUserInfo.unsubscribe();
     this.presentLoading('Cerrando Sesión',1000);
