@@ -22,6 +22,7 @@ import { InternacionalComponent } from './pages/internacional/internacional.comp
 import { NacionalComponent } from './pages/nacional/nacional.component';
 import { NoticiasComponent } from './pages/noticias/noticias.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { TabPageModule } from './screens/tab/tab.module';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     CampeonatosComponent,
     InternacionalComponent,
     NacionalComponent,
-    NoticiasComponent
+    NoticiasComponent, 
 
   ],
   entryComponents: [],

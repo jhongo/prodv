@@ -20,7 +20,7 @@ const routes: Routes = [
   //   pathMatch: 'full'
   // },
   {
-    path: 'register',
+    path: 'register',   
     component:RegistroComponent
   },
   {
@@ -61,6 +61,24 @@ const routes: Routes = [
     redirectTo:'login',
     pathMatch:'full',
   },
+  {
+    path: 'partidos',
+    loadChildren: () => import('./screens/partidos/partidos.module').then( m => m.PartidosPageModule)
+  },
+  {
+    path: 'resultados',
+    loadChildren: () => import('./screens/resultados/resultados.module').then( m => m.ResultadosPageModule)
+  },
+  {
+    path: 'tabla',
+    loadChildren: () => import('./screens/tabla/tabla.module').then( m => m.TablaPageModule)
+  },
+  {
+    path: 'tab',
+    loadChildren: () => import('./screens/tab/tab.module').then( m => m.TabPageModule)
+  },
+
+
   
 
   
