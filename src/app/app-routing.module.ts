@@ -51,32 +51,21 @@ const routes: Routes = [
     path: 'campeonatos',
     component:CampeonatosComponent,
   },
+  // {
+  //   path:'',
+  //   component: LoginComponent,
+  //   pathMatch:'full',
+  // },
   {
     path:'',
-    component: LoginComponent,
+    redirectTo:'tab-inicial',
     pathMatch:'full',
   },
   {
-    path:'**',
-    redirectTo:'login',
-    pathMatch:'full',
+    path: 'tab-inicial',
+    loadChildren: () => import('./pages/tab-inicial/tab-inicial.module').then( m => m.TabInicialPageModule)
   },
-  {
-    path: 'partidos',
-    loadChildren: () => import('./screens/partidos/partidos.module').then( m => m.PartidosPageModule)
-  },
-  {
-    path: 'resultados',
-    loadChildren: () => import('./screens/resultados/resultados.module').then( m => m.ResultadosPageModule)
-  },
-  {
-    path: 'tabla',
-    loadChildren: () => import('./screens/tabla/tabla.module').then( m => m.TablaPageModule)
-  },
-  {
-    path: 'tab',
-    loadChildren: () => import('./screens/tab/tab.module').then( m => m.TabPageModule)
-  },
+
 
 
   
