@@ -16,9 +16,9 @@ export class TabInicialPage implements OnInit {
   }
 
   changeSegment( event: any ){ 
-    const opc = event.detail.value;
-    this.opcion =opc;
-    console.log(opc); 
+    // const opc = event.;
+    // this.opcion =opc;
+    console.log(event); 
 
   } 
 }

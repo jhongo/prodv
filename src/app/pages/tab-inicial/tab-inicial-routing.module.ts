@@ -6,6 +6,7 @@ import { TabInicialPage } from './tab-inicial.page';
 const routes: Routes = [
   {
     path: '',
+    
     component: TabInicialPage, 
     children: [
       {

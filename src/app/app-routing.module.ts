@@ -58,7 +58,7 @@ const routes: Routes = [
   // },
   {
     path:'',
-    redirectTo:'tab-inicial',
+    redirectTo:'login',
     pathMatch:'full',
   },
   {
