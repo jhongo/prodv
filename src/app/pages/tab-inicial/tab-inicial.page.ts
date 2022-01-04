@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TabInicialPage implements OnInit {
 
+  
+  opcion= "";
   constructor() { }
 
   ngOnInit() {
+    this.opcion="partidos"
   }
 
+  changeSegment( event: any ){ 
+    const opc = event.detail.value;
+    this.opcion =opc;
+    console.log(opc); 
+
+  } 
 }
