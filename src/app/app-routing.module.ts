@@ -65,6 +65,11 @@ const routes: Routes = [
     path: 'tab-inicial',
     loadChildren: () => import('./pages/tab-inicial/tab-inicial.module').then( m => m.TabInicialPageModule)
   },
+  {
+    path: 'tab-campeonato',
+    loadChildren: () => import('./pages/tab-campeonato/tab-campeonato.module').then( m => m.TabCampeonatoPageModule)
+  },
+
 
 
 
