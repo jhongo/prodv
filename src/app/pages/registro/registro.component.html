@@ -9,25 +9,25 @@
     <ion-item lines="none" class="item-input" >
       <ion-input  [(ngModel)]="datauser.name" placeholder="Usuario">
       </ion-input>
-      <ion-icon slot="end" color="white" name="person-outline" ></ion-icon>
+      <ion-icon slot="end" class="icon" name="person-outline" ></ion-icon>
     </ion-item>
 
     <ion-item lines="none" class="item-input" >
-      <ion-input  [(ngModel)]="datauser.email" type="email" placeholder="Email" #email required>
+      <ion-input  [(ngModel)]="datauser.email" type="email" placeholder="Correo" #email required>
       </ion-input>
-      <ion-icon slot="end" color="white" name="at-outline" ></ion-icon>
+      <ion-icon slot="end" class="icon" name="at-outline" ></ion-icon>
     </ion-item>
 
     <ion-item lines="none" >
       <ion-input [(ngModel)]="datauser.password" type="password" placeholder="Contraseña" #password required>
       </ion-input>
-      <ion-icon slot="end" color="white" name="lock-closed-outline" ></ion-icon>
+      <ion-icon slot="end" class="icon" name="lock-closed-outline" ></ion-icon>
     </ion-item>
     
     <ion-item lines="none" class="item-input" >
       <ion-input [(ngModel)]="datauser.referencia" placeholder="Referencia" >
       </ion-input>
-      <ion-icon slot="end" color="white" name="lock-closed-outline" ></ion-icon>
+      <ion-icon slot="end" class="icon" name="lock-closed-outline" ></ion-icon>
     </ion-item>
   </div>
 

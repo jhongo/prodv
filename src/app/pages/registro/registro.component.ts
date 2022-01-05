@@ -5,6 +5,8 @@ import { DataUser } from 'src/app/models';
 import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { LoadingController, ToastController, MenuController, AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-registro',
@@ -36,6 +38,7 @@ export class RegistroComponent implements OnInit {
     public loadingController: LoadingController,
     public toastController: ToastController,
     public alertController: AlertController,
+    public router: Router,
   ) { }
 
   ngOnInit() { }
@@ -51,21 +54,32 @@ export class RegistroComponent implements OnInit {
   }
   async registro(email, password) {
     try {
+
+      if(this.datauser.email==""||this.datauser.name==""||this.datauser.password==""||this.datauser.referencia==""){
+
+        this.presentToast('Datos incompletos',4000);
+        //this.presentAlert('Datos incompletos');
+        console.log("Vacios los datos");
+        
+      }else{
       const user = await this.firebaseauthService.registrar(email.value, password.value);
-       this.saveUser();
+      this.saveUser();
+      this.presentToast('Cuenta creada con exito',4000);
+      this.router.navigate(['/login']);
       console.log('Registrado');
       if (user) {
         console.log('User ->', user);
+      }
+
       }
 
     } catch (error) {
       console.log("Error", error);
 
     }
-
-
   }
 
+  
   async saveUser() {
     const uid = await this.firebaseauthService.getUid();
     this.datauser.uid = uid;
@@ -81,8 +95,8 @@ export class RegistroComponent implements OnInit {
       };
     }).catch(res => {
       console.log('err=> ', res.message);
-
-    })
+      
+    });
 
   }
 
@@ -113,7 +127,7 @@ export class RegistroComponent implements OnInit {
   async presentAlert(mensaje: string) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: 'ERROR',
+      header: 'Error',
       message: mensaje,
       buttons: ['OK']
     });
