@@ -41,13 +41,14 @@ export class LoginComponent implements OnInit {
     await this.firebaseauthService.login(email.value, password.value).then( res=> {
       console.log('Ingreso con exito');
       // this.menuL.enable(true);
-      this.router.navigate(['/tab-inicial']);
+      this.router.navigate(['/tab-inicial/partidos']);
       this.usuarios={
         uid: null,
         email: null,
         displayName:null,
         emailVerified:null,
       };
+      this.menuL.enable(true);
     }).catch( res=> {
       console.log('erros => ', res.message)
     })
