@@ -10,6 +10,7 @@ import { InternacionalComponent } from './pages/internacional/internacional.comp
 import { CampeonatosComponent } from './pages/campeonatos/campeonatos.component';
 import { map } from 'rxjs/operators';
 import {canActivate} from '@angular/fire/auth-guard'; 
+import { EditEquipoComponent } from './pages/edit-equipo/edit-equipo.component';
 
 const isAdmin = (next:any ) => map( (user: any)=> !! user && 'LikZN15qNiQi1pFEAT8frapWt243' === user.uid);
 const isAdminS = (next:any ) => map( (user: any)=> !! user && 'LikZN15qNiQi1pFEAT8frapWt243' === user.uid);
@@ -55,7 +56,11 @@ const routes: Routes = [
   },
   {
     path: 'campeonatos',
-    component:CampeonatosComponent, ...canActive(isAdminS)
+    component:CampeonatosComponent,
+  },
+  {
+    path: 'edit-equipo',
+    component:EditEquipoComponent,
   },
   // {
   //   path:'',

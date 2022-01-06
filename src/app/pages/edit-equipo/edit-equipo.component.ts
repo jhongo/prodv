@@ -1,22 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController, AlertController, ToastController } from '@ionic/angular';
-import { Subscription } from 'rxjs';
+import { LoadingController, ToastController, AlertController } from '@ionic/angular';
 import { Equipos } from 'src/app/models';
-import { FirestoreService } from '../../services/firestore.service';
+import { FirestoreService } from 'src/app/services/firestore.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-equipos',
-  templateUrl: './equipos.page.html',
-  styleUrls: ['./equipos.page.scss'],
+  selector: 'app-edit-equipo',
+  templateUrl: './edit-equipo.component.html',
+  styleUrls: ['./edit-equipo.component.scss'],
 })
-export class EquiposPage implements OnInit {
+export class EditEquipoComponent implements OnInit {
 
-  estado = false;
-  newFoto: any;
-  equipoInfo: Subscription;
-  team: Equipos[]=[];
+  constructor(public firestoreService: FirestoreService,
+    public loadingController: LoadingController,
+    public toastController: ToastController,
+    public alertController: AlertController,
+    public router:Router) { }
 
+  newFoto:any;
   equipo: Equipos = {
     uid: '',
     nombre: '',
@@ -31,92 +32,13 @@ export class EquiposPage implements OnInit {
     g_c: '0',
     d_g: '0'
   };
-  constructor(public firestoreService: FirestoreService,
-    public loadingController: LoadingController,
-    public toastController: ToastController,
-    public alertController: AlertController,
-    public router: Router) { }
-
   ngOnInit() {
-
-    this.getEquipos();
-  }
-
-  async saveTeam() {
-
-    const path = 'Equipos';
-    const equipo = this.equipo.nombre;
-    if (this.equipo.nombre == "") {
-      // this.presentAlert("Complete el nombre del equipo");
-      this.presentToast("Complete el nombre del equipo",2000);
-    } else {
-      if (this.newFoto !== undefined) {
-        this.equipo.uid = this.firestoreService.getId();
-        const res = await this.firestoreService.uploadImage(this.newFoto, path, equipo);
-        this.equipo.escudo = res;
-        this.firestoreService.createDoc(this.equipo, path, this.equipo.uid).then(res => {
-          console.log('guardado con exito');
-          this.presentLoading('Guardando', 1000); 
-          this.equipo = {
-            uid: null,
-            nombre: null,
-            escudo: null,
-            grupo: null,
-            puntos: null,
-            p_j: null,
-            p_g: null,
-            p_e: null,
-            p_p: null,
-            g_g: null,
-            g_c: null,
-            d_g: null
-          };
-          this.estado = false;
-        }).catch(error => {
-
-        });
-      } else {
-        // this.presentAlert("Suba el escudo del equipo");
-      this.presentToast("Suba el escudo del equipo",2000);
-
-
-      }
-
+    const team = this.firestoreService.getEquipo();
+    console.log('Agregar Pedidos',team); 
+    
+    if(team !== undefined){
+      this.equipo = team; 
     }
-
-  }
-
-  async getEquipos(){
-    const path = 'Equipos'; 
-    this.equipoInfo = this.firestoreService.getTeam<Equipos>(path).subscribe(res =>{
-      this.team = res;
-    });
-  } 
-
-  async getEquipo(equipo:Equipos){
-    console.log('Click en getEquipo'); 
-    console.log(equipo);
-    this.firestoreService.setEquipo(equipo); 
-
-  }
-
-  async restart(){
-
-    this.equipo = {
-      uid: null,
-      nombre: null,
-      escudo: null,
-      grupo: null,
-      puntos: null,
-      p_j: null,
-      p_g: null,
-      p_e: null,
-      p_p: null,
-      g_g: null,
-      g_c: null,
-      d_g: null
-    };
-
   }
 
   async newImage(event: any) {
@@ -135,7 +57,74 @@ export class EquiposPage implements OnInit {
 
   }
 
+  async saveTeam() {
 
+    const path = 'Equipos';
+    const equipo = this.equipo.nombre;
+    if (this.equipo.nombre == ""|| this.equipo.grupo==null) {
+      // this.presentAlert("Complete el nombre del equipo");
+      this.presentToast("Complete todos los datos",2000);
+      
+      console.log(this.equipo.nombre+" "+this.equipo.escudo);
+    } else {
+      if (this.newFoto !== undefined) {
+        const res = await this.firestoreService.uploadImage(this.newFoto, path, equipo);
+        this.equipo.escudo = res;
+      }else {
+        // this.presentAlert("Suba el escudo del equipo");
+       // this.presentToast("Suba el escudo del equipo",2000);
+      }
+        this.firestoreService.createDoc(this.equipo, path, this.equipo.uid).then(res => {
+          console.log('guardado con exito');
+          this.presentLoading('Actualizando', 1500);
+          setTimeout(() => {
+            this.router.navigate(['/tab-campeonato/equipos']);
+          }, 1000); 
+          this.equipo = {
+            uid: null,
+            nombre: null,
+            escudo: null,
+            grupo: null,
+            puntos: null,
+            p_j: null,
+            p_g: null,
+            p_e: null,
+            p_p: null,
+            g_g: null,
+            g_c: null,
+            d_g: null
+          };
+         
+        }).catch(error => {
+
+        });
+      
+
+    }
+
+  }
+
+  async restart(){
+    this.router.navigate(['tab-campeonato/equipos'])
+    this.equipo = {
+      uid: null,
+      nombre: null,
+      escudo: null,
+      grupo: null,
+      puntos: null,
+      p_j: null,
+      p_g: null,
+      p_e: null,
+      p_p: null,
+      g_g: null,
+      g_c: null,
+      d_g: null
+    };
+
+  }
+
+
+  
   async presentToast(mensaje: string, tiempo: number) {
     const toast = await this.toastController.create({
       message: mensaje,
@@ -163,4 +152,5 @@ export class EquiposPage implements OnInit {
 
     await alert.present();
   }
+
 }

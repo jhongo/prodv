@@ -1,0 +1,54 @@
+<ion-header>
+  <app-header></app-header>
+</ion-header>
+
+
+<ion-content class="content_pri">
+  <ion-title class="titulo"> Información del equipo</ion-title>
+  <ion-card  class="Nuevo_equipo">
+    <ion-item lines="none" class="IonInput">
+      <ion-label>
+        Nombre: 
+      </ion-label>
+      <ion-input class="campos" [(ngModel)]="equipo.nombre"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none" class="IonInput">
+      <ion-label>Grupo</ion-label>
+      <ion-select class="campos" [(ngModel)]="equipo.grupo" placeholder="Seleccione grupo">
+        <ion-select-option value="grupo1">Grupo 1</ion-select-option>
+        <ion-select-option value="grupo2">Grupo 2</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+    <ion-item lines="none" class="IonInput">
+      <ion-label class="normal">
+        Escudo:
+      </ion-label>
+      <ion-buttons slot="end">
+        <ion-button>
+          <label for="file-upload">
+            <ion-icon slot="icon-only" name="images"></ion-icon>
+          </label>
+          <input (change)="newImage($event)" id="file-upload" style="display: none;" type="file" accept="image/*">
+        </ion-button>
+
+      </ion-buttons>
+
+    </ion-item>
+    <ion-item  class="IonInput">
+
+      <img [src]="equipo.escudo">
+
+    </ion-item>
+
+    <ion-card-content class="botones">
+      <ion-button routerLink="/tab-campeonato/equipos"  (click)="restart()" class="button-cancelar">Cancelar</ion-button>
+      <ion-button (click)="saveTeam()" class="button-guardar">Actualizar</ion-button>
+
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>
