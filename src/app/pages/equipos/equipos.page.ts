@@ -22,14 +22,14 @@ export class EquiposPage implements OnInit {
     nombre: '',
     escudo: '',
     grupo: '',
-    puntos: '0',
-    p_j: '0',
-    p_g: '0',
-    p_e: '0',
-    p_p: '0',
-    g_g: '0',
-    g_c: '0',
-    d_g: '0'
+    puntos: 0,
+    p_j: 0,
+    p_g: 0,
+    p_e: 0,
+    p_p: 0,
+    g_g: 0,
+    g_c: 0,
+    d_g: 0
   };
   constructor(public firestoreService: FirestoreService,
     public loadingController: LoadingController,
@@ -62,14 +62,14 @@ export class EquiposPage implements OnInit {
             nombre: null,
             escudo: null,
             grupo: null,
-            puntos: null,
-            p_j: null,
-            p_g: null,
-            p_e: null,
-            p_p: null,
-            g_g: null,
-            g_c: null,
-            d_g: null
+            puntos: 0,
+            p_j: 0,
+            p_g: 0,
+            p_e: 0,
+            p_p: 0,
+            g_g: 0,
+            g_c: 0,
+            d_g: 0
           };
           this.estado = false;
         }).catch(error => {
@@ -107,14 +107,14 @@ export class EquiposPage implements OnInit {
       nombre: null,
       escudo: null,
       grupo: null,
-      puntos: null,
-      p_j: null,
-      p_g: null,
-      p_e: null,
-      p_p: null,
-      g_g: null,
-      g_c: null,
-      d_g: null
+      puntos: 0,
+      p_j: 0,
+      p_g: 0,
+      p_e: 0,
+      p_p: 0,
+      g_g: 0,
+      g_c: 0,
+      d_g: 0
     };
 
   }

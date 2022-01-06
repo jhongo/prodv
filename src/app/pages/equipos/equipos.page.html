@@ -75,7 +75,7 @@
 
     <ion-grid>
       <ion-row>
-        <ion-col class="col_img" size="4">
+        <ion-col class="col_img" size="3">
           <ion-item lines="none" class="item_avatar">
               <img class="con_img" [src]="equipo.escudo">
           </ion-item>
@@ -94,13 +94,13 @@
           </ion-card-content>
 
         </ion-col>
-        <ion-col class="col_icon" size="3">
+        <ion-col class="col_icon" size="4">
           <ion-card-content class="card-icon">
             <ion-label class="label_tittle">Editar</ion-label>
             <br />
             <ion-buttons class="button">
               <ion-button routerLink="/edit-equipo" (click)="getEquipo(equipo)">
-                <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+                <ion-icon class="icon_edit" slot="icon-only" name="create-outline"></ion-icon>
               </ion-button>
             </ion-buttons>
           </ion-card-content>
