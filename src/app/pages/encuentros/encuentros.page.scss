@@ -6,3 +6,86 @@ ion-toolbar{
     --background: #075E54;
     color: white;
 }
+.Nuevo_partido{
+    --background: white; 
+    padding: 15px;
+    }
+
+.ion-label-item{
+    color: #000000;
+    font-weight: bold;
+    font-size: 17px;
+}
+.fecha{
+    
+    --placeholder-color:  #f3f4f7; 
+
+}
+.IonInput{
+
+    --background: #FFF; 
+    --color:#333333;
+    font-weight: bold;
+    margin: 10px; 
+    border: 2px solid #FFF;
+    border-radius: 10px;
+}
+
+ion-card-title{
+    --color: #000000;
+    font-weight: bold;
+    
+    text-align: center;
+} 
+
+.campos{
+
+} 
+
+.boton_mas{
+
+    margin-bottom: 60px;
+   
+}   
+.label_tittle{
+
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.label_text{
+    font-size: 14px;
+    
+}
+.titulo{
+    color: black;
+    font-weight: bold;
+    margin-top: 15px;
+    text-align: left;
+}
+.botones{
+    
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    
+}
+
+.button-cancelar{ 
+    --color: #075E54;
+    text-align: center;
+    --background: #ffffff;
+    --border-radius:10px;
+    width:42%;
+    font-weight: bold;
+} 
+.button-guardar{ 
+    --color: #ffffff;
+    margin-left: 10px;
+    text-align: center;
+    --border-radius:10px;
+    --background:#075E54;
+    font-weight: bold;
+    width: 40%;
+}

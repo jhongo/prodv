@@ -25,8 +25,8 @@ export class FirestoreService {
     const date = new Date();
     const collection = this.FireStore.collection<tipo>(path,
       ref => ref.where(parametro,condicion,busqueda) 
-      .orderBy('fecha','desc')
-      // .startAt(date)
+      // .orderBy('fecha','desc')
+      // // .startAt(date)
       );
     return collection.valueChanges();
   }
