@@ -19,7 +19,95 @@
   </ion-header>
 
 <ion-content class="content-resultados">
-<p style="color:black;">
-  Encuentros PAGE
-</p>
+
+  <ion-fab class="boton_mas" vertical="bottom" horizontal="end" slot="fixed" >
+    <ion-fab-button color="success" (click)="estado=true">
+      <ion-icon color="light" name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-card *ngIf="estado" class="Nuevo_equipo">
+    <ion-card-header>
+      <ion-card-title>
+        Nuevo equipo
+      </ion-card-title>
+    </ion-card-header>
+    <ion-item lines="none" class="IonInput">
+
+      <ion-label>
+        Nombre: 
+      </ion-label>
+      <ion-input class="campos" [(ngModel)]="equipo.nombre"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none" class="IonInput">
+      <ion-label class="normal">
+        Escudo:
+      </ion-label>
+      <ion-buttons slot="end">
+        <ion-button>
+          <label for="file-upload">
+            <ion-icon slot="icon-only" name="images"></ion-icon>
+          </label>
+          <input (change)="newImage($event)" id="file-upload" style="display: none;" type="file" accept="image/*">
+        </ion-button>
+
+      </ion-buttons>
+
+    </ion-item>
+    <ion-item  class="IonInput">
+
+      <img [src]="equipo.escudo">
+
+    </ion-item>
+
+    <ion-card-content class="botones">
+      <ion-button (click)="estado=false" (click)="restart()" class="button-cancelar">Cancelar</ion-button>
+      <ion-button (click)="saveTeam()" class="button-guardar">Guardar</ion-button>
+
+    </ion-card-content>
+
+  </ion-card>
+
+  <ion-title class="titulo"> Lista de equipos </ion-title>
+
+  <ion-card *ngFor="let equipo of team" class="equipos">
+
+    <ion-grid>
+      <ion-row>
+        <ion-col class="col_img" size="4">
+          <ion-item lines="none" class="item_avatar">
+              <img class="con_img" [src]="equipo.escudo">
+          </ion-item>
+        </ion-col>
+        <ion-col class="col_text" size="5">
+          <ion-card-content value="recibidos">
+            <ion-label class="label_tittle">
+              Nombre:
+            </ion-label>
+            <br />
+            <ion-label class="label_text">
+              {{equipo.nombre}}
+            </ion-label>
+            <br />
+
+          </ion-card-content>
+
+        </ion-col>
+        <ion-col class="col_icon" size="3">
+          <ion-card-content class="card-icon">
+            <ion-label class="label_tittle">Editar</ion-label>
+            <br />
+            <ion-buttons class="button">
+              <ion-button routerLink="/edit-equipo" (click)="getEquipo(equipo)">
+                <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-card-content>
+
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </ion-card>
 </ion-content>

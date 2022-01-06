@@ -11,6 +11,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage'
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { FormsModule } from '@angular/forms';
 // import { AngularFirestoreModule } from '@angular/fire/storage';
@@ -22,6 +23,7 @@ import { InternacionalComponent } from './pages/internacional/internacional.comp
 import { NacionalComponent } from './pages/nacional/nacional.component';
 import { NoticiasComponent } from './pages/noticias/noticias.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { EditEquipoComponent } from './pages/edit-equipo/edit-equipo.component';
 
 
 @NgModule({
@@ -36,7 +38,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     InternacionalComponent,
     NacionalComponent,
     NoticiasComponent, 
-
+    EditEquipoComponent
   ],
   entryComponents: [],
   imports: [BrowserModule, 
@@ -46,6 +48,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     AngularFirestoreModule.enablePersistence(),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    AngularFireStorageModule,
     FormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,

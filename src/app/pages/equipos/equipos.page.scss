@@ -3,6 +3,125 @@
 }
 
 ion-toolbar{
-    --background: #128C7E;
+    --background: #075E54;
+    color: white;
     
+}
+
+
+.Nuevo_equipo{
+    --background: white; 
+    padding: 15px;
+    
+}
+
+.IonInput{
+
+    --background: #FFF; 
+    --color:#333333;
+    font-weight: bold;
+    margin: 10px; 
+    border: 2px solid #FFF;
+    border-radius: 10px;
+}
+
+ion-card-title{
+    --color: #000000;
+    font-weight: bold;
+    
+    text-align: center;
+} 
+
+.campos{
+    --color: black; 
+    padding: 10px;
+} 
+
+.botones{
+    
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    
+}
+
+.button-cancelar{ 
+    --color: #075E54;
+    text-align: center;
+    --background: #ffffff;
+    --border-radius:10px;
+    width:42%;
+    font-weight: bold;
+} 
+.button-guardar{ 
+    --color: #ffffff;
+    margin-left: 10px;
+    text-align: center;
+    --border-radius:10px;
+    --background:#075E54;
+    font-weight: bold;
+    width: 40%;
+}
+.label_tittle{
+
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.label_text{
+    font-size: 14px;
+    
+}
+.titulo{
+    color: black;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: left;
+}
+.equipos{
+    --background: white;
+    border: 1px solid #ffffff;  
+    border-radius: 10px;  
+    --color: #000000;
+    font-size: 14px;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.card-icon{
+    text-align: center;
+}
+.item_avatar{
+
+    display: inline-block;
+    --background: white;
+    margin-left: auto;
+    margin-right: auto;
+   
+    
+}
+.col_img{
+
+    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+.col_icon{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.boton_mas{
+
+    margin-bottom: 60px;
+   
+}
+.color_mas{
+
+    color: #128C7E;
 }

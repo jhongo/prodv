@@ -8,6 +8,7 @@ import { NoticiasComponent } from './pages/noticias/noticias.component';
 import { NacionalComponent } from './pages/nacional/nacional.component';
 import { InternacionalComponent } from './pages/internacional/internacional.component';
 import { CampeonatosComponent } from './pages/campeonatos/campeonatos.component';
+import { EditEquipoComponent } from './pages/edit-equipo/edit-equipo.component';
 
 const routes: Routes = [
   {
@@ -50,6 +51,10 @@ const routes: Routes = [
   {
     path: 'campeonatos',
     component:CampeonatosComponent,
+  },
+  {
+    path: 'edit-equipo',
+    component:EditEquipoComponent,
   },
   // {
   //   path:'',
