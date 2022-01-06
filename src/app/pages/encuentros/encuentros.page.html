@@ -31,41 +31,76 @@
         Nuevo partido
       </ion-card-title>
     </ion-card-header>
-   
 
-    <ion-item lines="none" class="IonInput">
 
+    <!-- <ion-item (click)="showPicker = !showPicker">
       <ion-label>
         Fecha de recepcion
       </ion-label>
-      <ion-datetime class="fecha" [(ngModel)]="encuentro.fecha" mode="ios" monthValues="1,2,3,4,5,6,7,8,9,10,11,12"
-        yearValues="2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030"
-        dayValues="01,02,03,04,05,06,08,09,10, 11, 12, 13, 14, 15, 16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31"
-        displayFormat="DD/MMM/YYYY">
-      </ion-datetime>
+      <ion-text slot="end">
+         {{formatedString}}
 
+         <ion-datetime 
+         *ngIf="showPicker"
+         #datetime 
+         [value]="dateValue"
+         size="cover"
+         (ionChange)="dateChanged(datetime.value)"
+         showDefaultButtons ="true"
+         (ionCancel) = "showPicker = false"
+         >
+         </ion-datetime>
+      </ion-text>
+
+    </ion-item> -->
+
+    <ion-item class="IonInput" id="open-modal" >
+      <ion-icon icon="calendar-outline" slot="start" color="primary"></ion-icon>
+        <ion-label > Fecha  </ion-label>
+        <ion-text class = "ion-label-item" >  {{formatedString}} </ion-text>
     </ion-item>
 
-
-
+    <ion-modal trigger="open-modal" mode="md" >
+      <ng-template>
+        <ion-content>
+          
+          <ion-datetime
+          #datetime 
+          [value]="dateValue"
+          size="cover"
+          (ionChange)="dateChanged(datetime.value)"
+          showDefaultButtons ="true"
+          (ionCancel) = "showPicker = false"
+          >
+            <ion-buttons slot="buttons" >
+              <ion-button (click)="close()">Cancelar</ion-button>
+              <ion-button (click)="select()" color="primary">Seleccionar</ion-button>
+            </ion-buttons>
+          </ion-datetime>
+          
+        </ion-content>
+      </ng-template>
+    </ion-modal>
 
     <ion-item lines="none" class="IonInput">
       <ion-label class="ion-label-item">Tipo de partido:</ion-label>
-      <ion-input class="campos"  (click)="newMatch()" [(ngModel)]="encuentro.tipo" placeholder="Seleccione tipo de partido">
+      <ion-input class="campos" (click)="newMatch()" [(ngModel)]="encuentro.tipo"
+        placeholder="Seleccione tipo de partido">
       </ion-input>
     </ion-item>
 
     <ion-item *ngIf="grupo" lines="none" class="IonInput">
       <ion-label class="ion-label-item">Grupo:</ion-label>
-      <ion-input class="campos"  (click)="newTeam()" [(ngModel)]="encuentro.grupo" placeholder="Seleccione tipo de partido">
+      <ion-input class="campos" (click)="newTeam()" [(ngModel)]="encuentro.grupo"
+        placeholder="Seleccione tipo de partido">
       </ion-input>
     </ion-item>
 
     <!-- Inicio Grupo 1 -->
-    <ion-item *ngIf="grupo1"  lines="none" class="IonInput">
+    <ion-item *ngIf="grupo1" lines="none" class="IonInput">
       <ion-label>Equipo 1</ion-label>
-      <ion-select  class="campos" [(ngModel)]="encuentro.nombre_e1" placeholder="Seleccione grupo">
-        <ion-select-option *ngFor="let equipos of team"  value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
+      <ion-select class="campos" [(ngModel)]="encuentro.nombre_e1" placeholder="Seleccione grupo">
+        <ion-select-option *ngFor="let equipos of team" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item *ngIf="grupo1" lines="none" class="IonInput">
@@ -75,9 +110,9 @@
       </ion-select>
     </ion-item>
 
- <!-- Final Grupo 1 -->
+    <!-- Final Grupo 1 -->
 
-  <!-- Inicio Grupo 2 -->
+    <!-- Inicio Grupo 2 -->
     <ion-item *ngIf="grupo2" lines="none" class="IonInput">
       <ion-label>Equipo 1</ion-label>
       <ion-select class="campos" [(ngModel)]="encuentro.nombre_e1" placeholder="Seleccione grupo">
@@ -90,7 +125,7 @@
         <ion-select-option *ngFor="let equipos of team" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
       </ion-select>
     </ion-item>
- <!-- Final Grupo 2 -->
+    <!-- Final Grupo 2 -->
 
     <ion-card-content class="botones">
       <ion-button (click)="estado=false" class="button-cancelar">Cancelar</ion-button>

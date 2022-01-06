@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { AlertController, IonDatetime } from '@ionic/angular';
 import { Encuentro, Equipos } from 'src/app/models';
 import { Subscription } from 'rxjs';
 import { FirestoreService } from '../../services/firestore.service';
+import { format, parseISO } from 'date-fns';
 
 @Component({
   selector: 'app-encuentros',
@@ -17,6 +18,11 @@ export class EncuentrosPage implements OnInit {
   grupo1 = false;
   grupo2 = false;
   team: Equipos[] = [];
+
+  showPicker = false;
+  dateValue = format(new Date(), 'yyy-MM-dd') + 'T09:00:00.000Z'
+  formatedString = '';
+
 
 
   encuentro: Encuentro = {
@@ -33,19 +39,40 @@ export class EncuentrosPage implements OnInit {
     escudo_e2: '',
     nombre_e1: '',
     nombre_e2: '',
-
   }
 
-
-
+  @ViewChild(IonDatetime) datetime: IonDatetime;
   constructor(public alertController: AlertController,
-    public firestoreService: FirestoreService) { }
+    public firestoreService: FirestoreService) { 
+
+      this. setToday();
+    }
 
 
   ngOnInit() {
 
     console.log(this.encuentro.grupo);
 
+  }
+
+  setToday(){
+    this.formatedString = format(parseISO(format(new Date(), 'yyy-MM-dd') + 'T09:00:00.000Z'), 'HH:mm, MMM d, yyy');
+  }
+  dateChanged(value){
+    this.dateValue = value;
+    this.formatedString = format(parseISO(value), 'HH:mm, MMM d, yyy');
+    this.showPicker = false;
+    console.log(value);
+    
+
+  }
+
+  close(){
+    this.datetime.cancel(true);
+  }
+
+  select(){
+    this.datetime.confirm(true);
   }
 
 
