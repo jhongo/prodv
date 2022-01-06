@@ -3,7 +3,7 @@ import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
 import { FirestoreService } from './services/firestore.service';
 import { User } from './models';
 import { Subscription } from 'rxjs';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, Platform } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 
@@ -14,6 +14,9 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+
+  admin = false;
+
   usuario: User = { 
     uid: '',
     email:'',
@@ -24,18 +27,26 @@ export class AppComponent {
   uid='';
   suscriberUserInfo : Subscription;
   
-  constructor(public firebaseauthService: FirebaseauthService,
-    public loadingController: LoadingController,
-    public firestoreService: FirestoreService,
-    public router:Router,
-    private menuL: MenuController) {
+  constructor(  public firebaseauthService: FirebaseauthService,
+                public loadingController: LoadingController,
+                public firestoreService: FirestoreService,
+                public router:Router,
+                private menuL: MenuController,
+                private platform: Platform,
+                ){
 
       this.firebaseauthService.stateAuth().subscribe(res =>{
         if(res!=null){
-          this.uid = res.uid;
-          this.getUserInfo(this.uid);
+
+          if (res.uid == 'LikZN15qNiQi1pFEAT8frapWt243') {
+            this.admin = true;
+            this.getUserInfo(res.uid);
+          }else{
+            this.admin = false;
+            this.getUserInfo(res.uid);
+          }
         }else{
-          
+          this.admin = false;
           this.initClient();
 
         }
@@ -43,6 +54,10 @@ export class AppComponent {
       });
 
 
+    }
+
+    initializeApp(){
+      this.getUid();
     }
 
     initClient(){  
@@ -90,8 +105,29 @@ export class AppComponent {
     });
     await loading.present();
   } 
+  getUid(){
+  
+    this.firebaseauthService.stateAuth().subscribe(res =>{
+      if(res!=null){
+  
+        if (res.uid == 'LikZN15qNiQi1pFEAT8frapWt243') {
+          this.admin = true;
+          this.getUserInfo(res.uid);
+        }else{
+          this.admin = false;
+          this.getUserInfo(res.uid);
+        }
+      }else{
+        this.admin = false;
+        this.initClient();
+  
+      }
+  
+    });
+  }
 
 
 }
+
 
 
