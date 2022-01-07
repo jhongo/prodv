@@ -141,10 +141,10 @@ export class EncuentrosPage implements OnInit {
       }
     });
   }
-  async completardatos() {
+  async completardatos(uid:string) {
 
     const path = 'Equipos';
-   
+   const pathp= 'Partidos';
     this.equiposInfo = this.firestoreService.getCollection<Equipos>(path, 'nombre', '==', this.encuentro.nombre_e1).subscribe(res => {
       if (res.length) {
         this.equipo1 = res[0];
@@ -154,6 +154,15 @@ export class EncuentrosPage implements OnInit {
         this.uid1 = this.equipo1.uid;
          this.encuentro.escudo_e1=this.escudo1;
          this.encuentro.uid_e1=this.uid1;
+         const data ={
+          escudo_e1: this.escudo1,
+          uid_e1: this.uid1
+         }
+         console.log(data)
+
+        this.firestoreService.actualizarpartido(data,pathp,uid).then(res=>{});
+
+
       }
     });
 
@@ -166,6 +175,13 @@ export class EncuentrosPage implements OnInit {
         this.uid2 = this.equipo2.uid;
         this.encuentro.escudo_e2=this.escudo2;
         this.encuentro.uid_e2=this.uid2;
+        const data ={
+          escudo_e2: this.escudo2,
+          uid_e2: this.uid2
+         }
+         console.log( data)
+        this.firestoreService.actualizarpartido(data,pathp,uid).then(res=>{});
+
        
       }
     });
@@ -176,7 +192,8 @@ export class EncuentrosPage implements OnInit {
   }
 
   async saveMatch() {
-
+    this.encuentro.uid = this.firestoreService.getId();
+    this.encuentro.fecha= this.formatedString;
     if (this.encuentro.tipo == "") {
       this.presentToast("Eliga el tipo de partido", 2000);
     } else {
@@ -192,13 +209,12 @@ export class EncuentrosPage implements OnInit {
           
           console.log(this.encuentro.nombre_e1 + " " + this.encuentro.nombre_e2);
           const path = 'Partidos';
-          this.completardatos();
-          console.log(this.encuentro);
-          this.encuentro.uid = this.firestoreService.getId();
+          // console.log(this.encuentro);
+          
           this.firestoreService.createDoc(this.encuentro, path, this.encuentro.uid).then(res => {
             console.log('guardado con exito');
             this.presentLoading('Guardando partido', 1500);
-
+            this.completardatos(this.encuentro.uid);
             this.encuentro = {
               uid: '',
               tipo: '',
@@ -213,10 +229,14 @@ export class EncuentrosPage implements OnInit {
               escudo_e2: '',
               nombre_e1: '',
               nombre_e2: '',
-            };
+            }; 
+            this.estado = false;
+            this.grupo = false;
+            this.grupo1 = false;
+            this.grupo2 = false;
 
           }).catch(error => {
-
+            console.log(error)
           });
             
           }

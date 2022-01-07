@@ -37,6 +37,12 @@ export class FirestoreService {
   }
 
 
+  actualizarpartido(data:any, path :string, id:string){
+    const collection= this.FireStore.collection(path);
+    return collection.doc(id).update(data);
+
+  }
+
   
   getId(){
     return this.FireStore.createId();
