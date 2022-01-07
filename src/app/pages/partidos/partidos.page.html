@@ -17,8 +17,85 @@
 
 </ion-header>
 <ion-content class="page-content">
-  <p style="color:black;" >
-    Partidos Page
-  </p>
+  <ion-title class="titulo"> Proximos partidos </ion-title>
+  <ion-card *ngFor="let equipo of team" class="partidos">
 
+    <ion-grid>
+      <ion-row>
+        <ion-col class="col_text" size="7">
+          <ion-card-content >
+            <ion-label class="label_tittle">
+              {{equipo.tipo}}
+            </ion-label>
+            <!-- <br /> -->
+           </ion-card-content>
+        </ion-col>
+        <ion-col class="col_text" size="5">
+        <ion-card-content >
+          <ion-label class="label_tittle">
+            {{equipo.grupo}}
+          </ion-label>
+          <!-- <br /> -->
+         </ion-card-content>
+          
+        </ion-col>
+
+        <ion-col class="col_text" size="4"></ion-col>
+
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="col_icon" size="1">
+         
+        </ion-col>
+        <ion-col class="col_img" size="4">
+          <ion-item lines="none" class="item_avatar">
+            <img class="con_img" [src]="equipo.escudo_e1">
+          </ion-item>
+       
+         
+        </ion-col>
+        <ion-col class="col_vs" size="1">
+          <ion-label class="label_tittle_vs">
+            VS
+          </ion-label>
+        </ion-col>
+        <ion-col class="col_img" size="4">
+              <ion-item lines="none" class="item_avatar">
+              <img class="con_img" [src]="equipo.escudo_e2">
+            </ion-item>
+        </ion-col>
+        <ion-col class="col_icon" size="2">
+         
+        </ion-col>
+
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="col_icon" size="1">
+         
+        </ion-col>
+        <ion-col class="col_nom_eq" size="4">
+          <ion-label class="label_tittle">
+            {{equipo.nombre_e1}}
+          </ion-label>
+        </ion-col>
+
+        <ion-col class="col_text" size="1">
+          
+        </ion-col>
+
+        <ion-col class="col_nom_eq" size="4">
+          <ion-label class="label_tittle">
+            {{equipo.nombre_e2}}
+          </ion-label>
+        </ion-col>
+
+        <ion-col class="col_text" size="2">
+          
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </ion-card>
 </ion-content>

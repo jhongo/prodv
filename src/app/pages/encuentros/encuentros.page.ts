@@ -12,12 +12,12 @@ import { format, parseISO } from 'date-fns';
 })
 export class EncuentrosPage implements OnInit {
 
-  estado = true;
+  estado = false;
   grupo = false;
   equiposInfo: Subscription;
   grupo1 = false;
   grupo2 = false;
-  team: Equipos[] = [];
+  team: Encuentro[] = [];
   team1: Equipos[] = [];
   team2: Equipos[] = [];
 
@@ -94,6 +94,7 @@ export class EncuentrosPage implements OnInit {
   ngOnInit() {
 
     console.log(this.encuentro.grupo);
+    this.getPartidos();
 
   }
 
@@ -125,9 +126,9 @@ export class EncuentrosPage implements OnInit {
     });
   }
 
-  async getEquipos() {
-    const path = 'Equipos';
-    this.equiposInfo = this.firestoreService.getTeam<Equipos>(path).subscribe(res => {
+  async getPartidos() {
+    const path = 'Partidos';
+    this.equiposInfo = this.firestoreService.getTeam<Encuentro>(path).subscribe(res => {
       this.team = res;
     });
   }

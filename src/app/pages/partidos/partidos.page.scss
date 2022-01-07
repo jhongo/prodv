@@ -5,3 +5,117 @@ ion-toolbar{
     --background: #075E54;
     color: white; 
 }
+
+.titulo{
+    color: black;
+    font-weight: bold;
+    margin-top: 15px;
+    text-align: left;
+}
+.col_vs{
+margin-top: auto;
+margin-bottom: auto;
+    // border: 1px black solid;
+}
+.col_tex{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.col_nom_eq{
+//  border: 1px black solid;
+ text-align: center;
+}
+.fecha{
+    
+    --placeholder-color:  #f3f4f7; 
+
+}
+.card-icon{
+    text-align: center;
+}
+.label_tittle{
+
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+.col_img{
+    // border: 1px black solid;
+    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+.partidos{
+    --background: white;
+    border: 1px solid #ffffff;  
+    border-radius: 10px;  
+    --color: #000000;
+    font-size: 14px;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.item_avatar{
+
+    display: inline-block;
+    --background: white;
+    margin-left: auto;
+    margin-right: auto;
+   
+    
+}
+
+
+.col_icon{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.boton_mas{
+
+    margin-bottom: 60px;
+   
+    
+}   
+.icon_edit{
+    color: black;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.label_tittle{
+
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+.label_tittle_vs{
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+
+}
+.button{
+
+    text-align: center;
+    display: inline-block;
+   
+}
+.label_text{
+    font-size: 14px;
+    
+}
+.titulo{
+    color: black;
+    font-weight: bold;
+    margin-top: 15px;
+    text-align: left;
+}
