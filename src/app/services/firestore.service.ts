@@ -35,6 +35,9 @@ export class FirestoreService {
     const collection = this.FireStore.collection<tipo>(path);
     return collection.doc(id).valueChanges();
   }
+
+
+  
   getId(){
     return this.FireStore.createId();
   } 

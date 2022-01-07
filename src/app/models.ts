@@ -35,7 +35,7 @@ export interface Encuentro{
 
     uid:string,
     tipo:string,
-    fecha:Date,
+    fecha:string,
     grupo:string,
     uid_e1:string,
     uid_e2:string,

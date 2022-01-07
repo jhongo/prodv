@@ -55,15 +55,14 @@
     </ion-item> -->
 
     <ion-item class="IonInput" id="open-modal" >
-      <ion-icon icon="calendar-outline" slot="start" color="primary"></ion-icon>
-        <ion-label > Fecha  </ion-label>
-        <ion-text class = "ion-label-item" >  {{formatedString}} </ion-text>
+      <!-- <ion-icon icon="calendar-outline" slot="start" color="primary"></ion-icon> -->
+        <ion-label class="ion-label-item" > Fecha: </ion-label>
+        <ion-text>  {{formatedString}} </ion-text>
     </ion-item>
 
     <ion-modal trigger="open-modal" mode="md" >
       <ng-template>
         <ion-content>
-          
           <ion-datetime
           #datetime 
           [value]="dateValue"
@@ -84,29 +83,29 @@
 
     <ion-item lines="none" class="IonInput">
       <ion-label class="ion-label-item">Tipo de partido:</ion-label>
-      <ion-input class="campos" (click)="newMatch()" [(ngModel)]="encuentro.tipo"
+      <ion-input slot="end" class="campos" (click)="newMatch()" [(ngModel)]="encuentro.tipo"
         placeholder="Seleccione tipo de partido">
       </ion-input>
     </ion-item>
 
     <ion-item *ngIf="grupo" lines="none" class="IonInput">
       <ion-label class="ion-label-item">Grupo:</ion-label>
-      <ion-input class="campos" (click)="newTeam()" [(ngModel)]="encuentro.grupo"
+      <ion-input slot="end" class="campos" (click)="newTeam()" [(ngModel)]="encuentro.grupo"
         placeholder="Seleccione tipo de partido">
       </ion-input>
     </ion-item>
 
     <!-- Inicio Grupo 1 -->
     <ion-item *ngIf="grupo1" lines="none" class="IonInput">
-      <ion-label>Equipo 1</ion-label>
+      <ion-label class="ion-label-item">Equipo 1</ion-label>
       <ion-select class="campos" [(ngModel)]="encuentro.nombre_e1" placeholder="Seleccione grupo">
-        <ion-select-option *ngFor="let equipos of team" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
+        <ion-select-option *ngFor="let equipos of team1" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item *ngIf="grupo1" lines="none" class="IonInput">
-      <ion-label>Equipo 2</ion-label>
+      <ion-label class="ion-label-item">Equipo 2</ion-label>
       <ion-select class="campos" [(ngModel)]="encuentro.nombre_e2" placeholder="Seleccione grupo">
-        <ion-select-option *ngFor="let equipos of team" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
+        <ion-select-option *ngFor="let equipos of team1" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
       </ion-select>
     </ion-item>
 
@@ -114,15 +113,15 @@
 
     <!-- Inicio Grupo 2 -->
     <ion-item *ngIf="grupo2" lines="none" class="IonInput">
-      <ion-label>Equipo 1</ion-label>
+      <ion-label class="ion-label-item">Equipo 1</ion-label>
       <ion-select class="campos" [(ngModel)]="encuentro.nombre_e1" placeholder="Seleccione grupo">
-        <ion-select-option *ngFor="let equipos of team" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
+        <ion-select-option *ngFor="let equipos of team2" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item *ngIf="grupo2" lines="none" class="IonInput">
-      <ion-label>Equipo 2</ion-label>
+      <ion-label class="ion-label-item">Equipo 2</ion-label>
       <ion-select class="campos" [(ngModel)]="encuentro.nombre_e2" placeholder="Seleccione grupo">
-        <ion-select-option *ngFor="let equipos of team" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
+        <ion-select-option *ngFor="let equipos of team2" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
       </ion-select>
     </ion-item>
     <!-- Final Grupo 2 -->
@@ -130,12 +129,13 @@
     <ion-card-content class="botones">
       <ion-button (click)="estado=false" class="button-cancelar">Cancelar</ion-button>
       <ion-button (click)="saveMatch()" class="button-guardar">Guardar</ion-button>
-
     </ion-card-content>
 
   </ion-card>
 
   <ion-title class="titulo"> Lista de partidos </ion-title>
+
+  <!-- <ion-img src={{this.img}}></ion-img> -->
 
   <!-- <ion-card *ngFor="let equipo of team" class="equipos">
 
