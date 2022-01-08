@@ -12,28 +12,62 @@ ion-toolbar{
   margin-top: 15px;
   text-align: left;
 }
+
 .col_vs{
 margin-top: auto;
 margin-bottom: auto;
+text-align: center;
   //  border: 1px black solid;
    background: #075E54;
   color: white ;
+  
   }
-.col_tex{
+.label_tem{
+
+  font-size: 14px;
+}
+.row_fecha{
+  // border: 1px black solid;
+  
   text-align: center;
+}
+.col_tex{
   margin-left: auto;
   margin-right: auto;
+
+  font-size: 9px;
+  // border: 1px purple solid;
+ 
+  height: 30px;
 }
-.col_fecha{
-  text-align: right;
+.card_fecha{
+
+  // border: 1px red solid;
+ height: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
 
 }
-.col_nom_eq{
+
+.label_fecha{
+
+  font-size: 13px;
+  font-weight: bold;  
+  // border: 1px blue solid;
+
+}
+.col_nom_eq1{
 //  border: 1px black solid;
- text-align: center;
+ text-align: right;
 margin-top: auto;
 margin-bottom: auto;
 }
+.col_nom_eq2{
+  // border: 1px black solid;
+  text-align: left;
+ margin-top: auto;
+ margin-bottom: auto;
+ }
 .fecha{
   
   --placeholder-color:  #f3f4f7; 
@@ -42,18 +76,20 @@ margin-bottom: auto;
 .card-icon{
   text-align: center;
 }
+.label_e1{
+  font-size: 14px;
+  text-align: right;
+}
+.label_e2{
+  font-size: 14px;
+  text-align: left;
+}
 .label_tittle{
 
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 9px;
   text-align: center;
 }
-.label_fecha{
-  font-size: 16px;
-  font-weight: bold;
-  text-align: right;
 
-}
 .col_img{
   // border: 1px black solid;
   height: auto;
@@ -67,8 +103,7 @@ margin-bottom: auto;
   border: 1px solid #ffffff;  
   border-radius: 10px;  
   --color: #000000;
-  font-size: 14px;
-  width: 95%;
+  width: 97%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -110,7 +145,8 @@ margin-bottom: auto;
   text-align: center;
 }
 .label_tittle_vs{
-  font-size: 16px;
+  font-size: 10px;
+ 
   font-weight: bold;
   text-align: center;
   margin-top: auto;

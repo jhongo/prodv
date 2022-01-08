@@ -39,38 +39,51 @@
 </ion-header>
 <ion-content class="page-content">
   <ion-title class="titulo"> Proximos partidos </ion-title>
-  <ion-card *ngFor="let equipo of team" class="partidos">
 
+  <!-- <ion-card>
     <ion-grid>
-
       <ion-row>
         <ion-col class="col_text" size="6">
           <ion-card-content>
-            <ion-label class="label_tittle">
+            <ion-label class="label_tem">
               Fecha 1
             </ion-label>
             <br />
-            <ion-label class="label_tittle">
+            <ion-label class="label_tem">
               {{equipo.tipo}}
             </ion-label>
           </ion-card-content>
         </ion-col>
-        <ion-col class="col_fecha" size="6">
+        <ion-col class="col_tex" size="6">
           <ion-card-content >
             <ion-label  class="label_fecha">
               {{equipo.fecha}}
             </ion-label>
             <br />
-            <ion-label class="label_tittle">
+            <ion-label class="label_tem">
               {{equipo.grupo}}
             </ion-label>
           </ion-card-content>
-
         </ion-col>
-
       </ion-row>
+    </ion-grid>
+  </ion-card> -->
 
-      <!-- <ion-row>
+  <ion-card *ngFor="let equipo of team" class="partidos">
+
+    <ion-grid>
+
+      <ion-row class="row_fecha">
+        <ion-col class="col_tex" size="6">
+          <!-- <ion-card-content class="card_fecha"> -->
+            <ion-label  class="label_fecha">
+              {{equipo.fecha}}
+            </ion-label>
+          <!-- </ion-card-content> -->
+        </ion-col>
+      </ion-row>
+      
+       <!-- <ion-row>
         <ion-col class="col_text" size="7">
           <ion-card-content>
             <ion-label class="label_tittle">
@@ -96,8 +109,8 @@
       
       <ion-row>
         
-        <ion-col class="col_nom_eq" size="3">
-          <ion-label class="label_tittle">
+        <ion-col class="col_nom_eq1" size="3">
+          <ion-label class="label_e1">
             {{equipo.nombre_e1}}
           </ion-label>
         </ion-col>
@@ -119,8 +132,8 @@
           </ion-item>
         </ion-col>
 
-        <ion-col class="col_nom_eq" size="3">
-          <ion-label class="label_tittle">
+        <ion-col class="col_nom_eq2" size="3">
+          <ion-label class="label_e2">
             {{equipo.nombre_e2}}
           </ion-label>
         </ion-col>
