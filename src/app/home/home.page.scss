@@ -1,27 +1,135 @@
-#container {
+.page-content{
+  --background: white
+}
+ion-toolbar{
+  --background: #075E54;
+  color: white; 
+}
+
+.titulo{
+  color: black;
+  font-weight: bold;
+  margin-top: 15px;
+  text-align: left;
+}
+.col_vs{
+margin-top: auto;
+margin-bottom: auto;
+  //  border: 1px black solid;
+   background: #075E54;
+  color: white ;
+  }
+.col_tex{
   text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  margin-left: auto;
+  margin-right: auto;
 }
+.col_fecha{
+  text-align: right;
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
 }
+.col_nom_eq{
+//  border: 1px black solid;
+ text-align: center;
+margin-top: auto;
+margin-bottom: auto;
+}
+.fecha{
+  
+  --placeholder-color:  #f3f4f7; 
 
-#container p {
+}
+.card-icon{
+  text-align: center;
+}
+.label_tittle{
+
   font-size: 16px;
-  line-height: 22px;
+  font-weight: bold;
+  text-align: center;
+}
+.label_fecha{
+  font-size: 16px;
+  font-weight: bold;
+  text-align: right;
 
-  color: #8c8c8c;
-
-  margin: 0;
+}
+.col_img{
+  // border: 1px black solid;
+  height: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+.partidos{
+  --background: white;
+  border: 1px solid #ffffff;  
+  border-radius: 10px;  
+  --color: #000000;
+  font-size: 14px;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-#container a {
-  text-decoration: none;
+.item_avatar{
+
+  display: inline-block;
+  --background: white;
+  margin-left: auto;
+  margin-right: auto;
+ 
+  
+}
+
+
+.col_icon{
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.boton_mas{
+
+  margin-bottom: 60px;
+ 
+  
+}   
+.icon_edit{
+  color: black;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.label_tittle{
+
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+.label_tittle_vs{
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+
+}
+.button{
+
+  text-align: center;
+  display: inline-block;
+ 
+}
+.label_text{
+  font-size: 14px;
+  
+}
+.titulo{
+  color: black;
+  font-weight: bold;
+  margin-top: 15px;
+  text-align: left;
 }

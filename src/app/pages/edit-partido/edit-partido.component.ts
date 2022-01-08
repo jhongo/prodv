@@ -1,66 +1,30 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AlertController, IonDatetime, LoadingController, ToastController } from '@ionic/angular';
+import { LoadingController, ToastController, AlertController, IonDatetime } from '@ionic/angular';
 import { Encuentro, Equipos } from 'src/app/models';
-import { Subscription } from 'rxjs';
-import { FirestoreService } from '../../services/firestore.service';
+import { FirestoreService } from 'src/app/services/firestore.service';
+import { Router } from '@angular/router';
 import { format, parseISO } from 'date-fns';
-
+import { Subscription } from 'rxjs';
 @Component({
-  selector: 'app-encuentros',
-  templateUrl: './encuentros.page.html',
-  styleUrls: ['./encuentros.page.scss'],
+  selector: 'app-edit-partido',
+  templateUrl: './edit-partido.component.html',
+  styleUrls: ['./edit-partido.component.scss'],
 })
-export class EncuentrosPage implements OnInit {
+export class EditPartidoComponent implements OnInit {
 
-  estado = false;
   grupo = false;
-  equiposInfo: Subscription;
   grupo1 = false;
   grupo2 = false;
-  team: Encuentro[] = [];
+  equiposInfo: Subscription;
   team1: Equipos[] = [];
   team2: Equipos[] = [];
-
-  escudo1 = '';
-  escudo2 = '';
-  uid1 = '';
-  uid2 = '';
-
-  equipo1: Equipos = {
-    uid: '',
-    nombre: '',
-    escudo: '',
-    grupo: '',
-    puntos: 0,
-    p_j: 0,
-    p_g: 0,
-    p_e: 0,
-    p_p: 0,
-    g_g: 0,
-    g_c: 0,
-    d_g: 0
-  };
-
-  equipo2: Equipos = {
-    uid: '',
-    nombre: '',
-    escudo: '',
-    grupo: '',
-    puntos: 0,
-    p_j: 0,
-    p_g: 0,
-    p_e: 0,
-    p_p: 0,
-    g_g: 0,
-    g_c: 0,
-    d_g: 0
-
-
-  };
+  team: Encuentro[] = [];
 
   showPicker = false;
   dateValue = format(new Date(), 'yyy-MM-dd') + 'T09:00:00.000Z'
   formatedString = '';
+
+
 
   encuentro: Encuentro = {
     uid: '',
@@ -78,22 +42,14 @@ export class EncuentrosPage implements OnInit {
     nombre_e2: '',
   }
 
+
   @ViewChild(IonDatetime) datetime: IonDatetime;
-  constructor(public alertController: AlertController,
-    public firestoreService: FirestoreService,
+  constructor(public firestoreService: FirestoreService,
     public loadingController: LoadingController,
-    public toastController: ToastController,) {
-
+    public toastController: ToastController,
+    public alertController: AlertController,
+    public router: Router) {
     this.setToday();
-
-  }
-
-
-  ngOnInit() {
-
-    console.log(this.encuentro.grupo);
-    this.getPartidos();
-
   }
 
   setToday() {
@@ -102,6 +58,7 @@ export class EncuentrosPage implements OnInit {
   dateChanged(value) {
     this.dateValue = value;
     this.formatedString = format(parseISO(value), 'HH:mm, MMM d, yyy');
+    this.encuentro.fecha = this.formatedString;
     this.showPicker = false;
     console.log(value);
   }
@@ -114,6 +71,20 @@ export class EncuentrosPage implements OnInit {
     this.datetime.confirm(true);
   }
 
+  ngOnInit() {
+    const match = this.firestoreService.getMatch();
+    if (match !== undefined) {
+      this.encuentro = match;
+      if (this.encuentro.grupo == "Grupo 1") {
+        this.grupo1 = true;
+        this.grupo2 = false;
+      } else if (this.encuentro.grupo == "Grupo 2") {
+        this.grupo1 = false;
+        this.grupo2 = true;
+      }
+    }
+    console.log(this.encuentro);
+  }
 
   async getEquiposG1() {
     const path = 'Equipos';
@@ -139,120 +110,52 @@ export class EncuentrosPage implements OnInit {
       }
     });
   }
-  async completardatos(uid:string) {
-
-    const path = 'Equipos';
-   const pathp= 'Partidos';
-    this.equiposInfo = this.firestoreService.getCollection<Equipos>(path, 'nombre', '==', this.encuentro.nombre_e1).subscribe(res => {
-      if (res.length) {
-        this.equipo1 = res[0];
-        // console.log(res[0]);
-        // console.log(this.equipo1.escudo);
-        this.escudo1 = this.equipo1.escudo;
-        this.uid1 = this.equipo1.uid;
-         this.encuentro.escudo_e1=this.escudo1;
-         this.encuentro.uid_e1=this.uid1;
-         const data ={
-          escudo_e1: this.escudo1,
-          uid_e1: this.uid1
-         }
-         console.log(data)
-
-        this.firestoreService.actualizarpartido(data,pathp,uid).then(res=>{});
-
-
-      }
-    });
-
-    this.equiposInfo = this.firestoreService.getCollection<Equipos>(path, 'nombre', '==', this.encuentro.nombre_e2).subscribe(res => {
-      if (res.length) {
-        this.equipo2 = res[0];
-        // console.log(res[0]);
-        // console.log(this.equipo2.escudo);
-        this.escudo2 = this.equipo2.escudo;
-        this.uid2 = this.equipo2.uid;
-        this.encuentro.escudo_e2=this.escudo2;
-        this.encuentro.uid_e2=this.uid2;
-        const data ={
-          escudo_e2: this.escudo2,
-          uid_e2: this.uid2
-         }
-         console.log( data)
-        this.firestoreService.actualizarpartido(data,pathp,uid).then(res=>{});
-
-       
-      }
-    });
-
-    console.log(this.encuentro);
-    
-    
-  }
-
-  async getMatch(equipo:Encuentro){
-    console.log('Click en getEquipo'); 
-    console.log(equipo);
-    this.firestoreService.setMatch(equipo); 
-
-  }
 
   async saveMatch() {
-    this.encuentro.uid = this.firestoreService.getId();
-    this.encuentro.fecha= this.formatedString;
-    if (this.encuentro.tipo == "") {
-      this.presentToast("Eliga el tipo de partido", 2000);
-    } else {
-      if (this.encuentro.grupo == "") {
-        this.presentToast("Eliga el grupo para elegir los equipos", 2000);
-      } else {
-        if (this.encuentro.nombre_e1 == "" || this.encuentro.nombre_e2 == "") {
-          this.presentToast("Eliga los equipos", 2000);
-        } else {
-          if(this.encuentro.nombre_e1==this.encuentro.nombre_e2){
-            this.presentToast("Los equipos son los mismos",2000);
-          }else{
-          
-          console.log(this.encuentro.nombre_e1 + " " + this.encuentro.nombre_e2);
-          const path = 'Partidos';
-          // console.log(this.encuentro);
-          
-          this.firestoreService.createDoc(this.encuentro, path, this.encuentro.uid).then(res => {
-            console.log('guardado con exito');
-            this.presentLoading('Guardando partido', 1500);
-            this.completardatos(this.encuentro.uid);
-            this.encuentro = {
-              uid: '',
-              tipo: '',
-              fecha: '',
-              grupo: '',
-              uid_e1: '',
-              uid_e2: '',
-              estado: 'iniciado',
-              res_e1: 0,
-              res_e2: 0,
-              escudo_e1: '',
-              escudo_e2: '',
-              nombre_e1: '',
-              nombre_e2: '',
-            }; 
-            this.estado = false;
-            this.grupo = false;
-            this.grupo1 = false;
-            this.grupo2 = false;
 
-          }).catch(error => {
-            console.log(error)
-          });
-            
-          }
-          
+    const path = 'Partidos';
+    this.firestoreService.createDoc(this.encuentro, path, this.encuentro.uid).then(res => {
+      console.log('guardado con exito');
 
-        }
+      this.presentLoading('Actualizando resultado', 1500);
+      setTimeout(() => {
+        this.router.navigate(['/tab-campeonato/encuentros']);
+      }, 1000);
+      this.encuentro = {
+        uid: '',
+        tipo: '',
+        fecha: '',
+        grupo: '',
+        uid_e1: '',
+        uid_e2: '',
+        estado: 'iniciado',
+        res_e1: 0,
+        res_e2: 0,
+        escudo_e1: '',
+        escudo_e2: '',
+        nombre_e1: '',
+        nombre_e2: '',
+      };
 
-      }
 
-    }
+    }).catch(error => {
+      console.log(error)
+    });
 
+  }
+
+
+
+  async deleteMatch() {
+    const path = "Partidos";
+    this.firestoreService.deletepartido(path, this.encuentro.uid).then(res => {
+      this.presentLoading('Eliminando', 1500);
+      setTimeout(() => {
+        this.router.navigate(['/tab-campeonato/encuentros']);
+      }, 1000);
+    })  .catch(error => {
+      console.log(error)
+    });
   }
 
 
@@ -387,6 +290,29 @@ export class EncuentrosPage implements OnInit {
     await alert.present();
   }
 
+  async restart() {
+    this.router.navigate(['tab-campeonato/encuentros'])
+
+    this.encuentro = {
+      uid: null,
+      tipo: null,
+      fecha: null,
+      grupo: null,
+      uid_e1: null,
+      uid_e2: null,
+      estado: 'iniciado',
+      res_e1: 0,
+      res_e2: 0,
+      escudo_e1: null,
+      escudo_e2: null,
+      nombre_e1: null,
+      nombre_e2: null,
+    }
+
+  }
+
+
+
   async presentToast(mensaje: string, tiempo: number) {
     const toast = await this.toastController.create({
       message: mensaje,
@@ -414,6 +340,5 @@ export class EncuentrosPage implements OnInit {
 
     await alert.present();
   }
-
 
 }

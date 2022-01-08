@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
       console.log('Ingreso con exito');
       this.presentLoading('Iniciando Sesión', 1500);
       setTimeout(() => {
-        this.router.navigate(['/tab-inicial/partidos']);
+        this.router.navigate(['/home']);
         this.menuL.enable(true);
       }, 1000); 
       this.usuarios = {

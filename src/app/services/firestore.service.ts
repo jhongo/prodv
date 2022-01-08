@@ -4,7 +4,7 @@ import {AngularFirestore,
   AngularFirestoreDocument,
   AngularFirestoreCollection} from '@angular/fire/compat/firestore';
 import {finalize} from 'rxjs/operators';
-import { Equipos } from '../models';
+import { Equipos, Encuentro } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,7 @@ export class FirestoreService {
               public storage: AngularFireStorage) { }
 
   editEquipo: Equipos;
+  editMatch : Encuentro;
 
   createDoc<tipo>(data: tipo, enlace:string, id:string){
     const ref = this.FireStore.collection<tipo>(enlace);
@@ -43,6 +44,10 @@ export class FirestoreService {
 
   }
 
+  deletepartido(path:string,id:string){
+    const collection = this.FireStore.collection(path);
+    return collection.doc(id).delete();
+  }
   
   getId(){
     return this.FireStore.createId();
@@ -81,6 +86,14 @@ export class FirestoreService {
   }  
   getEquipo(){
     return this.editEquipo;
+  } 
+
+  setMatch(match:Encuentro){
+    return this.editMatch=match;
+
+  }
+  getMatch(){
+    return this.editMatch;
   } 
 
 }

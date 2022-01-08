@@ -35,8 +35,6 @@ export class EditEquipoComponent implements OnInit {
   };
   ngOnInit() {
     const team = this.firestoreService.getEquipo();
-    console.log('Agregar Pedidos', team);
-
     if (team !== undefined) {
       this.equipo = team;
     }

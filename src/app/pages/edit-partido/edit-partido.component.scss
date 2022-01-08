@@ -1,0 +1,63 @@
+.content_pri{
+    --background: white;
+}
+.Nuevo_partido{
+    --background: white; 
+    padding: 15px;
+    
+}
+.IonInput{
+
+    --background: #FFF; 
+    --color:#333333;
+    font-weight: bold;
+    margin: 10px; 
+    border: 2px solid #FFF;
+    border-radius: 10px;
+}
+.titulo{
+    color: black;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: left;
+}
+.campos{
+    --color: black; 
+    padding: 10px;
+} 
+
+.botones{
+    
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    
+}
+
+.button-cancelar{ 
+    --color: #075E54;
+    text-align: center;
+    --background: #ffffff;
+    --border-radius:10px;
+    width:42%;
+    font-weight: bold;
+} 
+.button-guardar{ 
+    --color: #ffffff;
+    margin-left: 10px;
+    text-align: center;
+    --border-radius:10px;
+    --background:#075E54;
+    font-weight: bold;
+    width: 40%;
+}
+
+.button-eliminar{
+    --color: #075E54;
+    text-align: center;
+    --background: #ffffff;
+    --border-radius:10px;
+    width:50%;
+    font-weight: bold;
+
+}
