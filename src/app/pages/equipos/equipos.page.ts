@@ -27,7 +27,7 @@ export class EquiposPage implements OnInit {
     p_g: 0,
     p_e: 0,
     p_p: 0,
-    g_g: 0,
+    g_f: 0,
     g_c: 0,
     d_g: 0
   };
@@ -67,7 +67,7 @@ export class EquiposPage implements OnInit {
             p_g: 0,
             p_e: 0,
             p_p: 0,
-            g_g: 0,
+            g_f: 0,
             g_c: 0,
             d_g: 0
           };
@@ -112,7 +112,7 @@ export class EquiposPage implements OnInit {
       p_g: 0,
       p_e: 0,
       p_p: 0,
-      g_g: 0,
+      g_f: 0,
       g_c: 0,
       d_g: 0
     };

@@ -10,22 +10,24 @@
 
     <ion-item lines="none" class="IonInput">
       <ion-label  class="ion-label-item">{{encuentro.nombre_e1}}</ion-label>
-      <ion-input slot="end" class="campos"  [(ngModel)]="encuentro.res_e1"
-        placeholder="Seleccione tipo de partido">
+      <ion-input type="number" slot="end" class="campos"  [(ngModel)]="encuentro.res_e1"
+        >
       </ion-input>
     </ion-item>
 
     <ion-item lines="none" class="IonInput">
       <ion-label  class="ion-label-item">{{encuentro.nombre_e2}}</ion-label>
-      <ion-input slot="end" class="campos"  [(ngModel)]="encuentro.res_e2"
-        placeholder="Seleccione tipo de partido">
+      <ion-input type="number" slot="end" class="campos"  [(ngModel)]="encuentro.res_e2"
+        >
       </ion-input>
     </ion-item>
    
+    
     <ion-card-content class="botones">
       <ion-button (click)="restart()" routerLink="/tab-campeonato/partidos"  class="button-cancelar">Cancelar</ion-button>
       <ion-button (click)="saveMatch()" class="button-guardar">Guardar</ion-button>
     </ion-card-content>
+
 
     <ion-card-content class="botones">
       <ion-button (click)="deleteMatch()" class="button-eliminar">Eliminar Partido</ion-button>

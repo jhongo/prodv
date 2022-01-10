@@ -36,7 +36,7 @@ export class EncuentrosPage implements OnInit {
     p_g: 0,
     p_e: 0,
     p_p: 0,
-    g_g: 0,
+    g_f: 0,
     g_c: 0,
     d_g: 0
   };
@@ -51,7 +51,7 @@ export class EncuentrosPage implements OnInit {
     p_g: 0,
     p_e: 0,
     p_p: 0,
-    g_g: 0,
+    g_f: 0,
     g_c: 0,
     d_g: 0
 
@@ -64,6 +64,7 @@ export class EncuentrosPage implements OnInit {
 
   encuentro: Encuentro = {
     uid: '',
+    fechae: 0,
     tipo: '',
     fecha: '',
     grupo: '',
@@ -141,7 +142,7 @@ export class EncuentrosPage implements OnInit {
   }
   async completardatos(uid:string) {
 
-    const path = 'Equipos';
+  const path = 'Equipos';
    const pathp= 'Partidos';
     this.equiposInfo = this.firestoreService.getCollection<Equipos>(path, 'nombre', '==', this.encuentro.nombre_e1).subscribe(res => {
       if (res.length) {
@@ -223,6 +224,7 @@ export class EncuentrosPage implements OnInit {
             this.encuentro = {
               uid: '',
               tipo: '',
+              fechae: 0,
               fecha: '',
               grupo: '',
               uid_e1: '',

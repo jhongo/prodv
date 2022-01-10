@@ -29,7 +29,7 @@ export class EditEquipoComponent implements OnInit {
     p_g: 0,
     p_e: 0,
     p_p: 0,
-    g_g: 0,
+    g_f: 0,
     g_c: 0,
     d_g: 0
   };
@@ -89,7 +89,7 @@ export class EditEquipoComponent implements OnInit {
           p_g: 0,
           p_e: 0,
           p_p: 0,
-          g_g: 0,
+          g_f: 0,
           g_c: 0,
           d_g: 0
         };
@@ -115,7 +115,7 @@ export class EditEquipoComponent implements OnInit {
       p_g: null,
       p_e: null,
       p_p: null,
-      g_g: null,
+      g_f: null,
       g_c: null,
       d_g: null
     };

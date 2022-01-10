@@ -26,7 +26,7 @@ export interface Equipos{
     p_g:number,
     p_e:number,
     p_p:number,
-    g_g:number,
+    g_f:number,
     g_c:number,
     d_g:number
 }
@@ -34,6 +34,7 @@ export interface Equipos{
 export interface Encuentro{
 
     uid:string,
+    fechae:number,
     tipo:string,
     fecha:string,
     grupo:string,

@@ -15,6 +15,7 @@ export class PartidosPage implements OnInit {
   encuentro: Encuentro = {
     uid: '',
     tipo: '',
+    fechae: 0,
     fecha: '',
     grupo: '',
     uid_e1: '',

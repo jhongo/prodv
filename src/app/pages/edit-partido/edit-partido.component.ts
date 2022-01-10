@@ -19,16 +19,47 @@ export class EditPartidoComponent implements OnInit {
   team1: Equipos[] = [];
   team2: Equipos[] = [];
   team: Encuentro[] = [];
-
+ 
   showPicker = false;
   dateValue = format(new Date(), 'yyy-MM-dd') + 'T09:00:00.000Z'
   formatedString = '';
 
+  equipo1: Equipos = {
+    uid: '',
+    nombre: '',
+    escudo: '',
+    grupo: '',
+    puntos: 0,
+    p_j: 0,
+    p_g: 0,
+    p_e: 0,
+    p_p: 0,
+    g_f: 0,
+    g_c: 0,
+    d_g: 0
+  };
 
+  equipo2: Equipos = {
+    uid: '',
+    nombre: '',
+    escudo: '',
+    grupo: '',
+    puntos: 0,
+    p_j: 0,
+    p_g: 0,
+    p_e: 0,
+    p_p: 0,
+    g_f: 0,
+    g_c: 0,
+    d_g: 0
+
+
+  };
 
   encuentro: Encuentro = {
     uid: '',
     tipo: '',
+    fechae: 0,
     fecha: '',
     grupo: '',
     uid_e1: '',
@@ -111,12 +142,129 @@ export class EditPartidoComponent implements OnInit {
     });
   }
 
-  async saveMatch() {
+  async actualizarpuntos(uid1:string,uid2:string) {
+    const data={
+      puntos: this.equipo1.puntos,
+      p_j: 0,
+      p_g: 0,
+      p_e: 0,
+      p_p: 0,
+      g_f: 0,
+      g_c: 0,
+      d_g: 0
 
+
+    }
+      const path = 'Equipos';
+    this.equiposInfo = this.firestoreService.getCollection<Equipos>(path, 'uid', '==', this.encuentro.uid_e1).subscribe(res => {
+      if (res.length) {
+        this.equipo1 = res[0];
+        // console.log(this.equipo1);
+
+        if (this.encuentro.res_e1 == this.encuentro.res_e2) {
+          console.log("empate" + this.encuentro.res_e1 + "-" + this.encuentro.res_e2)
+          this.equipo1.puntos = this.equipo1.puntos + 1;
+          this.equipo1.p_j = this.equipo1.p_j + 1;
+          this.equipo1.p_e = this.equipo1.p_e + 1;
+          this.equipo1.g_f = this.equipo1.g_f + this.encuentro.res_e1;
+          this.equipo1.g_c = this.equipo1.g_c + this.encuentro.res_e2;
+
+
+        } else if (this.encuentro.res_e1 > this.encuentro.res_e2) {
+          console.log("resultado: " + this.encuentro.res_e1 + "-" + this.encuentro.res_e2);
+          console.log("Gano: " + this.encuentro.nombre_e1);
+          this.equipo1.puntos = this.equipo1.puntos + 3;
+          this.equipo1.p_j = this.equipo1.p_j + 1;
+          this.equipo1.p_g = this.equipo1.p_e + 1;
+          this.equipo1.g_f = this.equipo1.g_f + this.encuentro.res_e1;
+          this.equipo1.g_c = this.equipo1.g_c + this.encuentro.res_e2;
+
+
+
+        } else if (this.encuentro.res_e1 < this.encuentro.res_e2) {
+          console.log("resultado: " + this.encuentro.res_e1 + "-" + this.encuentro.res_e2);
+          console.log("Gano: " + this.encuentro.nombre_e2);
+          this.equipo1.p_j = this.equipo1.p_j + 1;
+          this.equipo1.p_p = this.equipo1.p_e + 1;
+          this.equipo1.g_f = this.equipo1.g_f + this.encuentro.res_e1;
+          this.equipo1.g_c = this.equipo1.g_c + this.encuentro.res_e2;
+        }
+        
+        console.log(this.equipo1);
+        const data = {
+          puntos: this.equipo1.puntos,
+          p_j: this.equipo1.p_j,
+          p_g: this.equipo1.p_g,
+          p_e: this.equipo1.p_e,
+          p_p: this.equipo1.p_p,
+          g_f: this.equipo1.g_f,
+          g_c: this.equipo1.g_c,
+          d_g: this.equipo1.d_g
+        }
+        console.log(data)
+
+        this.firestoreService.actualizarpartido(data, path, uid1).then(res => { });
+      }
+    });
+
+    this.equiposInfo = this.firestoreService.getCollection<Equipos>(path, 'uid', '==', this.encuentro.uid_e2).subscribe(res => {
+      if (res.length) {
+        this.equipo2 = res[0];
+        // console.log(this.equipo2);
+
+        if (this.encuentro.res_e1 == this.encuentro.res_e2) {
+
+          console.log("empate" + this.encuentro.res_e1 + "-" + this.encuentro.res_e2);
+          this.equipo2.puntos = this.equipo2.puntos + 1;
+          this.equipo2.p_j = this.equipo2.p_j + 1;
+          this.equipo2.p_e = this.equipo2.p_e + 1;
+          this.equipo2.g_f = this.equipo2.g_f + this.encuentro.res_e2;
+          this.equipo2.g_c = this.equipo2.g_c + this.encuentro.res_e1
+        } else if (this.encuentro.res_e1 > this.encuentro.res_e2) {
+          console.log("resultado: " + this.encuentro.res_e1 + "-" + this.encuentro.res_e2);
+          console.log("Gano: " + this.encuentro.nombre_e1);
+          this.equipo2.p_j = this.equipo2.p_j + 1;
+          this.equipo2.p_p = this.equipo2.p_e + 1;
+          this.equipo2.g_f = this.equipo2.g_f + this.encuentro.res_e1;
+          this.equipo2.g_c = this.equipo2.g_c + this.encuentro.res_e2;
+        } else if (this.encuentro.res_e1 < this.encuentro.res_e2) {
+          console.log("resultado: " + this.encuentro.res_e1 + "-" + this.encuentro.res_e2);
+          console.log("Gano: " + this.encuentro.nombre_e2);
+          this.equipo2.puntos = this.equipo2.puntos + 3;
+          this.equipo2.p_j = this.equipo2.p_j + 1;
+          this.equipo2.p_g = this.equipo2.p_e + 1;
+          this.equipo2.g_f = this.equipo2.g_f + this.encuentro.res_e2;
+          this.equipo2.g_c = this.equipo2.g_c + this.encuentro.res_e1;
+
+        }
+        
+
+        const data = {
+          puntos: this.equipo1.puntos,
+          p_j: this.equipo2.p_j,
+          p_g: this.equipo2.p_g,
+          p_e: this.equipo2.p_e,
+          p_p: this.equipo2.p_p,
+          g_f: this.equipo2.g_f,
+          g_c: this.equipo2.g_c,
+          d_g: this.equipo2.d_g
+        }
+        console.log(data)
+        this.firestoreService.actualizarpartido(data, path, uid2).then(res => {});
+      }
+    });
+    // console.log(this.equipo1);
+    // console.log(this.equipo2);
+    
+  
+  }
+
+  async saveMatch() {
+    this.actualizarpuntos(this.encuentro.uid_e1,this.encuentro.uid_e2);
     const path = 'Partidos';
     this.firestoreService.createDoc(this.encuentro, path, this.encuentro.uid).then(res => {
       console.log('guardado con exito');
-
+      
       this.presentLoading('Actualizando resultado', 1500);
       setTimeout(() => {
         this.router.navigate(['/tab-campeonato/encuentros']);
@@ -124,6 +272,7 @@ export class EditPartidoComponent implements OnInit {
       this.encuentro = {
         uid: '',
         tipo: '',
+        fechae: 0,
         fecha: '',
         grupo: '',
         uid_e1: '',
@@ -153,7 +302,7 @@ export class EditPartidoComponent implements OnInit {
       setTimeout(() => {
         this.router.navigate(['/tab-campeonato/encuentros']);
       }, 1000);
-    })  .catch(error => {
+    }).catch(error => {
       console.log(error)
     });
   }
@@ -296,6 +445,7 @@ export class EditPartidoComponent implements OnInit {
     this.encuentro = {
       uid: null,
       tipo: null,
+      fechae: 0,
       fecha: null,
       grupo: null,
       uid_e1: null,

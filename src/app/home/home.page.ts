@@ -14,6 +14,7 @@ export class HomePage implements OnInit {
   encuentro: Encuentro = {
     uid: '',
     tipo: '',
+    fechae: 0,
     fecha: '',
     grupo: '',
     uid_e1: '',
