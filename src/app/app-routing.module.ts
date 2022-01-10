@@ -83,7 +83,7 @@ const routes: Routes = [
   },
   {
     path: 'tab-campeonato',
-    loadChildren: () => import('./pages/tab-campeonato/tab-campeonato.module').then( m => m.TabCampeonatoPageModule)
+    loadChildren: () => import('./pages/tab-campeonato/tab-campeonato.module').then( m => m.TabCampeonatoPageModule),
   },
 
 

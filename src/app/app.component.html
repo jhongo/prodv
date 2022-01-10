@@ -44,12 +44,11 @@
                 <ion-label>
                   Copa gualaquiza
                 </ion-label>
-                
-                <ion-icon slot="start" color="black" name="home-outline"></ion-icon> 
+                <ion-icon slot="start" color="black" name="color-filter-outline"></ion-icon>
               </ion-item>
             </ion-menu-toggle>         
 
-          <ion-menu-toggle routerLink="/tab-campeonato/equipos">
+          <ion-menu-toggle routerLink="/tab-campeonato/equipos" *ngIf="admin">
             <ion-item class="item-menu" button lines="none">
               <ion-label>
                 Campeonato
