@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button href="/login" >
+        <ion-icon slot="icon-only" name="arrow-back-circle-outline"></ion-icon>
+        <!-- <ion-icon slot="icon-only" name="person-circle-outline"></ion-icon> -->
+     </ion-button>
+   </ion-buttons> 
+    <ion-title>Olvide mi contraseña</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="content_pri">
+  <ion-card class="card_cont"> 
+    <ion-card-content>
+      
+      <label class="label_init">Coloque el correo de su cuenta para enviarle un enlace y pueda restablecer su
+        contraseña</label>
+    </ion-card-content>
+
+      <form>
+        <ion-item class="item_correo" lines="full">
+          <ion-label position="floating">Correo</ion-label>
+          <ion-input type="text" #email required></ion-input>
+        </ion-item>
+    
+        <ion-row>
+          <ion-col>
+            <ion-button type="submit" (click)="reset(email)" expand="block">
+              Restablecer contraseña
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
+  </ion-card>
+ 
+
+</ion-content>

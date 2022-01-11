@@ -27,7 +27,7 @@
 
   <ion-card *ngIf="estado" class="Nuevo_partido">
     <ion-card-header>
-      <ion-card-title>
+      <ion-card-title class="tittle_np">
         Nuevo partido
       </ion-card-title>
     </ion-card-header>
@@ -133,8 +133,10 @@
 
   </ion-card>
 
-  <ion-title class="titulo"> Lista de partidos </ion-title>
-
+  <div class="encabezado">
+    <ion-label class="titulo"> Lista de partidos </ion-label>
+  </div>
+ 
 
   <ion-card *ngFor="let equipo of team" class="partidos">
 

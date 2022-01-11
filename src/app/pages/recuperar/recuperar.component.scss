@@ -1,0 +1,39 @@
+.content_pri{
+    --background: white;
+
+}
+
+ion-icon{
+
+    color: white
+}
+ion-toolbar{
+
+    --background: #075E54;
+    text-align: center;
+    color: white;
+}
+.label_init{
+
+    color: black;
+    font-size: 16px;
+}
+
+.card_cont{
+    background: white;
+    text-align: justify;
+}
+.item_correo{
+
+
+    --background: #FFF; 
+    --color:#333333;
+    font-weight: bold;
+    margin: 10px; 
+    border: 2px solid #FFF;
+    border-radius: 10px;
+}
+
+ion-button{
+    --background: #075E54;
+}

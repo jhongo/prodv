@@ -132,12 +132,19 @@ ion-card-title{
     font-size: 14px;
     
 }
-.titulo{
-    color: black;
+.tittle_np{
+    font-size: 19px;
     font-weight: bold;
-    margin-top: 15px;
-    text-align: left;
 }
+.encabezado{
+    margin-top: 10px;
+    }
+    .titulo{
+      color: black;
+      font-weight: bold;
+      text-align: left;
+      margin-left: 10px;
+    }
 .botones{
     
     display: inline-block;

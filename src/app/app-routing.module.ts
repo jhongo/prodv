@@ -12,6 +12,7 @@ import { map } from 'rxjs/operators';
 import {canActivate} from '@angular/fire/auth-guard'; 
 import { EditEquipoComponent } from './pages/edit-equipo/edit-equipo.component';
 import { EditPartidoComponent } from './pages/edit-partido/edit-partido.component';
+import { RecuperarComponent } from './pages/recuperar/recuperar.component';
 
 const isAdmin = (next:any ) => map( (user: any)=> !! user && 'LikZN15qNiQi1pFEAT8frapWt243' === user.uid);
 const isAdminS = (next:any ) => map( (user: any)=> !! user && 'LikZN15qNiQi1pFEAT8frapWt243' === user.uid);
@@ -66,6 +67,10 @@ const routes: Routes = [
   {
     path: 'edit-partido',
     component: EditPartidoComponent,
+  },
+  {
+    path: 'recuperar',
+    component: RecuperarComponent,
   },
   // {
   //   path:'',

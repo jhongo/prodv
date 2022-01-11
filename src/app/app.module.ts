@@ -25,6 +25,7 @@ import { NoticiasComponent } from './pages/noticias/noticias.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { EditEquipoComponent } from './pages/edit-equipo/edit-equipo.component';
 import { EditPartidoComponent } from './pages/edit-partido/edit-partido.component';
+import { RecuperarComponent } from './pages/recuperar/recuperar.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { EditPartidoComponent } from './pages/edit-partido/edit-partido.componen
     NacionalComponent,
     NoticiasComponent, 
     EditEquipoComponent,
-    EditPartidoComponent
+    EditPartidoComponent,
+    RecuperarComponent
   ],
   entryComponents: [],
   imports: [BrowserModule, 
