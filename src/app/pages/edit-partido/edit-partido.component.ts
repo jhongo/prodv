@@ -106,7 +106,14 @@ export class EditPartidoComponent implements OnInit {
     const match = this.firestoreService.getMatch();
     if (match !== undefined) {
       this.encuentro = match;
-          }
+      if (this.encuentro.grupo == "Grupo 1") {
+        this.grupo1 = true;
+        this.grupo2 = false;
+      } else if (this.encuentro.grupo == "Grupo 2") {
+        this.grupo1 = false;
+        this.grupo2 = true;
+      }
+    }
     console.log(this.encuentro);
   }
 
@@ -141,45 +148,45 @@ export class EditPartidoComponent implements OnInit {
       if (res.length) {
         this.equipo1 = res[0];
 
-        // if (this.encuentro.res_e1 == this.encuentro.res_e2) {
-        //   console.log("empate" + this.encuentro.res_e1 + "-" + this.encuentro.res_e2)
-        //   this.equipo1.puntos = this.equipo1.puntos + 1;
-        //   this.equipo1.p_j = this.equipo1.p_j + 1;
-        //   this.equipo1.p_e = this.equipo1.p_e + 1;
-        //   this.equipo1.g_f = this.equipo1.g_f + this.encuentro.res_e1;
-        //   this.equipo1.g_c = this.equipo1.g_c + this.encuentro.res_e2;
+        if (this.encuentro.res_e1 == this.encuentro.res_e2) {
+          console.log("empate" + this.encuentro.res_e1 + "-" + this.encuentro.res_e2)
+          this.equipo1.puntos = this.equipo1.puntos + 1;
+          this.equipo1.p_j = this.equipo1.p_j + 1;
+          this.equipo1.p_e = this.equipo1.p_e + 1;
+          this.equipo1.g_f = this.equipo1.g_f + this.encuentro.res_e1;
+          this.equipo1.g_c = this.equipo1.g_c + this.encuentro.res_e2;
 
 
-        // } else if (this.encuentro.res_e1 > this.encuentro.res_e2) {
-        //   console.log("resultado: " + this.encuentro.res_e1 + "-" + this.encuentro.res_e2);
-        //   console.log("Gano: " + this.encuentro.nombre_e1);
-        //   this.equipo1.puntos = this.equipo1.puntos + 3;
-        //   this.equipo1.p_j = this.equipo1.p_j + 1;
-        //   this.equipo1.p_g = this.equipo1.p_e + 1;
-        //   this.equipo1.g_f = this.equipo1.g_f + this.encuentro.res_e1;
-        //   this.equipo1.g_c = this.equipo1.g_c + this.encuentro.res_e2;
+        } else if (this.encuentro.res_e1 > this.encuentro.res_e2) {
+          console.log("resultado: " + this.encuentro.res_e1 + "-" + this.encuentro.res_e2);
+          console.log("Gano: " + this.encuentro.nombre_e1);
+          this.equipo1.puntos = this.equipo1.puntos + 3;
+          this.equipo1.p_j = this.equipo1.p_j + 1;
+          this.equipo1.p_g = this.equipo1.p_e + 1;
+          this.equipo1.g_f = this.equipo1.g_f + this.encuentro.res_e1;
+          this.equipo1.g_c = this.equipo1.g_c + this.encuentro.res_e2;
 
 
 
-        // } else if (this.encuentro.res_e1 < this.encuentro.res_e2) {
-        //   console.log("resultado: " + this.encuentro.res_e1 + "-" + this.encuentro.res_e2);
-        //   console.log("Gano: " + this.encuentro.nombre_e2);
-        //   this.equipo1.p_j = this.equipo1.p_j + 1;
-        //   this.equipo1.p_p = this.equipo1.p_e + 1;
-        //   this.equipo1.g_f = this.equipo1.g_f + this.encuentro.res_e1;
-        //   this.equipo1.g_c = this.equipo1.g_c + this.encuentro.res_e2;
-        // }
+        } else if (this.encuentro.res_e1 < this.encuentro.res_e2) {
+          console.log("resultado: " + this.encuentro.res_e1 + "-" + this.encuentro.res_e2);
+          console.log("Gano: " + this.encuentro.nombre_e2);
+          this.equipo1.p_j = this.equipo1.p_j + 1;
+          this.equipo1.p_p = this.equipo1.p_e + 1;
+          this.equipo1.g_f = this.equipo1.g_f + this.encuentro.res_e1;
+          this.equipo1.g_c = this.equipo1.g_c + this.encuentro.res_e2;
+        }
         
         console.log(this.equipo1);
         const data = {
           puntos: this.equipo1.puntos,
-          p_j: 5,
-          p_g: 5,
-          p_e: 5,
-          p_p: 5,
-          g_f: 5,
-          g_c: 5,
-          d_g: 5
+          p_j: this.equipo1.p_j,
+          p_g: this.equipo1.p_g,
+          p_e: this.equipo1.p_e,
+          p_p: this.equipo1.p_p,
+          g_f: this.equipo1.g_f,
+          g_c: this.equipo1.g_c,
+          d_g: this.equipo1.d_g
         }
         console.log(data)
 
@@ -189,11 +196,6 @@ export class EditPartidoComponent implements OnInit {
       }
     });
 
-     }
-
-  async actualizarpuntos2(uid1:string,uid2:string){
-
-    const path='Equipos';
     this.equiposInfo = this.firestoreService.getCollection<Equipos>(path, 'uid', '==', this.encuentro.uid_e2).subscribe(res => {
       if (res.length) {
         this.equipo2 = res[0];
@@ -224,6 +226,8 @@ export class EditPartidoComponent implements OnInit {
           this.equipo2.g_c = this.equipo2.g_c + this.encuentro.res_e1;
 
         }
+        
+
         const data = {
           puntos: this.equipo1.puntos,
           p_j: this.equipo2.p_j,
@@ -238,17 +242,19 @@ export class EditPartidoComponent implements OnInit {
         this.firestoreService.actualizarpartido(data, path, uid2).then(res => {});
       }
     });
-   
+    // console.log(this.equipo1);
+    // console.log(this.equipo2);
+    
   
-  }   
+  }
 
   async saveMatch() {
+    await this.actualizarpuntos(this.encuentro.uid_e1,this.encuentro.uid_e2);
     const path = 'Partidos';
     this.firestoreService.createDoc(this.encuentro, path, this.encuentro.uid).then(res => {
       console.log('guardado con exito');
+      
       this.presentLoading('Actualizando resultado', 1500);
-      this.actualizarpuntos(this.encuentro.uid_e1,this.encuentro.uid_e2);
-
       setTimeout(() => {
         this.router.navigate(['/tab-campeonato/encuentros']);
       }, 1000);
@@ -268,7 +274,6 @@ export class EditPartidoComponent implements OnInit {
         nombre_e1: '',
         nombre_e2: '',
       };
-
 
 
     }).catch(error => {
