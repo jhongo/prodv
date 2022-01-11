@@ -33,7 +33,7 @@
     </ion-item>
     <ion-item lines="none" *ngIf="!DataUpdate" class="items">
       <ion-label class="normal">
-        Nombre: {{datauser.name}}
+        Celular: {{datauser.celular}}
       </ion-label>
     </ion-item>
 
@@ -55,9 +55,9 @@
 
     <ion-item lines="none" *ngIf="DataUpdate" class="items">
       <ion-label class="normal" position="floating">
-        Nombre:
+        Celular:
       </ion-label>
-      <ion-input [(ngModel)]="datauser.name" class="normal" type="text">
+      <ion-input [(ngModel)]="datauser.celular" class="normal" type="text">
       </ion-input>
     </ion-item>
 

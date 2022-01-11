@@ -51,6 +51,8 @@ export class LoginComponent implements OnInit {
         displayName: null,
         emailVerified: null,
       };
+      email.value="";
+      password.value="";
     }).catch(res => {
       console.log('error => ', res.message)
       this.presentAlert("Verifique sus datos");

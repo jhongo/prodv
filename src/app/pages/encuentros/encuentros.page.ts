@@ -147,8 +147,7 @@ export class EncuentrosPage implements OnInit {
     this.equiposInfo = this.firestoreService.getCollection<Equipos>(path, 'nombre', '==', this.encuentro.nombre_e1).subscribe(res => {
       if (res.length) {
         this.equipo1 = res[0];
-        // console.log(res[0]);
-        // console.log(this.equipo1.escudo);
+       
         this.escudo1 = this.equipo1.escudo;
         this.uid1 = this.equipo1.uid;
          this.encuentro.escudo_e1=this.escudo1;

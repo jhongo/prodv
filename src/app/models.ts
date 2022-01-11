@@ -10,7 +10,7 @@ export interface User{
 export interface DataUser{
     uid: string,
     email: string,
-    name:string;
+    celular:string;
     password:string;
     referencia:string;
 }

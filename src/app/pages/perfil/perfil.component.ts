@@ -16,7 +16,7 @@ export class PerfilComponent implements OnInit {
   datauser: DataUser = {
     uid: '',
     email: '',
-    name: '',
+    celular: '',
     password: '',
     referencia: '',
   }
@@ -46,7 +46,7 @@ export class PerfilComponent implements OnInit {
     this.datauser = { 
       uid: '',
       email: '',
-      name: '',
+      celular: '',
       password: '',
       referencia: '',
     };
@@ -54,7 +54,7 @@ export class PerfilComponent implements OnInit {
 
   async guardarUser() {
     const path = 'Usuarios';
-    const name = this.datauser.name;
+    const name = this.datauser.celular;
     const referencia= this.datauser.referencia;
     // if(this.newFoto!== undefined){
     //   const res= await this.firestorageService.uploadImage(this.newFoto, path, name);
@@ -66,7 +66,7 @@ export class PerfilComponent implements OnInit {
       this.datauser = { 
         uid: null,
         email: null,
-        name: null,
+        celular: null,
         password: null,
         referencia: null,
 

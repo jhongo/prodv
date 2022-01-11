@@ -25,7 +25,7 @@ export class RegistroComponent implements OnInit {
   datauser: DataUser = {
     uid: '',
     email: '',
-    name: '',
+    celular: '',
     password: '',
     referencia: '',
   }
@@ -55,7 +55,7 @@ export class RegistroComponent implements OnInit {
   async registro(email, password) {
     try {
 
-      if(this.datauser.email==""||this.datauser.name==""||this.datauser.password==""||this.datauser.referencia==""){
+      if(this.datauser.email==""||this.datauser.celular==""||this.datauser.password==""||this.datauser.referencia==""){
 
         this.presentToast('Datos incompletos',4000);
         //this.presentAlert('Datos incompletos');
@@ -89,7 +89,7 @@ export class RegistroComponent implements OnInit {
       this.datauser = {
         uid: null,
         email: null,
-        name: null,
+        celular: null,
         password: null,
         referencia: null,
       };

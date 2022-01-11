@@ -1,22 +1,24 @@
 <ion-content class="content-main">
-  <h2 class="title-register">
+  <div class="title-register">
     CREAR UNA CUENTA 
     <br>NUEVA
-  </h2>
+  </div>
 
   <div class="card-container" mode="ios">
     
-    <ion-item lines="none" class="item-input" >
-      <ion-input  [(ngModel)]="datauser.name" placeholder="Usuario">
-      </ion-input>
-      <ion-icon slot="end" class="icon" name="person-outline" ></ion-icon>
-    </ion-item>
-
     <ion-item lines="none" class="item-input" >
       <ion-input  [(ngModel)]="datauser.email" type="email" placeholder="Correo" #email required>
       </ion-input>
       <ion-icon slot="end" class="icon" name="at-outline" ></ion-icon>
     </ion-item>
+
+    <ion-item lines="none" class="item-input" >
+      <ion-input  [(ngModel)]="datauser.celular" placeholder="Celular">
+      </ion-input>
+      <ion-icon slot="end" class="icon" name="call-outline"></ion-icon>
+ 
+    </ion-item>
+
 
     <ion-item lines="none" >
       <ion-input [(ngModel)]="datauser.password" type="password" placeholder="Contraseña" #password required>
