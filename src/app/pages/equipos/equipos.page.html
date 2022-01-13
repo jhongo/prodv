@@ -28,7 +28,7 @@
 
   <ion-card *ngIf="estado" class="Nuevo_equipo">
     <ion-card-header>
-      <ion-card-title>
+      <ion-card-title class="titulo_NE">
         Nuevo equipo
       </ion-card-title>
     </ion-card-header>
@@ -74,7 +74,7 @@
 
   
 
-  <ion-card *ngFor="let equipo of team" class="equipos">
+  <div *ngFor="let equipo of team" class="equipos">
 
     <ion-grid>
       <ion-row>
@@ -83,8 +83,8 @@
               <img class="con_img" [src]="equipo.escudo">
           </ion-item>
         </ion-col>
-        <ion-col class="col_text" size="5">
-          <ion-card-content value="recibidos">
+        <ion-col class="col_text" size="6">
+          
             <ion-label class="label_tittle">
               Nombre:
             </ion-label>
@@ -94,23 +94,19 @@
             </ion-label>
             <br />
 
-          </ion-card-content>
-
         </ion-col>
-        <ion-col class="col_icon" size="4">
-          <ion-card-content class="card-icon">
-            <ion-label class="label_tittle">Editar</ion-label>
-            <br />
+        <ion-col class="col_icon" size="3">
+        
+            
             <ion-buttons class="button">
               <ion-button routerLink="/edit-equipo" (click)="getEquipo(equipo)">
                 <ion-icon class="icon_edit" slot="icon-only" name="create-outline"></ion-icon>
               </ion-button>
             </ion-buttons>
-          </ion-card-content>
-
+    
         </ion-col>
 
       </ion-row>
     </ion-grid>
-  </ion-card>
+  </div>
 </ion-content>

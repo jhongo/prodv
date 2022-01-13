@@ -1,5 +1,6 @@
 .content-resultados{
-    --background: #fff;
+    --background: #f3eded;
+    --padding-bottom:50px
 }
 
 ion-toolbar{
@@ -14,7 +15,38 @@ ion-toolbar{
     padding: 15px;
     
 }
+.titulo_NE{
 
+    font-size: 18px;
+    color: black;
+
+
+}
+
+.col_img{
+
+    
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    // border: 1px blue solid
+}
+.col_icon{
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    // border: 1px red solid
+}
+
+.col_text{
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    // border: 1px black solid
+}
 .IonInput{
 
     --background: #FFF; 
@@ -83,10 +115,9 @@ ion-card-title{
       margin-left: 10px;
     }
 .equipos{
-    --background: white;
-    border: 1px solid #ffffff;  
-    border-radius: 10px;  
-    --color: #000000;
+    background: white;
+    border: 1px solid #f3eded;  
+    color: #000000;
     font-size: 14px;
     width: 95%;
     margin-left: auto;
@@ -110,20 +141,7 @@ ion-card-title{
     display: inline-block;
    
 }
-.col_img{
 
-    height: auto;
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: auto;
-    margin-right: auto;
-}
-.col_icon{
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: auto;
-    margin-right: auto;
-}
 .icon_edit{
     color: black;
     text-align: center;

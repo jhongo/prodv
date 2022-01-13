@@ -17,9 +17,22 @@ export class EncuentrosPage implements OnInit {
   equiposInfo: Subscription;
   grupo1 = false;
   grupo2 = false;
+  fecha = false;
+  gene = false;
   team: Encuentro[] = [];
   team1: Equipos[] = [];
   team2: Equipos[] = [];
+  teamg: Equipos[] = [];
+  fase="";
+
+  cuartos: Encuentro []=[];
+  semi: Encuentro []=[];
+  final: Encuentro []=[];
+
+  cuarto=false;
+  semis=false;
+  fina=false;
+  fases=false;
 
   escudo1 = '';
   escudo2 = '';
@@ -64,7 +77,7 @@ export class EncuentrosPage implements OnInit {
 
   encuentro: Encuentro = {
     uid: '',
-    fechae: 0,
+    fechae: '',
     tipo: '',
     fecha: '',
     grupo: '',
@@ -86,14 +99,156 @@ export class EncuentrosPage implements OnInit {
     public toastController: ToastController,) {
 
     this.setToday();
+   
 
   }
 
 
+  async Fecha() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Fecha de partidos',
+      inputs: [
+        {
+          name: 'radio1',
+          type: 'radio',
+          cssClass: 'input',
+          label: 'Fecha 1',
+          value: 'Fecha 1',
+          checked: true
+        },
+        {
+          name: 'radio2',
+          type: 'radio',
+          cssClass: 'input',
+          label: 'Fecha 2',
+          value: 'Fecha 2'
+        },
+        {
+          name: 'radio2',
+          type: 'radio',
+          cssClass: 'input',
+          label: 'Fecha 3',
+          value: 'Fecha 3'
+        },
+        {
+          name: 'radio2',
+          type: 'radio',
+          cssClass: 'input',
+          label: 'Fecha 4',
+          value: 'Fecha 4'
+        },
+        {
+          name: 'radio2',
+          type: 'radio',
+          cssClass: 'input',
+          label: 'Fecha 5',
+          value: 'Fecha 5'
+        },
+
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Ok',
+          handler: (data) => {
+            console.log('Confirm Ok', data);
+            if (data === 'Fecha 1') {
+              this.getPartido("Fecha 1");
+              this.fase="Fecha 1";
+            }
+            if (data === 'Fecha 2') {
+              this.getPartido("Fecha 2");
+              this.fase="Fecha 2";
+            }
+            if (data === 'Fecha 3') {
+              this.getPartido("Fecha 3"); 
+              this.fase="Fecha 3";
+            }
+            if (data === 'Fecha 4') {
+              this.getPartido("Fecha 4");
+              this.fase="Fecha 4";
+            }
+            if (data === 'Fecha 5') {
+              this.getPartido("Fecha 5");
+              this.fase="Fecha 5";
+            } 
+
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+  async getPartido(fase:string){
+    const path= 'Partidos';
+    this.equiposInfo = this.firestoreService.getCollection<Encuentro>(path,'fechae','==',fase).subscribe(res =>{
+      if(res.length==0){
+        this.fases=false;
+      }else{
+        this.fases=true;
+        this.team=res;
+
+      }
+    });
+  }
+
+  async getPartCuar(){
+    const path= 'Partidos';
+    this.equiposInfo = this.firestoreService.getCollection<Encuentro>(path,'tipo','==', 'Cuartos de final').subscribe(res =>{
+      if(res.length==0){
+        
+        console.log("vacio");
+        this.cuarto=false;
+      }else{
+        this.cuartos=res;
+        this.cuarto=true;
+      }
+      
+    });
+  }
+  async getPartsemi(){
+    const path= 'Partidos';
+    this.equiposInfo = this.firestoreService.getCollection<Encuentro>(path,'tipo','==', 'Semifinal').subscribe(res =>{
+      
+      if(res.length==0){
+        this.semis=false;
+      }else{
+        this.semis=true;
+        this.semi=res;
+        
+      }
+    });
+  }
+  async getPartfinal(){
+    const path= 'Partidos';
+    this.equiposInfo = this.firestoreService.getCollection<Encuentro>(path,'tipo','==', 'Final').subscribe(res =>{
+      if(res.length==0){
+
+        this.fina=false;
+      }else{
+        this.final=res;
+        this.fina=true;
+      }
+
+    });
+  }
+
   ngOnInit() {
 
     console.log(this.encuentro.grupo);
-    this.getPartidos();
+    //  this.getPartidos();
+    this.getPartido("Fecha 1");
+    this.fase="Fecha 1";
+    this.getPartCuar();
+    this.getPartsemi();
+    this.getPartfinal();
 
   }
 
@@ -140,25 +295,31 @@ export class EncuentrosPage implements OnInit {
       }
     });
   }
-  async completardatos(uid:string) {
+  async getEquiposG() {
+    const path = 'Equipos';
+    this.equiposInfo = this.firestoreService.getTeam<Equipos>(path).subscribe(res => {
+      this.teamg = res;
+    });
+  }
+  async completardatos(uid: string) {
 
-  const path = 'Equipos';
-   const pathp= 'Partidos';
+    const path = 'Equipos';
+    const pathp = 'Partidos';
     this.equiposInfo = this.firestoreService.getCollection<Equipos>(path, 'nombre', '==', this.encuentro.nombre_e1).subscribe(res => {
       if (res.length) {
         this.equipo1 = res[0];
-       
+
         this.escudo1 = this.equipo1.escudo;
         this.uid1 = this.equipo1.uid;
-         this.encuentro.escudo_e1=this.escudo1;
-         this.encuentro.uid_e1=this.uid1;
-         const data ={
+        this.encuentro.escudo_e1 = this.escudo1;
+        this.encuentro.uid_e1 = this.uid1;
+        const data = {
           escudo_e1: this.escudo1,
           uid_e1: this.uid1
-         }
-         console.log(data)
+        }
+        console.log(data)
 
-        this.firestoreService.actualizarpartido(data,pathp,uid).then(res=>{});
+        this.firestoreService.actualizarpartido(data, pathp, uid).then(res => { });
 
 
       }
@@ -171,51 +332,62 @@ export class EncuentrosPage implements OnInit {
         // console.log(this.equipo2.escudo);
         this.escudo2 = this.equipo2.escudo;
         this.uid2 = this.equipo2.uid;
-        this.encuentro.escudo_e2=this.escudo2;
-        this.encuentro.uid_e2=this.uid2;
-        const data ={
+        this.encuentro.escudo_e2 = this.escudo2;
+        this.encuentro.uid_e2 = this.uid2;
+        const data = {
           escudo_e2: this.escudo2,
           uid_e2: this.uid2
-         }
-         console.log( data)
-        this.firestoreService.actualizarpartido(data,pathp,uid).then(res=>{});
+        }
+        console.log(data)
+        this.firestoreService.actualizarpartido(data, pathp, uid).then(res => { });
 
-       
+
       }
     });
 
     console.log(this.encuentro);
-    
-    
+
+
   }
 
-  async getMatch(equipo:Encuentro){
-    console.log('Click en getEquipo'); 
+  async getMatch(equipo: Encuentro) {
+    console.log('Click en getEquipo');
     console.log(equipo);
-    this.firestoreService.setMatch(equipo); 
+    this.firestoreService.setMatch(equipo);
 
   }
 
+  async reset() {
+    this.estado = false;
+    this.grupo = false;
+    this.grupo1 = false;
+    this.grupo2 = false;
+    this.fecha = false;
+    this.gene = false;
+    this.encuentro.nombre_e1 = "";
+    this.encuentro.nombre_e2 = "";
+    this.encuentro.fechae = "";
+    this.encuentro.grupo = "";
+    this.encuentro.tipo="";
+
+  }
   async saveMatch() {
     this.encuentro.uid = this.firestoreService.getId();
-    this.encuentro.fecha= this.formatedString;
+    this.encuentro.fecha = this.formatedString;
     if (this.encuentro.tipo == "") {
       this.presentToast("Eliga el tipo de partido", 2000);
     } else {
-      if (this.encuentro.grupo == "") {
-        this.presentToast("Eliga el grupo para elegir los equipos", 2000);
+      if (this.encuentro.nombre_e1 == "" || this.encuentro.nombre_e2 == "") {
+        this.presentToast("Eliga los equipos", 2000);
       } else {
-        if (this.encuentro.nombre_e1 == "" || this.encuentro.nombre_e2 == "") {
-          this.presentToast("Eliga los equipos", 2000);
+        if (this.encuentro.nombre_e1 == this.encuentro.nombre_e2) {
+          this.presentToast("Los equipos son los mismos", 2000);
         } else {
-          if(this.encuentro.nombre_e1==this.encuentro.nombre_e2){
-            this.presentToast("Los equipos son los mismos",2000);
-          }else{
-          
+
           console.log(this.encuentro.nombre_e1 + " " + this.encuentro.nombre_e2);
           const path = 'Partidos';
           // console.log(this.encuentro);
-          
+
           this.firestoreService.createDoc(this.encuentro, path, this.encuentro.uid).then(res => {
             console.log('guardado con exito');
             this.presentLoading('Guardando partido', 1500);
@@ -223,7 +395,7 @@ export class EncuentrosPage implements OnInit {
             this.encuentro = {
               uid: '',
               tipo: '',
-              fechae: 0,
+              fechae: '',
               fecha: '',
               grupo: '',
               uid_e1: '',
@@ -235,22 +407,24 @@ export class EncuentrosPage implements OnInit {
               escudo_e2: '',
               nombre_e1: '',
               nombre_e2: '',
-            }; 
+            };
             this.estado = false;
             this.grupo = false;
             this.grupo1 = false;
             this.grupo2 = false;
+            this.fecha = false;
+            this.gene = false;
 
           }).catch(error => {
             console.log(error)
           });
-            
-          }
-          
 
         }
 
+
       }
+
+
 
     }
 
@@ -261,7 +435,7 @@ export class EncuentrosPage implements OnInit {
   async newMatch() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: 'Tipo de jaula',
+      header: 'Tipo de partido: ',
       inputs: [
         {
           name: 'radio1',
@@ -308,18 +482,49 @@ export class EncuentrosPage implements OnInit {
             if (data === 'Fase de grupos') {
               this.encuentro.tipo = data;
               this.grupo = true;
+              this.fecha = true;
+              this.encuentro.nombre_e1 = "";
+              this.encuentro.nombre_e2 = "";
               // this.router.navigate(['/destete']);
 
             }
             if (data === 'Cuartos de final') {
               this.encuentro.tipo = data;
-
+              this.gene = true;
+              this.grupo = false;
+              this.fecha = false;
+              this.grupo1 = false;
+              this.grupo2 = false;
+              this.encuentro.nombre_e1 = "";
+              this.encuentro.nombre_e2 = "";
+              this.encuentro.fechae = "";
+              this.encuentro.grupo = "";
+              this.getEquiposG();
             }
             if (data === 'Semifinal') {
               this.encuentro.tipo = data;
-
+              this.gene = true;
+              this.grupo = false;
+              this.fecha = false;
+              this.grupo1 = false;
+              this.grupo2 = false;
+              this.encuentro.nombre_e1 = "";
+              this.encuentro.nombre_e2 = "";
+              this.encuentro.fechae = "";
+              this.encuentro.grupo = "";
+              this.getEquiposG();
             } if (data === 'Final') {
               this.encuentro.tipo = data;
+              this.gene = true;
+              this.grupo = false;
+              this.fecha = false;
+              this.grupo1 = false;
+              this.grupo2 = false;
+              this.encuentro.nombre_e1 = "";
+              this.encuentro.nombre_e2 = "";
+              this.encuentro.fechae = "";
+              this.encuentro.grupo = "";
+              this.getEquiposG();
 
             }
           }
@@ -333,7 +538,7 @@ export class EncuentrosPage implements OnInit {
   async newTeam() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: 'Tipo de jaula',
+      header: 'Partido del grupo: ',
       inputs: [
         {
           name: 'radio1',

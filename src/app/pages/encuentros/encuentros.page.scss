@@ -1,5 +1,5 @@
 .content-resultados{
-    --background: #fff;
+    --background: #f3eded;;
 }
 
 ion-toolbar{
@@ -10,22 +10,118 @@ ion-toolbar{
     --background: white; 
     padding: 15px;
     }
+    
+.div_cuarto{
+    background: #075E54;
+    margin-bottom: 5px;
+    width: 98%;
+    margin-right:auto;
+    margin-left: auto;
+}
+.div_encabezado{
+    background: #075E54;
+    margin-bottom: 5px;
+    width: 98%;
+    margin-right:auto;
+    margin-left: auto;
+}
 
-.ion-label-item{
+.row_fecha{
+//    border: 1px black solid;
+//   text-align: center;
+ }
+.ion-label-itemin{
     color: #000000;
     font-weight: bold;
     font-size: 17px;
 }
+.ion-label-item{
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+  }
+  .ion-label-item-cuarto{
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+  
+  }
+  .ion-label-item-fecha{
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    
+  
+  }
+  .col_fase_fecha{
+    background: #128C7E; 
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-radius: 5px;
+  }
+
+.label_fecha{
+
+    font-size: 13px;
+    font-weight: bold;  
+    color: black;
+  
+  
+  }
+  .label_grupo{
+    font-size: 13px;
+    font-weight: bold;  
+    color: black;
+  }  
+.label_e1{
+    font-size: 14px;
+    text-align: right;
+    color: black;
+  }
+  .label_e2{
+    font-size: 14px;
+    text-align: left;
+    color: black;
+  }
 .col_vs{
 margin-top: auto;
 margin-bottom: auto;
     // border: 1px black solid;
 }
+.col_grupo{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    }
+    
 .col_tex{
+    // border: 1px black solid;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
 }
+.col_tex_grupo{
+    // border: 1px blue solid;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+.col_tex_fecha{
+// border: 1px blue solid;
+margin-top: auto;
+margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 9px;
+    text-align: center;
+  
+  }
 .col_nom_eq{
 //  border: 1px black solid;
  text-align: center;
@@ -53,14 +149,15 @@ margin-bottom: auto;
     margin-right: auto;
 }
 .partidos{
-    --background: white;
-    border: 1px solid #ffffff;  
-    border-radius: 10px;  
-    --color: #000000;
-    font-size: 14px;
-    width: 95%;
-    margin-left: auto;
-    margin-right: auto;
+    background: white;
+  border: 1px solid #f3eded;  
+  // border-radius: 10px;  
+  --color: #000000;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+  
 }
 
 .item_avatar{
@@ -69,7 +166,6 @@ margin-bottom: auto;
     --background: white;
     margin-left: auto;
     margin-right: auto;
-   
     
 }
 .IonInput{
@@ -90,10 +186,12 @@ ion-card-title{
 } 
 
 .col_icon{
+    // border: 1px black solid;
     margin-top: auto;
     margin-bottom: auto;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
 }
 
 .boton_mas{
@@ -107,6 +205,8 @@ ion-card-title{
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+    height: 22px;
+    width: 22px;
 }
 .label_tittle{
 
@@ -132,13 +232,51 @@ ion-card-title{
     font-size: 14px;
     
 }
+.label_tittle_vs{
+    font-size: 10px;
+   
+    font-weight: bold;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+  
+  }
+.col_vs{
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+      //  border: 1px black solid;
+       background: #075E54;
+      color: white ;
+      
+      }
+.col_nom_eq1{
+    //  border: 1px black solid;
+     text-align: right;
+    margin-top: auto;
+    margin-bottom: auto;
+    }
+    .col_nom_eq2{
+      // border: 1px black solid;
+      text-align: left;
+     margin-top: auto;
+     margin-bottom: auto;
+     }
 .tittle_np{
     font-size: 19px;
     font-weight: bold;
 }
-.encabezado{
-    margin-top: 10px;
-    }
+.encabezado_cop{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: white;
+    text-align: center ;
+   }
+  .encabezado{
+   padding-top: 10px;
+   padding-bottom: 10px;
+   background: white;
+  }
     .titulo{
       color: black;
       font-weight: bold;

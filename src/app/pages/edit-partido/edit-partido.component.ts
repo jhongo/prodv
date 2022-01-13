@@ -54,7 +54,7 @@ export class EditPartidoComponent implements OnInit, OnDestroy {
   encuentro: Encuentro = {
     uid: '',
     tipo: '',
-    fechae: 0,
+    fechae: '',
     fecha: '',
     grupo: '',
     uid_e1: '',
@@ -224,7 +224,7 @@ export class EditPartidoComponent implements OnInit, OnDestroy {
       this.encuentro = {
         uid: '',
         tipo: '',
-        fechae: 0,
+        fechae: '',
         fecha: '',
         grupo: '',
         uid_e1: '',
@@ -271,7 +271,7 @@ export class EditPartidoComponent implements OnInit, OnDestroy {
     this.encuentro = {
       uid: null,
       tipo: null,
-      fechae: 0,
+      fechae: null,
       fecha: null,
       grupo: null,
       uid_e1: null,

@@ -34,7 +34,7 @@ export interface Equipos{
 export interface Encuentro{
 
     uid:string,
-    fechae:number,
+    fechae:string,
     tipo:string,
     fecha:string,
     grupo:string,

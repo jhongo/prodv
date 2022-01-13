@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { Encuentro } from 'src/app/models';
 import { FirestoreService } from 'src/app/services/firestore.service';
@@ -9,13 +10,21 @@ import { FirestoreService } from 'src/app/services/firestore.service';
   styleUrls: ['./partidos.page.scss'],
 })
 export class PartidosPage implements OnInit {
-
   equiposInfo: Subscription;
   team: Encuentro[] = [];
+  cuartos: Encuentro []=[];
+  semi: Encuentro []=[];
+  final: Encuentro []=[];
+
+  cuarto=false;
+  semis=false;
+  fina=false;
+  fases=false;
+
   encuentro: Encuentro = {
     uid: '',
     tipo: '',
-    fechae: 0,
+    fechae: '',
     fecha: '',
     grupo: '',
     uid_e1: '',
@@ -28,10 +37,99 @@ export class PartidosPage implements OnInit {
     nombre_e1: '',
     nombre_e2: '',
   }
-  constructor(public firestoreService: FirestoreService) { }
+
+  fase="";
+  constructor(public firestoreService: FirestoreService,
+              public alertController: AlertController) { }
 
   ngOnInit() {
-    this.getPartidos();
+    this.getPartido("Fecha 1");
+    this.fase="Fecha 1";
+    this.getPartCuar();
+    this.getPartsemi();
+    this.getPartfinal();
+  }
+  async Fecha() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Fecha de partidos',
+      inputs: [
+        {
+          name: 'radio1',
+          type: 'radio',
+          cssClass: 'input',
+          label: 'Fecha 1',
+          value: 'Fecha 1',
+          checked: true
+        },
+        {
+          name: 'radio2',
+          type: 'radio',
+          cssClass: 'input',
+          label: 'Fecha 2',
+          value: 'Fecha 2'
+        },
+        {
+          name: 'radio2',
+          type: 'radio',
+          cssClass: 'input',
+          label: 'Fecha 3',
+          value: 'Fecha 3'
+        },
+        {
+          name: 'radio2',
+          type: 'radio',
+          cssClass: 'input',
+          label: 'Fecha 4',
+          value: 'Fecha 4'
+        },
+        {
+          name: 'radio2',
+          type: 'radio',
+          cssClass: 'input',
+          label: 'Fecha 5',
+          value: 'Fecha 5'
+        },
+
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Ok',
+          handler: (data) => {
+            console.log('Confirm Ok', data);
+            if (data === 'Fecha 1') {
+              this.getPartido("Fecha 1");
+              this.fase="Fecha 1";
+            }
+            if (data === 'Fecha 2') {
+              this.getPartido("Fecha 2");
+              this.fase="Fecha 2";
+            }
+            if (data === 'Fecha 3') {
+              this.getPartido("Fecha 3"); 
+              this.fase="Fecha 3";
+            }
+            if (data === 'Fecha 4') {
+              this.getPartido("Fecha 4");
+              this.fase="Fecha 4";
+            }
+            if (data === 'Fecha 5') {
+              this.getPartido("Fecha 5");
+              this.fase="Fecha 5";
+            } 
+
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
   async getPartidos() {
     const path = 'Partidos';
@@ -39,5 +137,59 @@ export class PartidosPage implements OnInit {
       this.team = res;
     });
   }
+  async getPartCuar(){
+    const path= 'Partidos';
+    this.equiposInfo = this.firestoreService.getCollection<Encuentro>(path,'tipo','==', 'Cuartos de final').subscribe(res =>{
+      if(res.length==0){
+        
+        console.log("vacio");
+        this.cuarto=false;
+      }else{
+        this.cuartos=res;
+        this.cuarto=true;
+      }
+      
+    });
+  }
+  async getPartsemi(){
+    const path= 'Partidos';
+    this.equiposInfo = this.firestoreService.getCollection<Encuentro>(path,'tipo','==', 'Semifinal').subscribe(res =>{
+      
+      if(res.length==0){
+        this.semis=false;
+      }else{
+        this.semis=true;
+        this.semi=res;
+        
+      }
+    });
+  }
+  async getPartfinal(){
+    const path= 'Partidos';
+    this.equiposInfo = this.firestoreService.getCollection<Encuentro>(path,'tipo','==', 'Final').subscribe(res =>{
+      if(res.length==0){
 
+        this.fina=false;
+      }else{
+        this.final=res;
+        this.fina=true;
+      }
+
+
+    });
+  }
+
+
+  async getPartido(fase:string){
+    const path= 'Partidos';
+    this.equiposInfo = this.firestoreService.getCollection<Encuentro>(path,'fechae','==',fase).subscribe(res =>{
+      if(res.length==0){
+        this.fases=false;
+      }else{
+        this.fases=true;
+        this.team=res;
+
+      }
+    });
+  }
 }

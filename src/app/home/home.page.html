@@ -38,79 +38,45 @@
 
 </ion-header>
 <ion-content class="page-content">
+
+  <div class="encabezado_cop">
+    <ion-label class="titulo"> Copa Gualaquiza </ion-label>
+  </div>
+
   <div class="encabezado">
     <ion-label class="titulo"> Proximos partidos </ion-label>
   </div>
 
-  <!-- <ion-card>
-    <ion-grid>
-      <ion-row>
-        <ion-col class="col_text" size="6">
-          <ion-card-content>
-            <ion-label class="label_tem">
-              Fecha 1
-            </ion-label>
-            <br />
-            <ion-label class="label_tem">
-              {{equipo.tipo}}
-            </ion-label>
-          </ion-card-content>
-        </ion-col>
-        <ion-col class="col_tex" size="6">
-          <ion-card-content >
-            <ion-label  class="label_fecha">
-              {{equipo.fecha}}
-            </ion-label>
-            <br />
-            <ion-label class="label_tem">
-              {{equipo.grupo}}
-            </ion-label>
-          </ion-card-content>
+   <!-- Html de partidos de Final -->
+   <div *ngIf="fina" class="div_cuarto">
+    <ion-grid class="grid_cuarto">
+      <ion-row class="row_cuarto">
+        <ion-col class="col_grupo" size="6">
+          <ion-label class="ion-label-item-cuarto">Final</ion-label>
         </ion-col>
       </ion-row>
     </ion-grid>
-  </ion-card> -->
 
-  <ion-card *ngFor="let equipo of team" class="partidos">
+  </div>
+  <div *ngFor="let equipo of final" class="partidos">
 
     <ion-grid>
 
       <ion-row class="row_fecha">
-        <ion-col class="col_tex" size="6">
+
+        <ion-col class="col_tex_fecha" size="6">
           <!-- <ion-card-content class="card_fecha"> -->
-            <ion-label  class="label_fecha">
-              {{equipo.fecha}}
-            </ion-label>
+          <ion-label class="label_fecha">
+            {{equipo.fecha}}
+          </ion-label>
           <!-- </ion-card-content> -->
         </ion-col>
       </ion-row>
-      
-       <!-- <ion-row>
-        <ion-col class="col_text" size="7">
-          <ion-card-content>
-            <ion-label class="label_tittle">
-              {{equipo.tipo}}
-            </ion-label>
-            
-          </ion-card-content>
-        </ion-col>
-        <ion-col class="col_text" size="5">
-          <ion-card-content>
-            <ion-label class="label_tittle">
-              {{equipo.grupo}}
-            </ion-label>
-            
-          </ion-card-content>
 
-        </ion-col>
 
-        <ion-col class="col_text" size="4"></ion-col>
 
-      </ion-row> -->
-
-      
       <ion-row>
-        
+
         <ion-col class="col_nom_eq1" size="3">
           <ion-label class="label_e1">
             {{equipo.nombre_e1}}
@@ -143,5 +109,215 @@
 
 
     </ion-grid>
-  </ion-card>
+  </div>
+
+
+
+  <!-- Html de partidos de Semifinal  -->
+  <div *ngIf="semis" class="div_cuarto">
+    <ion-grid class="grid_cuarto">
+      <ion-row class="row_cuarto">
+        <ion-col class="col_grupo" size="6">
+          <ion-label class="ion-label-item-cuarto">Semifinal</ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div>
+  <div *ngFor="let equipo of semi" class="partidos">
+
+    <ion-grid>
+
+      <ion-row class="row_fecha">
+
+        <ion-col class="col_tex_fecha" size="6">
+          <!-- <ion-card-content class="card_fecha"> -->
+          <ion-label class="label_fecha">
+            {{equipo.fecha}}
+          </ion-label>
+          <!-- </ion-card-content> -->
+        </ion-col>
+      </ion-row>
+
+
+
+      <ion-row>
+
+        <ion-col class="col_nom_eq1" size="3">
+          <ion-label class="label_e1">
+            {{equipo.nombre_e1}}
+          </ion-label>
+        </ion-col>
+
+        <ion-col class="col_img" size="2">
+          <ion-item lines="none" class="item_avatar">
+            <img class="con_img" [src]="equipo.escudo_e1">
+          </ion-item>
+
+        </ion-col>
+        <ion-col class="col_vs" size="1">
+          <ion-label class="label_tittle_vs">
+            {{equipo.res_e1}}-{{equipo.res_e2}}
+          </ion-label>
+        </ion-col>
+        <ion-col class="col_img" size="2">
+          <ion-item lines="none" class="item_avatar">
+            <img class="con_img" [src]="equipo.escudo_e2">
+          </ion-item>
+        </ion-col>
+
+        <ion-col class="col_nom_eq2" size="3">
+          <ion-label class="label_e2">
+            {{equipo.nombre_e2}}
+          </ion-label>
+        </ion-col>
+      </ion-row>
+
+
+    </ion-grid>
+  </div>
+
+
+  <!-- Html de partidos de Cuartos de final -->
+  <div *ngIf="cuarto" class="div_cuarto">
+    <ion-grid class="grid_cuarto">
+      <ion-row class="row_cuarto">
+        <ion-col class="col_grupo" size="6">
+          <ion-label class="ion-label-item-cuarto">Cuartos de final</ion-label>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+
+  </div>
+  <div *ngFor="let equipo of cuartos" class="partidos">
+
+    <ion-grid>
+
+      <ion-row class="row_fecha">
+
+        <ion-col class="col_tex_fecha" size="6">
+          <!-- <ion-card-content class="card_fecha"> -->
+          <ion-label class="label_fecha">
+            {{equipo.fecha}}
+          </ion-label>
+          <!-- </ion-card-content> -->
+        </ion-col>
+      </ion-row>
+
+
+
+      <ion-row>
+
+        <ion-col class="col_nom_eq1" size="3">
+          <ion-label class="label_e1">
+            {{equipo.nombre_e1}}
+          </ion-label>
+        </ion-col>
+
+        <ion-col class="col_img" size="2">
+          <ion-item lines="none" class="item_avatar">
+            <img class="con_img" [src]="equipo.escudo_e1">
+          </ion-item>
+
+        </ion-col>
+        <ion-col class="col_vs" size="1">
+          <ion-label class="label_tittle_vs">
+            {{equipo.res_e1}}-{{equipo.res_e2}}
+          </ion-label>
+        </ion-col>
+        <ion-col class="col_img" size="2">
+          <ion-item lines="none" class="item_avatar">
+            <img class="con_img" [src]="equipo.escudo_e2">
+          </ion-item>
+        </ion-col>
+
+        <ion-col class="col_nom_eq2" size="3">
+          <ion-label class="label_e2">
+            {{equipo.nombre_e2}}
+          </ion-label>
+        </ion-col>
+      </ion-row>
+
+
+    </ion-grid>
+  </div>
+
+
+
+
+  <!-- Html de partidos de fase de grupos -->
+  <div *ngIf="fases" class="div_encabezado">
+    <ion-grid class="grid_fase">
+      <ion-row class="row_fase">
+        <ion-col class="col_fase" size="6">
+          <ion-label class="ion-label-item">Fase de grupos</ion-label>
+        </ion-col>
+        <ion-col class="col_fase_fecha" (click)="Fecha()" size="6">
+          <!-- <ion-item  lines="none" class="IonInput"> -->
+          <ion-label class="ion-label-item-fecha">{{this.fase}}</ion-label>
+          <!-- </ion-item> -->
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+
+  <div *ngFor="let equipo of team" class="partidos">
+
+    <ion-grid>
+
+      <ion-row class="row_fecha">
+        <ion-col class="col_tex_grupo" size="6">
+          <ion-label class="label_grupo">
+            {{equipo.grupo}}
+          </ion-label>
+        </ion-col>
+        <ion-col class="col_tex" size="6">
+          <!-- <ion-card-content class="card_fecha"> -->
+          <ion-label class="label_fecha">
+            {{equipo.fecha}}
+          </ion-label>
+          <!-- </ion-card-content> -->
+        </ion-col>
+      </ion-row>
+
+
+
+      <ion-row>
+
+        <ion-col class="col_nom_eq1" size="3">
+          <ion-label class="label_e1">
+            {{equipo.nombre_e1}}
+          </ion-label>
+        </ion-col>
+
+        <ion-col class="col_img" size="2">
+          <ion-item lines="none" class="item_avatar">
+            <img class="con_img" [src]="equipo.escudo_e1">
+          </ion-item>
+
+        </ion-col>
+        <ion-col class="col_vs" size="1">
+          <ion-label class="label_tittle_vs">
+            {{equipo.res_e1}}-{{equipo.res_e2}}
+          </ion-label>
+        </ion-col>
+        <ion-col class="col_img" size="2">
+          <ion-item lines="none" class="item_avatar">
+            <img class="con_img" [src]="equipo.escudo_e2">
+          </ion-item>
+        </ion-col>
+
+        <ion-col class="col_nom_eq2" size="3">
+          <ion-label class="label_e2">
+            {{equipo.nombre_e2}}
+          </ion-label>
+        </ion-col>
+      </ion-row>
+
+
+    </ion-grid>
+  </div>
 </ion-content>

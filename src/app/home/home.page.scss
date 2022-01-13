@@ -1,12 +1,21 @@
 .page-content{
-  --background: white
+  --background: #f3eded;
+
 }
 ion-toolbar{
   --background: #075E54;
   color: white; 
 }
+.encabezado_cop{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: white;
+  text-align: center ;
+ }
 .encabezado{
-margin-top: 10px;
+ padding-top: 10px;
+ padding-bottom: 10px;
+ background: white;
 }
 .titulo{
   color: black;
@@ -22,8 +31,33 @@ text-align: center;
   //  border: 1px black solid;
    background: #075E54;
   color: white ;
+}
+.ion-label-item{
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+}
+.ion-label-item-cuarto{
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+
+}
+.ion-label-item-fecha{
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
   
-  }
+
+}
+.col_fase_fecha{
+  background: #128C7E; 
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border-radius: 5px;
+}
 .label_tem{
 
   font-size: 14px;
@@ -36,11 +70,27 @@ text-align: center;
 .col_tex{
   margin-left: auto;
   margin-right: auto;
-
+//  border: 1px black solid;
   font-size: 9px;
-  // border: 1px purple solid;
- 
-  height: 30px;
+  text-align: right;
+  // height: 30px;
+}
+.col_tex_fecha{
+
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 9px;
+  text-align: center;
+
+}
+.col_tex_grupo{
+  margin-left: auto;
+  margin-right: auto;
+//  border: 1px black solid;
+  font-size: 9px;
+  text-align: left;
+
+  // height: 30px;
 }
 .card_fecha{
 
@@ -55,7 +105,14 @@ text-align: center;
 
   font-size: 13px;
   font-weight: bold;  
-  // border: 1px blue solid;
+  color: black;
+
+
+}
+.label_grupo{
+  font-size: 13px;
+  font-weight: bold;  
+  color: black;
 
 }
 .col_nom_eq1{
@@ -81,10 +138,12 @@ margin-bottom: auto;
 .label_e1{
   font-size: 14px;
   text-align: right;
+  color: black;
 }
 .label_e2{
   font-size: 14px;
   text-align: left;
+  color: black;
 }
 .label_tittle{
 
@@ -100,14 +159,17 @@ margin-bottom: auto;
   margin-left: auto;
   margin-right: auto;
 }
+
 .partidos{
-  --background: white;
-  border: 1px solid #ffffff;  
-  border-radius: 10px;  
+  background: white;
+  border: 1px solid #f3eded;  
+  // border-radius: 10px;  
   --color: #000000;
-  width: 97%;
+  width: 95%;
   margin-left: auto;
   margin-right: auto;
+  height: auto;
+  
 }
 
 .item_avatar{
@@ -133,7 +195,48 @@ margin-bottom: auto;
   margin-bottom: 60px;
  
   
-}   
+}  
+
+
+.div_cuarto{
+  background: #075E54;
+  margin-bottom: 5px;
+  width: 98%;
+  margin-right:auto;
+  margin-left: auto;
+}
+.div_encabezado{
+  background: #075E54;
+  margin-bottom: 5px;
+  width: 98%;
+  margin-right:auto;
+  margin-left: auto;
+}
+.grid_fase{
+  margin-top: 10px;
+}
+.grid_cuarto{
+  margin-top: 10px;
+}
+.col_fase{
+
+  margin-left: auto;
+margin-right: auto;
+text-align: center;
+}
+.col_grupo{
+margin-left: auto;
+margin-right: auto;
+text-align: center;
+}
+
+.IonInput{
+
+  --background: #FFF; 
+  --color:#333333;
+  font-weight: bold;
+ 
+} 
 .icon_edit{
   color: black;
   text-align: center;

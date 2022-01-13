@@ -32,31 +32,9 @@
       </ion-card-title>
     </ion-card-header>
 
-
-    <!-- <ion-item (click)="showPicker = !showPicker">
-      <ion-label>
-        Fecha de recepcion
-      </ion-label>
-      <ion-text slot="end">
-         {{formatedString}}
-
-         <ion-datetime 
-         *ngIf="showPicker"
-         #datetime 
-         [value]="dateValue"
-         size="cover"
-         (ionChange)="dateChanged(datetime.value)"
-         showDefaultButtons ="true"
-         (ionCancel) = "showPicker = false"
-         >
-         </ion-datetime>
-      </ion-text>
-
-    </ion-item> -->
-
+   
     <ion-item class="IonInput" id="open-modal" >
-      <!-- <ion-icon icon="calendar-outline" slot="start" color="primary"></ion-icon> -->
-        <ion-label class="ion-label-item" > Fecha: </ion-label>
+        <ion-label class="ion-label-itemin" > Fecha: </ion-label>
         <ion-text>  {{formatedString}} </ion-text>
     </ion-item>
 
@@ -82,14 +60,26 @@
     </ion-modal>
 
     <ion-item lines="none" class="IonInput">
-      <ion-label class="ion-label-item">Tipo de partido:</ion-label>
+      <ion-label class="ion-label-itemin">Tipo de partido:</ion-label>
       <ion-input slot="end" class="campos" (click)="newMatch()" [(ngModel)]="encuentro.tipo"
         placeholder="Seleccione tipo de partido">
       </ion-input>
     </ion-item>
 
+    <ion-item *ngIf="fecha" lines="none" class="IonInput">
+      <ion-label class="ion-label-itemin">Fase:</ion-label>
+      <ion-select slot="end" class="campos"  [(ngModel)]="encuentro.fechae"
+        placeholder="Seleccione Fecha">
+        <ion-select-option value="Fecha 1">Fecha 1</ion-select-option>
+        <ion-select-option value="Fecha 2">Fecha 2</ion-select-option>
+        <ion-select-option value="Fecha 3">Fecha 3</ion-select-option>
+        <ion-select-option value="Fecha 4">Fecha 4</ion-select-option>
+        <ion-select-option value="Fecha 5">Fecha 5</ion-select-option>
+    </ion-select>
+    </ion-item>
+
     <ion-item *ngIf="grupo" lines="none" class="IonInput">
-      <ion-label class="ion-label-item">Grupo:</ion-label>
+      <ion-label class="ion-label-itemin">Grupo:</ion-label>
       <ion-input slot="end" class="campos" (click)="newTeam()" [(ngModel)]="encuentro.grupo"
         placeholder="Seleccione tipo de partido">
       </ion-input>
@@ -97,13 +87,13 @@
 
     <!-- Inicio Grupo 1 -->
     <ion-item *ngIf="grupo1" lines="none" class="IonInput">
-      <ion-label class="ion-label-item">Equipo 1</ion-label>
+      <ion-label class="ion-label-itemin">Equipo 1</ion-label>
       <ion-select class="campos" [(ngModel)]="encuentro.nombre_e1" placeholder="Seleccione grupo">
         <ion-select-option *ngFor="let equipos of team1" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item *ngIf="grupo1" lines="none" class="IonInput">
-      <ion-label class="ion-label-item">Equipo 2</ion-label>
+      <ion-label class="ion-label-itemin">Equipo 2</ion-label>
       <ion-select class="campos" [(ngModel)]="encuentro.nombre_e2" placeholder="Seleccione grupo">
         <ion-select-option *ngFor="let equipos of team1" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
       </ion-select>
@@ -113,7 +103,7 @@
 
     <!-- Inicio Grupo 2 -->
     <ion-item *ngIf="grupo2" lines="none" class="IonInput">
-      <ion-label class="ion-label-item">Equipo 1</ion-label>
+      <ion-label class="ion-label-itemin">Equipo 1</ion-label>
       <ion-select class="campos" [(ngModel)]="encuentro.nombre_e1" placeholder="Seleccione grupo">
         <ion-select-option *ngFor="let equipos of team2" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
       </ion-select>
@@ -126,37 +116,354 @@
     </ion-item>
     <!-- Final Grupo 2 -->
 
+     <!-- Inicio Semi o final -->
+     <ion-item *ngIf="gene" lines="none" class="IonInput">
+      <ion-label class="ion-label-itemin">Equipo 1</ion-label>
+      <ion-select class="campos" [(ngModel)]="encuentro.nombre_e1" placeholder="Seleccione grupo">
+        <ion-select-option *ngFor="let equipos of teamg" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="gene" lines="none" class="IonInput">
+      <ion-label class="ion-label-itemin">Equipo 2</ion-label>
+      <ion-select class="campos" [(ngModel)]="encuentro.nombre_e2" placeholder="Seleccione grupo">
+        <ion-select-option *ngFor="let equipos of teamg" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <!-- Final Semi o final -->
+
     <ion-card-content class="botones">
-      <ion-button (click)="estado=false" class="button-cancelar">Cancelar</ion-button>
+      <ion-button (click)="estado=false" (click)="reset()" class="button-cancelar">Cancelar</ion-button>
       <ion-button (click)="saveMatch()" class="button-guardar">Guardar</ion-button>
     </ion-card-content>
 
   </ion-card>
 
+
   <div class="encabezado">
     <ion-label class="titulo"> Lista de partidos </ion-label>
   </div>
  
+ <!-- Html de partidos de Final -->
+ <div *ngIf="fina" class="div_cuarto">
+  <ion-grid class="grid_cuarto">
+    <ion-row class="row_cuarto">
+      <ion-col class="col_grupo" size="6">
+        <ion-label class="ion-label-item-cuarto">Final</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-  <ion-card *ngFor="let equipo of team" class="partidos">
+</div>
+<div *ngFor="let equipo of final" class="partidos">
+
+  <ion-grid>
+
+    <ion-row class="row_fecha">
+
+      <ion-col class="col_tex_fecha" size="6">
+        <!-- <ion-card-content class="card_fecha"> -->
+        <ion-label class="label_fecha">
+          {{equipo.fecha}}
+        </ion-label>
+        <!-- </ion-card-content> -->
+      </ion-col>
+    </ion-row>
+
+
+
+    <ion-row>
+
+      <ion-col class="col_nom_eq1" size="3">
+        <ion-label class="label_e1">
+          {{equipo.nombre_e1}}
+        </ion-label>
+      </ion-col>
+
+      <ion-col class="col_img" size="2">
+        <ion-item lines="none" class="item_avatar">
+          <img class="con_img" [src]="equipo.escudo_e1">
+        </ion-item>
+
+      </ion-col>
+      <ion-col class="col_vs" size="1">
+        <ion-label class="label_tittle_vs">
+          {{equipo.res_e1}}-{{equipo.res_e2}}
+        </ion-label>
+      </ion-col>
+      <ion-col class="col_img" size="2">
+        <ion-item lines="none" class="item_avatar">
+          <img class="con_img" [src]="equipo.escudo_e2">
+        </ion-item>
+      </ion-col>
+
+      <ion-col class="col_nom_eq2" size="3">
+        <ion-label class="label_e2">
+          {{equipo.nombre_e2}}
+        </ion-label>
+      </ion-col>
+    </ion-row>
+
+
+  </ion-grid>
+</div>
+
+
+
+<!-- Html de partidos de Semifinal  -->
+<div *ngIf="semis" class="div_cuarto">
+  <ion-grid class="grid_cuarto">
+    <ion-row class="row_cuarto">
+      <ion-col class="col_grupo" size="6">
+        <ion-label class="ion-label-item-cuarto">Semifinal</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</div>
+<div *ngFor="let equipo of semi" class="partidos">
+
+  <ion-grid>
+
+    <ion-row class="row_fecha">
+
+      <ion-col size="2"></ion-col>
+      <ion-col class="col_tex_fecha" size="8">
+        <!-- <ion-card-content class="card_fecha"> -->
+        <ion-label class="label_fecha">
+          {{equipo.fecha}}
+        </ion-label>
+        <!-- </ion-card-content> -->
+      </ion-col>
+      <ion-col class="col_icon" size="2">
+         
+        <ion-buttons class="button">
+          <ion-button  routerLink="/edit-partido" (click)="getMatch(equipo)" >
+            <ion-icon class="icon_edit" slot="icon-only" name="create-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        
+      </ion-col>
+    </ion-row>
+
+
+
+    <ion-row>
+
+      <ion-col class="col_nom_eq1" size="3">
+        <ion-label class="label_e1">
+          {{equipo.nombre_e1}}
+        </ion-label>
+      </ion-col>
+
+      <ion-col class="col_img" size="2">
+        <ion-item lines="none" class="item_avatar">
+          <img class="con_img" [src]="equipo.escudo_e1">
+        </ion-item>
+
+      </ion-col>
+      <ion-col class="col_vs" size="1">
+        <ion-label class="label_tittle_vs">
+          {{equipo.res_e1}}-{{equipo.res_e2}}
+        </ion-label>
+      </ion-col>
+      <ion-col class="col_img" size="2">
+        <ion-item lines="none" class="item_avatar">
+          <img class="con_img" [src]="equipo.escudo_e2">
+        </ion-item>
+      </ion-col>
+
+      <ion-col class="col_nom_eq2" size="3">
+        <ion-label class="label_e2">
+          {{equipo.nombre_e2}}
+        </ion-label>
+      </ion-col>
+    </ion-row>
+
+
+  </ion-grid>
+</div>
+
+
+<!-- Html de partidos de Cuartos de final -->
+<div *ngIf="cuarto" class="div_cuarto">
+  <ion-grid class="grid_cuarto">
+    <ion-row class="row_cuarto">
+      <ion-col class="col_grupo" size="6">
+        <ion-label class="ion-label-item-cuarto">Cuartos de final</ion-label>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+</div>
+<div *ngFor="let equipo of cuartos" class="partidos">
+
+  <ion-grid>
+
+    <ion-row class="row_fecha">
+      <ion-col size="2"></ion-col>
+      <ion-col class="col_tex_fecha" size="8">
+        <!-- <ion-card-content class="card_fecha"> -->
+        <ion-label class="label_fecha">
+          {{equipo.fecha}}
+        </ion-label>
+        <!-- </ion-card-content> -->
+      </ion-col>
+      <ion-col class="col_icon" size="2">
+         
+        <ion-buttons class="button">
+          <ion-button  routerLink="/edit-partido" (click)="getMatch(equipo)" >
+            <ion-icon class="icon_edit" slot="icon-only" name="create-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        
+      </ion-col>
+    </ion-row>
+
+
+
+    <ion-row>
+
+      <ion-col class="col_nom_eq1" size="3">
+        <ion-label class="label_e1">
+          {{equipo.nombre_e1}}
+        </ion-label>
+      </ion-col>
+
+      <ion-col class="col_img" size="2">
+        <ion-item lines="none" class="item_avatar">
+          <img class="con_img" [src]="equipo.escudo_e1">
+        </ion-item>
+
+      </ion-col>
+      <ion-col class="col_vs" size="1">
+        <ion-label class="label_tittle_vs">
+          {{equipo.res_e1}}-{{equipo.res_e2}}
+        </ion-label>
+      </ion-col>
+      <ion-col class="col_img" size="2">
+        <ion-item lines="none" class="item_avatar">
+          <img class="con_img" [src]="equipo.escudo_e2">
+        </ion-item>
+      </ion-col>
+
+      <ion-col class="col_nom_eq2" size="3">
+        <ion-label class="label_e2">
+          {{equipo.nombre_e2}}
+        </ion-label>
+      </ion-col>
+    </ion-row>
+
+
+  </ion-grid>
+</div>
+
+
+
+
+   <!-- Html de partidos de fase de grupos -->
+   <div *ngIf="fases" class="div_encabezado">
+    <ion-grid class="grid_fase">
+      <ion-row class="row_fase">
+        <ion-col class="col_fase" size="6">
+          <ion-label class="ion-label-item">Fase de grupos</ion-label>
+        </ion-col>
+        <ion-col class="col_fase_fecha" (click)="Fecha()" size="6">
+          <!-- <ion-item  lines="none" class="IonInput"> -->
+          <ion-label class="ion-label-item-fecha">{{this.fase}}</ion-label>
+          <!-- </ion-item> -->
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+
+  <div *ngFor="let equipo of team" class="partidos">
+
+    <ion-grid>
+
+      <ion-row class="row_fecha">
+        <ion-col class="col_tex_grupo" size="3">
+          <ion-label class="label_grupo">
+            {{equipo.grupo}}
+          </ion-label>
+        </ion-col>
+        <ion-col class="col_tex" size="7">
+          <!-- <ion-card-content class="card_fecha"> -->
+          <ion-label class="label_fecha">
+            {{equipo.fecha}}
+          </ion-label>
+          <!-- </ion-card-content> -->
+        </ion-col>
+        <ion-col class="col_icon" size="2">
+         
+          <ion-buttons class="button">
+            <ion-button  routerLink="/edit-partido" (click)="getMatch(equipo)" >
+              <ion-icon class="icon_edit" slot="icon-only" name="create-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+          
+        </ion-col>
+      </ion-row>
+
+
+
+      <ion-row>
+
+        <ion-col class="col_nom_eq1" size="3">
+          <ion-label class="label_e1">
+            {{equipo.nombre_e1}}
+          </ion-label>
+        </ion-col>
+
+        <ion-col class="col_img" size="2">
+          <ion-item lines="none" class="item_avatar">
+            <img class="con_img" [src]="equipo.escudo_e1">
+          </ion-item>
+
+        </ion-col>
+        <ion-col class="col_vs" size="1">
+          <ion-label class="label_tittle_vs">
+            {{equipo.res_e1}}-{{equipo.res_e2}}
+          </ion-label>
+        </ion-col>
+        <ion-col class="col_img" size="2">
+          <ion-item lines="none" class="item_avatar">
+            <img class="con_img" [src]="equipo.escudo_e2">
+          </ion-item>
+        </ion-col>
+
+        <ion-col class="col_nom_eq2" size="3">
+          <ion-label class="label_e2">
+            {{equipo.nombre_e2}}
+          </ion-label>
+        </ion-col>
+      </ion-row>
+
+
+    </ion-grid>
+  </div>
+
+  <!-- <ion-card *ngFor="let equipo of team" class="partidos">
 
     <ion-grid>
       <ion-row>
         <ion-col class="col_text" size="7">
-          <ion-card-content >
+         
             <ion-label class="label_tittle">
               {{equipo.tipo}}
             </ion-label>
-            <!-- <br /> -->
-           </ion-card-content>
+            
+          
         </ion-col>
         <ion-col class="col_text" size="5">
-        <ion-card-content >
+        
           <ion-label class="label_tittle">
             {{equipo.grupo}}
           </ion-label>
-          <!-- <br /> -->
-         </ion-card-content>
+          
+        
           
         </ion-col>
 
@@ -166,61 +473,48 @@
 
       <ion-row>
         
-        <ion-col class="col_img" size="4">
+        <ion-col class="col_nom_eq1" size="3">
+          <ion-label class="label_e1">
+            {{equipo.nombre_e1}}
+          </ion-label>
+        </ion-col>
+
+        <ion-col class="col_img" size="2">
           <ion-item lines="none" class="item_avatar">
             <img class="con_img" [src]="equipo.escudo_e1">
           </ion-item>
-       
-         
+
         </ion-col>
         <ion-col class="col_vs" size="1">
           <ion-label class="label_tittle_vs">
-            VS
+            {{equipo.res_e1}}-{{equipo.res_e2}}
           </ion-label>
         </ion-col>
-        <ion-col class="col_img" size="4">
-              <ion-item lines="none" class="item_avatar">
-              <img class="con_img" [src]="equipo.escudo_e2">
-            </ion-item>
+        <ion-col class="col_img" size="2">
+          <ion-item lines="none" class="item_avatar">
+            <img class="con_img" [src]="equipo.escudo_e2">
+          </ion-item>
         </ion-col>
-        <ion-col class="col_icon" size="3">
-          <ion-card-content class="card-icon">
-            <ion-label class="label_tittle">Editar</ion-label>
-            <br />
+
+        <ion-col class="col_nom_eq2" size="3">
+          <ion-label class="label_e2">
+            {{equipo.nombre_e2}}
+          </ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+
+        <ion-col class="col_icon" size="2">
+         
             <ion-buttons class="button">
               <ion-button routerLink="/edit-partido" (click)="getMatch(equipo)" >
                 <ion-icon class="icon_edit" slot="icon-only" name="create-outline"></ion-icon>
               </ion-button>
             </ion-buttons>
-          </ion-card-content>
-
-        </ion-col>
-
-      </ion-row>
-
-      <ion-row>
-        <ion-col class="col_nom_eq" size="4">
-          <ion-label class="label_tittle">
-            {{equipo.nombre_e1}}
-          </ion-label>
-        </ion-col>
-
-        <ion-col class="col_text" size="1">
-          
-        </ion-col>
-
-        <ion-col class="col_nom_eq" size="4">
-          <ion-label class="label_tittle">
-            {{equipo.nombre_e2}}
-          </ion-label>
-        </ion-col>
-
-        <ion-col class="col_text" size="3">
-          
-        </ion-col>
-
-      </ion-row>
+            
+          </ion-col>
+        </ion-row>
     </ion-grid>
   </ion-card>
-  
+   -->
 </ion-content>
