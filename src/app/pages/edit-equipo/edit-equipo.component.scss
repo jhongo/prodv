@@ -25,7 +25,15 @@
     --color: black; 
     padding: 10px;
 } 
+.button-eliminar{
+    --color: #075E54;
+    text-align: center;
+    --background: #ffffff;
+    --border-radius:10px;
+    width:50%;
+    font-weight: bold;
 
+}
 .botones{
     
     display: inline-block;

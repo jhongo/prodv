@@ -56,6 +56,19 @@ export class EditEquipoComponent implements OnInit {
 
   }
 
+  async deleteTeam() {
+    const path = "Equipos";
+    this.firestoreService.deletepartido(path, this.equipo.uid).then(res => {
+      this.presentLoading('Eliminando', 1500);
+      setTimeout(() => {
+        this.router.navigate(['/tab-campeonato/equipos']);
+      }, 1000);
+    }).catch(error => {
+      console.log(error)
+    });
+  }
+
+
   async saveTeam() {
 
     const path = 'Equipos';

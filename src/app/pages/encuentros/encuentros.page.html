@@ -159,17 +159,24 @@
   <ion-grid>
 
     <ion-row class="row_fecha">
-
-      <ion-col class="col_tex_fecha" size="6">
+      <ion-col size="2"></ion-col>
+      <ion-col class="col_tex_fecha" size="8">
         <!-- <ion-card-content class="card_fecha"> -->
         <ion-label class="label_fecha">
           {{equipo.fecha}}
         </ion-label>
         <!-- </ion-card-content> -->
       </ion-col>
+      <ion-col class="col_icon" size="2">
+         
+        <ion-buttons class="button">
+          <ion-button  routerLink="/edit-partido" (click)="getMatch(equipo)" >
+            <ion-icon class="icon_edit" slot="icon-only" name="create-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        
+      </ion-col>
     </ion-row>
-
-
 
     <ion-row>
 

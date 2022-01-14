@@ -189,11 +189,12 @@ export class EncuentrosPage implements OnInit {
   async getPartido(fase:string){
     const path= 'Partidos';
     this.equiposInfo = this.firestoreService.getCollection<Encuentro>(path,'fechae','==',fase).subscribe(res =>{
-      if(res.length==0){
-        this.fases=false;
+      this.team=res;
+    if(res.length==0){
+        // this.fases=false;
       }else{
         this.fases=true;
-        this.team=res;
+        
 
       }
     });
@@ -202,12 +203,13 @@ export class EncuentrosPage implements OnInit {
   async getPartCuar(){
     const path= 'Partidos';
     this.equiposInfo = this.firestoreService.getCollection<Encuentro>(path,'tipo','==', 'Cuartos de final').subscribe(res =>{
+      this.cuartos=res;
       if(res.length==0){
         
         console.log("vacio");
         this.cuarto=false;
       }else{
-        this.cuartos=res;
+        
         this.cuarto=true;
       }
       
@@ -216,31 +218,30 @@ export class EncuentrosPage implements OnInit {
   async getPartsemi(){
     const path= 'Partidos';
     this.equiposInfo = this.firestoreService.getCollection<Encuentro>(path,'tipo','==', 'Semifinal').subscribe(res =>{
-      
+      this.semi=res;
       if(res.length==0){
         this.semis=false;
       }else{
         this.semis=true;
-        this.semi=res;
-        
+ 
       }
     });
   }
   async getPartfinal(){
     const path= 'Partidos';
     this.equiposInfo = this.firestoreService.getCollection<Encuentro>(path,'tipo','==', 'Final').subscribe(res =>{
+      this.final=res;
       if(res.length==0){
 
-        this.fina=false;
+         this.fina=false;
       }else{
-        this.final=res;
         this.fina=true;
       }
 
     });
   }
 
-  ngOnInit() {
+  async ngOnInit() {
 
     console.log(this.encuentro.grupo);
     //  this.getPartidos();
