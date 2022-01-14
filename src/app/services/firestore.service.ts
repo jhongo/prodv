@@ -32,6 +32,17 @@ export class FirestoreService {
     return collection.valueChanges();
   }
 
+  getCollectionGru<tipo>(path: string,  parametro: string, condicion: any, busqueda: string){
+    
+    const collection = this.FireStore.collection<tipo>(path,
+      ref => ref.where(parametro,condicion,busqueda) 
+      .orderBy('puntos','desc'),
+      // // .startAt(date)
+      );
+    return collection.valueChanges();
+  }
+  
+
   getDoc<tipo>(path: string, id: string){
     const collection = this.FireStore.collection<tipo>(path);
     return collection.doc(id).valueChanges();

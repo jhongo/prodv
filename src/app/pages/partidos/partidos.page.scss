@@ -25,11 +25,12 @@
   }
   
   .col_vs{
-  margin-top: auto;
-  margin-bottom: auto;
-  text-align: center;
-    //  border: 1px black solid;
-     background: #075E54;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    display: flex;
+    //  border: 1px blue solid;
+    background: #075E54;
     color: white ;
   }
   .ion-label-item{
@@ -250,12 +251,11 @@
     text-align: center;
   }
   .label_tittle_vs{
-    font-size: 10px;
-   
-    font-weight: bold;
-    text-align: center;
-    margin-top: auto;
-    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+     font-size: 10px;
+     // border: 1px black solid;  
+     font-weight: bold;
   
   }
   .button{

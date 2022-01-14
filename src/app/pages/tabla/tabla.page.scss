@@ -1,8 +1,55 @@
 .content-resultados{
-    --background: #fff;
+    --background: #f3eded;
 }
 
 ion-toolbar{
     --background: #075E54;
     color: white; 
+}
+.titulo{
+    color: white;
+    font-weight: bold;
+    
+    text-align: left;
+}
+.row_grupo{
+    background: #075E54;
+    padding: 5px;
+}
+
+.grid_encabezado{
+
+    background: white;
+}
+
+
+.grupos{
+
+    background: white;
+  border: 1px solid #f3eded;  
+  // border-radius: 10px;  
+  --color: #000000;
+}
+.text_encabezado{
+
+    font-size: 12px;
+    color: black;
+}
+
+.col_equipo{
+
+    
+    text-align: left;
+}
+
+.text_puntos{
+    font-size: 12px;
+    font-weight: bold;
+    color: black;
+
+}
+
+.col_encabezado{
+    // border: 1px black solid;
+    text-align: center;
 }

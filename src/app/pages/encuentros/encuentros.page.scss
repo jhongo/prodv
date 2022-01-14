@@ -87,9 +87,13 @@ ion-toolbar{
     color: black;
   }
 .col_vs{
-margin-top: auto;
-margin-bottom: auto;
-    // border: 1px black solid;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    display: flex;
+    //  border: 1px blue solid;
+    background: #075E54;
+    color: white ;
 }
 .col_grupo{
     margin-left: auto;
@@ -216,12 +220,11 @@ ion-card-title{
     text-align: center;
 }
 .label_tittle_vs{
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    margin-top: auto;
-    margin-bottom: auto;
-
+    margin-left: auto;
+ margin-right: auto;
+  font-size: 10px;
+  // border: 1px black solid;  
+  font-weight: bold;
 }
 .button{
 

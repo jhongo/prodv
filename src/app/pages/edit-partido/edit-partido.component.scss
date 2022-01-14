@@ -4,10 +4,10 @@
 .Nuevo_partido{
     --background: white; 
     padding: 15px;
-    
+   
+    //  border: 1px  black solid;
 }
 .IonInput{
-
     --background: #FFF; 
     --color:#333333;
     font-weight: bold;
@@ -15,12 +15,18 @@
     border: 2px solid #FFF;
     border-radius: 10px;
 }
-.titulo{
-    color: black;
-    font-weight: bold;
-    margin-top: 10px;
-    text-align: left;
-}
+.encabezado{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: white;
+    // border: 1px blue solid;
+   }
+     .titulo{
+       color: black;
+       font-weight: bold;
+       text-align: left;
+       margin-left: 10px;
+     }
 .campos{
     --color: black; 
     padding: 10px;
