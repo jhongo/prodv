@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
   };
   uid = '';
   suscriberUserInfo: Subscription;
+  login: boolean = false;
 
   constructor(public firebaseauthService: FirebaseauthService,
     public fireStore: FirestoreService,
@@ -29,7 +30,20 @@ export class LoginComponent implements OnInit {
     public toastController: ToastController,
     public alertController: AlertController,
     private menuL: MenuController,
-    public router: Router,) { }
+    public router: Router,) {
+
+      this.firebaseauthService.stateAuth().subscribe( res=>{
+      if (res) {
+        console.log('Esta logeado');
+        this.login =true;
+        this.router.navigate(['/home']);
+        this.menuL.enable(true);
+      }else{
+        console.log('No esta logeado')
+        this.login = false;
+        }
+      })
+     }
 
   ngOnInit() {
 

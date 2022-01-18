@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { User } from '../models';
 
 @Injectable({
@@ -22,8 +23,6 @@ export class FirebaseauthService {
     } catch (error) {
       console.log("Error=>",error)
     }
-
-
    }
 
   
