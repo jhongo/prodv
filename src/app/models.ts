@@ -49,3 +49,23 @@ export interface Encuentro{
     nombre_e2:string,
 
 }
+
+
+export interface EncuentroPrueba{
+    uid:string,
+    fechae:string,
+    numero:number,
+    tipo:string,
+    fecha: Date,
+    grupo:string,
+    uid_e1:string,
+    uid_e2:string,
+    estado:string,
+    res_e1:number,
+    res_e2:number,
+    escudo_e1:string,
+    escudo_e2:string,
+    nombre_e1:string,
+    nombre_e2:string,
+
+}

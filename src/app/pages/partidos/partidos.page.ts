@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { formatRelativeWithOptions, getWeekYearWithOptions } from 'date-fns/fp';
 import { Subscription } from 'rxjs';
 import { Encuentro } from 'src/app/models';
 import { FirestoreService } from 'src/app/services/firestore.service';
+import { EncuentroPrueba } from '../../models';
 
 @Component({
   selector: 'app-partidos',
@@ -16,16 +18,27 @@ export class PartidosPage implements OnInit {
   semi: Encuentro []=[];
   final: Encuentro []=[];
 
+
+  gene: EncuentroPrueba []=[];
+  grupo1 :EncuentroPrueba []=[];
+  grupo2 :EncuentroPrueba []=[];
+
+
   cuarto=false;
   semis=false;
   fina=false;
   fases=false;
 
-  encuentro: Encuentro = {
+  titulo="";
+  gru1=false;
+  gru2=false;
+
+  encuentro: EncuentroPrueba = {
     uid: '',
     tipo: '',
     fechae: '',
-    fecha: '',
+    numero: 0,
+    fecha: null,
     grupo: '',
     uid_e1: '',
     uid_e2: '',
@@ -38,16 +51,53 @@ export class PartidosPage implements OnInit {
     nombre_e2: '',
   }
 
+  encuentro1: EncuentroPrueba = {
+    uid: '',
+    tipo: '',
+    fechae: '',
+    numero: 0,
+    fecha: null,
+    grupo: '',
+    uid_e1: '',
+    uid_e2: '',
+    estado: 'iniciado',
+    res_e1: 0,
+    res_e2: 0,
+    escudo_e1: '',
+    escudo_e2: '',
+    nombre_e1: '',
+    nombre_e2: '',
+  }
+
+  encuentro2: EncuentroPrueba = {
+    uid: '',
+    tipo: '',
+    fechae: '',
+    numero: 0,
+    fecha: null,
+    grupo: '',
+    uid_e1: '',
+    uid_e2: '',
+    estado: 'iniciado',
+    res_e1: 0,
+    res_e2: 0,
+    escudo_e1: '',
+    escudo_e2: '',
+    nombre_e1: '',
+    nombre_e2: '',
+  }
   fase="";
+  numero=0;
   constructor(public firestoreService: FirestoreService,
               public alertController: AlertController) { }
 
   ngOnInit() {
-    this.getPartido("Fecha 1");
-    this.fase="Fecha 1";
-    this.getPartCuar();
-    this.getPartsemi();
-    this.getPartfinal();
+    this.getPartidos();
+    // this.getPartido("Fecha 1");
+    // this.fase="Fecha 1";
+    // this.getPartCuar();
+    // this.getPartsemi();
+    // this.getPartfinal();
   }
   async Fecha() {
     const alert = await this.alertController.create({
@@ -133,10 +183,155 @@ export class PartidosPage implements OnInit {
   }
   async getPartidos() {
     const path = 'Partidos';
-    this.equiposInfo = this.firestoreService.getTeam<Encuentro>(path).subscribe(res => {
-      this.team = res;
+    this.equiposInfo = this.firestoreService.getPartidos<EncuentroPrueba>(path).subscribe(res => {
+      
+      this.encuentro=res[0];
+      if(this.encuentro.fechae==""){
+      this.titulo=this.encuentro.tipo;
+      }else{
+        this.titulo=this.encuentro.fechae;
+      }
+       this.numero=this.encuentro.numero;
+       this.fase = this.encuentro.fechae;
+
+       if(this.fase==""){
+         this.prueba(this.encuentro.tipo);
+         
+        }else{
+        this.gene=[];
+
+        this.grupos(this.fase);
+       }
+
+
+      
     });
+
   }
+
+  async prueba(tipo:string){
+    const path='Partidos';
+    this.equiposInfo = this.firestoreService.getCollection<EncuentroPrueba>(path,'tipo','==', tipo).subscribe(res =>{
+      this.gene = res;
+  });
+  }
+
+  async grupos(fase:string){
+    const path='Partidos';
+    
+      this.firestoreService.getCollectiongrupos<EncuentroPrueba>(path, 'grupo','==','Grupo 1',fase).subscribe(res=>{
+        this.grupo1=res;
+        if(res.length){
+          this.gru1=true;
+        }else{
+          this.gru1=false;
+        }
+      });
+
+      this.firestoreService.getCollectiongrupos<EncuentroPrueba>(path, 'grupo','==','Grupo 2', fase).subscribe(res=>{
+        this.grupo2=res;
+        if(res.length){
+          this.gru2=true;
+        }else{
+          this.gru2=false;
+        }
+      });
+
+  
+
+  }
+  
+async anterior(){
+
+  if(this.numero>1){
+
+    this.numero=this.numero-1;
+
+  }
+  
+  console.log(this.numero)
+
+  if(this.numero==1){
+    this.grupos("Fecha 1");
+    this.titulo="Fecha 1";
+    this.gene=[];
+  }else if(this.numero==2){
+    this.titulo="Fecha 2";
+    this.gene=[];
+    this.grupos("Fecha 2");
+  }else if(this.numero==3){
+    this.titulo="Fecha 3";
+    this.gene=[];
+    this.grupos("Fecha 3");
+  }else if(this.numero==4){
+    this.titulo="Fecha 4";
+    this.gene=[];
+    this.grupos("Fecha 4");
+  }else if(this.numero==5){
+    this.titulo="Fecha 5";
+    this.gene=[];
+    this.grupos("Fecha 5");
+  }else if(this.numero==6){
+    this.titulo="Fecha 6";
+    this.gene=[];
+    this.grupos("Fecha 6");
+  }else if(this.numero==7){
+    this.prueba("Cuartos de final");
+    this.titulo="Cuartos de final"
+  }else if(this.numero==8){
+    this.prueba("Semifinal");
+    this.titulo="Semifinal"
+  }else if(this.numero==9){
+    this.prueba("Final");
+    this.titulo="Final"
+  }
+}
+
+async siguiente(){
+  if(this.numero<9){
+
+    this.numero=this.numero+1;
+
+  }
+  
+  console.log(this.numero)
+
+  if(this.numero==1){
+    this.grupos("Fecha 1");
+    this.titulo="Fecha 1";
+    this.gene=[];
+  }else if(this.numero==2){
+    this.titulo="Fecha 2";
+    this.gene=[];
+    this.grupos("Fecha 2");
+  }else if(this.numero==3){
+    this.titulo="Fecha 3";
+    this.gene=[];
+    this.grupos("Fecha 3");
+  }else if(this.numero==4){
+    this.titulo="Fecha 4";
+    this.gene=[];
+    this.grupos("Fecha 4");
+  }else if(this.numero==5){
+    this.titulo="Fecha 5";
+    this.gene=[];
+    this.grupos("Fecha 5");
+  }else if(this.numero==6){
+    this.titulo="Fecha 6";
+    this.gene=[];
+    this.grupos("Fecha 6");
+  }else if(this.numero==7){
+    this.prueba("Cuartos de final");
+    this.titulo="Cuartos de final"
+  }else if(this.numero==8){
+    this.prueba("Semifinal");
+    this.titulo="Semifinal"
+  }else if(this.numero==9){
+    this.prueba("Final");
+    this.titulo="Final"
+  }
+}
+
   async getPartCuar(){
     const path= 'Partidos';
     this.equiposInfo = this.firestoreService.getCollection<Encuentro>(path,'tipo','==', 'Cuartos de final').subscribe(res =>{

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AlertController, IonDatetime, LoadingController, ToastController } from '@ionic/angular';
-import { Encuentro, Equipos } from 'src/app/models';
+import { EncuentroPrueba, Equipos, Encuentro } from 'src/app/models';
 import { Subscription } from 'rxjs';
 import { FirestoreService } from '../../services/firestore.service';
 import { format, parseISO } from 'date-fns';
@@ -75,11 +75,12 @@ export class EncuentrosPage implements OnInit {
   dateValue = format(new Date(), 'yyy-MM-dd') + 'T09:00:00.000Z'
   formatedString = '';
 
-  encuentro: Encuentro = {
+  encuentro: EncuentroPrueba = {
     uid: '',
     fechae: '',
+    numero: 0,
     tipo: '',
-    fecha: '',
+    fecha: null,
     grupo: '',
     uid_e1: '',
     uid_e2: '',
@@ -98,7 +99,7 @@ export class EncuentrosPage implements OnInit {
     public loadingController: LoadingController,
     public toastController: ToastController,) {
 
-    this.setToday();
+    // this.setToday();
    
 
   }
@@ -162,6 +163,7 @@ export class EncuentrosPage implements OnInit {
             if (data === 'Fecha 1') {
               this.getPartido("Fecha 1");
               this.fase="Fecha 1";
+              
             }
             if (data === 'Fecha 2') {
               this.getPartido("Fecha 2");
@@ -260,7 +262,19 @@ export class EncuentrosPage implements OnInit {
     this.dateValue = value;
     this.formatedString = format(parseISO(value), 'HH:mm, MMM d, yyy');
     this.showPicker = false;
+    this.encuentro.fecha=value;
     console.log(value);
+  }
+
+  async calculo(){
+    console.log(this.encuentro.fecha);
+  
+    let fechaac = new Date(this.encuentro.fecha);
+    let dias = 21;
+    fechaac.setDate(fechaac.getDate());
+    this.encuentro.fecha=fechaac;
+    console.log(this.encuentro.fecha);
+  
   }
 
   close() {
@@ -374,64 +388,147 @@ export class EncuentrosPage implements OnInit {
   }
   async saveMatch() {
     this.encuentro.uid = this.firestoreService.getId();
-    this.encuentro.fecha = this.formatedString;
-    if (this.encuentro.tipo == "") {
-      this.presentToast("Eliga el tipo de partido", 2000);
-    } else {
-      if (this.encuentro.nombre_e1 == "" || this.encuentro.nombre_e2 == "") {
-        this.presentToast("Eliga los equipos", 2000);
+   
+    if(this.encuentro.fecha==null){
+      this.presentToast("Eliga fecha del partido", 2000);
+    }else{
+      if (this.encuentro.tipo == "") {
+        this.presentToast("Eliga el tipo de partido", 2000);
       } else {
-        if (this.encuentro.nombre_e1 == this.encuentro.nombre_e2) {
-          this.presentToast("Los equipos son los mismos", 2000);
+        if (this.encuentro.nombre_e1 == "" || this.encuentro.nombre_e2 == "") {
+          this.presentToast("Eliga los equipos", 2000);
         } else {
-
-          console.log(this.encuentro.nombre_e1 + " " + this.encuentro.nombre_e2);
-          const path = 'Partidos';
-          // console.log(this.encuentro);
-
-          this.firestoreService.createDoc(this.encuentro, path, this.encuentro.uid).then(res => {
-            console.log('guardado con exito');
-            this.presentLoading('Guardando partido', 1500);
-            this.completardatos(this.encuentro.uid);
-            this.encuentro = {
-              uid: '',
-              tipo: '',
-              fechae: '',
-              fecha: '',
-              grupo: '',
-              uid_e1: '',
-              uid_e2: '',
-              estado: 'iniciado',
-              res_e1: 0,
-              res_e2: 0,
-              escudo_e1: '',
-              escudo_e2: '',
-              nombre_e1: '',
-              nombre_e2: '',
-            };
-            this.estado = false;
-            this.grupo = false;
-            this.grupo1 = false;
-            this.grupo2 = false;
-            this.fecha = false;
-            this.gene = false;
-
-          }).catch(error => {
-            console.log(error)
-          });
-
+          if (this.encuentro.nombre_e1 == this.encuentro.nombre_e2) {
+            this.presentToast("Los equipos son los mismos", 2000);
+          } else {
+  
+            console.log(this.encuentro.nombre_e1 + " " + this.encuentro.nombre_e2);
+            const path = 'Partidos';
+            // this.calculo();
+            // console.log(this.encuentro);
+  
+            this.firestoreService.createDoc(this.encuentro, path, this.encuentro.uid).then(res => {
+              console.log('guardado con exito');
+              this.presentLoading('Guardando partido', 1500);
+              this.completardatos(this.encuentro.uid);
+              this.encuentro = {
+                uid: '',
+                tipo: '',
+                fechae: '',
+                numero: 0,
+                fecha: null,
+                grupo: '',
+                uid_e1: '',
+                uid_e2: '',
+                estado: 'iniciado',
+                res_e1: 0,
+                res_e2: 0,
+                escudo_e1: '',
+                escudo_e2: '',
+                nombre_e1: '',
+                nombre_e2: '',
+              };
+              this.estado = false;
+              this.grupo = false;
+              this.grupo1 = false;
+              this.grupo2 = false;
+              this.fecha = false;
+              this.gene = false;
+  
+            }).catch(error => {
+              console.log(error)
+            });
+  
+          }
+  
+  
         }
-
-
+  
+  
+  
       }
-
-
-
     }
+
+    
 
   }
 
+  async newFecha() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Seleccione fecha: ',
+      inputs: [
+        {
+          name: 'radio1',
+          type: 'radio',
+          cssClass: 'input',
+          label: 'Fecha 1',
+          value: 'Fecha 1',
+          checked: true
+        },
+        {
+          name: 'radio2',
+          type: 'radio',
+          cssClass: 'input',
+          label: 'Fecha 2',
+          value: 'Fecha 2'
+        },
+        {
+          name: 'radio2',
+          type: 'radio',
+          cssClass: 'input',
+          label: 'Fecha 3',
+          value: 'Fecha 3'
+        },
+        {
+          name: 'radio2',
+          type: 'radio',
+          cssClass: 'input',
+          label: 'Fecha 4',
+          value: 'Fecha 4'
+        },
+        
 
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Ok',
+          handler: (data) => {
+            console.log('Confirm Ok', data);
+            if (data === 'Fecha 1') {
+              this.encuentro.fechae=data;
+              this.encuentro.numero=1;
+            }
+            if (data === 'Fecha 2') {
+              this.encuentro.fechae=data;
+              this.encuentro.numero=2;
+            }
+            if (data === 'Fecha 3') {
+              this.encuentro.fechae=data;
+              this.encuentro.numero=3;
+            }
+            if (data === 'Fecha 4') {
+              this.encuentro.fechae=data;
+              this.encuentro.numero=4;
+            }
+            // if (data === 'Fecha 5') {
+            //   this.encuentro.numero=5;
+            // }
+            
+
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
 
   async newMatch() {
     const alert = await this.alertController.create({
@@ -496,6 +593,7 @@ export class EncuentrosPage implements OnInit {
               this.fecha = false;
               this.grupo1 = false;
               this.grupo2 = false;
+              this.encuentro.numero=5;
               this.encuentro.nombre_e1 = "";
               this.encuentro.nombre_e2 = "";
               this.encuentro.fechae = "";
@@ -509,6 +607,7 @@ export class EncuentrosPage implements OnInit {
               this.fecha = false;
               this.grupo1 = false;
               this.grupo2 = false;
+              this.encuentro.numero=6;
               this.encuentro.nombre_e1 = "";
               this.encuentro.nombre_e2 = "";
               this.encuentro.fechae = "";
@@ -521,6 +620,7 @@ export class EncuentrosPage implements OnInit {
               this.fecha = false;
               this.grupo1 = false;
               this.grupo2 = false;
+              this.encuentro.numero=7;
               this.encuentro.nombre_e1 = "";
               this.encuentro.nombre_e2 = "";
               this.encuentro.fechae = "";

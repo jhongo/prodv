@@ -14,9 +14,10 @@ export class TablaPage implements OnInit {
   grupo2: Equipos[] = [];
   equiposInfo1: Subscription;
   equiposInfo2: Subscription;
-  
+  opcion= "";
   posicion1=0;
   posicion2=0;
+  estado=false;
   constructor(public firestoreService: FirestoreService,) { 
 
     this.getGrupo1();
@@ -24,17 +25,22 @@ export class TablaPage implements OnInit {
   }
 
   ngOnInit() {
+    this.opcion="clasificacion";
     this.getGrupo1();
     this.getGrupo2();
   }
 
-
+  changeSegment(event: any) {
+    const opc = event.detail.value;
+    console.log(opc);
+    this.opcion=opc;
+  }
 async getGrupo1(){
   const path= 'Equipos';
   this.equiposInfo1 = this.firestoreService.getCollectionGru<Equipos>(path,'grupo','==', 'grupo1').subscribe(res =>{
     
     this.grupo1=res;
-    
+    console.log(res);
   });
 }
 
