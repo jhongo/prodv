@@ -2,8 +2,45 @@
   <app-header></app-header>
 </ion-header>
 
+<ion-toolbar>
+  <ion-segment [(ngModel)]="selectedMode" scrollable >
+    <ion-segment-button [value]="mode" *ngFor="let mode of modes" >
+      <ion-label>{{mode}}</ion-label>
+    </ion-segment-button>
+  </ion-segment> 
+</ion-toolbar>
 
 <ion-content class="content_pri">
+  <ion-grid> 
+
+    <div>
+      <ion-row>
+        <ion-col>
+          <ion-label>Puesto</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label>Heroes</ion-label>
+        </ion-col>
+      </ion-row>
+    </div>
+    <hr/>
+    <div class="div-heroes" *ngFor="let heroe of heroes">
+
+      {{}}
+      
+      <!-- <ion-row>
+        <ion-col>
+          <ion-label>{{heroe}}</ion-label>
+        </ion-col>
+      </ion-row> -->
+
+
+    </div>
+
+
+  </ion-grid>
+
+</ion-content>
+
 
   
-</ion-content>
