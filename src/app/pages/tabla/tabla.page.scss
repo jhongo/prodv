@@ -6,6 +6,23 @@ ion-toolbar{
     --background: #075E54;
     color: white; 
 }
+
+ion-segment{
+    --background: #FFFFFF; 
+    border: 1px solid #ffffff;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    margin-top: 3%;
+}
+ion-segment-button{
+    font-size: 14px;
+    font-weight: bold;
+    --border-color: #404041;
+    --indicator-color: #128C7E; 
+    --color: #000000; 
+    // padding: 3px;
+} 
 .titulo{
     color: white;
     font-weight: bold;

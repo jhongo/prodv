@@ -22,6 +22,15 @@ export class FirestoreService {
     return ref.doc(id).set(data);
   }
 
+  getCollectiongrupos<tipo>(path: string,  parametro: string, condicion: any, busqueda: string, fecha:string){
+    const date = new Date();
+    const collection = this.FireStore.collection<tipo>(path,
+      ref => ref.where(parametro,condicion,busqueda).where("fechae","==",fecha) 
+      // .orderBy('fecha','desc')
+      // // .startAt(date)
+      );
+    return collection.valueChanges();
+  }
   getCollection<tipo>(path: string,  parametro: string, condicion: any, busqueda: string){
     const date = new Date();
     const collection = this.FireStore.collection<tipo>(path,
@@ -41,7 +50,12 @@ export class FirestoreService {
       );
     return collection.valueChanges();
   }
-  
+  getPartidos<tipo>(path: string){
+    const collection = this.FireStore.collection<tipo>(path,
+      ref => ref.orderBy('fecha','desc'),
+      );
+    return collection.valueChanges();
+  }
 
   getDoc<tipo>(path: string, id: string){
     const collection = this.FireStore.collection<tipo>(path);
@@ -68,6 +82,7 @@ export class FirestoreService {
     const collection = this.FireStore.collection<tipo>(path);
     return collection.valueChanges();
   }
+  
 
   uploadImage(file: any, path: string, nombre: string): Promise<string> {
     return new Promise(resolve => {

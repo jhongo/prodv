@@ -35,7 +35,8 @@
    
     <ion-item class="IonInput" id="open-modal" >
         <ion-label class="ion-label-itemin" > Fecha: </ion-label>
-        <ion-text>  {{formatedString}} </ion-text>
+        <ion-input slot="end" class="campos_fecha" [(ngModel)]="encuentro.tipo">  {{formatedString}} </ion-input>
+        <!-- <ion-text >  {{formatedString}} </ion-text> -->
     </ion-item>
 
     <ion-modal trigger="open-modal" mode="md" >
@@ -60,7 +61,7 @@
     </ion-modal>
 
     <ion-item lines="none" class="IonInput">
-      <ion-label class="ion-label-itemin">Tipo de partido:</ion-label>
+      <ion-label class="ion-label-itemin">Tipo:</ion-label>
       <ion-input slot="end" class="campos" (click)="newMatch()" [(ngModel)]="encuentro.tipo"
         placeholder="Seleccione tipo de partido">
       </ion-input>
@@ -68,20 +69,16 @@
 
     <ion-item *ngIf="fecha" lines="none" class="IonInput">
       <ion-label class="ion-label-itemin">Fase:</ion-label>
-      <ion-select slot="end" class="campos"  [(ngModel)]="encuentro.fechae"
-        placeholder="Seleccione Fecha">
-        <ion-select-option value="Fecha 1">Fecha 1</ion-select-option>
-        <ion-select-option value="Fecha 2">Fecha 2</ion-select-option>
-        <ion-select-option value="Fecha 3">Fecha 3</ion-select-option>
-        <ion-select-option value="Fecha 4">Fecha 4</ion-select-option>
-        <ion-select-option value="Fecha 5">Fecha 5</ion-select-option>
-    </ion-select>
+      <ion-input slot="end" class="campos" (click)="newFecha()" [(ngModel)]="encuentro.fechae"
+        placeholder="Seleccione fase del partido">
+      </ion-input>
+     
     </ion-item>
 
     <ion-item *ngIf="grupo" lines="none" class="IonInput">
       <ion-label class="ion-label-itemin">Grupo:</ion-label>
       <ion-input slot="end" class="campos" (click)="newTeam()" [(ngModel)]="encuentro.grupo"
-        placeholder="Seleccione tipo de partido">
+        placeholder="Seleccione grupo">
       </ion-input>
     </ion-item>
 
@@ -109,7 +106,7 @@
       </ion-select>
     </ion-item>
     <ion-item *ngIf="grupo2" lines="none" class="IonInput">
-      <ion-label class="ion-label-item">Equipo 2</ion-label>
+      <ion-label class="ion-label-itemin">Equipo 2</ion-label>
       <ion-select class="campos" [(ngModel)]="encuentro.nombre_e2" placeholder="Seleccione grupo">
         <ion-select-option *ngFor="let equipos of team2" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
       </ion-select>
