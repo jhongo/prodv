@@ -7,13 +7,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  modes =[ 'moth 1','moth 2','moth 3','moth 4','moth 5','moth 6','moth 7','moth 8','moth 9', ];
-  selectedMode = 'moth 1';
+  modes =[ 'C.Gualaquiza','Liga Pro','Internacional'];
+  selectedMode = 'C.Gualaquiza';
 
-  heroes = ['SuperMan', 'Batman', 'Linterna Verde','Wonder Woman']
+
+  heroes = [
+    
+    {nombre:'SuperMan'}, 
+    {nombre:'Batman'},
+    {nombre:'Linterna Verde'},
+    {nombre:'Wonder Woman'},
+    {nombre:'Robin'}
+  
+  ]
+
+   posiciones ={
+     num: 0
+   }
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getPosiciones();
+  }
+  
 
+  getPosiciones(){
+    this.heroes.map( (value, index) =>{
+      this.posiciones.num = index+1
+      return console.log(index +1, this.posiciones.num );
+      
+    });
+  }
 }

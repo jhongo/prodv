@@ -52,6 +52,8 @@
         <ion-label class="text_puntos">PTS</ion-label>
       </ion-col>
     </ion-row>
+
+    <!--  -->
     <div class="grupos" *ngFor="let equipo of grupo1" >
       <ion-row>
         <ion-col size="1" class="col_encabezado">
@@ -65,13 +67,15 @@
         </ion-col>
         <ion-col size="3"></ion-col>
         <ion-col size="1">
-          <ion-icon  class="text_encabezado" name="chevron-down-outline"></ion-icon>
+          <ion-icon (click)="estado=true" class="text_encabezado" name="chevron-down-outline"></ion-icon>
         </ion-col>
         <ion-col size="2" class="col_encabezado">
           <ion-label class="text_puntos">{{equipo.puntos}}</ion-label>
         </ion-col>
       </ion-row>
-      <div *ngIf="estado" >
+
+      <!-- PANEL DESPLEGABLE -->
+      <div *ngIf="estdoa " >
          <ion-row>
             <ion-col size="2" class="col_encabezado">
               <ion-label class="text_puntos">PTS</ion-label>
@@ -95,6 +99,7 @@
               <ion-label class="text_encabezado">GC</ion-label>
             </ion-col>
         </ion-row>
+
         <ion-row>
           <ion-col size="2" class="col_encabezado">
             <ion-label class="text_puntos">{{equipo.puntos}}</ion-label>
@@ -119,6 +124,7 @@
           </ion-col>
         </ion-row>
       </div>
+      
     </div>
     
    
@@ -166,7 +172,7 @@
     <div class="grupos" *ngFor="let equipo of grupo1" >
       <ion-row >
         <ion-col size="1" class="col_encabezado">
-          <ion-label class="text_puntos" > {{ equipo }} </ion-label>
+          <ion-label class="text_puntos" > </ion-label>
         </ion-col>
         <ion-col size="3" class="col_encabezado">
           <ion-label class="text_puntos">{{equipo.nombre}}</ion-label>
