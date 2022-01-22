@@ -3,6 +3,7 @@ import { isThisSecond } from 'date-fns';
 import { Subscription } from 'rxjs';
 import { Equipos } from 'src/app/models';
 import { FirestoreService } from 'src/app/services/firestore.service';
+import { Encuentro } from '../../models';
 
 @Component({
   selector: 'app-tabla',
@@ -12,12 +13,29 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 export class TablaPage implements OnInit {
   grupo1: Equipos[] = [];
   grupo2: Equipos[] = [];
+  equipob: Equipos[]=[];
   equiposInfo1: Subscription;
   equiposInfo2: Subscription;
   opcion= "";
   posicion1=0;
   posicion2=0;
   estado=false;
+
+  equiposelec: Equipos = {
+    uid: '',
+    nombre: '',
+    escudo: '',
+    grupo: '',
+    puntos: 0,
+    p_j: 0,
+    p_g: 0,
+    p_e: 0,
+    p_p: 0,
+    g_f: 0,
+    g_c: 0,
+    d_g: 0
+  };
+
   constructor(public firestoreService: FirestoreService,) { 
 
     this.getGrupo1();
@@ -44,6 +62,8 @@ async getGrupo1(){
   });
 }
 
+
+
 async getGrupo2(){
   const path= 'Equipos';
   this.equiposInfo2 = this.firestoreService.getCollectionGru<Equipos>(path,'grupo','==', 'grupo2').subscribe(res =>{
@@ -51,4 +71,9 @@ async getGrupo2(){
     
       });
 }
+async equipos(equipos:Equipos){
+  this.equiposelec = equipos;
+
+}
+
 }

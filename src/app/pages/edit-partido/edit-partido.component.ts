@@ -5,6 +5,7 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 import { Router } from '@angular/router';
 import { format, parseISO } from 'date-fns';
 import { Subscription } from 'rxjs';
+import { EncuentroPrueba } from '../../models';
 @Component({
   selector: 'app-edit-partido',
   templateUrl: './edit-partido.component.html',
@@ -51,11 +52,12 @@ export class EditPartidoComponent implements OnInit, OnDestroy {
 
   };
 
-  encuentro: Encuentro = {
+  encuentro: EncuentroPrueba = {
     uid: '',
     tipo: '',
     fechae: '',
-    fecha: '',
+    fecha: null,
+    numero: 0,
     grupo: '',
     uid_e1: '',
     uid_e2: '',
@@ -225,7 +227,8 @@ export class EditPartidoComponent implements OnInit, OnDestroy {
         uid: '',
         tipo: '',
         fechae: '',
-        fecha: '',
+        fecha: null,
+        numero:0,
         grupo: '',
         uid_e1: '',
         uid_e2: '',
@@ -273,6 +276,7 @@ export class EditPartidoComponent implements OnInit, OnDestroy {
       tipo: null,
       fechae: null,
       fecha: null,
+      numero:0,
       grupo: null,
       uid_e1: null,
       uid_e2: null,
