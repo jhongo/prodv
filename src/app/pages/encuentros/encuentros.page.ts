@@ -14,15 +14,19 @@ export class EncuentrosPage implements OnInit {
 
   estado = false;
   grupo = false;
-  equiposInfo: Subscription;
   grupo1 = false;
   grupo2 = false;
-  fecha = false;
   gene = false;
+  equiposInfo: Subscription;
+  numero=0;
+  fecha = false;
   team: Encuentro[] = [];
   team1: Equipos[] = [];
   team2: Equipos[] = [];
   teamg: Equipos[] = [];
+  genee: EncuentroPrueba []=[];
+  grupoe1 :EncuentroPrueba []=[];
+  grupoe2 :EncuentroPrueba []=[];
   fase="";
 
   cuartos: Encuentro []=[];
@@ -33,6 +37,10 @@ export class EncuentrosPage implements OnInit {
   semis=false;
   fina=false;
   fases=false;
+
+  titulo="";
+  gru1=false;
+  gru2=false;
 
   escudo1 = '';
   escudo2 = '';
@@ -104,90 +112,131 @@ export class EncuentrosPage implements OnInit {
 
   }
 
+  async anterior(){
 
-  async Fecha() {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Fecha de partidos',
-      inputs: [
-        {
-          name: 'radio1',
-          type: 'radio',
-          cssClass: 'input',
-          label: 'Fecha 1',
-          value: 'Fecha 1',
-          checked: true
-        },
-        {
-          name: 'radio2',
-          type: 'radio',
-          cssClass: 'input',
-          label: 'Fecha 2',
-          value: 'Fecha 2'
-        },
-        {
-          name: 'radio2',
-          type: 'radio',
-          cssClass: 'input',
-          label: 'Fecha 3',
-          value: 'Fecha 3'
-        },
-        {
-          name: 'radio2',
-          type: 'radio',
-          cssClass: 'input',
-          label: 'Fecha 4',
-          value: 'Fecha 4'
-        },
-        {
-          name: 'radio2',
-          type: 'radio',
-          cssClass: 'input',
-          label: 'Fecha 5',
-          value: 'Fecha 5'
-        },
-
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Confirm Cancel');
-          }
-        }, {
-          text: 'Ok',
-          handler: (data) => {
-            console.log('Confirm Ok', data);
-            if (data === 'Fecha 1') {
-              this.getPartido("Fecha 1");
-              this.fase="Fecha 1";
-              
-            }
-            if (data === 'Fecha 2') {
-              this.getPartido("Fecha 2");
-              this.fase="Fecha 2";
-            }
-            if (data === 'Fecha 3') {
-              this.getPartido("Fecha 3"); 
-              this.fase="Fecha 3";
-            }
-            if (data === 'Fecha 4') {
-              this.getPartido("Fecha 4");
-              this.fase="Fecha 4";
-            }
-            if (data === 'Fecha 5') {
-              this.getPartido("Fecha 5");
-              this.fase="Fecha 5";
-            } 
-
-          }
-        }
-      ]
-    });
-    await alert.present();
+    if(this.numero>1){
+  
+      this.numero=this.numero-1;
+  
+    }
+    
+    console.log(this.numero)
+  
+    if(this.numero==1){
+      this.grupos("Fecha 1");
+      this.titulo="Fecha 1";
+      this.genee=[];
+    }else if(this.numero==2){
+      this.titulo="Fecha 2";
+      this.genee=[];
+      this.grupos("Fecha 2");
+    }else if(this.numero==3){
+      this.titulo="Fecha 3";
+      this.genee=[];
+      this.grupos("Fecha 3");
+    }else if(this.numero==4){
+      this.titulo="Fecha 4";
+      this.genee=[];
+      this.grupos("Fecha 4");
+    }else if(this.numero==5){
+      this.titulo="Fecha 5";
+      this.genee=[];
+      this.grupos("Fecha 5");
+    }else if(this.numero==6){
+      this.titulo="Fecha 6";
+      this.genee=[];
+      this.grupos("Fecha 6");
+    }else if(this.numero==7){
+      this.prueba("Cuartos de final");
+      this.titulo="Cuartos de final"
+    }else if(this.numero==8){
+      this.prueba("Semifinal");
+      this.titulo="Semifinal"
+    }else if(this.numero==9){
+      this.prueba("Final");
+      this.titulo="Final"
+    }
   }
+
+  async prueba(tipo:string){
+    const path='Partidos';
+    this.equiposInfo = this.firestoreService.getCollection<EncuentroPrueba>(path,'tipo','==', tipo).subscribe(res =>{
+      this.genee = res;
+  });
+  }
+
+  async grupos(fase:string){
+    const path='Partidos';
+    
+      this.firestoreService.getCollectiongrupos<EncuentroPrueba>(path, 'grupo','==','Grupo 1',fase).subscribe(res=>{
+        this.grupoe1=res;
+        if(res.length){
+          this.gru1=true;
+        }else{
+          this.gru1=false;
+        }
+      });
+
+      this.firestoreService.getCollectiongrupos<EncuentroPrueba>(path, 'grupo','==','Grupo 2', fase).subscribe(res=>{
+        this.grupoe2=res;
+        if(res.length){
+          this.gru2=true;
+        }else{
+          this.gru2=false;
+        }
+      });
+
+  
+
+  }
+  
+  
+  async siguiente(){
+    if(this.numero<9){
+  
+      this.numero=this.numero+1;
+  
+    }
+    
+    console.log(this.numero)
+  
+    if(this.numero==1){
+      this.grupos("Fecha 1");
+      this.titulo="Fecha 1";
+      this.genee=[];
+    }else if(this.numero==2){
+      this.titulo="Fecha 2";
+      this.genee=[];
+      this.grupos("Fecha 2");
+    }else if(this.numero==3){
+      this.titulo="Fecha 3";
+      this.genee=[];
+      this.grupos("Fecha 3");
+    }else if(this.numero==4){
+      this.titulo="Fecha 4";
+      this.genee=[];
+      this.grupos("Fecha 4");
+    }else if(this.numero==5){
+      this.titulo="Fecha 5";
+      this.genee=[];
+      this.grupos("Fecha 5");
+    }else if(this.numero==6){
+      this.titulo="Fecha 6";
+      this.genee=[];
+      this.grupos("Fecha 6");
+    }else if(this.numero==7){
+      this.prueba("Cuartos de final");
+      this.titulo="Cuartos de final"
+    }else if(this.numero==8){
+      this.prueba("Semifinal");
+      this.titulo="Semifinal"
+    }else if(this.numero==9){
+      this.prueba("Final");
+      this.titulo="Final"
+    }
+  }
+
+  
   async getPartido(fase:string){
     const path= 'Partidos';
     this.equiposInfo = this.firestoreService.getCollection<Encuentro>(path,'fechae','==',fase).subscribe(res =>{
@@ -247,11 +296,8 @@ export class EncuentrosPage implements OnInit {
 
     console.log(this.encuentro.grupo);
     //  this.getPartidos();
-    this.getPartido("Fecha 1");
-    this.fase="Fecha 1";
-    this.getPartCuar();
-    this.getPartsemi();
-    this.getPartfinal();
+    this.getPartidos();
+    
 
   }
 
@@ -297,8 +343,28 @@ export class EncuentrosPage implements OnInit {
 
   async getPartidos() {
     const path = 'Partidos';
-    this.equiposInfo = this.firestoreService.getTeam<Encuentro>(path).subscribe(res => {
-      this.team = res;
+    this.equiposInfo = this.firestoreService.getPartidos<EncuentroPrueba>(path).subscribe(res => {
+      
+      this.encuentro=res[0];
+      if(this.encuentro.fechae==""){
+      this.titulo=this.encuentro.tipo;
+      }else{
+        this.titulo=this.encuentro.fechae;
+      }
+       this.numero=this.encuentro.numero;
+       this.fase = this.encuentro.fechae;
+
+       if(this.fase==""){
+         this.prueba(this.encuentro.tipo);
+         
+        }else{
+        this.genee=[];
+
+        this.grupos(this.fase);
+       }
+
+
+      
     });
   }
 
@@ -365,7 +431,7 @@ export class EncuentrosPage implements OnInit {
 
   }
 
-  async getMatch(equipo: Encuentro) {
+  async getMatch(equipo: EncuentroPrueba) {
     console.log('Click en getEquipo');
     console.log(equipo);
     this.firestoreService.setMatch(equipo);
@@ -487,6 +553,20 @@ export class EncuentrosPage implements OnInit {
           label: 'Fecha 4',
           value: 'Fecha 4'
         },
+        {
+          name: 'radio2',
+          type: 'radio',
+          cssClass: 'input',
+          label: 'Fecha 5',
+          value: 'Fecha 5'
+        },
+        {
+          name: 'radio2',
+          type: 'radio',
+          cssClass: 'input',
+          label: 'Fecha 6',
+          value: 'Fecha 6'
+        },
         
 
       ],
@@ -517,11 +597,14 @@ export class EncuentrosPage implements OnInit {
             if (data === 'Fecha 4') {
               this.encuentro.fechae=data;
               this.encuentro.numero=4;
+            }if (data === 'Fecha 5') {
+              this.encuentro.fechae=data;
+              this.encuentro.numero=5;
+            }if (data === 'Fecha 6') {
+              this.encuentro.fechae=data;
+              this.encuentro.numero=6;
             }
-            // if (data === 'Fecha 5') {
-            //   this.encuentro.numero=5;
-            // }
-            
+                       
 
           }
         }
@@ -593,7 +676,7 @@ export class EncuentrosPage implements OnInit {
               this.fecha = false;
               this.grupo1 = false;
               this.grupo2 = false;
-              this.encuentro.numero=5;
+              this.encuentro.numero=7;
               this.encuentro.nombre_e1 = "";
               this.encuentro.nombre_e2 = "";
               this.encuentro.fechae = "";
@@ -607,7 +690,7 @@ export class EncuentrosPage implements OnInit {
               this.fecha = false;
               this.grupo1 = false;
               this.grupo2 = false;
-              this.encuentro.numero=6;
+              this.encuentro.numero=8;
               this.encuentro.nombre_e1 = "";
               this.encuentro.nombre_e2 = "";
               this.encuentro.fechae = "";
@@ -620,7 +703,7 @@ export class EncuentrosPage implements OnInit {
               this.fecha = false;
               this.grupo1 = false;
               this.grupo2 = false;
-              this.encuentro.numero=7;
+              this.encuentro.numero=9;
               this.encuentro.nombre_e1 = "";
               this.encuentro.nombre_e2 = "";
               this.encuentro.fechae = "";

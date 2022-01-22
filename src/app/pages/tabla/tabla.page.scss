@@ -8,19 +8,20 @@ ion-toolbar{
 }
 
 ion-segment{
-    --background: #FFFFFF; 
+    --background: #075E54; 
     border: 1px solid #ffffff;
     margin-left: auto;
     margin-right: auto;
     width: 100%;
     margin-top: 3%;
+    // --color: black;
 }
 ion-segment-button{
     font-size: 14px;
     font-weight: bold;
     --border-color: #404041;
     --indicator-color: #128C7E; 
-    --color: #000000; 
+    --color: white; 
     // padding: 3px;
 } 
 .titulo{

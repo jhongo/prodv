@@ -27,10 +27,46 @@ ion-toolbar{
     margin-left: auto;
 }
 
-.row_fecha{
-//    border: 1px black solid;
-//   text-align: center;
- }
+.col_ant{
+    //  border: 1px black solid;
+     text-align: left;
+     margin-top: auto;
+     margin-bottom: auto;
+  }
+  
+  .text_ant{
+   font-size: 10px;
+  //  border: 1px red solid;  
+  font-weight: bold;
+   }
+  
+   .col_sig{
+    //  border: 1px black solid;  
+     text-align: right;
+    
+  }
+  .text_sig{
+   font-size: 10px;
+  //  border: 1px red solid;
+   font-weight: bold;
+  }
+  .col_grupo1{
+    
+    text-align: left;
+    }
+.ion-label-item-grupo{
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+      
+}
+.div_grupo{
+    background: white;
+    margin-bottom: 5px;
+    width: 98%;
+    margin-right:auto;
+    margin-left: auto;
+}
 .ion-label-itemin{
     color: #000000;
     font-weight: bold;
@@ -118,7 +154,7 @@ ion-toolbar{
     margin-right: auto;
 }
 .col_tex_fecha{
-// border: 1px blue solid;
+//  border: 1px blue solid;
 margin-top: auto;
 margin-bottom: auto;
     margin-left: auto;
@@ -195,12 +231,11 @@ ion-card-title{
 } 
 
 .col_icon{
-    // border: 1px black solid;
+    //  border: 1px black solid;
     margin-top: auto;
     margin-bottom: auto;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
+    
+    text-align: right;
 }
 
 .boton_mas{

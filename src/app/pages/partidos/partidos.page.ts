@@ -51,41 +51,7 @@ export class PartidosPage implements OnInit {
     nombre_e2: '',
   }
 
-  encuentro1: EncuentroPrueba = {
-    uid: '',
-    tipo: '',
-    fechae: '',
-    numero: 0,
-    fecha: null,
-    grupo: '',
-    uid_e1: '',
-    uid_e2: '',
-    estado: 'iniciado',
-    res_e1: 0,
-    res_e2: 0,
-    escudo_e1: '',
-    escudo_e2: '',
-    nombre_e1: '',
-    nombre_e2: '',
-  }
 
-  encuentro2: EncuentroPrueba = {
-    uid: '',
-    tipo: '',
-    fechae: '',
-    numero: 0,
-    fecha: null,
-    grupo: '',
-    uid_e1: '',
-    uid_e2: '',
-    estado: 'iniciado',
-    res_e1: 0,
-    res_e2: 0,
-    escudo_e1: '',
-    escudo_e2: '',
-    nombre_e1: '',
-    nombre_e2: '',
-  }
   fase="";
   numero=0;
   constructor(public firestoreService: FirestoreService,
