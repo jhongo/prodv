@@ -43,6 +43,8 @@ export class RegistroComponent implements OnInit {
 
   ngOnInit() { }
 
+  
+
   initUser() {
     this.uid = '';
     this.usuarios = {

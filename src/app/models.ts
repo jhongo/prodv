@@ -69,3 +69,12 @@ export interface EncuentroPrueba{
     nombre_e2:string,
 
 }
+
+
+export interface Referencias{
+
+    uid:string,
+    nombre:string,
+    correo:string,
+
+}

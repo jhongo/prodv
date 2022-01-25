@@ -1,30 +1,82 @@
 .content_login{
-    --background: #075E54;
+    --background: #128C7E;
     text-align: center;
-  
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .Tittle_inicial{
 
     font-size: 30px;
     text-align: center;
-    margin-top: 150px;
+    // margin-top: 150px;
     color: white;
 }
-
-.content_items{
-    margin-top: 60px;
-    width: 80%;
-    margin-left: auto;
-    margin-right:auto ;
+.segemento{
+    
+    
+}
+.card-container{
     --background: #075E54;
+    padding: 30px;
+}
+
+.icon_seg{
+  font-size: 24px;
+}
+.encabezado{
+    padding-top: 10px;
+    background: #106e63; 
+
+}
+ion-segment{
+    --background: #075E54; 
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    height: 42px;
+}
+ion-segment-button{
+    font-size: 14px;
+    font-weight: bold;
+    --indicator-color: #128C7E; 
+    --color: white; 
+    margin-top: auto;
+    margin-bottom: auto;
+} 
+
+.col_icon{
+    margin-top: auto;
+    margin-bottom: auto;
+    // border: 1px black solid;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.col_text{
+    //  border : 1px red solid;
+     margin-top: auto;
+     margin-bottom: auto;
+}
+.content_items{
+    
+    padding-top: 30px;
+    width: 100%;
+    padding-bottom: auto;
+    margin-left: auto;
+    margin-right:auto;
+    margin-bottom: auto;
+    background: #128C7E;
     
 }
 .Item_input{
+    width: 90%;
     margin-top: 5%;
     border-radius: 10px;
-    --background: #128C7E;  
+    --background: #075E54;  
     color: white;
+    margin-left: auto;
+    margin-right: auto;
 }
 .icon{
     color: white;
@@ -32,13 +84,23 @@
 }
 .div_boton{   
     margin-top: 30px;
+    
 }
 
 .boton{
-    width: 100%;
+    width: 90%;
+    --border-radius: 60px;
     --background: #34B7F1;
 }
-
+.register-button{
+    --background: #34B7F1;
+    --border-radius: 60px;
+    width: 90%;
+    margin-top: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
 .div_nueva_cuenta{
 
     margin-top: 80px;
