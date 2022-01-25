@@ -11,6 +11,7 @@ import { Encuentro } from '../../models';
   styleUrls: ['./tabla.page.scss'],
 })
 export class TablaPage implements OnInit {
+
   grupo1: Equipos[] = [];
   grupo2: Equipos[] = [];
   equipob: Equipos[]=[];
@@ -47,6 +48,18 @@ export class TablaPage implements OnInit {
     this.getGrupo1();
     this.getGrupo2();
   }
+
+  getPosicionesEquipos(){
+    this.grupo1.map( (value, index)=>{
+      return console.log("Equipo",index +1);
+    });
+  }
+  getPosicionesEquipos2(){
+    this.grupo1.map( (value, index)=>{
+      return console.log("Equipo",index +1);
+    });
+  }
+
 
   changeSegment(event: any) {
     const opc = event.detail.value;
