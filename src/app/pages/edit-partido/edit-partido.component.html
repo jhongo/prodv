@@ -18,9 +18,16 @@
 
     <ion-item lines="none" class="IonInput">
       <ion-label  class="ion-label-item">{{encuentro.nombre_e2}}</ion-label>
-      <ion-input type="number" slot="end" class="campos"  [(ngModel)]="encuentro.res_e2"
-        >
+      <ion-input type="number" slot="end" class="campos"  [(ngModel)]="encuentro.res_e2">
       </ion-input>
+    </ion-item>
+
+    <ion-item lines="none" class="IonInput">
+      <ion-label>Estado</ion-label>
+      <ion-select class="campos" [(ngModel)]="encuentro.estado" >
+        <ion-select-option value="iniciado">Iniciado</ion-select-option>
+        <ion-select-option value="finalizado">Finalizado</ion-select-option>
+      </ion-select>
     </ion-item>
    
     
