@@ -15,36 +15,49 @@
 
   </ion-toolbar>
 
+
 </ion-header>
 
+<ion-content class="page-content">
+
 <ion-toolbar >
-  <ion-segment mode="ios"  (ionChange)="changeSegment($event)" value="Copa Gualaquiza" scrollable  >
-    <ion-segment-button mode="ios" [value]="mode" *ngFor="let mode of modes" >
-      <ion-label class="text-selected-item" >{{mode}}</ion-label>
+
+  <ion-segment mode="ios"  (ionChange)="changeSegment($event)" value="Copa_Gualaquiza" scrollable>
+
+    <ion-segment-button mode="ios" value="Copa_Gualaquiza" >
+      <ion-label class="text-selected-item" >Copa Gualaquiza</ion-label>
     </ion-segment-button>
+
+    <ion-segment-button mode="ios" value="Liga_Pro" >
+      <ion-label class="text-selected-item" >Liga Pro</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button mode="ios" value="Internacional" >
+      <ion-label class="text-selected-item" >Internacional</ion-label>
+    </ion-segment-button>
+
   </ion-segment> 
+
 </ion-toolbar>
 
- <ion-content class="page-content">
 
-<div class="content-copa-gualaquiza" *ngIf=" mode == 'Copa Gualaquiza'" >
+
+<div *ngIf="opcion=='Copa_Gualaquiza'"  class="content-copa-gualaquiza">
   <ion-label color="primary" >
     Hola Soy Copa Gualaquiza
     
   </ion-label>
 </div>
 
-<div class="content-liga-pro" *ngIf=" mode == 'Liga Pro'" >
+<div *ngIf="opcion=='Liga_Pro'" class="content-liga-pro"  >
   <ion-label color="primary" >
     Hola Soy Liga ProBetcris
-
   </ion-label>
 </div>
 
-<div class="content-internacional" *ngIf=" mode == 'Internacional'" >
+<div *ngIf="opcion=='Internacional'" class="content-internacional"  >
   <ion-label color="primary" >
     Hola Soy Futbol Internacional
-
 
   </ion-label>
 </div>

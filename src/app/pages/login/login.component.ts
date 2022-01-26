@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
   suscriberUserInfo: Subscription;
   login: boolean = false;
   refenciaInfo: Subscription;
+  
   opcion= "";
 
   constructor(public firebaseauthService: FirebaseauthService,

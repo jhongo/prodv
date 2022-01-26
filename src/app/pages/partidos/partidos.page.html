@@ -17,15 +17,15 @@
 
 </ion-header>
 
-<ion-content class="page-content">
+<ion-cont ent class="page-content">
   <div class="encabezado">
     <ion-label class="titulo"> Proximos partidos </ion-label>
   </div>
   
 
-<!-- Prueba de nuevo estilo -->
+ <!-- Prueba de nuevo estilo -->
 
-<div class="div_cuarto">
+ <div class="div_cuarto">
   <ion-grid class="grid_cuarto">
     
     <ion-row class="row_cuarto">
@@ -42,9 +42,9 @@
     </ion-row>
   </ion-grid>
 
-</div>
+  </div>
 
-<div *ngFor="let equipo of gene" class="partidos">
+ <div *ngFor="let equipo of gene" class="partidos">
     <ion-grid>
     
     <ion-row class="row_fecha">
@@ -336,20 +336,14 @@
         <ion-label class="label_e2">
           {{equipo.nombre_e2}}
         </ion-label>
-      </ion-col>
-    </ion-row>
+       </ion-col>
+     </ion-row>
 
 
-  </ion-grid>
-</div>
-
-
-
-
-
-
-
+    </ion-grid>
   </div>
+
+
   <div *ngFor="let equipo of final" class="partidos">
 
     <ion-grid>

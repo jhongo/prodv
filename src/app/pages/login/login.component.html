@@ -6,6 +6,7 @@
     <h2>Bienvenido a PRODV</h2>
     <h6></h6>
   </div>
+
   <ion-segment mode="ios" (ionChange)="changeSegment($event)" value="entrar">
 
     <ion-segment-button class="segemento"  value="entrar" >
@@ -33,7 +34,8 @@
     </ion-segment-button>
 
   </ion-segment>
-</div>
+  
+ </div>
 
   <div *ngIf="opcion=='entrar'" class="content_items" mode="ios">
     <ion-item class="Item_input">

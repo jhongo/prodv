@@ -37,9 +37,9 @@ export class HomePage implements OnInit {
     nombre_e1: '',
     nombre_e2: '',
   }
+  opcion = "";
 
-  modes = ['Copa Gualaquiza', 'Liga Pro', 'Internacional']; 
-  selectedMode = 'Copa Gualaquiza';
+
 
   fase="";
   constructor(public firestoreService: FirestoreService,
@@ -57,7 +57,7 @@ export class HomePage implements OnInit {
   changeSegment(event: any) {
     const opc = event.detail.value;
     console.log(opc);
-    this.selectedMode=opc;
+    this.opcion=opc;
     
 
   }
