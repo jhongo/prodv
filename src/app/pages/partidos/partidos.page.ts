@@ -19,6 +19,7 @@ export class PartidosPage implements OnInit {
   final: Encuentro []=[];
 
   genef: EncuentroPrueba []=[];
+ 
   gene: EncuentroPrueba []=[];
   grupo1 :EncuentroPrueba []=[];
   grupo2 :EncuentroPrueba []=[];
