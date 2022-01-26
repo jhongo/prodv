@@ -12,6 +12,7 @@ import { EncuentroPrueba } from '../../models';
   styleUrls: ['./partidos.page.scss'],
 })
 export class PartidosPage implements OnInit {
+
   equiposInfo: Subscription;
   team: Encuentro[] = [];
   cuartos: Encuentro []=[];
@@ -64,6 +65,7 @@ export class PartidosPage implements OnInit {
     this.getPartidos();
  
   }
+
   async Fecha() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -146,6 +148,7 @@ export class PartidosPage implements OnInit {
     });
     await alert.present();
   }
+  
   async getPartidos() {
     const path = 'Partidos';
     this.equiposInfo = this.firestoreService.getPartidos<EncuentroPrueba>(path).subscribe(res => {
