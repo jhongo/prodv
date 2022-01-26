@@ -25,8 +25,12 @@ export class EncuentrosPage implements OnInit {
   team2: Equipos[] = [];
   teamg: Equipos[] = [];
   genee: EncuentroPrueba []=[];
+  genef: EncuentroPrueba []=[];
   grupoe1 :EncuentroPrueba []=[];
   grupoe2 :EncuentroPrueba []=[];
+  grupof1 :EncuentroPrueba []=[];
+  grupof2 :EncuentroPrueba []=[];
+
   fase="";
 
   cuartos: Encuentro []=[];
@@ -100,6 +104,23 @@ export class EncuentrosPage implements OnInit {
     nombre_e1: '',
     nombre_e2: '',
   }
+  encuentropri: EncuentroPrueba = {
+    uid: '',
+    fechae: '',
+    numero: 0,
+    tipo: '',
+    fecha: null,
+    grupo: '',
+    uid_e1: '',
+    uid_e2: '',
+    estado: 'iniciado',
+    res_e1: 0,
+    res_e2: 0,
+    escudo_e1: '',
+    escudo_e2: '',
+    nombre_e1: '',
+    nombre_e2: '',
+  }
 
   @ViewChild(IonDatetime) datetime: IonDatetime;
   constructor(public alertController: AlertController,
@@ -107,10 +128,7 @@ export class EncuentrosPage implements OnInit {
     public loadingController: LoadingController,
     public toastController: ToastController,) {
 
-    // this.setToday();
-   
-
-  }
+    }
 
   async anterior(){
 
@@ -124,37 +142,61 @@ export class EncuentrosPage implements OnInit {
   
     if(this.numero==1){
       this.grupos("Fecha 1");
+      this.gruposfinalizados("Fecha 1");
       this.titulo="Fecha 1";
       this.genee=[];
+      this.gru2=false;
+      this.gru1=false;
     }else if(this.numero==2){
       this.titulo="Fecha 2";
+      this.gruposfinalizados("Fecha 2");
       this.genee=[];
       this.grupos("Fecha 2");
+      this.gru2=false;
+      this.gru1=false;
     }else if(this.numero==3){
       this.titulo="Fecha 3";
+      this.gruposfinalizados("Fecha 3");
       this.genee=[];
       this.grupos("Fecha 3");
+      this.gru2=false;
+      this.gru1=false;
     }else if(this.numero==4){
       this.titulo="Fecha 4";
+      this.gruposfinalizados("Fecha 4");
       this.genee=[];
       this.grupos("Fecha 4");
+      this.gru2=false;
+      this.gru1=false;
     }else if(this.numero==5){
       this.titulo="Fecha 5";
+      this.gruposfinalizados("Fecha 5");
       this.genee=[];
       this.grupos("Fecha 5");
+      this.gru2=false;
+      this.gru1=false;
     }else if(this.numero==6){
       this.titulo="Fecha 6";
+      this.gruposfinalizados("Fecha 6");
       this.genee=[];
       this.grupos("Fecha 6");
+      this.gru2=false;
+      this.gru1=false;
     }else if(this.numero==7){
       this.prueba("Cuartos de final");
       this.titulo="Cuartos de final"
+      this.gru2=false;
+      this.gru1=false;
     }else if(this.numero==8){
       this.prueba("Semifinal");
-      this.titulo="Semifinal"
+      this.titulo="Semifinal";
+      this.gru2=false;
+      this.gru1=false;
     }else if(this.numero==9){
       this.prueba("Final");
-      this.titulo="Final"
+      this.titulo="Final";
+      this.gru2=false;
+      this.gru1=false;
     }
   }
 
@@ -162,6 +204,12 @@ export class EncuentrosPage implements OnInit {
     const path='Partidos';
     this.equiposInfo = this.firestoreService.getCollection<EncuentroPrueba>(path,'tipo','==', tipo).subscribe(res =>{
       this.genee = res;
+  });
+  }
+  async pruebafina(tipo:string){
+    const path='Partidos';
+    this.equiposInfo = this.firestoreService.getCollectionfinalizados<EncuentroPrueba>(path,'tipo','==', tipo).subscribe(res =>{
+      this.genef = res;
   });
   }
 
@@ -173,7 +221,7 @@ export class EncuentrosPage implements OnInit {
         if(res.length){
           this.gru1=true;
         }else{
-          this.gru1=false;
+          // this.gru1=false;
         }
       });
 
@@ -182,13 +230,35 @@ export class EncuentrosPage implements OnInit {
         if(res.length){
           this.gru2=true;
         }else{
-          this.gru2=false;
+          // this.gru2=false;
         }
       });
 
-  
+  }
+  async gruposfinalizados(fase:string){
+    const path='Partidos';
+    this.firestoreService.getCollectiongruposfinalizados<EncuentroPrueba>(path, 'grupo','==','Grupo 1',fase).subscribe(res=>{
+      this.grupof1=res;
+      if(res.length){
+        this.gru1=true;
+      }else{
+        // this.gru1=false;
+      }
+    });
+
+    this.firestoreService.getCollectiongruposfinalizados<EncuentroPrueba>(path, 'grupo','==','Grupo 2', fase).subscribe(res=>{
+      this.grupof2=res;
+      if(res.length){
+        this.gru2=true;
+      }else{
+        // this.gru2=false;
+      }
+    });
+
 
   }
+
+
   
   
   async siguiente(){
@@ -202,37 +272,61 @@ export class EncuentrosPage implements OnInit {
   
     if(this.numero==1){
       this.grupos("Fecha 1");
+      this.gruposfinalizados("Fecha 1");
       this.titulo="Fecha 1";
       this.genee=[];
+      this.gru2=false;
+      this.gru1=false;
     }else if(this.numero==2){
       this.titulo="Fecha 2";
+      this.gruposfinalizados("Fecha 2");
       this.genee=[];
       this.grupos("Fecha 2");
+      this.gru2=false;
+      this.gru1=false;
     }else if(this.numero==3){
       this.titulo="Fecha 3";
+      this.gruposfinalizados("Fecha 3");
       this.genee=[];
       this.grupos("Fecha 3");
+      this.gru2=false;
+      this.gru1=false;
     }else if(this.numero==4){
       this.titulo="Fecha 4";
+      this.gruposfinalizados("Fecha 4");
       this.genee=[];
       this.grupos("Fecha 4");
+      this.gru2=false;
+      this.gru1=false;
     }else if(this.numero==5){
       this.titulo="Fecha 5";
+      this.gruposfinalizados("Fecha 5");
       this.genee=[];
       this.grupos("Fecha 5");
+      this.gru2=false;
+      this.gru1=false;
     }else if(this.numero==6){
       this.titulo="Fecha 6";
+      this.gruposfinalizados("Fecha 6");
       this.genee=[];
       this.grupos("Fecha 6");
+      this.gru2=false;
+      this.gru1=false;
     }else if(this.numero==7){
       this.prueba("Cuartos de final");
       this.titulo="Cuartos de final"
+      this.gru2=false;
+      this.gru1=false;
     }else if(this.numero==8){
       this.prueba("Semifinal");
-      this.titulo="Semifinal"
+      this.titulo="Semifinal";
+      this.gru2=false;
+      this.gru1=false;
     }else if(this.numero==9){
       this.prueba("Final");
-      this.titulo="Final"
+      this.titulo="Final";
+      this.gru2=false;
+      this.gru1=false;
     }
   }
 
@@ -251,46 +345,8 @@ export class EncuentrosPage implements OnInit {
     });
   }
 
-  async getPartCuar(){
-    const path= 'Partidos';
-    this.equiposInfo = this.firestoreService.getCollection<Encuentro>(path,'tipo','==', 'Cuartos de final').subscribe(res =>{
-      this.cuartos=res;
-      if(res.length==0){
-        
-        console.log("vacio");
-        this.cuarto=false;
-      }else{
-        
-        this.cuarto=true;
-      }
-      
-    });
-  }
-  async getPartsemi(){
-    const path= 'Partidos';
-    this.equiposInfo = this.firestoreService.getCollection<Encuentro>(path,'tipo','==', 'Semifinal').subscribe(res =>{
-      this.semi=res;
-      if(res.length==0){
-        this.semis=false;
-      }else{
-        this.semis=true;
- 
-      }
-    });
-  }
-  async getPartfinal(){
-    const path= 'Partidos';
-    this.equiposInfo = this.firestoreService.getCollection<Encuentro>(path,'tipo','==', 'Final').subscribe(res =>{
-      this.final=res;
-      if(res.length==0){
 
-         this.fina=false;
-      }else{
-        this.fina=true;
-      }
 
-    });
-  }
 
   async ngOnInit() {
 
@@ -312,16 +368,7 @@ export class EncuentrosPage implements OnInit {
     console.log(value);
   }
 
-  async calculo(){
-    console.log(this.encuentro.fecha);
-  
-    let fechaac = new Date(this.encuentro.fecha);
-    let dias = 21;
-    fechaac.setDate(fechaac.getDate());
-    this.encuentro.fecha=fechaac;
-    console.log(this.encuentro.fecha);
-  
-  }
+ 
 
   close() {
     this.datetime.cancel(true);
@@ -345,21 +392,22 @@ export class EncuentrosPage implements OnInit {
     const path = 'Partidos';
     this.equiposInfo = this.firestoreService.getPartidos<EncuentroPrueba>(path).subscribe(res => {
       
-      this.encuentro=res[0];
-      if(this.encuentro.fechae==""){
-      this.titulo=this.encuentro.tipo;
+      this.encuentropri=res[0];
+      if(this.encuentropri.fechae==""){
+      this.titulo=this.encuentropri.tipo;
       }else{
-        this.titulo=this.encuentro.fechae;
+        this.titulo=this.encuentropri.fechae;
       }
-       this.numero=this.encuentro.numero;
-       this.fase = this.encuentro.fechae;
+       this.numero=this.encuentropri.numero;
+       this.fase = this.encuentropri.fechae;
 
        if(this.fase==""){
-         this.prueba(this.encuentro.tipo);
+         this.prueba(this.encuentropri.tipo);
+         this.pruebafina(this.encuentropri.tipo);
          
         }else{
         this.genee=[];
-
+        this.gruposfinalizados(this.fase);
         this.grupos(this.fase);
        }
 

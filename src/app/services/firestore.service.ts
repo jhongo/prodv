@@ -25,7 +25,16 @@ export class FirestoreService {
   getCollectiongrupos<tipo>(path: string,  parametro: string, condicion: any, busqueda: string, fecha:string){
     const date = new Date();
     const collection = this.FireStore.collection<tipo>(path,
-      ref => ref.where(parametro,condicion,busqueda).where("fechae","==",fecha) 
+      ref => ref.where(parametro,condicion,busqueda).where("fechae","==",fecha).where("estado","==", "iniciado")
+      // .orderBy('fecha','desc')
+      // // .startAt(date)
+      );
+    return collection.valueChanges();
+  }
+  getCollectiongruposfinalizados<tipo>(path: string,  parametro: string, condicion: any, busqueda: string, fecha:string){
+    const date = new Date();
+    const collection = this.FireStore.collection<tipo>(path,
+      ref => ref.where(parametro,condicion,busqueda).where("fechae","==",fecha).where("estado","==", "finalizado") 
       // .orderBy('fecha','desc')
       // // .startAt(date)
       );
@@ -34,7 +43,16 @@ export class FirestoreService {
   getCollection<tipo>(path: string,  parametro: string, condicion: any, busqueda: string){
     const date = new Date();
     const collection = this.FireStore.collection<tipo>(path,
-      ref => ref.where(parametro,condicion,busqueda) 
+      ref => ref.where(parametro,condicion,busqueda).where("estado","==", "iniciado") 
+      // .orderBy('fecha','desc')
+      // // .startAt(date)
+      );
+    return collection.valueChanges();
+  }
+  getCollectionfinalizados<tipo>(path: string,  parametro: string, condicion: any, busqueda: string){
+    const date = new Date();
+    const collection = this.FireStore.collection<tipo>(path,
+      ref => ref.where(parametro,condicion,busqueda).where("estado","==", "finalizado") 
       // .orderBy('fecha','desc')
       // // .startAt(date)
       );
