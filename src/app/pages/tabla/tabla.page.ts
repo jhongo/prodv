@@ -55,7 +55,7 @@ export class TablaPage implements OnInit {
     });
   }
   getPosicionesEquipos2(){
-    this.grupo1.map( (value, index)=>{
+    this.grupo2.map( (value, index)=>{
       return console.log("Equipo",index +1);
     });
   }

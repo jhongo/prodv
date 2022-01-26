@@ -38,6 +38,9 @@ export class HomePage implements OnInit {
     nombre_e2: '',
   }
 
+  modes = ['Copa Gualaquiza', 'Liga Pro', 'Internacional']; 
+  selectedMode = 'Copa Gualaquiza';
+
   fase="";
   constructor(public firestoreService: FirestoreService,
               public alertController: AlertController) { }
@@ -49,6 +52,14 @@ export class HomePage implements OnInit {
     this.getPartsemi();
     this.getPartfinal();
     // this.getPartidos();
+  }
+
+  changeSegment(event: any) {
+    const opc = event.detail.value;
+    console.log(opc);
+    this.selectedMode=opc;
+    
+
   }
 
   async Fecha() {
