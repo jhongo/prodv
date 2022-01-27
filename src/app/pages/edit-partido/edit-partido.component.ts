@@ -105,7 +105,7 @@ export class EditPartidoComponent implements OnInit, OnDestroy {
 
   async actualizarpuntos(uid1:string,uid2:string) {
     const path = 'Equipos';
-    this.equiposInfo = this.firestoreService.getCollection<Equipos>(path, 'uid', '==', uid1).subscribe(res => {
+    this.equiposInfo = this.firestoreService.getgrupos<Equipos>(path, 'uid', '==', uid1).subscribe(res => {
       if (res.length) {
         this.equipo1 = res[0];
 
@@ -161,7 +161,7 @@ export class EditPartidoComponent implements OnInit, OnDestroy {
     
     );
 
-    this.equiposInfo1 = this.firestoreService.getCollection<Equipos>(path, 'uid', '==', uid2).subscribe(res => {
+    this.equiposInfo1 = this.firestoreService.getgrupos<Equipos>(path, 'uid', '==', uid2).subscribe(res => {
       if (res.length) {
         this.equipo2 = res[0];
         // console.log(this.equipo2);

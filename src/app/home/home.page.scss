@@ -6,6 +6,23 @@ ion-toolbar{
   --background: #075E54;
   color: white; 
 }
+ion-segment{
+  --background: #075E54; 
+  // border: 1px solid #ffffff;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  margin-top: 3%;
+  // --color: black;
+}
+ion-segment-button{
+  font-size: 14px;
+  font-weight: bold;
+  --border-color: #404041;
+  --indicator-color: #128C7E; 
+  --color: white; 
+  // padding: 3px;
+} 
 .encabezado_cop{
   padding-top: 10px;
   padding-bottom: 10px;
@@ -549,6 +566,7 @@ text-align: center;
 font-size: 10px;
 //  border: 1px red solid;  
 font-weight: bold;
+color: white;
 }
 
 .col_sig{
@@ -560,6 +578,7 @@ font-weight: bold;
 font-size: 10px;
 //  border: 1px red solid;
 font-weight: bold;
+color: white;
 }
 
 .col_grupo{

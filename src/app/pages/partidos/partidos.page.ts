@@ -66,89 +66,7 @@ export class PartidosPage implements OnInit {
  
   }
 
-  async Fecha() {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Fecha de partidos',
-      inputs: [
-        {
-          name: 'radio1',
-          type: 'radio',
-          cssClass: 'input',
-          label: 'Fecha 1',
-          value: 'Fecha 1',
-          checked: true
-        },
-        {
-          name: 'radio2',
-          type: 'radio',
-          cssClass: 'input',
-          label: 'Fecha 2',
-          value: 'Fecha 2'
-        },
-        {
-          name: 'radio2',
-          type: 'radio',
-          cssClass: 'input',
-          label: 'Fecha 3',
-          value: 'Fecha 3'
-        },
-        {
-          name: 'radio2',
-          type: 'radio',
-          cssClass: 'input',
-          label: 'Fecha 4',
-          value: 'Fecha 4'
-        },
-        {
-          name: 'radio2',
-          type: 'radio',
-          cssClass: 'input',
-          label: 'Fecha 5',
-          value: 'Fecha 5'
-        },
 
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Confirm Cancel');
-          }
-        }, {
-          text: 'Ok',
-          handler: (data) => {
-            console.log('Confirm Ok', data);
-            if (data === 'Fecha 1') {
-              this.getPartido("Fecha 1");
-              this.fase="Fecha 1";
-            }
-            if (data === 'Fecha 2') {
-              this.getPartido("Fecha 2");
-              this.fase="Fecha 2";
-            }
-            if (data === 'Fecha 3') {
-              this.getPartido("Fecha 3"); 
-              this.fase="Fecha 3";
-            }
-            if (data === 'Fecha 4') {
-              this.getPartido("Fecha 4");
-              this.fase="Fecha 4";
-            }
-            if (data === 'Fecha 5') {
-              this.getPartido("Fecha 5");
-              this.fase="Fecha 5";
-            } 
-
-          }
-        }
-      ]
-    });
-    await alert.present();
-  }
-  
   async getPartidos() {
     const path = 'Partidos';
     this.equiposInfo = this.firestoreService.getPartidos<EncuentroPrueba>(path).subscribe(res => {
@@ -181,12 +99,24 @@ export class PartidosPage implements OnInit {
     const path='Partidos';
     this.equiposInfo = this.firestoreService.getCollection<EncuentroPrueba>(path,'tipo','==', tipo).subscribe(res =>{
       this.gene = res;
+      this.grupo1=[];
+      this.grupo2=[];
+      this.grupof1=[];
+      this.grupof2=[];
+      this.gru1=false;
+      this.gru2=false;
   });
   }
   async pruebafina(tipo:string){
     const path='Partidos';
     this.equiposInfo = this.firestoreService.getCollectionfinalizados<EncuentroPrueba>(path,'tipo','==', tipo).subscribe(res =>{
       this.genef = res;
+      this.grupo1=[];
+      this.grupo2=[];
+      this.grupof1=[];
+      this.grupof2=[];
+      this.gru1=false;
+      this.gru2=false;
   });
   }
 
@@ -252,12 +182,14 @@ async anterior(){
     this.gruposfinalizados("Fecha 1");
     this.titulo="Fecha 1";
     this.gene=[];
+    this.genef=[];
     this.gru2=false;
     this.gru1=false;
   }else if(this.numero==2){
     this.titulo="Fecha 2";
     this.gruposfinalizados("Fecha 2");
     this.gene=[];
+    this.genef=[];
     this.grupos("Fecha 2");
     this.gru2=false;
     this.gru1=false;
@@ -265,6 +197,7 @@ async anterior(){
     this.titulo="Fecha 3";
     this.gruposfinalizados("Fecha 3");
     this.gene=[];
+    this.genef=[];
     this.grupos("Fecha 3");
     this.gru2=false;
     this.gru1=false;
@@ -272,6 +205,7 @@ async anterior(){
     this.titulo="Fecha 4";
     this.gruposfinalizados("Fecha 4");
     this.gene=[];
+    this.genef=[];
     this.grupos("Fecha 4");
     this.gru2=false;
     this.gru1=false;
@@ -279,6 +213,7 @@ async anterior(){
     this.titulo="Fecha 5";
     this.gruposfinalizados("Fecha 5");
     this.gene=[];
+    this.genef=[];
     this.grupos("Fecha 5");
     this.gru2=false;
     this.gru1=false;
@@ -286,22 +221,35 @@ async anterior(){
     this.titulo="Fecha 6";
     this.gruposfinalizados("Fecha 6");
     this.gene=[];
+    this.genef=[];
     this.grupos("Fecha 6");
     this.gru2=false;
     this.gru1=false;
   }else if(this.numero==7){
     this.prueba("Cuartos de final");
-    this.titulo="Cuartos de final"
+    this.titulo="Cuartos de final";
+    this.grupo1=[];
+    this.grupo2=[];
+    this.grupof1=[];
+    this.grupof2=[];
     this.gru2=false;
     this.gru1=false;
   }else if(this.numero==8){
     this.prueba("Semifinal");
     this.titulo="Semifinal";
+    this.grupo1=[];
+    this.grupo2=[];
+    this.grupof1=[];
+    this.grupof2=[];
     this.gru2=false;
     this.gru1=false;
   }else if(this.numero==9){
     this.prueba("Final");
     this.titulo="Final";
+    this.grupo1=[];
+    this.grupo2=[];
+    this.grupof1=[];
+    this.grupof2=[];
     this.gru2=false;
     this.gru1=false;
   }
@@ -320,12 +268,14 @@ async siguiente(){
     this.gruposfinalizados("Fecha 1");
     this.titulo="Fecha 1";
     this.gene=[];
+    this.genef=[];
     this.gru2=false;
     this.gru1=false;
   }else if(this.numero==2){
     this.titulo="Fecha 2";
     this.gruposfinalizados("Fecha 2");
     this.gene=[];
+    this.genef=[];
     this.grupos("Fecha 2");
     this.gru2=false;
     this.gru1=false;
@@ -333,6 +283,7 @@ async siguiente(){
     this.titulo="Fecha 3";
     this.gruposfinalizados("Fecha 3");
     this.gene=[];
+    this.genef=[];
     this.grupos("Fecha 3");
     this.gru2=false;
     this.gru1=false;
@@ -340,6 +291,7 @@ async siguiente(){
     this.titulo="Fecha 4";
     this.gruposfinalizados("Fecha 4");
     this.gene=[];
+    this.genef=[];
     this.grupos("Fecha 4");
     this.gru2=false;
     this.gru1=false;
@@ -347,6 +299,7 @@ async siguiente(){
     this.titulo="Fecha 5";
     this.gruposfinalizados("Fecha 5");
     this.gene=[];
+    this.genef=[];
     this.grupos("Fecha 5");
     this.gru2=false;
     this.gru1=false;
@@ -354,78 +307,42 @@ async siguiente(){
     this.titulo="Fecha 6";
     this.gruposfinalizados("Fecha 6");
     this.gene=[];
+    this.genef=[];
     this.grupos("Fecha 6");
     this.gru2=false;
     this.gru1=false;
   }else if(this.numero==7){
     this.prueba("Cuartos de final");
     this.titulo="Cuartos de final"
+    this.grupo1=[];
+    this.grupo2=[];
+    this.grupof1=[];
+    this.grupof2=[];
     this.gru2=false;
     this.gru1=false;
   }else if(this.numero==8){
     this.prueba("Semifinal");
     this.titulo="Semifinal";
+    this.grupo1=[];
+    this.grupo2=[];
+    this.grupof1=[];
+    this.grupof2=[];
     this.gru2=false;
     this.gru1=false;
   }else if(this.numero==9){
     this.prueba("Final");
     this.titulo="Final";
+    this.grupo1=[];
+    this.grupo2=[];
+    this.grupof1=[];
+    this.grupof2=[];
     this.gru2=false;
     this.gru1=false;
   }
 }
 
-  async getPartCuar(){
-    const path= 'Partidos';
-    this.equiposInfo = this.firestoreService.getCollection<Encuentro>(path,'tipo','==', 'Cuartos de final').subscribe(res =>{
-      this.cuartos=res;
-      if(res.length==0){
-        console.log("vacio");
-        this.cuarto=false;
-      }else{
-        this.cuarto=true;
-      }
-      
-    });
-  }
-  async getPartsemi(){
-    const path= 'Partidos';
-    this.equiposInfo = this.firestoreService.getCollection<Encuentro>(path,'tipo','==', 'Semifinal').subscribe(res =>{
-      
-      this.semis=true;
-      if(res.length==0){
-        this.semis=false;
-      }else{
-        this.semi=res;
-        
-      }
-    });
-  }
-  async getPartfinal(){
-    const path= 'Partidos';
-    this.equiposInfo = this.firestoreService.getCollection<Encuentro>(path,'tipo','==', 'Final').subscribe(res =>{
-      this.final=res;
-      if(res.length==0){
-         this.fina=false;
-      }else{
-        this.fina=true;
-      }
 
 
-    });
-  }
 
-
-  async getPartido(fase:string){
-    const path= 'Partidos';
-    this.equiposInfo = this.firestoreService.getCollection<Encuentro>(path,'fechae','==',fase).subscribe(res =>{
-      this.team=res;
-      if(res.length==0){
-        // this.fases=false;
-      }else{
-        this.fases=true;
-
-      }
-    });
-  }
+  
 }

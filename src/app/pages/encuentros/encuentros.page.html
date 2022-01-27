@@ -35,7 +35,7 @@
    
     <ion-item class="IonInput" id="open-modal" >
         <ion-label class="ion-label-itemin" > Fecha: </ion-label>
-        <ion-input slot="end" class="campos_fecha" [(ngModel)]="encuentro.tipo">  {{formatedString}} </ion-input>
+        <ion-input slot="end" class="campos_fecha" [(ngModel)]="encuentro.fecha">  {{formatedString}} </ion-input>
         <!-- <ion-text >  {{formatedString}} </ion-text> -->
     </ion-item>
 
@@ -85,13 +85,13 @@
     <!-- Inicio Grupo 1 -->
     <ion-item *ngIf="grupo1" lines="none" class="IonInput">
       <ion-label class="ion-label-itemin">Equipo 1</ion-label>
-      <ion-select class="campos" [(ngModel)]="encuentro.nombre_e1" placeholder="Seleccione grupo">
+      <ion-select class="campos" [(ngModel)]="encuentro.nombre_e1" placeholder="Seleccione">
         <ion-select-option *ngFor="let equipos of team1" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item *ngIf="grupo1" lines="none" class="IonInput">
       <ion-label class="ion-label-itemin">Equipo 2</ion-label>
-      <ion-select class="campos" [(ngModel)]="encuentro.nombre_e2" placeholder="Seleccione grupo">
+      <ion-select class="campos" [(ngModel)]="encuentro.nombre_e2" placeholder="Seleccione">
         <ion-select-option *ngFor="let equipos of team1" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
       </ion-select>
     </ion-item>
@@ -101,13 +101,13 @@
     <!-- Inicio Grupo 2 -->
     <ion-item *ngIf="grupo2" lines="none" class="IonInput">
       <ion-label class="ion-label-itemin">Equipo 1</ion-label>
-      <ion-select class="campos" [(ngModel)]="encuentro.nombre_e1" placeholder="Seleccione grupo">
+      <ion-select class="campos" [(ngModel)]="encuentro.nombre_e1" placeholder="Seleccione">
         <ion-select-option *ngFor="let equipos of team2" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item *ngIf="grupo2" lines="none" class="IonInput">
       <ion-label class="ion-label-itemin">Equipo 2</ion-label>
-      <ion-select class="campos" [(ngModel)]="encuentro.nombre_e2" placeholder="Seleccione grupo">
+      <ion-select class="campos" [(ngModel)]="encuentro.nombre_e2" placeholder="Seleccione">
         <ion-select-option *ngFor="let equipos of team2" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
       </ion-select>
     </ion-item>
@@ -116,13 +116,13 @@
      <!-- Inicio Semi o final -->
      <ion-item *ngIf="gene" lines="none" class="IonInput">
       <ion-label class="ion-label-itemin">Equipo 1</ion-label>
-      <ion-select class="campos" [(ngModel)]="encuentro.nombre_e1" placeholder="Seleccione grupo">
+      <ion-select class="campos" [(ngModel)]="encuentro.nombre_e1" placeholder="Seleccione">
         <ion-select-option *ngFor="let equipos of teamg" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item *ngIf="gene" lines="none" class="IonInput">
       <ion-label class="ion-label-itemin">Equipo 2</ion-label>
-      <ion-select class="campos" [(ngModel)]="encuentro.nombre_e2" placeholder="Seleccione grupo">
+      <ion-select class="campos" [(ngModel)]="encuentro.nombre_e2" placeholder="Seleccione">
         <ion-select-option *ngFor="let equipos of teamg" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
       </ion-select>
     </ion-item>
@@ -201,7 +201,7 @@
         </ion-item>
         
       </ion-col>
-      <ion-col class="col_vs" size="1">
+      <ion-col class="col_vs" size="2">
         <ion-label class="label_tittle_vs">
           {{equipo.fecha| date : "HH:mm"}}
         </ion-label>
@@ -263,7 +263,7 @@
       </ion-item>
       
     </ion-col>
-    <ion-col class="col_vs" size="1">
+    <ion-col class="col_vs" size="2">
       <ion-label class="label_tittle_vs">
         {{equipo.res_e1}}-{{equipo.res_e2}}
       </ion-label>

@@ -49,6 +49,15 @@ export class FirestoreService {
       );
     return collection.valueChanges();
   }
+  getgrupos<tipo>(path: string,  parametro: string, condicion: any, busqueda: string){
+    const date = new Date();
+    const collection = this.FireStore.collection<tipo>(path,
+      ref => ref.where(parametro,condicion,busqueda) 
+      // .orderBy('fecha','desc')
+      // // .startAt(date)
+      );
+    return collection.valueChanges();
+  }
   getCollectionfinalizados<tipo>(path: string,  parametro: string, condicion: any, busqueda: string){
     const date = new Date();
     const collection = this.FireStore.collection<tipo>(path,

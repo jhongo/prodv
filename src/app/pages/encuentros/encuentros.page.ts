@@ -18,6 +18,8 @@ export class EncuentrosPage implements OnInit {
   grupo2 = false;
   gene = false;
   equiposInfo: Subscription;
+  equipo1Info: Subscription;
+  equipo2sInfo: Subscription;
   numero=0;
   fecha = false;
   team: Encuentro[] = [];
@@ -32,16 +34,6 @@ export class EncuentrosPage implements OnInit {
   grupof2 :EncuentroPrueba []=[];
 
   fase="";
-
-  cuartos: Encuentro []=[];
-  semi: Encuentro []=[];
-  final: Encuentro []=[];
-
-  cuarto=false;
-  semis=false;
-  fina=false;
-  fases=false;
-
   titulo="";
   gru1=false;
   gru2=false;
@@ -145,12 +137,14 @@ export class EncuentrosPage implements OnInit {
       this.gruposfinalizados("Fecha 1");
       this.titulo="Fecha 1";
       this.genee=[];
+      this.genef=[];
       this.gru2=false;
       this.gru1=false;
     }else if(this.numero==2){
       this.titulo="Fecha 2";
       this.gruposfinalizados("Fecha 2");
       this.genee=[];
+      this.genef=[];
       this.grupos("Fecha 2");
       this.gru2=false;
       this.gru1=false;
@@ -158,6 +152,7 @@ export class EncuentrosPage implements OnInit {
       this.titulo="Fecha 3";
       this.gruposfinalizados("Fecha 3");
       this.genee=[];
+      this.genef=[];
       this.grupos("Fecha 3");
       this.gru2=false;
       this.gru1=false;
@@ -165,6 +160,7 @@ export class EncuentrosPage implements OnInit {
       this.titulo="Fecha 4";
       this.gruposfinalizados("Fecha 4");
       this.genee=[];
+      this.genef=[];
       this.grupos("Fecha 4");
       this.gru2=false;
       this.gru1=false;
@@ -172,6 +168,7 @@ export class EncuentrosPage implements OnInit {
       this.titulo="Fecha 5";
       this.gruposfinalizados("Fecha 5");
       this.genee=[];
+      this.genef=[];
       this.grupos("Fecha 5");
       this.gru2=false;
       this.gru1=false;
@@ -179,22 +176,35 @@ export class EncuentrosPage implements OnInit {
       this.titulo="Fecha 6";
       this.gruposfinalizados("Fecha 6");
       this.genee=[];
+      this.genef=[];
       this.grupos("Fecha 6");
       this.gru2=false;
       this.gru1=false;
     }else if(this.numero==7){
       this.prueba("Cuartos de final");
-      this.titulo="Cuartos de final"
+      this.titulo="Cuartos de final";
+      this.grupoe1=[];
+      this.grupoe2=[];
+      this.grupof1=[];
+      this.grupof2=[];
       this.gru2=false;
       this.gru1=false;
     }else if(this.numero==8){
       this.prueba("Semifinal");
       this.titulo="Semifinal";
+      this.grupoe1=[];
+      this.grupoe2=[];
+      this.grupof1=[];
+      this.grupof2=[];
       this.gru2=false;
       this.gru1=false;
     }else if(this.numero==9){
       this.prueba("Final");
       this.titulo="Final";
+      this.grupoe1=[];
+      this.grupoe2=[];
+      this.grupof1=[];
+      this.grupof2=[];
       this.gru2=false;
       this.gru1=false;
     }
@@ -204,12 +214,24 @@ export class EncuentrosPage implements OnInit {
     const path='Partidos';
     this.equiposInfo = this.firestoreService.getCollection<EncuentroPrueba>(path,'tipo','==', tipo).subscribe(res =>{
       this.genee = res;
+      this.grupoe1=[];
+      this.grupoe2=[];
+      this.grupof1=[];
+      this.grupof2=[];
+      this.gru1=false;
+      this.gru2=false;
   });
   }
   async pruebafina(tipo:string){
     const path='Partidos';
     this.equiposInfo = this.firestoreService.getCollectionfinalizados<EncuentroPrueba>(path,'tipo','==', tipo).subscribe(res =>{
       this.genef = res;
+      this.grupoe1=[];
+      this.grupoe2=[];
+      this.grupof1=[];
+      this.grupof2=[];
+      this.gru1=false;
+      this.gru2=false;
   });
   }
 
@@ -257,9 +279,6 @@ export class EncuentrosPage implements OnInit {
 
 
   }
-
-
-  
   
   async siguiente(){
     if(this.numero<9){
@@ -281,6 +300,7 @@ export class EncuentrosPage implements OnInit {
       this.titulo="Fecha 2";
       this.gruposfinalizados("Fecha 2");
       this.genee=[];
+      this.genef=[];
       this.grupos("Fecha 2");
       this.gru2=false;
       this.gru1=false;
@@ -288,6 +308,7 @@ export class EncuentrosPage implements OnInit {
       this.titulo="Fecha 3";
       this.gruposfinalizados("Fecha 3");
       this.genee=[];
+      this.genef=[];
       this.grupos("Fecha 3");
       this.gru2=false;
       this.gru1=false;
@@ -295,6 +316,7 @@ export class EncuentrosPage implements OnInit {
       this.titulo="Fecha 4";
       this.gruposfinalizados("Fecha 4");
       this.genee=[];
+      this.genef=[];
       this.grupos("Fecha 4");
       this.gru2=false;
       this.gru1=false;
@@ -302,6 +324,7 @@ export class EncuentrosPage implements OnInit {
       this.titulo="Fecha 5";
       this.gruposfinalizados("Fecha 5");
       this.genee=[];
+      this.genef=[];
       this.grupos("Fecha 5");
       this.gru2=false;
       this.gru1=false;
@@ -309,49 +332,44 @@ export class EncuentrosPage implements OnInit {
       this.titulo="Fecha 6";
       this.gruposfinalizados("Fecha 6");
       this.genee=[];
+      this.genef=[];
       this.grupos("Fecha 6");
       this.gru2=false;
       this.gru1=false;
     }else if(this.numero==7){
       this.prueba("Cuartos de final");
-      this.titulo="Cuartos de final"
+      this.titulo="Cuartos de final";
+      this.grupoe1=[];
+      this.grupoe2=[];
+      this.grupof1=[];
+      this.grupof2=[];
       this.gru2=false;
       this.gru1=false;
     }else if(this.numero==8){
       this.prueba("Semifinal");
       this.titulo="Semifinal";
+      this.grupoe1=[];
+      this.grupoe2=[];
+      this.grupof1=[];
+      this.grupof2=[];
       this.gru2=false;
       this.gru1=false;
     }else if(this.numero==9){
       this.prueba("Final");
       this.titulo="Final";
+      this.grupoe1=[];
+      this.grupoe2=[];
+      this.grupof1=[];
+      this.grupof2=[];
       this.gru2=false;
       this.gru1=false;
     }
   }
 
   
-  async getPartido(fase:string){
-    const path= 'Partidos';
-    this.equiposInfo = this.firestoreService.getCollection<Encuentro>(path,'fechae','==',fase).subscribe(res =>{
-      this.team=res;
-    if(res.length==0){
-        // this.fases=false;
-      }else{
-        this.fases=true;
-        
-
-      }
-    });
-  }
-
-
-
-
   async ngOnInit() {
 
     console.log(this.encuentro.grupo);
-    //  this.getPartidos();
     this.getPartidos();
     
 
@@ -360,6 +378,7 @@ export class EncuentrosPage implements OnInit {
   setToday() {
     this.formatedString = format(parseISO(format(new Date(), 'yyy-MM-dd') + 'T09:00:00.000Z'), 'HH:mm, MMM d, yyy');
   }
+
   dateChanged(value) {
     this.dateValue = value;
     this.formatedString = format(parseISO(value), 'HH:mm, MMM d, yyy');
@@ -381,10 +400,24 @@ export class EncuentrosPage implements OnInit {
 
   async getEquiposG1() {
     const path = 'Equipos';
-    this.equiposInfo = this.firestoreService.getCollection<Equipos>(path, 'grupo', '==', 'grupo1').subscribe(res => {
+    this.equiposInfo = this.firestoreService.getgrupos<Equipos>(path, 'grupo', '==', 'grupo1').subscribe(res => {
       if (res.length) {
         this.team1 = res;
       }
+    });
+  }
+  async getEquiposG2() {
+    const path = 'Equipos';
+    this.equiposInfo = this.firestoreService.getgrupos<Equipos>(path, 'grupo', '==', 'grupo2').subscribe(res => {
+      if (res.length) {
+        this.team2 = res;
+      }
+    });
+  }
+  async getEquiposG() {
+    const path = 'Equipos';
+    this.equiposInfo = this.firestoreService.getTeam<Equipos>(path).subscribe(res => {
+      this.teamg = res;
     });
   }
 
@@ -398,7 +431,7 @@ export class EncuentrosPage implements OnInit {
       }else{
         this.titulo=this.encuentropri.fechae;
       }
-       this.numero=this.encuentropri.numero;
+       this.numero=this.encuentropri.numero;0
        this.fase = this.encuentropri.fechae;
 
        if(this.fase==""){
@@ -410,34 +443,18 @@ export class EncuentrosPage implements OnInit {
         this.gruposfinalizados(this.fase);
         this.grupos(this.fase);
        }
-
-
-      
     });
   }
 
-  async getEquiposG2() {
-    const path = 'Equipos';
-    this.equiposInfo = this.firestoreService.getCollection<Equipos>(path, 'grupo', '==', 'grupo2').subscribe(res => {
-      if (res.length) {
-        this.team2 = res;
-      }
-    });
-  }
-  async getEquiposG() {
-    const path = 'Equipos';
-    this.equiposInfo = this.firestoreService.getTeam<Equipos>(path).subscribe(res => {
-      this.teamg = res;
-    });
-  }
+ 
+
   async completardatos(uid: string) {
 
     const path = 'Equipos';
     const pathp = 'Partidos';
-    this.equiposInfo = this.firestoreService.getCollection<Equipos>(path, 'nombre', '==', this.encuentro.nombre_e1).subscribe(res => {
+    this.equiposInfo = this.firestoreService.getgrupos<Equipos>(path, 'nombre', '==', this.encuentro.nombre_e1).subscribe(res => {
       if (res.length) {
         this.equipo1 = res[0];
-
         this.escudo1 = this.equipo1.escudo;
         this.uid1 = this.equipo1.uid;
         this.encuentro.escudo_e1 = this.escudo1;
@@ -446,7 +463,7 @@ export class EncuentrosPage implements OnInit {
           escudo_e1: this.escudo1,
           uid_e1: this.uid1
         }
-        console.log(data)
+        console.log(data,this.equipo1)
 
         this.firestoreService.actualizarpartido(data, pathp, uid).then(res => { });
 
@@ -454,7 +471,7 @@ export class EncuentrosPage implements OnInit {
       }
     });
 
-    this.equiposInfo = this.firestoreService.getCollection<Equipos>(path, 'nombre', '==', this.encuentro.nombre_e2).subscribe(res => {
+    this.equiposInfo = this.firestoreService.getgrupos<Equipos>(path, 'nombre', '==', this.encuentro.nombre_e2).subscribe(res => {
       if (res.length) {
         this.equipo2 = res[0];
         // console.log(res[0]);
@@ -518,8 +535,7 @@ export class EncuentrosPage implements OnInit {
   
             console.log(this.encuentro.nombre_e1 + " " + this.encuentro.nombre_e2);
             const path = 'Partidos';
-            // this.calculo();
-            // console.log(this.encuentro);
+            
   
             this.firestoreService.createDoc(this.encuentro, path, this.encuentro.uid).then(res => {
               console.log('guardado con exito');
@@ -548,6 +564,14 @@ export class EncuentrosPage implements OnInit {
               this.grupo2 = false;
               this.fecha = false;
               this.gene = false;
+              this.gru1=false;
+              this.gru2=false;
+              this.grupoe1=[];
+              this.grupoe2=[];
+              this.grupof1=[];
+              this.grupof2=[];
+              this.genef=[];
+              this.genee=[];
   
             }).catch(error => {
               console.log(error)
@@ -714,8 +738,7 @@ export class EncuentrosPage implements OnInit {
               this.fecha = true;
               this.encuentro.nombre_e1 = "";
               this.encuentro.nombre_e2 = "";
-              // this.router.navigate(['/destete']);
-
+            
             }
             if (data === 'Cuartos de final') {
               this.encuentro.tipo = data;
