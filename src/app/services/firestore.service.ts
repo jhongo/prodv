@@ -70,13 +70,11 @@ export class FirestoreService {
 
   getCollectionGru<tipo>(path: string,  parametro: string, condicion: any, busqueda: string){
     
-    const collection = this.FireStore.collection<tipo>(path,
-      ref => ref.where(parametro,condicion,busqueda) 
-      .orderBy('puntos','desc'),
-      // // .startAt(date)
-      );
+    const collection= this.FireStore.collection<tipo>(path,
+      ref => ref.where(parametro,condicion,busqueda).orderBy('puntos','desc'));
     return collection.valueChanges();
   }
+
   getPartidos<tipo>(path: string){
     const collection = this.FireStore.collection<tipo>(path,
       ref => ref.orderBy('fecha','desc'),

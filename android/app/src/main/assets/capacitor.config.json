@@ -1,0 +1,6 @@
+{
+	"appId": "com.bitec.prodv",
+	"appName": "Prodv",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

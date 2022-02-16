@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Prodv</string>
+    <string name="title_activity_main">Prodv</string>
+    <string name="package_name">com.bitec.prodv</string>
+    <string name="custom_url_scheme">com.bitec.prodv</string>
+</resources>

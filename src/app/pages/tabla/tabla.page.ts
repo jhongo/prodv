@@ -39,8 +39,7 @@ export class TablaPage implements OnInit {
 
   constructor(public firestoreService: FirestoreService,) { 
 
-    this.getGrupo1();
-    this.getGrupo2();
+   
   }
 
   ngOnInit() {
@@ -49,16 +48,16 @@ export class TablaPage implements OnInit {
     this.getGrupo2();
   }
 
-  getPosicionesEquipos(){
-    this.grupo1.map( (value, index)=>{
-      return console.log("Equipo",index +1);
-    });
-  }
-  getPosicionesEquipos2(){
-    this.grupo2.map( (value, index)=>{
-      return console.log("Equipo",index +1);
-    });
-  }
+  // getPosicionesEquipos(){
+  //   this.grupo1.map( (value, index)=>{
+  //     return console.log("Equipo",index +1);
+  //   });
+  // }
+  // getPosicionesEquipos2(){
+  //   this.grupo2.map( (value, index)=>{
+  //     return console.log("Equipo",index +1);
+  //   });
+  // }
 
 
   changeSegment(event: any) {
@@ -68,10 +67,10 @@ export class TablaPage implements OnInit {
   }
 async getGrupo1(){
   const path= 'Equipos';
-  this.equiposInfo1 = this.firestoreService.getCollectionGru<Equipos>(path,'grupo','==', 'grupo1').subscribe(res =>{
-    
+  this.firestoreService.getCollectionGru<Equipos>(path,'grupo','==', 'grupo1').subscribe(res =>{
     this.grupo1=res;
     console.log(res);
+
   });
 }
 
@@ -79,14 +78,11 @@ async getGrupo1(){
 
 async getGrupo2(){
   const path= 'Equipos';
-  this.equiposInfo2 = this.firestoreService.getCollectionGru<Equipos>(path,'grupo','==', 'grupo2').subscribe(res =>{
+  this.firestoreService.getCollectionGru<Equipos>(path,'grupo','==', 'grupo2').subscribe(res =>{
     this.grupo2=res;
-    
-      });
-}
-async equipos(equipos:Equipos){
-  this.equiposelec = equipos;
+    console.log(res);
 
+      });
 }
 
 }
