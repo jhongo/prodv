@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'prodv',
+  appId: 'com.bitec.prodv',
+  appName: 'Prodv',
   webDir: 'www',
   bundledWebRuntime: false
 };
