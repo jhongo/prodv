@@ -27,6 +27,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { EditEquipoComponent } from './pages/edit-equipo/edit-equipo.component';
 import { EditPartidoComponent } from './pages/edit-partido/edit-partido.component';
 import { RecuperarComponent } from './pages/recuperar/recuperar.component';
+import { SwiperModule } from 'swiper/angular';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { RecuperarComponent } from './pages/recuperar/recuperar.component';
     AngularFireAuthModule,
     AngularFireStorageModule,
     FormsModule,
+    SwiperModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
