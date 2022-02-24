@@ -38,7 +38,7 @@ export class AppComponent {
       this.firebaseauthService.stateAuth().subscribe(res =>{
         if(res!=null){
 
-          if (res.uid == 'LikZN15qNiQi1pFEAT8frapWt243') {
+          if (res.uid == 'LikZN15qNiQi1pFEAT8frapWt243' || res.uid == 'sYOl5vJntAWPUoDMoBZsrd05KAu1' ) {
             this.admin = true;
             this.getUserInfo(res.uid);
           }else{
@@ -89,6 +89,7 @@ export class AppComponent {
       emailVerified:null,
     };
     await this.suscriberUserInfo.unsubscribe();
+
     this.presentLoading('Cerrando Sesión',1000);
     setTimeout(() => {
       this.router.navigate(['/login']);
@@ -110,7 +111,7 @@ export class AppComponent {
     this.firebaseauthService.stateAuth().subscribe(res =>{
       if(res!=null){
   
-        if (res.uid == 'LikZN15qNiQi1pFEAT8frapWt243') {
+        if (res.uid == 'LikZN15qNiQi1pFEAT8frapWt243' || res.uid == 'sYOl5vJntAWPUoDMoBZsrd05KAu1' ) {
           this.admin = true;
           this.getUserInfo(res.uid);
         }else{

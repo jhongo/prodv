@@ -43,14 +43,21 @@ export class LoginComponent implements OnInit {
     public toastController: ToastController,
     public alertController: AlertController,
     private menuL: MenuController,
-    public router: Router,) {
+    public router: Router,
+    public loadingCtrl: LoadingController
+    ) {
 
       this.firebaseauthService.stateAuth().subscribe( res=>{
       if (res) {
+
         console.log('Esta logeado');
         this.login =true;
+        this.presentLoading('Iniciando Sesión', 1500);
+        setTimeout(() => {
         this.router.navigate(['/home']);
         this.menuL.enable(true);
+        }, 1500);
+        
       }else{
         console.log('No esta logeado')
         this.login = false;
@@ -178,5 +185,6 @@ export class LoginComponent implements OnInit {
 
     await alert.present();
   }
+
 
 }
