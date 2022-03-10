@@ -3,6 +3,8 @@ import { DataUser } from 'src/app/models';
 import { FirestoreService } from '../../services/firestore.service';
 import { FirebaseauthService } from "../../services/firebaseauth.service";
 import { Subscription } from 'rxjs';
+import { clearScreenDown } from 'readline';
+import { Referencia, Referencias } from '../../models';
 
 @Component({
   selector: 'app-perfil',
@@ -11,7 +13,10 @@ import { Subscription } from 'rxjs';
 })
 export class PerfilComponent implements OnInit {
 
-  
+  admin= false;
+  referente=false;
+  num=0;
+
   DataUpdate = false;
   datauser: DataUser = {
     uid: '',
@@ -20,6 +25,17 @@ export class PerfilComponent implements OnInit {
     password: '',
     referencia: '',
   }
+
+  refeadmin: Referencia []=[];
+
+  refe : Referencia={
+    nombre:'',
+    correo:'',
+    total: 0,
+    uid: ''
+  }
+
+
   uid= '';
   suscriberUserInfo : Subscription;
   constructor(public firestoreService: FirestoreService,
@@ -73,15 +89,69 @@ export class PerfilComponent implements OnInit {
       };
       this.DataUpdate=false;
     }).catch( error =>{
-
     });
-
   }
 
   InfoUser(uid:string ){
     const path = 'Usuarios';
     this.suscriberUserInfo= this.firestoreService.getDoc<DataUser>(path, uid).subscribe(res =>{
       this.datauser = res ;
+      console.log(this.datauser.email);
+      this.validar(this.datauser.email);
     });
   }
+
+  validar(email:string){
+    console.log("Emai: "+email);
+
+    if(email=="jefematute27@gmail.com"){
+      this.admin=true;
+      this.referente=false;
+      this.referencias(email);
+      this.getreferencias();
+      console.log("admin");
+    }else{
+      this.admin=false;
+      this.referente=false;
+      this.referencias(email);
+
+      console.log("user");
+    }
+
+  }
+
+  referencias(correo:string){
+    const path= "Referencias"
+    this.firestoreService.getrefencias<Referencia>(path,"correo","==", correo).subscribe(res =>{
+      if(res.length){
+        this.refe=res[0];
+        this.referente=true;
+        console.log("Si hay referencia");
+        console.log(res);
+        console.log(this.refe)
+
+        // this.usuariorefe(this.refe.nombre)
+      }else{
+        console.log("No hay referencia");
+      }
+    });
+  }
+
+  usuariorefe(referencia:string){
+    const path ="Usuarios";
+    this.firestoreService.getusersrefe<DataUser>(path,"referencia","==", referencia).subscribe(res =>{
+      console.log("num: "+res.length);
+      this.num=res.length;
+    });
+  }
+
+  getreferencias(){
+
+    const path = "Referencias";
+    this.firestoreService.getrefegene<Referencia>(path).subscribe(res =>{
+      this.refeadmin=res;
+    })
+  }
+
+
 }

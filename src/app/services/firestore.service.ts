@@ -87,11 +87,38 @@ export class FirestoreService {
     return collection.doc(id).valueChanges();
   }
 
+  getrefencias<tipo>(path:string, parametro: string, condicion: any, busqueda: string){
+    const collection = this.FireStore.collection<tipo>(path,
+      ref => ref.where(parametro,condicion,busqueda)
+      // .orderBy('fecha','desc')
+      // // .startAt(date)s
+      );
+    return collection.valueChanges();
+  }
+
+  getrefegene<tipo>(path:string){
+    const collection = this.FireStore.collection<tipo>(path);
+    return collection.valueChanges();
+  }
+
+  getusersrefe<tipo>(path:string,parametro: string, condicion: any, busqueda: string){
+    const collection = this.FireStore.collection<tipo>(path,
+      ref => ref.where(parametro,condicion,busqueda)
+      // .orderBy('fecha','desc')
+      // // .startAt(date)s
+      );
+    return collection.valueChanges();
+  }
+
 
   actualizarpartido(data:any, path :string, id:string){
     const collection= this.FireStore.collection(path);
     return collection.doc(id).update(data);
 
+  }
+  actualizarrefe(data:any, path:string, id:string){
+    const collection= this.FireStore.collection(path);
+    return collection.doc(id).update(data);
   }
 
   deletepartido(path:string,id:string){

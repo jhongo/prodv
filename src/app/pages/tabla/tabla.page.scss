@@ -1,5 +1,6 @@
 .content-resultados{
     --background: #f3eded;
+    --padding-bottom: 70px;
 }
 
 ion-toolbar{
@@ -40,6 +41,15 @@ ion-segment-button{
     background: white;
 }
 
+.col_escudo{
+
+    // border: 1px solid black;
+    text-align: center;
+}
+.escudo{
+    height: 20px;
+    width: 20px;
+}
 
 .grupos{
 

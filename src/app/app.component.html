@@ -1,4 +1,4 @@
-<ion-app> 
+<ion-app>
   <ion-split-pane contentId="main" when="lg">
     <!--  the side menu  -->
     <ion-menu side="start" menuId="custom" contentId="main" class="my-custom-menu">
@@ -14,39 +14,51 @@
               </ion-col>
               <ion-col size="9">
 
-               <ion-row><ion-col>PRODV</ion-col></ion-row>
-               <!-- <ion-row><ion-col>TU APP DEPORTIVA</ion-col></ion-row> -->
-              
+                <ion-row>
+                  <ion-col>PRODV</ion-col>
+                </ion-row>
+                <!-- <ion-row><ion-col>TU APP DEPORTIVA</ion-col></ion-row> -->
+
               </ion-col>
             </ion-row>
           </ion-grid>
-         
+
         </ion-toolbar>
-        
+
       </ion-header>
 
-      <ion-content> 
+      <ion-content>
 
         <ion-list lines="none" mode="ios">
 
-          <ion-menu-toggle  routerLink="/home">
-          <ion-item class="item-menu" button details lines="none">
+          <ion-menu-toggle routerLink="/home">
+            <ion-item class="item-menu" button details lines="none">
               <ion-label>
                 Inicio
               </ion-label>
-              
-              <ion-icon slot="start" color="black" name="home-outline"></ion-icon> 
+
+              <ion-icon slot="start" color="black" name="home-outline"></ion-icon>
             </ion-item>
           </ion-menu-toggle>
 
-          <ion-menu-toggle  routerLink="/tab-inicial/partidos">
+          <ion-menu-toggle routerLink="/tab-inicial/partidos">
             <ion-item class="item-menu" button details lines="none">
-                <ion-label>
-                  Copa gualaquiza
-                </ion-label>
-                <ion-icon slot="start" color="black" name="color-filter-outline"></ion-icon>
+              
+              <ion-img src="../assets/icon/Recurso 9logo_Gualaquiza.png" class="img_logo" slot="start"> </ion-img>
+              <div class="div_gualaquiza">
+                <div class="text_gualaquiza">
+                  <ion-label class="copa">
+                    Copa
+                  </ion-label>
+
+                </div>
+                <div class="div_imglogo">
+                  <img class="img_gualaquiza" src="../assets/icon/Gualaquizalogo.png">
+                </div>
+              </div>
               </ion-item>
-            </ion-menu-toggle>         
+            
+          </ion-menu-toggle>
 
           <ion-menu-toggle routerLink="/tab-campeonato/equipos" *ngIf="admin">
             <ion-item class="item-menu" button lines="none">
@@ -56,7 +68,7 @@
               <ion-icon slot="start" color="black" name="football-outline"></ion-icon>
             </ion-item>
           </ion-menu-toggle>
-          
+
           <ion-menu-toggle routerLink="/nacional">
             <ion-item class="item-menu" button lines="none">
               <ion-label>
@@ -83,7 +95,7 @@
               <ion-icon slot="start" color="black" name="newspaper-outline"></ion-icon>
             </ion-item>
           </ion-menu-toggle>
-<!-- 
+          <!-- 
           <ion-menu-toggle routerLink="/ayuda">
             <ion-item class="item-menu" button lines="none">
               <ion-label>

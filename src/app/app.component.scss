@@ -33,3 +33,51 @@ ion-content{
 ion-grid{
     --ion-grid-padding: 30px
 }
+.div_gualaquiza{
+    margin-top: auto;
+    margin-bottom: auto;
+    display:flex;
+}
+.img_gualaquiza{
+    
+    height: 35px;
+    width: 110px;
+}
+
+.div_imglogo{
+    display: flex;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 3px;
+    //  border: 1px solid black;
+}
+
+
+.text_gualaquiza{
+    margin-top: auto;
+    margin-bottom: auto;
+    // border: 1px solid blue;
+    height: 33px;
+}
+
+.img_logo{
+
+    height: 30px;
+    width: 30px;
+}
+
+.copa{
+    font-size: 30px;
+    font-family: Cream Cake;
+    background-image: linear-gradient(to left, violet, indigo, green, blue, yellow, orange, red);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+
+// @font-face{
+//     font-family: Cream Cake;
+//     src: url(CreamCake.otf);
+// }
