@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit} from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
@@ -37,6 +38,8 @@ export class HomePage implements OnInit {
   //   nombre_e1: '',
   //   nombre_e2: '',
   // }
+
+  matches =[];
 
   equiposInfo: Subscription;
   team: Encuentro[] = [];
@@ -85,7 +88,9 @@ export class HomePage implements OnInit {
   numero=0;
 
   constructor(public firestoreService: FirestoreService,
-              public alertController: AlertController) { }
+              public alertController: AlertController,
+              private http: HttpClient
+              ) { }
 
   ngOnInit() {
     this.getPartidos();
@@ -95,8 +100,19 @@ export class HomePage implements OnInit {
     // this.getPartCuar();
     // this.getPartsemi();
     // this.getPartfinal();
-    // this.getPartidos();
-    this.opcion="Copa_Gualaquiza";
+    // this.getPartidos();665
+       this.opcion="Copa_Gualaquiza";
+
+    // this.http.get<any>('https://v3.football.api-sports.io/fixtures?live=all',{
+    //   headers:{
+    //     'x-rapidapi-host' : 'v3.football.api-sports.io',
+    //     'x-rapidapi-key'  : '69bea9f7391f3ad9c00fb98c1ff06e03'
+    //   }
+    // }).subscribe(res =>{
+    //   console.log(res);
+    //   this.matches = res.response;
+    //   console.log(res.response);
+    // })
   }
   
 
