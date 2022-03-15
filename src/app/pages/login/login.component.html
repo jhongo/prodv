@@ -83,7 +83,7 @@
 
     <ion-item lines="none" class="Item_input">
       
-      <ion-select class="campos" [(ngModel)]="datauser.referencia" placeholder="Referencia">
+      <ion-select class="campos" [(ngModel)]="datauser.referencia" placeholder="Referencia(Opcional)">
         <ion-select-option *ngFor="let referencia of referencias" value={{referencia.nombre}}>{{referencia.nombre}}</ion-select-option>
       </ion-select>
       <ion-icon slot="end" class="icon" name="storefront-outline" ></ion-icon>

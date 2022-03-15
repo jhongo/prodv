@@ -15,6 +15,13 @@ export interface DataUser{
     referencia:string;
 }
 
+export interface Referencia{
+    nombre: string,
+    correo:string,
+    total:number,
+    uid:string
+}
+
 
 export interface Equipos{
     uid:string,

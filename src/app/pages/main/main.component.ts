@@ -32,9 +32,6 @@ export class MainComponent implements AfterContentChecked {
       
   }
 
-  
-  
-
 
 
   }

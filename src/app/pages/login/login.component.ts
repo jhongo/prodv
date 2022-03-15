@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
-import { User, DataUser, Referencias } from 'src/app/models';
+import { User, DataUser, Referencias, Referencia } from 'src/app/models';
 import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { MenuController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,13 @@ export class LoginComponent implements OnInit {
     emailVerified: null,
   };
 
+  refe : Referencia={
+    nombre:'',
+    correo:'',
+    total: 0,
+    uid:''
+  }
+
   datauser: DataUser = {
     uid: '',
     email: '',
@@ -31,6 +39,7 @@ export class LoginComponent implements OnInit {
 
   referencias: Referencias []=[];
   uid = '';
+  referenciaInfo: Subscription;
   suscriberUserInfo: Subscription;
   login: boolean = false;
   refenciaInfo: Subscription;
@@ -75,14 +84,13 @@ export class LoginComponent implements OnInit {
   async registro(email, password) {
     try {
 
-      if(this.datauser.email==""||this.datauser.password==""||this.datauser.referencia==""){
-
+      if(this.datauser.email==""||this.datauser.password==""){
         this.presentToast('Datos incompletos',4000);
         //this.presentAlert('Datos incompletos');
         console.log("Vacios los datos");
-        
       }else{
       const user = await this.firebaseauthService.registrar(email.value, password.value);
+      this.consultarrefe(this.datauser.referencia);
       this.saveUser();
       this.presentToast('Cuenta creada con exito',4000);
       this.opcion="entrar";
@@ -105,6 +113,7 @@ export class LoginComponent implements OnInit {
     const uid = await this.firebaseauthService.getUid();
     this.datauser.uid = uid;
     const path = 'Usuarios';
+    
     this.fireStore.createDoc(this.datauser, path, this.datauser.uid).then(res => {
       console.log('Guardado con exito');
       this.datauser = {
@@ -120,6 +129,28 @@ export class LoginComponent implements OnInit {
     });
 
   }
+
+  consultarrefe(referencia:string){
+    const path= "Referencias"
+    this.refenciaInfo= this.fireStore.getrefencias<Referencia>(path,"nombre","==", referencia).subscribe(res =>{
+      this.refe=res[0];
+      console.log("Referencia "+this.refe.total);
+      this.refe.total=this.refe.total+1;
+
+      this.fireStore.actualizarrefe(this.refe,path,this.refe.uid);
+      this.refenciaInfo.unsubscribe();
+      this.refe = {
+        correo:'',
+        nombre:'',
+        total:0,
+        uid:''
+      }
+
+
+    });
+  }
+
+  
 
   async ingresar(email, password) {
 

@@ -5,14 +5,40 @@
 
 <ion-content class="content_pri">
   <div class="encabezado">
-    <ion-label class="titulo"> Subir resultados del partido</ion-label>
+    <ion-label class="titulo"> Datos del partido</ion-label>
   </div>
   <ion-card  class="Nuevo_partido">
 
+    <ion-item class="IonInput" id="open-modal" >
+      <ion-label class="ion-label-itemin" > Fecha: </ion-label>
+      <ion-input slot="end" class="campos_fecha" [(ngModel)]="encuentro.fecha">  {{formatedString}} </ion-input>
+      <!-- <ion-text >  {{formatedString}} </ion-text> -->
+  </ion-item>
+
+  <ion-modal trigger="open-modal" mode="md" >
+    <ng-template>
+      <ion-content>
+        <ion-datetime
+        #datetime 
+        [value]="dateValue"
+        size="cover"
+        (ionChange)="dateChanged(datetime.value)"
+        showDefaultButtons ="true"
+        (ionCancel) = "showPicker = false"
+        >
+          <ion-buttons slot="buttons" >
+            <ion-button (click)="close()">Cancelar</ion-button>
+            <ion-button (click)="select()" color="primary">Seleccionar</ion-button>
+          </ion-buttons>
+        </ion-datetime>
+        
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
     <ion-item lines="none" class="IonInput">
       <ion-label  class="ion-label-item">{{encuentro.nombre_e1}}</ion-label>
-      <ion-input type="number" slot="end" class="campos"  [(ngModel)]="encuentro.res_e1"
-        >
+      <ion-input type="number" slot="end" class="campos"  [(ngModel)]="encuentro.res_e1">
       </ion-input>
     </ion-item>
 
@@ -25,6 +51,7 @@
     <ion-item lines="none" class="IonInput">
       <ion-label>Estado</ion-label>
       <ion-select class="campos" [(ngModel)]="encuentro.estado" >
+        <ion-select-option value="espera">Espera</ion-select-option>
         <ion-select-option value="iniciado">Iniciado</ion-select-option>
         <ion-select-option value="finalizado">Finalizado</ion-select-option>
       </ion-select>
