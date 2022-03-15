@@ -43,13 +43,25 @@ ion-grid{
     height: 35px;
     width: 110px;
 }
+.img_copa{
+    
+    height: 25px;
+    width: 50px;
+}
 
 .div_imglogo{
     display: flex;
     margin-top: auto;
     margin-bottom: auto;
-    margin-left: 3px;
-    //  border: 1px solid black;
+    margin-left: 6px;
+    //   border: 1px solid black;
+}
+
+.div_imgcopa{
+    display: flex;
+    margin-top: auto;
+    margin-bottom: auto;
+    // border: 1px solid black;
 }
 
 
@@ -68,7 +80,7 @@ ion-grid{
 
 .copa{
     font-size: 30px;
-    font-family: Cream Cake;
+    font-family: 'Cream Cake';
     background-image: linear-gradient(to left, violet, indigo, green, blue, yellow, orange, red);
     -webkit-background-clip: text;
     -moz-background-clip: text;
@@ -77,7 +89,7 @@ ion-grid{
 }
 
 
-// @font-face{
-//     font-family: Cream Cake;
-//     src: url(CreamCake.otf);
-// }
+@font-face{
+    font-family: 'Cream Cake';
+    src: url('/assets/icon/Cream.otf');
+}

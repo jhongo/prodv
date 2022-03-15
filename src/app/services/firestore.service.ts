@@ -25,7 +25,7 @@ export class FirestoreService {
   getCollectiongrupos<tipo>(path: string,  parametro: string, condicion: any, busqueda: string, fecha:string){
     const date = new Date();
     const collection = this.FireStore.collection<tipo>(path,
-      ref => ref.where(parametro,condicion,busqueda).where("fechae","==",fecha).where("estado","==", "iniciado")
+      ref => ref.where(parametro,condicion,busqueda).where("fechae","==",fecha).where("estado","==", "espera")
       // .orderBy('fecha','desc')
       // // .startAt(date)
       );
@@ -40,10 +40,19 @@ export class FirestoreService {
       );
     return collection.valueChanges();
   }
+  getgruposinit<tipo>(path: string,  parametro: string, condicion: any, busqueda: string, fecha:string){
+    const date = new Date();
+    const collection = this.FireStore.collection<tipo>(path,
+      ref => ref.where(parametro,condicion,busqueda).where("fechae","==",fecha).where("estado","==", "iniciado") 
+      // .orderBy('fecha','desc')
+      // // .startAt(date)
+      );
+    return collection.valueChanges();
+  }
   getCollection<tipo>(path: string,  parametro: string, condicion: any, busqueda: string){
     const date = new Date();
     const collection = this.FireStore.collection<tipo>(path,
-      ref => ref.where(parametro,condicion,busqueda).where("estado","==", "iniciado") 
+      ref => ref.where(parametro,condicion,busqueda).where("estado","==", "espera") 
       // .orderBy('fecha','desc')
       // // .startAt(date)
       );
@@ -68,10 +77,19 @@ export class FirestoreService {
     return collection.valueChanges();
   }
 
+  getpartidos_init<tipo>(path: string,  parametro: string, condicion: any, busqueda: string){
+    const date = new Date();
+    const collection = this.FireStore.collection<tipo>(path,
+      ref => ref.where(parametro,condicion,busqueda).where("estado","==", "iniciado") 
+      // .orderBy('fecha','desc')
+      // // .startAt(date)
+      );
+    return collection.valueChanges();
+  }
   getCollectionGru<tipo>(path: string,  parametro: string, condicion: any, busqueda: string){
     
     const collection= this.FireStore.collection<tipo>(path,
-      ref => ref.where(parametro,condicion,busqueda).orderBy('puntos','desc'));
+      ref => ref.where(parametro,condicion,busqueda).orderBy('puntos','desc').orderBy('d_g','desc').orderBy('nombre'));
     return collection.valueChanges();
   }
 

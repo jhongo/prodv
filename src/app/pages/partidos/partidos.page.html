@@ -44,7 +44,63 @@
   </ion-grid>
 
 </div>
+<!-- En juego -->
+<div *ngFor="let equipo of geneinit" class="partidos">
+  <ion-grid>
+  
+  <ion-row class="row_fecha">
+    <ion-col class="col_init" size="4">
+      <ion-label class="text_enjuego">En Juego</ion-label>
+    </ion-col>
+    <ion-col class="col_tex_fecha" size="4">
+      
+      <ion-label  class="label_fecha">
+        {{equipo.fecha | date : "dd/MM/yyy"}}
+      </ion-label>
+      
+    </ion-col>
+    <ion-col class="col_icon" size="4">
+       
+    </ion-col>
+  </ion-row>
+  
+  <ion-row>
+    
+    <ion-col class="col_nom_eq1" size="3">
+      <ion-label class="label_e1">
+        {{equipo.nombre_e1}}
+      </ion-label>
+    </ion-col>
+    
+    <ion-col class="col_img" size="2">
+      <ion-item lines="none" class="item_avatar">
+        <img class="con_img" [src]="equipo.escudo_e1">
+      </ion-item>
+      
+    </ion-col>
+    <ion-col class="col_vs" size="2">
+      <ion-label class="label_tittle_vs">
+        {{equipo.res_e1}}-{{equipo.res_e2}}
+      </ion-label>
+    </ion-col>
+    <ion-col class="col_img" size="2">
+      <ion-item lines="none" class="item_avatar">
+        <img class="con_img" [src]="equipo.escudo_e2">
+      </ion-item>
+    </ion-col>
+    
+    <ion-col class="col_nom_eq2" size="3">
+      <ion-label class="label_e2">
+        {{equipo.nombre_e2}}
+      </ion-label>
+    </ion-col>
+  </ion-row>
+  
+  
+</ion-grid>
+</div>
 
+<!-- Espera -->
 <div *ngFor="let equipo of gene" class="partidos">
     <ion-grid>
     
@@ -93,6 +149,7 @@
     
   </ion-grid>
 </div>
+
 <!-- finalizado -->
 <div *ngFor="let equipo of genef" class="partidos">
   <ion-grid>
@@ -159,6 +216,68 @@
     </ion-row>
   </ion-grid>
 </div>
+
+<!-- En juego -->
+<div *ngFor="let equipo of grupoinit1" class="partidos">
+
+  <ion-grid>
+
+    <ion-row class="row_fecha">
+
+      <ion-col class="col_init" size="4">
+        <ion-label class="text_enjuego">En Juego</ion-label>
+      </ion-col>
+      <ion-col class="col_tex_fecha" size="4">
+        
+        <ion-label  class="label_fecha">
+          {{equipo.fecha | date : "dd/MM/yyy"}}
+        </ion-label>
+        
+      </ion-col>
+      <ion-col class="col_icon" size="4">
+         
+      </ion-col>
+    </ion-row>
+
+
+
+    <ion-row>
+
+      <ion-col class="col_nom_eq1" size="3">
+        <ion-label class="label_e1">
+          {{equipo.nombre_e1}}
+        </ion-label>
+      </ion-col>
+
+      <ion-col class="col_img" size="2">
+        <ion-item lines="none" class="item_avatar">
+          <img class="con_img" [src]="equipo.escudo_e1">
+        </ion-item>
+
+      </ion-col>
+      <ion-col class="col_vs" size="2">
+        <ion-label class="label_tittle_vs">
+          {{equipo.res_e1}}-{{equipo.res_e2}}
+        </ion-label>
+      </ion-col>
+      <ion-col class="col_img" size="2">
+        <ion-item lines="none" class="item_avatar">
+          <img class="con_img" [src]="equipo.escudo_e2">
+        </ion-item>
+      </ion-col>
+
+      <ion-col class="col_nom_eq2" size="3">
+        <ion-label class="label_e2">
+          {{equipo.nombre_e2}}
+        </ion-label>
+      </ion-col>
+    </ion-row>
+
+
+  </ion-grid>
+</div>
+
+<!-- Espera -->
 <div *ngFor="let equipo of grupo1" class="partidos">
 
   <ion-grid>
@@ -210,7 +329,6 @@
   </ion-grid>
 </div>
 <!-- finalizado -->
-
 <div *ngFor="let equipo of grupof1" class="partidos">
 
   <ion-grid>
@@ -280,6 +398,61 @@
     </ion-row>
   </ion-grid>
 </div>
+<!-- En juego  -->
+<div *ngFor="let equipo of grupoinit2" class="partidos">
+  <ion-grid>
+    <ion-row class="row_fecha">
+      <ion-col class="col_init" size="4">
+        <ion-label class="text_enjuego">En juego</ion-label>
+      </ion-col>
+      <ion-col class="col_tex_fecha" size="4">
+        
+        <ion-label  class="label_fecha">
+          {{equipo.fecha | date : "dd/MM/yyy"}}
+        </ion-label>
+        
+      </ion-col>
+      <ion-col class="col_icon" size="4">
+         
+      </ion-col>
+    </ion-row>
+    <ion-row>
+
+      <ion-col class="col_nom_eq1" size="3">
+        <ion-label class="label_e1">
+          {{equipo.nombre_e1}}
+        </ion-label>
+      </ion-col>
+
+      <ion-col class="col_img" size="2">
+        <ion-item lines="none" class="item_avatar">
+          <img class="con_img" [src]="equipo.escudo_e1">
+        </ion-item>
+
+      </ion-col>
+      <ion-col class="col_vs" size="2">
+        <ion-label class="label_tittle_vs">
+          {{equipo.res_e1}}-{{equipo.res_e2}}
+        </ion-label>
+      </ion-col>
+      <ion-col class="col_img" size="2">
+        <ion-item lines="none" class="item_avatar">
+          <img class="con_img" [src]="equipo.escudo_e2">
+        </ion-item>
+      </ion-col>
+
+      <ion-col class="col_nom_eq2" size="3">
+        <ion-label class="label_e2">
+          {{equipo.nombre_e2}}
+        </ion-label>
+      </ion-col>
+    </ion-row>
+
+
+  </ion-grid>
+</div>
+
+<!-- Espera -->
 <div *ngFor="let equipo of grupo2" class="partidos">
 
   <ion-grid>
@@ -334,7 +507,6 @@
 </div>
 
 <!-- finalizado -->
-
 <div *ngFor="let equipo of grupof2" class="partidos">
   <ion-grid>
     <ion-row class="row_fecha">

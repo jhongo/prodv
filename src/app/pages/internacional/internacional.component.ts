@@ -18,7 +18,7 @@ export class InternacionalComponent implements OnInit {
     this.http.get<any>('https://v3.football.api-sports.io/fixtures?live=all',{
       headers:{
         'x-rapidapi-host' : 'v3.football.api-sports.io',
-        'x-rapidapi-key'  : '057eb7678fa2d34dca7c319ce9a57a7dr'
+        'x-rapidapi-key'  : '057eb7678fa2d34dca7c319ce9a57a7d'
       }
     }).subscribe(res =>{
       console.log(res);

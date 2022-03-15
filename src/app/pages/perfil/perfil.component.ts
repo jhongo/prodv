@@ -56,6 +56,7 @@ export class PerfilComponent implements OnInit {
   async ngOnInit() {
     const uid  = await this.firebaseauth.getUid();
     console.log(uid);
+    this.usuariorefe("Todo Deportes")
   }
   initClient(){  
     this.uid='';

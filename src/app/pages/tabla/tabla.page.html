@@ -125,29 +125,32 @@
         <ion-label class="text_encabezado">  
         </ion-label>
       </ion-col>
-      <ion-col size="4" class="col_encabezado">
+      <ion-col size="3" class="col_encabezado">
         <ion-label class="text_puntos">Equipo</ion-label>
       </ion-col>
-      <ion-col size="1" class="col_encabezado">
+      <ion-col size="1" class="col_encabezado_datos">
         <ion-label class="text_puntos">PT</ion-label>
       </ion-col>
-      <ion-col size="1" class="col_encabezado">
+      <ion-col size="1" class="col_encabezado_datos">
         <ion-label class="text_encabezado">PJ</ion-label>
       </ion-col>
-      <ion-col size="1" class="col_encabezado">
+      <ion-col size="1" class="col_encabezado_datos">
         <ion-label class="text_encabezado">PG</ion-label>
       </ion-col>
-      <ion-col size="1" class="col_encabezado">
+      <ion-col size="1" class="col_encabezado_datos">
         <ion-label class="text_encabezado">PE</ion-label>
       </ion-col>
-      <ion-col size="1" class="col_encabezado">
+      <ion-col size="1" class="col_encabezado_datos">
         <ion-label class="text_encabezado">PP</ion-label>
       </ion-col>
-      <ion-col size="1" class="col_encabezado">
+      <ion-col size="1" class="col_encabezado_datos">
         <ion-label class="text_encabezado">GF</ion-label>
       </ion-col>
-      <ion-col size="1" class="col_encabezado">
+      <ion-col size="1" class="col_encabezado_datos">
         <ion-label class="text_encabezado">GC</ion-label>
+      </ion-col>
+      <ion-col size="1" class="col_encabezado_datos">
+        <ion-label class="text_encabezado">DG</ion-label>
       </ion-col>
       
     </ion-row>
@@ -159,36 +162,39 @@
         <ion-col size="1" class="col_escudo">
           <img class="escudo" src={{equipo.escudo}} >
         </ion-col>
-        <ion-col size="3" class="col_equipo">
-          <ion-label class="text_puntos">{{equipo.nombre}}</ion-label>
+        <ion-col size="2" class="col_equipo">
+          <ion-label class="text_equipo">{{equipo.nombre}}</ion-label>
         </ion-col>
-        <ion-col size="1" class="col_encabezado">
+        <ion-col size="1" class="col_encabezado_datos">
           <ion-label class="text_puntos">{{equipo.puntos}}</ion-label>
         </ion-col>
-        <ion-col size="1" class="col_encabezado">
+        <ion-col size="1" class="col_encabezado_datos">
           <ion-label class="text_encabezado">{{equipo.p_j}}</ion-label>
         </ion-col>
-        <ion-col size="1" class="col_encabezado">
+        <ion-col size="1" class="col_encabezado_datos">
           <ion-label class="text_encabezado">{{equipo.p_g}}</ion-label>
         </ion-col>
-        <ion-col size="1" class="col_encabezado">
+        <ion-col size="1" class="col_encabezado_datos">
           <ion-label class="text_encabezado">{{equipo.p_e}}</ion-label>
         </ion-col>
-        <ion-col size="1" class="col_encabezado">
+        <ion-col size="1" class="col_encabezado_datos">
           <ion-label class="text_encabezado">{{equipo.p_p}}</ion-label>
         </ion-col>
-        <ion-col size="1" class="col_encabezado">
+        <ion-col size="1" class="col_encabezado_datos">
           <ion-label class="text_encabezado">{{equipo.g_f}}</ion-label>
         </ion-col>
-        <ion-col size="1" class="col_encabezado">
+        <ion-col size="1" class="col_encabezado_datos">
           <ion-label class="text_encabezado">{{equipo.g_c}}</ion-label>
+        </ion-col>
+        <ion-col size="1" class="col_encabezado_datos">
+          <ion-label class="text_encabezado">{{equipo.d_g}}</ion-label>
         </ion-col>
       </ion-row>
 
     </div>
   </ion-grid>
 
-  <ion-grid class="grid_encabezado" *ngIf="opcion=='detalles'">
+  <ion-grid class="grid_encabezado" *ngIf="opcion=='detalles'" >
     <ion-row class="row_grupo">
       <ion-label class="titulo">Grupo  2</ion-label>
     </ion-row>
@@ -197,7 +203,7 @@
         <ion-label class="text_encabezado">  
         </ion-label>
       </ion-col>
-      <ion-col size="4" class="col_encabezado">
+      <ion-col size="3" class="col_encabezado">
         <ion-label class="text_puntos">Equipo</ion-label>
       </ion-col>
       <ion-col size="1" class="col_encabezado">
@@ -221,6 +227,9 @@
       <ion-col size="1" class="col_encabezado">
         <ion-label class="text_encabezado">GC</ion-label>
       </ion-col>
+      <ion-col size="1" class="col_encabezado">
+        <ion-label class="text_encabezado">DG</ion-label>
+      </ion-col>
       
     </ion-row>
     <div class="grupos" *ngFor="let equipo2 of grupo2, let i = index">
@@ -231,8 +240,8 @@
         <ion-col size="1" class="col_escudo">
           <img class="escudo" src={{equipo2.escudo}} >
         </ion-col>
-        <ion-col size="3" class="col_equipo">
-          <ion-label class="text_puntos">{{equipo2.nombre}}</ion-label>
+        <ion-col size="2" class="col_equipo">
+          <ion-label class="text_equipo">{{equipo2.nombre}}</ion-label>
         </ion-col>
         <ion-col size="1" class="col_encabezado">
           <ion-label class="text_puntos">{{equipo2.puntos}}</ion-label>
@@ -254,6 +263,9 @@
         </ion-col>
         <ion-col size="1" class="col_encabezado">
           <ion-label class="text_encabezado">{{equipo2.g_c}}</ion-label>
+        </ion-col>
+        <ion-col size="1" class="col_encabezado">
+          <ion-label class="text_encabezado">{{equipo2.d_g}}</ion-label>
         </ion-col>
         
       </ion-row>
