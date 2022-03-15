@@ -90,6 +90,11 @@ const routes: Routes = [
     path: 'tab-campeonato',
     loadChildren: () => import('./pages/tab-campeonato/tab-campeonato.module').then( m => m.TabCampeonatoPageModule),
   },
+  {
+    path: 'details/:id',
+    loadChildren: () => import('./pages/details/details.module').then( m => m.DetailsPageModule)
+  },
+
 
 
 

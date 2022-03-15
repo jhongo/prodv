@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>details</ion-title>
+    <ion-buttons  slot="start">
+      <ion-back-button defaultHref="internacional" >
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content class="content-main" >
+  <div *ngFor="let detail of details" class="div-partido" >
+    <ion-grid>
+      <ion-row class="row-division" >
+        <ion-col class="col-division" size="12">
+          <ion-label>
+            {{detail.league.name}} - {{detail.league.round}}
+          </ion-label>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="row-encabezado">
+        <ion-col class="col-away" size="3" >
+
+          <ion-avatar class="avatar-aways">
+            <img src="{{detail.teams.home.logo}}">
+          </ion-avatar>
+        
+        </ion-col>
+
+        <ion-col class="col-marcador" size="6">
+          <ion-label class="label-marcador">
+            {{detail.goals.home}} - {{detail.goals.away}}
+          </ion-label>
+        </ion-col>
+
+        <ion-col class="col-team" size="3" >
+
+          <ion-avatar class="avatar-teams" >
+            <img src="{{detail.teams.away.logo}} ">
+          </ion-avatar>
+        
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div>
+
+</ion-content>

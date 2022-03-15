@@ -4,7 +4,7 @@
 
 
 <ion-content class="content_pri">
-  <div *ngFor="let match of matches, let i = index" class="div-partidos" >
+  <div *ngFor="let match of matches, let i = index" class="div-partidos" [routerLink]="['/details/' + match.fixture.id ]" >
 
     <ion-row class="row_fecha">  
 
@@ -60,6 +60,14 @@
         </ion-label>
       </ion-col>
     </ion-row> 
+
+    <ion-row class="row_fecha">  
+      <ion-col class="col_tex_fecha" size="12">
+        <ion-label  class="label_estadio">
+          {{match.fixture.status.long}}
+        </ion-label>
+      </ion-col>
+    </ion-row>
 
     <ion-row class="row_fecha">  
       <ion-col class="col_tex_fecha" size="12">
