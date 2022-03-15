@@ -40,6 +40,10 @@ export class HomePage implements OnInit {
   // }
 
   matches =[];
+  _category = 'sports';
+  _language = 'es';
+  _apiKey   = '154febca782d4153ab593e21a0a25248'; 
+  news =[];
 
   equiposInfo: Subscription;
 
@@ -83,6 +87,7 @@ export class HomePage implements OnInit {
   }
 
   opcion = "";
+  opciong="";
   fase="";
   numero=0;
 
@@ -100,18 +105,39 @@ export class HomePage implements OnInit {
     // this.getPartsemi();
     // this.getPartfinal();
     // this.getPartidos();665
-       this.opcion="Copa_Gualaquiza";
+     this.opciong="Noticias";
+     this.opcion="Copa_Gualaquiza";
 
-    // this.http.get<any>('https://v3.football.api-sports.io/fixtures?live=all',{
-    //   headers:{
-    //     'x-rapidapi-host' : 'v3.football.api-sports.io',
-    //     'x-rapidapi-key'  : '69bea9f7391f3ad9c00fb98c1ff06e03'
-    //   }
-    // }).subscribe(res =>{
-    //   console.log(res);
-    //   this.matches = res.response;
-    //   console.log(res.response);
-    // })
+
+
+    // API NOTICIAS DEPORTIVAS
+    this.http.get<any>('https://newsapi.org/v2/top-headlines',
+    {
+      params:{
+        'category' : this._category,
+        'language' : this._language, 
+        'apiKey'   : this._apiKey,
+      }
+    }
+    ).subscribe(resp =>{
+      console.log(resp);
+      this.news = resp.articles
+      console.log(this.news);
+    });
+
+    //API RESULTADOS DEPORTIVOS
+    this.http.get<any>('https://v3.football.api-sports.io/fixtures?live=all',{
+      headers:{
+        'x-rapidapi-host' : 'v3.football.api-sports.io',
+        'x-rapidapi-key'  : '057eb7678fa2d34dca7c319ce9a57a7d'
+      }
+    }).subscribe(res =>{
+      console.log(res);
+      this.matches = res.response;
+      console.log(res.response);
+    });
+
+
   }
   
 
@@ -120,6 +146,13 @@ export class HomePage implements OnInit {
     console.log(opc);
     this.opcion=opc;
     
+
+  }
+
+  segmentChange(event: any){
+    const option = event.detail.value;
+    console.log(option);
+    this.opciong=option;
 
   }
 

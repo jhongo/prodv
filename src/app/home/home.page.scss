@@ -304,7 +304,7 @@ text-align: center;
 .content-liga-pro{
   text-align: center;
   align-content: center;
-  background: #fff;
+  background: rgb(34, 10, 10);
   padding-bottom: 250px;
   padding-top:100px ;
   position: absolute;
@@ -313,7 +313,7 @@ text-align: center;
 .content-internacional{
   text-align: center;
   align-content: center;
-  background: #fff;
+  background: rgb(201, 34, 34);
   padding-bottom: 250px;
   padding-top:100px ;
   position: absolute; 
@@ -808,3 +808,193 @@ text-align: center;
   color: white ;
 }
 
+// CSS DE NOTICIAS
+
+.content_pri{
+  --background: #ffffff;
+}
+.news-card{
+  --background: #dee2e6;
+  align-items: center;
+  // --color: #023047;
+}
+.new-image{
+
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.label-new-name{
+  margin-left: 5px;
+  margin-top: 5px;
+  color: #344e41;
+}
+.label-new-title{
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: 18px;
+  color: #000000;
+  text-align: justify;
+}
+
+.label-new-description{
+  color: #264653;
+  font-size: 15px;
+  overflow: hidden;
+  text-overflow: clip;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+         line-clamp: 1; 
+ -webkit-box-orient: vertical;
+
+}
+
+.label-new-author{
+  color: #344e41;
+  
+}
+.label-new-publi{
+  color: #344e41;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+         line-clamp: 1; 
+ -webkit-box-orient: vertical;
+}
+.news-icon{
+  color: #344e41;
+}
+
+// CSS DE FUTBOL INTERNACIONAL
+.content_pri{
+  --background: #a8dadc;
+}
+
+
+.div-partidos{
+  background: white;
+  border: 1px solid #f3eded;  
+  // border-radius: 10px;  
+  --color: #000000;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+  
+}
+
+.row_fecha{
+  text-align: center;
+}
+
+.col_tex_fecha{
+
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 9px;
+  text-align: center;
+
+}
+
+.col_tex_country{
+
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 9px;
+  text-align: left;
+
+}
+.col_tex_league{
+
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 9px;
+  text-align: right;
+
+}
+
+.label_fecha{
+
+  font-size: 13px;
+  font-weight: bold;  
+  color: black;
+
+}
+.label_league{
+
+  font-size: 13px;
+  font-weight: bold;  
+  color: #001d3d;
+
+}
+.label_estadio{
+
+  font-size: 13px;
+  font-weight: bold;  
+  color: #78290f;
+
+}
+
+.col_nom_eq1{
+  //  border: 1px black solid;
+   text-align: right;
+  margin-top: auto;
+  margin-bottom: auto;
+  }
+.label_e1{
+      font-size: 14px;
+      text-align: right;
+      color: black;
+    }
+.col_img{
+      // border: 1px black solid;
+      height: auto;
+      margin-top: auto;
+      margin-bottom: auto;
+      margin-left: auto;
+      margin-right: auto;
+}
+
+.item_avatar{
+
+  display: inline-block;
+  --background: white;
+  margin-left: auto;
+  margin-right: auto;
+ 
+  
+}
+
+.col_nom_eq2{
+  // border: 1px black solid;
+  text-align: left;
+ margin-top: auto;
+ margin-bottom: auto;
+ }
+ .label_e2{
+  font-size: 14px;
+  text-align: left;
+  color: black;
+}
+
+
+.col_vs{
+  margin-top: auto;
+  margin-bottom: auto;
+  text-align: center;
+  display: flex;
+  //  border: 1px blue solid;
+  background: #075E54;
+  color: white ;
+}
+
+.label_tittle_vs{
+  margin-left: auto;
+  margin-right: auto;
+   font-size: 15px;
+   // border: 1px black solid;  
+   font-weight: bold;
+   
+ }

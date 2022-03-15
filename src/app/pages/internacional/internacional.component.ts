@@ -15,6 +15,7 @@ export class InternacionalComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
     this.http.get<any>('https://v3.football.api-sports.io/fixtures?live=all',{
       headers:{
         'x-rapidapi-host' : 'v3.football.api-sports.io',
@@ -25,6 +26,7 @@ export class InternacionalComponent implements OnInit {
       this.matches = res.response;
       console.log(res.response);
     })
+    
   }
 
 }
