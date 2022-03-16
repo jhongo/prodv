@@ -21,7 +21,7 @@
 
 <!-- SEGMENTO GENERAL -->
 
-  <ion-toolbar mode="ios">
+  <!-- <ion-toolbar mode="ios">
 
   <ion-segment mode="ios"  (ionChange)="segmentChange($event)" value="Noticias" scrollable>
 
@@ -35,11 +35,11 @@
 
   </ion-segment> 
 
-</ion-toolbar>
+</ion-toolbar> -->
 
 <!-- SEGMENTOS PARTIDOS -->
 
-<ion-toolbar mode="ios" *ngIf="opciong=='Partidos'" >
+<ion-toolbar mode="ios"  > <!--//*ngIf="opciong=='Partidos'" -->
 
   <ion-segment mode="ios"  (ionChange)="changeSegment($event)" value="Copa_Gualaquiza" scrollable>
 
@@ -61,48 +61,10 @@
 
 <!-- CONTENIDO DE TIPO NOTICIA -->
 
-<ion-content class="content_pri" *ngIf="opciong=='Noticias'">
-
-  <ion-card *ngFor="let new of news" class="news-card" mode="ios" >
-   <img class="new-image" src="{{new.urlToImage}}" >
-   <ion-card-subtitle> 
-    <ion-label class="label-new-name" >
-      {{new.source.name}}
-    </ion-label> </ion-card-subtitle>
-
-   <ion-card-title class="label-new-title" > {{new.title}} </ion-card-title>
-   <!-- <ion-card-content class="label-new-description" >{{new.description}}</ion-card-content> -->
-   
-   <ion-grid>
-    <ion-row>
-      <ion-col size="3">
-        <ion-icon class="news-icon" name="calendar-outline"></ion-icon>
-        <ion-label class="label-new-publi" >
-          {{new.publishedAt}}
-        </ion-label>
-      </ion-col>
-      <ion-col size="5" >
-        <ion-icon class="news-icon" name="person-outline"></ion-icon>
-        <ion-label class="label-new-author" >
-          {{new.author}}
-        </ion-label>
-      </ion-col>
-      <ion-col size="4" >
-        <ion-icon class="news-icon"  name="link-sharp">
-        </ion-icon>
-        <ion-label class="label-new-author" >
-          Ver mas..
-        </ion-label>
-      </ion-col>
-    </ion-row>
-   </ion-grid>
-  </ion-card>
-
-</ion-content>
 
 
 <!-- PAGINA DE COPA GUALAQUIZA -->
-<ion-content *ngIf="opciong=='Partidos'" >
+<ion-content> <!-- *ngIf="opciong=='Partidos'" -->
 
 <ion-content class="page-content"  *ngIf="opcion=='Copa_Gualaquiza'" >
   <div class="encabezado">

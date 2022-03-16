@@ -42,7 +42,7 @@ export class HomePage implements OnInit {
   matches =[];
   _category = 'sports';
   _language = 'es';
-  _apiKey   = '154febca782d4153ab593e21a0a25248'; 
+  _apiKey   = 'cbb27a56d7c0f51b7e10fca6afa34bbf'; 
   news =[];
 
   equiposInfo: Subscription;
@@ -106,9 +106,9 @@ export class HomePage implements OnInit {
     this.http.get<any>('https://newsapi.org/v2/top-headlines',
     {
       params:{
-        'category' : this._category,
-        'language' : this._language, 
-        'apiKey'   : this._apiKey,
+        'categories' : this._category,
+        'languages' : this._language, 
+        'access_key'   : this._apiKey,
       }
     }
     ).subscribe(resp =>{
