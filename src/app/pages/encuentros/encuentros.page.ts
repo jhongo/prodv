@@ -186,16 +186,6 @@ export class EncuentrosPage implements OnInit {
       this.gru2=false;
       this.gru1=false;
     }else if(this.numero==6){
-      this.titulo="Fecha 6";
-      this.grupos("Fecha 6");
-      this.gruposfinalizados("Fecha 6");
-      this.partidos_init_fases("Fecha 6");
-      this.genee=[];
-      this.genef=[];
-      this.geneinit=[];
-      this.gru2=false;
-      this.gru1=false;
-    }else if(this.numero==7){
       this.titulo="Cuartos de final"
       this.prueba("Cuartos de final");
       this.pruebafina("Cuartos de final");
@@ -208,7 +198,7 @@ export class EncuentrosPage implements OnInit {
       this.grupoinit2=[];
       this.gru2=false;
       this.gru1=false;
-    }else if(this.numero==8){
+    }else if(this.numero==7){
       this.titulo="Semifinal";
       this.prueba("Semifinal");
       this.pruebafina("Semifinal");
@@ -221,7 +211,7 @@ export class EncuentrosPage implements OnInit {
       this.grupoinit2=[];
       this.gru2=false;
       this.gru1=false;
-    }else if(this.numero==9){
+    }else if(this.numero==8){
       this.titulo="Final";
       this.prueba("Final");
       this.pruebafina("Final");
@@ -406,16 +396,6 @@ export class EncuentrosPage implements OnInit {
       this.gru2=false;
       this.gru1=false;
     }else if(this.numero==6){
-      this.titulo="Fecha 6";
-      this.grupos("Fecha 6");
-      this.gruposfinalizados("Fecha 6");
-      this.partidos_init_fases("Fecha 6");
-      this.genee=[];
-      this.genef=[];
-      this.geneinit=[];
-      this.gru2=false;
-      this.gru1=false;
-    }else if(this.numero==7){
       this.titulo="Cuartos de final"
       this.prueba("Cuartos de final");
       this.pruebafina("Cuartos de final");
@@ -428,7 +408,7 @@ export class EncuentrosPage implements OnInit {
       this.grupoinit2=[];
       this.gru2=false;
       this.gru1=false;
-    }else if(this.numero==8){
+    }else if(this.numero==7){
       this.titulo="Semifinal";
       this.prueba("Semifinal");
       this.pruebafina("Semifinal");
@@ -441,7 +421,7 @@ export class EncuentrosPage implements OnInit {
       this.grupoinit2=[];
       this.gru2=false;
       this.gru1=false;
-    }else if(this.numero==9){
+    }else if(this.numero==8){
       this.titulo="Final";
       this.prueba("Final");
       this.pruebafina("Final");
@@ -723,13 +703,7 @@ export class EncuentrosPage implements OnInit {
           label: 'Fecha 5',
           value: 'Fecha 5'
         },
-        {
-          name: 'radio2',
-          type: 'radio',
-          cssClass: 'input',
-          label: 'Fecha 6',
-          value: 'Fecha 6'
-        },
+        
         
 
       ],
@@ -763,11 +737,7 @@ export class EncuentrosPage implements OnInit {
             }if (data === 'Fecha 5') {
               this.encuentro.fechae=data;
               this.encuentro.numero=5;
-            }if (data === 'Fecha 6') {
-              this.encuentro.fechae=data;
-              this.encuentro.numero=6;
-            }
-                       
+            }     
 
           }
         }
@@ -838,7 +808,7 @@ export class EncuentrosPage implements OnInit {
               this.fecha = false;
               this.grupo1 = false;
               this.grupo2 = false;
-              this.encuentro.numero=7;
+              this.encuentro.numero=6;
               this.encuentro.nombre_e1 = "";
               this.encuentro.nombre_e2 = "";
               this.encuentro.fechae = "";
@@ -852,7 +822,7 @@ export class EncuentrosPage implements OnInit {
               this.fecha = false;
               this.grupo1 = false;
               this.grupo2 = false;
-              this.encuentro.numero=8;
+              this.encuentro.numero=7;
               this.encuentro.nombre_e1 = "";
               this.encuentro.nombre_e2 = "";
               this.encuentro.fechae = "";
@@ -865,7 +835,7 @@ export class EncuentrosPage implements OnInit {
               this.fecha = false;
               this.grupo1 = false;
               this.grupo2 = false;
-              this.encuentro.numero=9;
+              this.encuentro.numero=8;
               this.encuentro.nombre_e1 = "";
               this.encuentro.nombre_e2 = "";
               this.encuentro.fechae = "";
@@ -890,7 +860,7 @@ export class EncuentrosPage implements OnInit {
           name: 'radio1',
           type: 'radio',
           cssClass: 'input',
-          label: 'Grupo 1',
+          label: 'Grupo A',
           value: 'Grupo 1',
           checked: true
         },
@@ -898,7 +868,7 @@ export class EncuentrosPage implements OnInit {
           name: 'radio2',
           type: 'radio',
           cssClass: 'input',
-          label: 'Grupo 2',
+          label: 'Grupo B',
           value: 'Grupo 2'
         },
 

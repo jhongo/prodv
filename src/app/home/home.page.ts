@@ -98,17 +98,9 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.getPartidos();
-
-    // this.getPartido("Fecha 1");
-    // this.fase="Fecha 1";
-    // this.getPartCuar();
-    // this.getPartsemi();
-    // this.getPartfinal();
-    // this.getPartidos();665
      this.opciong="Noticias";
      this.opcion="Copa_Gualaquiza";
-
-
+    
 
     // API NOTICIAS DEPORTIVAS
     this.http.get<any>('https://newsapi.org/v2/top-headlines',
@@ -145,15 +137,18 @@ export class HomePage implements OnInit {
     const opc = event.detail.value;
     console.log(opc);
     this.opcion=opc;
-    
-
+  
   }
 
   segmentChange(event: any){
     const option = event.detail.value;
     console.log(option);
     this.opciong=option;
-
+    if(this.opciong=="Partidos"){
+      this.opcion="Copa_Gualaquiza";
+    }else{
+      this.opciong=option;
+    }
   }
 
  

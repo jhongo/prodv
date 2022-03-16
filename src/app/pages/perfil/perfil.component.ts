@@ -56,7 +56,7 @@ export class PerfilComponent implements OnInit {
   async ngOnInit() {
     const uid  = await this.firebaseauth.getUid();
     console.log(uid);
-    this.usuariorefe("Todo Deportes")
+    
   }
   initClient(){  
     this.uid='';
@@ -110,13 +110,21 @@ export class PerfilComponent implements OnInit {
       this.referente=false;
       this.referencias(email);
       this.getreferencias();
-      console.log("admin");
+      // console.log("admin");
+      this.usuariorefe("Todo Deportes");
+      this.usuariorefe("Ruth");
+      this.usuariorefe("Chontillo");
+      this.usuariorefe("Miguel");
+      this.usuariorefe("La Tertulia");
+
+
+
     }else{
       this.admin=false;
       this.referente=false;
       this.referencias(email);
 
-      console.log("user");
+      // console.log("user");
     }
 
   }
@@ -127,13 +135,13 @@ export class PerfilComponent implements OnInit {
       if(res.length){
         this.refe=res[0];
         this.referente=true;
-        console.log("Si hay referencia");
-        console.log(res);
-        console.log(this.refe)
+        // console.log("Si hay referencia");
+        // console.log(res);
+        // console.log(this.refe)
 
         // this.usuariorefe(this.refe.nombre)
       }else{
-        console.log("No hay referencia");
+        // console.log("No hay referencia");
       }
     });
   }
@@ -141,7 +149,7 @@ export class PerfilComponent implements OnInit {
   usuariorefe(referencia:string){
     const path ="Usuarios";
     this.firestoreService.getusersrefe<DataUser>(path,"referencia","==", referencia).subscribe(res =>{
-      console.log("num: "+res.length);
+      console.log(referencia+ " num: "+res.length);
       this.num=res.length;
     });
   }
