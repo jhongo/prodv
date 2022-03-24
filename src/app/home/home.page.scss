@@ -194,9 +194,10 @@ margin-bottom: auto;
 .partidos{
   background: white;
   border: 1px solid #f3eded;  
-  // border-radius: 10px;  
+  border-radius: 10px;  
   --color: #000000;
   width: 95%;
+  margin-top: 10px;
   margin-left: auto;
   margin-right: auto;
   height: auto;
@@ -231,6 +232,7 @@ margin-bottom: auto;
 
 .div_cuarto{
   background: #075E54;
+  border-radius: 10px;
   margin-bottom: 5px;
   width: 98%;
   margin-right:auto;
@@ -507,7 +509,7 @@ margin-bottom: auto;
   background: white;
   border: 1px solid #f3eded;  
   // border-radius: 10px;  
-  --color: #000000;
+  --color: #020a24;
   width: 95%;
   margin-left: auto;
   margin-right: auto;
@@ -547,6 +549,7 @@ margin-bottom: auto;
 }
 .div_grupo{
   background: white;
+  border-radius: 10px;
   margin-bottom: 5px;
   width: 98%;
   margin-right:auto;
@@ -878,7 +881,7 @@ text-align: center;
 .div-partidos{
   background: white;
   border: 1px solid #f3eded;  
-  // border-radius: 10px;  
+  margin-top: 2px;  
   --color: #000000;
   width: 95%;
   margin-left: auto;
@@ -983,6 +986,7 @@ text-align: center;
 
 
 .col_vs{
+  border-radius: 10px;
   margin-top: auto;
   margin-bottom: auto;
   text-align: center;
