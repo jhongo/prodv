@@ -15,6 +15,7 @@ ion-toolbar{
 .div_cuarto{
     background: #075E54;
     margin-bottom: 5px;
+    border-radius: 10px;
     width: 98%;
     margin-right:auto;
     margin-left: auto;
@@ -35,22 +36,26 @@ ion-toolbar{
   }
   
 .text_ant{
-   font-size: 10px;
-  //  border: 1px red solid;  
+    font-size: 10px;
+    // border: 1px red solid;  
   font-weight: bold;
   color: white;
+  display: block;
    }
   
 .col_sig{
     //  border: 1px black solid;  
-     text-align: right;
+     text-align: right;     
+ margin-top: auto;
+ margin-bottom: auto;
     
   }
 .text_sig{
-   font-size: 10px;
-  //  border: 1px red solid;
-   font-weight: bold;
-   color: white;
+    font-size: 10px;
+    // border: 1px red solid;
+    font-weight: bold;
+    display: block;
+    color: white;
 }
 .col_grupo1{
     
@@ -78,7 +83,9 @@ ion-toolbar{
 .div_grupo{
     background: white;
     margin-bottom: 5px;
-    width: 98%;
+    border-radius: 10px;
+    margin-top: 5px;
+    width: 97%;
     margin-right:auto;
     margin-left: auto;
 }
@@ -135,12 +142,12 @@ ion-toolbar{
 }
 .col_vs{
     margin-top: auto;
-    margin-bottom: auto;
-    text-align: center;
-    display: flex;
-    //  border: 1px blue solid;
-    background: #075E54;
-    color: white ;
+  margin-bottom: auto;
+  text-align: center;
+  display: flex;
+  border-radius: 10px;
+  background: #075E54;
+  color: white ;
 }
 .col_grupo{
     margin-left: auto;
@@ -217,13 +224,14 @@ margin-bottom: auto;
 }
 .partidos{
     background: white;
-  border: 1px solid #f3eded;  
-  // border-radius: 10px;  
-  --color: #000000;
-  width: 95%;
-  margin-left: auto;
-  margin-right: auto;
-  height: auto;
+    border: 1px solid #f3eded;  
+    border-radius: 10px;  
+    --color: #000000;
+    width: 95%;
+    margin-top: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
 }
 
 .item_avatar{

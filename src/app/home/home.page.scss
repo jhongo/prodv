@@ -14,7 +14,7 @@ ion-segment{
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  margin-top: 3%;
+  // margin-top: 3%;
   // --color: black;
 }
 ion-segment-button{
@@ -41,16 +41,6 @@ ion-segment-button{
   font-weight: bold;
   text-align: left;
   margin-left: 10px;
-}
-
-.col_vs{
-  margin-top: auto;
-  margin-bottom: auto;
-  text-align: center;
-  display: flex;
-  //  border: 1px blue solid;
-  background: #075E54;
-  color: white ;
 }
 
 
@@ -108,10 +98,13 @@ ion-segment-button{
 }
 .col_tex_fecha{
 
+  margin-top: auto;
+  margin-bottom: auto;
   margin-left: auto;
   margin-right: auto;
   font-size: 9px;
   text-align: center;
+  color: black;
 
 }
 .col_tex_grupo{
@@ -137,7 +130,6 @@ ion-segment-button{
   font-size: 13px;
   font-weight: bold;  
   color: black;
-
 
 }
 .label_grupo{
@@ -194,9 +186,10 @@ margin-bottom: auto;
 .partidos{
   background: white;
   border: 1px solid #f3eded;  
-  // border-radius: 10px;  
+  border-radius: 10px;  
   --color: #000000;
   width: 95%;
+  margin-top: 2px;
   margin-left: auto;
   margin-right: auto;
   height: auto;
@@ -225,13 +218,13 @@ margin-bottom: auto;
 
   margin-bottom: 60px;
  
-  
 }  
 
 
 .div_cuarto{
   background: #075E54;
   margin-bottom: 5px;
+  border-radius: 10px;
   width: 98%;
   margin-right:auto;
   margin-left: auto;
@@ -371,7 +364,7 @@ ion-toolbar{
   margin-bottom: auto;
   text-align: center;
   display: flex;
-  //  border: 1px blue solid;
+  border-radius: 10px;
   background: #075E54;
   color: white ;
 }
@@ -418,14 +411,8 @@ ion-toolbar{
   text-align: right;
   // height: 30px;
 }
-.col_tex_fecha{
 
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 9px;
-  text-align: center;
 
-}
 .col_tex_grupo{
   margin-left: auto;
   margin-right: auto;
@@ -444,14 +431,6 @@ ion-toolbar{
 
 }
 
-.label_fecha{
-
-  font-size: 13px;
-  font-weight: bold;  
-  color: black;
-
-
-}
 .label_grupo{
   font-size: 13px;
   font-weight: bold;  
@@ -503,17 +482,7 @@ margin-bottom: auto;
   margin-right: auto;
 }
 
-.partidos{
-  background: white;
-  border: 1px solid #f3eded;  
-  // border-radius: 10px;  
-  --color: #000000;
-  width: 95%;
-  margin-left: auto;
-  margin-right: auto;
-  height: auto;
-  
-}
+
 
 .item_avatar{
 
@@ -548,7 +517,9 @@ margin-bottom: auto;
 .div_grupo{
   background: white;
   margin-bottom: 5px;
-  width: 98%;
+  margin-top: 5px;
+  border-radius: 10px;
+  width: 97%;
   margin-right:auto;
   margin-left: auto;
 }
@@ -579,13 +550,8 @@ margin-bottom: auto;
  
  
 
-.div_cuarto{
-  background: #075E54;
-  margin-bottom: 5px;
-  width: 98%;
-  margin-right:auto;
-  margin-left: auto;
-}
+
+
 .div_encabezado{
   background: #075E54;
   margin-bottom: 5px;
@@ -613,7 +579,7 @@ text-align: center;
 }
 
 .col_ant{
-//  border: 1px black solid;
+  // border: 1px black solid;
  text-align: left;
  margin-top: auto;
  margin-bottom: auto;
@@ -621,21 +587,25 @@ text-align: center;
 
 .text_ant{
 font-size: 10px;
-//  border: 1px red solid;  
+  // border: 1px red solid;  
 font-weight: bold;
 color: white;
+display: block;
 }
 
 .col_sig{
-//  border: 1px black solid;  
- text-align: right;
+  // border: 1px black solid;  
+text-align: right;
+ margin-top: auto;
+ margin-bottom: auto;
 
 }
 .text_sig{
-font-size: 10px;
-//  border: 1px red solid;
-font-weight: bold;
-color: white;
+  font-size: 10px;
+  // border: 1px red solid;
+  font-weight: bold;
+  display: block;
+  color: white;
 }
 
 .col_grupo{
@@ -709,14 +679,6 @@ text-align: center;
   text-align: center;
 }
 
-.col_tex_fecha{
-
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 9px;
-  text-align: center;
-
-}
 
 .col_tex_country{
 
@@ -735,13 +697,7 @@ text-align: center;
 
 }
 
-.label_fecha{
 
-  font-size: 13px;
-  font-weight: bold;  
-  color: black;
-
-}
 .label_league{
 
   font-size: 13px;
@@ -800,15 +756,6 @@ text-align: center;
 }
 
 
-.col_vs{
-  margin-top: auto;
-  margin-bottom: auto;
-  text-align: center;
-  display: flex;
-  //  border: 1px blue solid;
-  background: #075E54;
-  color: white ;
-}
 
 // CSS DE NOTICIAS
 
@@ -875,30 +822,13 @@ text-align: center;
 }
 
 
-.div-partidos{
-  background: white;
-  border: 1px solid #f3eded;  
-  // border-radius: 10px;  
-  --color: #000000;
-  width: 95%;
-  margin-left: auto;
-  margin-right: auto;
-  height: auto;
-  
-}
+
 
 .row_fecha{
   text-align: center;
 }
 
-.col_tex_fecha{
 
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 9px;
-  text-align: center;
-
-}
 
 .col_tex_country{
 
@@ -917,13 +847,6 @@ text-align: center;
 
 }
 
-.label_fecha{
-
-  font-size: 13px;
-  font-weight: bold;  
-  color: black;
-
-}
 .label_league{
 
   font-size: 13px;
@@ -981,16 +904,6 @@ text-align: center;
   color: black;
 }
 
-
-.col_vs{
-  margin-top: auto;
-  margin-bottom: auto;
-  text-align: center;
-  display: flex;
-  //  border: 1px blue solid;
-  background: #075E54;
-  color: white ;
-}
 
 .label_tittle_vs{
   margin-left: auto;

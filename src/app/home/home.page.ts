@@ -368,16 +368,6 @@ export class HomePage implements OnInit {
       this.gru2=false;
       this.gru1=false;
     }else if(this.numero==6){
-      this.titulo="Fecha 6";
-      this.grupos("Fecha 6");
-      this.gruposfinalizados("Fecha 6");
-      this.partidos_init_fases("Fecha 6");
-      this.gene=[];
-      this.genef=[];
-      this.geneinit=[];
-      this.gru2=false;
-      this.gru1=false;
-    }else if(this.numero==7){
       this.titulo="Cuartos de final"
       this.prueba("Cuartos de final");
       this.pruebafina("Cuartos de final");
@@ -390,7 +380,7 @@ export class HomePage implements OnInit {
       this.grupoinit2=[];
       this.gru2=false;
       this.gru1=false;
-    }else if(this.numero==8){
+    }else if(this.numero==7){
       this.titulo="Semifinal";
       this.prueba("Semifinal");
       this.pruebafina("Semifinal");
@@ -403,7 +393,7 @@ export class HomePage implements OnInit {
       this.grupoinit2=[];
       this.gru2=false;
       this.gru1=false;
-    }else if(this.numero==9){
+    }else if(this.numero==8){
       this.titulo="Final";
       this.prueba("Final");
       this.pruebafina("Final");
@@ -478,16 +468,6 @@ export class HomePage implements OnInit {
       this.gru2=false;
       this.gru1=false;
     }else if(this.numero==6){
-      this.titulo="Fecha 6";
-      this.grupos("Fecha 6");
-      this.gruposfinalizados("Fecha 6");
-      this.partidos_init_fases("Fecha 6");
-      this.gene=[];
-      this.genef=[];
-      this.geneinit=[];
-      this.gru2=false;
-      this.gru1=false;
-    }else if(this.numero==7){
       this.titulo="Cuartos de final"
       this.prueba("Cuartos de final");
       this.pruebafina("Cuartos de final");
@@ -500,7 +480,7 @@ export class HomePage implements OnInit {
       this.grupoinit2=[];
       this.gru2=false;
       this.gru1=false;
-    }else if(this.numero==8){
+    }else if(this.numero==7){
       this.titulo="Semifinal";
       this.prueba("Semifinal");
       this.pruebafina("Semifinal");
@@ -513,7 +493,7 @@ export class HomePage implements OnInit {
       this.grupoinit2=[];
       this.gru2=false;
       this.gru1=false;
-    }else if(this.numero==9){
+    }else if(this.numero==8){
       this.titulo="Final";
       this.prueba("Final");
       this.pruebafina("Final");

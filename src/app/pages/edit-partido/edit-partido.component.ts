@@ -145,7 +145,7 @@ export class EditPartidoComponent implements OnInit, OnDestroy {
           console.log("Gano: " + this.encuentro.nombre_e1);
           this.equipo1.puntos = this.equipo1.puntos + 3;
           this.equipo1.p_j = this.equipo1.p_j + 1;
-          this.equipo1.p_g = this.equipo1.p_e + 1;
+          this.equipo1.p_g = this.equipo1.p_g + 1;
           this.equipo1.g_f = this.equipo1.g_f + this.encuentro.res_e1;
           this.equipo1.g_c = this.equipo1.g_c + this.encuentro.res_e2;
           this.equipo1.d_g= this.equipo1.g_f - this.equipo1.g_c;
@@ -156,7 +156,7 @@ export class EditPartidoComponent implements OnInit, OnDestroy {
           console.log("resultado: " + this.encuentro.res_e1 + "-" + this.encuentro.res_e2);
           console.log("Gano: " + this.encuentro.nombre_e2);
           this.equipo1.p_j = this.equipo1.p_j + 1;
-          this.equipo1.p_p = this.equipo1.p_e + 1;
+          this.equipo1.p_p = this.equipo1.p_p + 1;
           this.equipo1.g_f = this.equipo1.g_f + this.encuentro.res_e1;
           this.equipo1.g_c = this.equipo1.g_c + this.encuentro.res_e2;
           this.equipo1.d_g= this.equipo1.g_f - this.equipo1.g_c;
@@ -205,7 +205,7 @@ export class EditPartidoComponent implements OnInit, OnDestroy {
           console.log("Gano: " + this.encuentro.nombre_e1);
           
           this.equipo2.p_j = this.equipo2.p_j + 1;
-          this.equipo2.p_p = this.equipo2.p_e + 1;
+          this.equipo2.p_p = this.equipo2.p_p + 1;
           this.equipo2.g_f = this.equipo2.g_f + this.encuentro.res_e2;
           this.equipo2.g_c = this.equipo2.g_c + this.encuentro.res_e1;
           this.equipo2.d_g= this.equipo2.g_f - this.equipo2.g_c;
@@ -215,7 +215,7 @@ export class EditPartidoComponent implements OnInit, OnDestroy {
           console.log("Gano: " + this.encuentro.nombre_e2);
           this.equipo2.puntos = this.equipo2.puntos + 3;
           this.equipo2.p_j = this.equipo2.p_j + 1;
-          this.equipo2.p_g = this.equipo2.p_e + 1;
+          this.equipo2.p_g = this.equipo2.p_g + 1;
           this.equipo2.g_f = this.equipo2.g_f + this.encuentro.res_e2;
           this.equipo2.g_c = this.equipo2.g_c + this.encuentro.res_e1;
           this.equipo2.d_g= this.equipo2.g_f - this.equipo2.g_c;
