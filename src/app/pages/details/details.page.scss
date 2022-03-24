@@ -21,20 +21,70 @@
     text-align: center;
 }
 
-
 .col-division{
     text-align: center;
 }
 
 .avatar-aways{
-    display: inline-block;
+    // display: inline-block;
     --background: white;
     margin-left: auto;
-    margin-right: auto;
+    // margin-right: auto;
 }
 .avatar-teams{
-    display: inline-block;
+    // display: inline-block;
     --background: white;
-    margin-left: auto;
+    // margin-left: auto;
     margin-right: auto;
+}
+
+.col-name-team{
+    text-align: center;
+}
+.col-time-status{
+    text-align: center;
+}
+.col-venue-name{
+    text-align: center;
+}
+.col-venue-city{
+    text-align: left;
+}
+.segment-values{
+    --background: #ffffff;
+}
+
+.label-text-segment{
+    color: #fdf0d5;
+}
+
+ion-segment-button{
+    --background: #4f772d;
+    // --background-checked: #4ad66d  ;
+    --background-hover: #8ac926 ;
+}
+
+.main-content{
+    width: 100%;
+    height: 100%;
+    
+}
+
+.container-detalles{
+    width: 100%;
+    height: 100%;
+    background: #31572c;
+}
+
+.main-content{
+    width: 100%;
+    height: auto;
+
+}
+
+.container-otros{
+    width: 100%;
+    height: 100%;
+    background: #4f772d;
+
 }

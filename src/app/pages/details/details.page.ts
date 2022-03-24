@@ -11,13 +11,14 @@ export class DetailsPage implements OnInit {
 
   detailsId: string;
   details;
-
+  opcion="";
   constructor(
     private activateddRouter: ActivatedRoute, 
     private http: HttpClient,
   ) { }
 
   ngOnInit() {
+    this.opcion="detalles";
     this.detailsId = this.activateddRouter.snapshot.paramMap.get('id');
     this.http.get<any>('https://v3.football.api-sports.io/fixtures',{
         headers:{
@@ -32,6 +33,12 @@ export class DetailsPage implements OnInit {
       this.details = resp.response
     })
   
+  }
+
+  changeSegment(event: any) {
+    const opc = event.detail.value;
+    console.log(opc);
+    this.opcion=opc;
   }
 
 }
