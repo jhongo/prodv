@@ -1,9 +1,10 @@
 import { AfterContentChecked, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { SwiperOptions } from 'swiper';
-import { SwiperComponent } from 'swiper/angular';
-import 'swiper/less';
-import 'swiper/less/navigation';
-import 'swiper/less/pagination';
+import { Router } from '@angular/router';
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
+import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
+import { FirestoreService } from 'src/app/services/firestore.service';
+import { MenuController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-main',
@@ -11,27 +12,23 @@ import 'swiper/less/pagination';
   styleUrls: ['./main.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class MainComponent implements AfterContentChecked {
-  @ViewChild('swiper') swiper:SwiperComponent;
-  config: SwiperOptions={
-    slidesPerView: 2, 
-    spaceBetween: 50, 
-    pagination: true,
-  };
+export class MainComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public firebaseauthService: FirebaseauthService,
+    public fireStore: FirestoreService,
+    public loadingController: LoadingController,
+    public toastController: ToastController,
+    public alertController: AlertController,
+    public menuL: MenuController,
+    public router: Router,
+    public loadingCtrl: LoadingController,
+  ) { }
 
   ngOnInit() {
+    this.menuL.enable(false);
    
   }
-  ngAfterContentChecked(): void {
-    if (this.swiper) {
-      this.swiper.updateSwiper({});
-      
-    }
-      
-  }
-
 
 
   }

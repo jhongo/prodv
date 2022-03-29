@@ -23,11 +23,6 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
-  // {
-  //   path: '',
-  //   redirectTo: 'home',
-  //   pathMatch: 'full'
-  // },
   {
     path: 'register',   
     component:RegistroComponent
@@ -36,9 +31,19 @@ const routes: Routes = [
     path: 'login',
     component:LoginComponent,
   },
+  // {
+  //   path:'',
+  //   redirectTo:'login',
+  //   pathMatch:'full',
+  // },
   {
     path: 'main',
     component:MainComponent,
+  },
+  {
+    path: '',
+    redirectTo:'main',
+    pathMatch:'full',
   },
   {
     path: 'perfil',
@@ -71,16 +76,6 @@ const routes: Routes = [
   {
     path: 'recuperar',
     component: RecuperarComponent,
-  },
-  // {
-  //   path:'',
-  //   component: LoginComponent,
-  //   pathMatch:'full',
-  // },
-  {
-    path:'',
-    redirectTo:'login',
-    pathMatch:'full',
   },
   {
     path: 'tab-inicial',

@@ -46,14 +46,15 @@ export class LoginComponent implements OnInit {
   
   opcion= "";
 
-  constructor(public firebaseauthService: FirebaseauthService,
+  constructor(
+    public firebaseauthService: FirebaseauthService,
     public fireStore: FirestoreService,
     public loadingController: LoadingController,
     public toastController: ToastController,
     public alertController: AlertController,
-    private menuL: MenuController,
+    public menuL: MenuController,
     public router: Router,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
     ) {
 
       this.firebaseauthService.stateAuth().subscribe( res=>{
