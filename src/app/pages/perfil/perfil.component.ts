@@ -16,6 +16,8 @@ export class PerfilComponent implements OnInit {
   admin= false;
   referente=false;
   num=0;
+  UserAll=0;
+  Usersinrefe=0;
 
   DataUpdate = false;
   datauser: DataUser = {
@@ -116,6 +118,8 @@ export class PerfilComponent implements OnInit {
       this.usuariorefe("Chontillo");
       this.usuariorefe("Miguel");
       this.usuariorefe("La Tertulia");
+      this.usuariorefe("");
+      this.getAllUser();
 
 
 
@@ -150,16 +154,27 @@ export class PerfilComponent implements OnInit {
     const path ="Usuarios";
     this.firestoreService.getusersrefe<DataUser>(path,"referencia","==", referencia).subscribe(res =>{
       console.log(referencia+ " num: "+res.length);
+      if(referencia==""){
+
+        this.Usersinrefe=res.length;
+      }
       this.num=res.length;
     });
   }
 
   getreferencias(){
-
     const path = "Referencias";
     this.firestoreService.getrefegene<Referencia>(path).subscribe(res =>{
       this.refeadmin=res;
-    })
+      
+    });
+  }
+
+  getAllUser(){
+    const path = "Usuarios";
+    this.firestoreService.getrefegene<DataUser>(path).subscribe(res =>{
+      this.UserAll=res.length;
+    });
   }
 
 

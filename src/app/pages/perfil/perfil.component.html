@@ -84,16 +84,23 @@
   </ion-card>
 <div *ngIf="admin" >
 
+  <ion-card class="conten-admin"> 
+    <ion-label>Total de Usuarios: {{this.UserAll}}</ion-label>
+  </ion-card>   
+  <ion-card class="conten-admin"> 
+    <ion-label>Usuarios sin referencia: {{this.Usersinrefe}}</ion-label>
+  </ion-card>  
+
   <ion-card class="conten-admin" *ngFor="let referencia of refeadmin">
     <ion-label>{{this.referencia.nombre}}</ion-label><br>
     <ion-label>Usuarios con esta referencia: {{this.referencia.total}}</ion-label>
   </ion-card>
 </div>
 
-  <ion-card *ngIf="referente" class="conten-referen">
+<ion-card *ngIf="referente" class="conten-referen">
     <ion-label>{{this.refe.nombre}}</ion-label><br>
     <ion-label>Usuarios con esta referencia: {{this.refe.total}}</ion-label>
-  </ion-card>
+</ion-card>
   
 
 </ion-content>
