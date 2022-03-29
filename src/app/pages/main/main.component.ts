@@ -14,6 +14,10 @@ import { MenuController } from '@ionic/angular';
 })
 export class MainComponent implements OnInit {
 
+
+
+  login: boolean = false;
+
   constructor(
     public firebaseauthService: FirebaseauthService,
     public fireStore: FirestoreService,
@@ -23,11 +27,47 @@ export class MainComponent implements OnInit {
     public menuL: MenuController,
     public router: Router,
     public loadingCtrl: LoadingController,
-  ) { }
+  ) { 
+
+    this.firebaseauthService.stateAuth().subscribe( res=>{
+      if (res) {
+
+        console.log('Esta logeado');
+        this.login =true;
+        this.presentLoading('Iniciando Sesión', 1500);
+        setTimeout(() => {
+        this.router.navigate(['/home']);
+        this.menuL.enable(true);
+        }, 1500);
+        
+      }else{
+        console.log('No esta logeado')
+        this.login = false;
+        this.presentLoading('Espere...', 1500);
+        setTimeout(() => {
+        this.router.navigate(['/login']);
+        this.menuL.enable(true);
+        }, 1500);
+        }
+      })
+
+
+    }
 
   ngOnInit() {
     this.menuL.enable(false);
    
+  }
+
+
+
+
+  async presentLoading(mensaje: string, tiempo: number) {
+    const loading = await this.loadingController.create({
+      message: mensaje,
+      duration: tiempo
+    });
+    await loading.present();
   }
 
 
