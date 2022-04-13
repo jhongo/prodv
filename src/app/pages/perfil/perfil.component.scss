@@ -27,6 +27,10 @@ ion-toolbar{
     text-align: center;
  
 }
+.normal{
+    font-size: 15px;
+    font-weight: normal;
+}
 .ionic-sub{
     margin-top: 30px;
     margin-bottom: 20px;
@@ -40,6 +44,7 @@ ion-toolbar{
     display: inline-flexbox;    
     --background: #fff;
     color: black;
+    font-size: 15px;
     border-radius: 30px;
     margin-left: auto;
     margin-right: auto;  
@@ -93,19 +98,20 @@ ion-toolbar{
 
     --background: #f1faee;
     padding: 4%;
-    
     color: black;
-    font-size: 17px;
+    --font-size: 14px;
     font-weight: bold;
     text-align: center;
 }
 
 .conten-referen{
-
     --background: #f1faee;
     color: black;
     font-size: 17px;
     font-weight: bold;
     text-align: center;
     padding: 4%;
+}
+.text_referencia{
+    font-size: 16px;
 }

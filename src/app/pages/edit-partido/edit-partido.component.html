@@ -60,7 +60,7 @@
     
     <ion-card-content class="botones">
       <ion-button (click)="restart()" routerLink="/tab-campeonato/partidos"  class="button-cancelar">Cancelar</ion-button>
-      <ion-button (click)="saveMatch()" class="button-guardar">Guardar</ion-button>
+      <ion-button *ngIf="boton" (click)="saveMatch()" (click)="boton=false" class="button-guardar">Guardar</ion-button>
     </ion-card-content>
 
 

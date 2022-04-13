@@ -28,7 +28,7 @@ ion-segment-button{
 .titulo{
     color: white;
     font-weight: bold;
-    
+    font-size: 14px;
     text-align: left;
 }
 .row_grupo{
@@ -52,6 +52,10 @@ ion-segment-button{
     height: 20px;
     width: 20px;
 }
+.text-selected-item{
+    --color: #fff;
+    font-size: 14px;
+  }
 
 .grupos{
 

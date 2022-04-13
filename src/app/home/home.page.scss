@@ -18,7 +18,7 @@ ion-segment{
   // --color: black;
 }
 ion-segment-button{
-  font-size: 14px;
+  // font-size: 14px;
   font-weight: bold;
   --border-color: #404041;
   --indicator-color: #128C7E; 
@@ -37,6 +37,7 @@ ion-segment-button{
  background: white;
 }
 .titulo{
+  font-size: 16px;
   color: black;
   font-weight: bold;
   text-align: left;
@@ -158,16 +159,8 @@ margin-bottom: auto;
 .card-icon{
   text-align: center;
 }
-.label_e1{
-  font-size: 14px;
-  text-align: right;
-  color: black;
-}
-.label_e2{
-  font-size: 14px;
-  text-align: left;
-  color: black;
-}
+
+
 .label_tittle{
 
   font-size: 9px;
@@ -295,6 +288,7 @@ text-align: center;
 
 .text-selected-item{
   --color: #fff;
+  font-size: 14px;
 }
 
 .content-liga-pro{
@@ -458,16 +452,8 @@ margin-bottom: auto;
 .card-icon{
   text-align: center;
 }
-.label_e1{
-  font-size: 14px;
-  text-align: right;
-  color: black;
-}
-.label_e2{
-  font-size: 14px;
-  text-align: left;
-  color: black;
-}
+
+
 .label_tittle{
 
   font-size: 9px;
@@ -720,11 +706,7 @@ text-align: center;
   margin-top: auto;
   margin-bottom: auto;
   }
-.label_e1{
-      font-size: 14px;
-      text-align: right;
-      color: black;
-    }
+
 .col_img{
       // border: 1px black solid;
       height: auto;
@@ -752,6 +734,7 @@ text-align: center;
  }
  .label_e2{
   font-size: 14px;
+  font-weight: normal;
   text-align: left;
   color: black;
 }
@@ -869,8 +852,9 @@ text-align: center;
   margin-bottom: auto;
   }
 .label_e1{
-      font-size: 14px;
-      text-align: right;
+  font-size: 14px;
+  font-weight: normal;
+    text-align: right;
       color: black;
     }
 .col_img{
@@ -898,11 +882,7 @@ text-align: center;
  margin-top: auto;
  margin-bottom: auto;
  }
- .label_e2{
-  font-size: 14px;
-  text-align: left;
-  color: black;
-}
+
 
 
 .label_tittle_vs{

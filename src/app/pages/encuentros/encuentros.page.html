@@ -290,28 +290,22 @@
 <div *ngFor="let equipo of genef" class="partidos">
   <ion-grid>
   
-  <ion-row class="row_fecha">
-    <ion-col size="4">
+    <ion-row class="row_fecha">
 
-    </ion-col>
-    <ion-col class="col_tex_fecha" size="4">
-      
-      <ion-label  class="label_fecha">
-        {{equipo.fecha | date : "dd/MM/yyyy"}}
-      </ion-label>
-      
-    </ion-col>
-    <ion-col class="col_icon" size="4">
-       
-      <ion-buttons class="button">
-        <ion-button  routerLink="/edit-partido" (click)="getMatch(equipo)" >
-          <ion-icon class="icon_edit" slot="icon-only" name="create-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-      
-    </ion-col>
-  </ion-row>
-  
+      <ion-col class="col_finalizado" size="4">
+        <ion-label class="text_finalizado">Finalizado</ion-label>
+      </ion-col>
+      <ion-col class="col_tex_fecha" size="4">
+        
+        <ion-label  class="label_fecha">
+          {{equipo.fecha | date : "dd/MM/yyy"}}
+        </ion-label>
+        
+      </ion-col>
+      <ion-col class="col_icon" size="4">
+         
+      </ion-col>
+    </ion-row>
   
   
   <ion-row>

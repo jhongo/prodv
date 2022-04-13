@@ -20,6 +20,7 @@
    background: white;
   }
   .titulo{
+    font-size: 16px;
     color: black;
     font-weight: bold;
     text-align: left;
@@ -140,10 +141,13 @@
   }
   .label_e1{
     font-size: 14px;
+    font-weight: normal;
     text-align: right;
     color: black;
+    
   }
   .label_e2{
+    font-weight: normal;
     font-size: 14px;
     text-align: left;
     color: black;

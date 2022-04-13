@@ -121,10 +121,15 @@ export class EncuentrosPage implements OnInit {
   constructor(public alertController: AlertController,
     public firestoreService: FirestoreService,
     public loadingController: LoadingController,
-    public toastController: ToastController,) {
+    public toastController: ToastController,) {    }
 
+    async ngOnInit() {
+
+      console.log(this.encuentro.grupo);
+      this.getPartidos();
+      
+  
     }
-
   async anterior(){
 
     if(this.numero>1){
@@ -438,13 +443,7 @@ export class EncuentrosPage implements OnInit {
   }
 
   
-  async ngOnInit() {
-
-    console.log(this.encuentro.grupo);
-    this.getPartidos();
-    
-
-  }
+  
 
   setToday() {
     this.formatedString = format(parseISO(format(new Date(), 'yyy-MM-dd') + 'T09:00:00.000Z'), 'HH:mm, MMM d, yyy');
@@ -502,7 +501,7 @@ export class EncuentrosPage implements OnInit {
       }else{
         this.titulo=this.encuentropri.fechae;
       }
-       this.numero=this.encuentropri.numero;0
+       this.numero=this.encuentropri.numero;
        this.fase = this.encuentropri.fechae;
 
        if(this.fase==""){
@@ -512,6 +511,8 @@ export class EncuentrosPage implements OnInit {
          
         }else{
         this.genee=[];
+        this.genef=[];
+        this.geneinit=[];
         this.gruposfinalizados(this.fase);
         this.grupos(this.fase);
         this.partidos_init_fases(this.fase);
@@ -592,8 +593,6 @@ export class EncuentrosPage implements OnInit {
   }
   async saveMatch() {
     this.encuentro.uid = this.firestoreService.getId();
-   
-    
       if (this.encuentro.tipo == "") {
         this.presentToast("Eliga el tipo de partido", 2000);
       } else {
@@ -605,9 +604,8 @@ export class EncuentrosPage implements OnInit {
           } else {
   
             console.log(this.encuentro.nombre_e1 + " " + this.encuentro.nombre_e2);
-            const path = 'Partidos';
-            
-  
+
+            const path = 'Partidos';  
             this.firestoreService.createDoc(this.encuentro, path, this.encuentro.uid).then(res => {
               console.log('guardado con exito');
               this.presentLoading('Guardando partido', 1500);
@@ -621,7 +619,7 @@ export class EncuentrosPage implements OnInit {
                 grupo: '',
                 uid_e1: '',
                 uid_e2: '',
-                estado: 'iniciado',
+                estado: 'espera',
                 res_e1: 0,
                 res_e2: 0,
                 escudo_e1: '',
