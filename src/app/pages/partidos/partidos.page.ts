@@ -28,12 +28,21 @@ export class PartidosPage implements OnInit {
   grupoinit2: EncuentroPrueba[]=[];
   grupof1 :EncuentroPrueba []=[];
   grupof2 :EncuentroPrueba []=[];
+  geneida: EncuentroPrueba[] = [];
+  geneidainit: EncuentroPrueba[] = [];
+  geneidaf: EncuentroPrueba[] = [];
+  genevuel: EncuentroPrueba[] = [];
+  genevuelinit: EncuentroPrueba[] = [];
+  genevuelf: EncuentroPrueba[] = [];
 
 
   cuarto=false;
   semis=false;
   fina=false;
   fases=false;
+  ida = false;
+  vuelta = false;
+  descenso = false;
 
   titulo="";
   gru1=false;
@@ -101,7 +110,7 @@ export class PartidosPage implements OnInit {
 
   async prueba(tipo:string){
     const path='Partidos';
-    this.equiposInfo = this.firestoreService.getCollection<EncuentroPrueba>(path,'tipo','==', tipo).subscribe(res =>{
+    this.equiposInfo = this.firestoreService.getCollection<EncuentroPrueba>(path,'tipo','==', tipo,"unico").subscribe(res =>{
       this.gene = res;
       this.grupo1=[];
       this.grupo2=[];
@@ -113,7 +122,7 @@ export class PartidosPage implements OnInit {
   }
   async partidos_init(tipo:string){  
     const path='Partidos';
-    this.equiposInfo = this.firestoreService.getpartidos_init<EncuentroPrueba>(path,'tipo','==', tipo).subscribe(res =>{
+    this.equiposInfo = this.firestoreService.getpartidos_init<EncuentroPrueba>(path,'tipo','==', tipo,"unico").subscribe(res =>{
         this.geneinit=res;
         this.grupo1=[];
         this.grupo2=[];
@@ -126,7 +135,7 @@ export class PartidosPage implements OnInit {
   }
   async pruebafina(tipo:string){
     const path='Partidos';
-    this.equiposInfo = this.firestoreService.getCollectionfinalizados<EncuentroPrueba>(path,'tipo','==', tipo).subscribe(res =>{
+    this.equiposInfo = this.firestoreService.getCollectionfinalizados<EncuentroPrueba>(path,'tipo','==', tipo,"unico").subscribe(res =>{
       this.genef = res;
       this.grupo1=[];
       this.grupo2=[];
@@ -207,218 +216,349 @@ export class PartidosPage implements OnInit {
 
   }
 
+  async partidos_ida_vuel_E(tipo: string) {
+    const path = 'Partidos';
+    this.equiposInfo = this.firestoreService.get_partidos_ida_vuel_E<EncuentroPrueba>(path, 'tipo', '==', tipo, "ida").subscribe(res => {
+      this.geneida = res;
+      this.grupo1 = [];
+      this.grupo2 = [];
+      this.grupof1 = [];
+      this.grupof2 = [];
+      this.grupoinit1 = [];
+      if (res.length) {
+        this.ida = true;
+      }
+      this.gru1 = false;
+      this.gru2 = false;
+    });
+    this.equiposInfo = this.firestoreService.get_partidos_ida_vuel_E<EncuentroPrueba>(path, 'tipo', '==', tipo, "vuelta").subscribe(res => {
+      this.genevuel = res;
+      this.grupo1 = [];
+      this.grupo2 = [];
+      this.grupof1 = [];
+      this.grupoinit1 = [];
+      this.grupof2 = [];
+      if (res.length) {
+        this.vuelta = true;
+      }
+      this.gru1 = false;
+      this.gru2 = false;
+    });
+
+  }
+
+
+  async partidos_ida_vuel_init(tipo: string) {
+    const path = 'Partidos';
+    this.equiposInfo = this.firestoreService.get_partidos_ida_vuel_Init<EncuentroPrueba>(path, 'tipo', '==', tipo, "ida").subscribe(res => {
+      this.geneidainit = res;
+      this.grupo1 = [];
+      this.grupo2 = [];
+      this.grupof1 = [];
+      this.grupof2 = [];
+      if (res.length) {
+        this.ida = true;
+      }
+      this.gru1 = false;
+      this.gru2 = false;
+    });
+    this.equiposInfo = this.firestoreService.get_partidos_ida_vuel_Init<EncuentroPrueba>(path, 'tipo', '==', tipo, "vuelta").subscribe(res => {
+      this.genevuelinit = res;
+      this.grupo1 = [];
+      this.grupo2 = [];
+      this.grupof1 = [];
+      this.grupof2 = [];
+      if (res.length) {
+        this.vuelta = true;
+      }
+      this.gru1 = false;
+      this.gru2 = false;
+    });
+
+  }
+
+
+  async partidos_ida_vuel_fina(tipo: string) {
+    const path = 'Partidos';
+    this.equiposInfo = this.firestoreService.get_partidos_ida_vuel_Fina<EncuentroPrueba>(path, 'tipo', '==', tipo, "ida").subscribe(res => {
+      this.geneidainit = res;
+      this.grupo1 = [];
+      this.grupo2 = [];
+      this.grupof1 = [];
+      this.grupof2 = [];
+      if (res.length) {
+        this.ida = true;
+      }
+      this.gru1 = false;
+      this.gru2 = false;
+    });
+    this.equiposInfo = this.firestoreService.get_partidos_ida_vuel_Fina<EncuentroPrueba>(path, 'tipo', '==', tipo, "vuelta").subscribe(res => {
+      this.genevuelinit = res;
+      this.grupo1 = [];
+      this.grupo2 = [];
+      this.grupof1 = [];
+      this.grupof2 = [];
+      if (res.length) {
+        this.vuelta = true;
+      }
+      this.gru1 = false;
+      this.gru2 = false;
+    });
+
+  }
+
+
 
   
-async anterior(){
+  async anterior() {
 
-  if(this.numero>1){
+    if (this.numero > 1) {
 
-    this.numero=this.numero-1;
+      this.numero = this.numero - 1;
 
+    }
+
+    console.log(this.numero)
+
+    if (this.numero >= 1 && this.numero < 6) {
+      this.titulo = "Fecha " + this.numero;
+      this.grupos("Fecha " + this.numero);
+      this.gruposfinalizados("Fecha " + this.numero);
+      this.partidos_init_fases("Fecha " + this.numero);
+      this.gene = [];
+      this.genef = [];
+      this.geneinit = [];
+      this.geneida = [];
+      this.geneidainit = [];
+      this.geneidaf = [];
+      this.genevuel = [];
+      this.genevuelinit = [];
+      this.genevuelf = [];
+      this.gru2 = false;
+      this.gru1 = false;
+      this.ida = false;
+      this.vuelta = false;
+    } else if (this.numero == 6) {
+
+      this.titulo = "Descenso"
+      this.prueba("Descenso");
+      this.pruebafina("Descenso");
+      this.partidos_init("Descenso");
+      this.grupo1 = [];
+      this.grupo2 = [];
+      this.grupof1 = [];
+      this.grupof2 = [];
+      this.grupoinit1 = [];
+      this.grupoinit2 = [];
+      this.geneida = [];
+      this.geneidainit = [];
+      this.geneidaf = [];
+      this.genevuel = [];
+      this.genevuelinit = [];
+      this.genevuelf = [];
+      this.gru2 = false;
+      this.gru1 = false;
+      this.ida = false;
+      this.vuelta = false;
+
+    } else if (this.numero == 7) {
+      this.titulo = "Cuartos de final"
+      this.prueba("Cuartos de final");
+      this.pruebafina("Cuartos de final");
+      this.partidos_init("Cuartos de final");
+      this.partidos_ida_vuel_E("Cuartos de final");
+      this.partidos_ida_vuel_init("Cuartos de final");
+      this.partidos_ida_vuel_fina("Cuartos de final");
+      this.grupo1 = [];
+      this.grupo2 = [];
+      this.grupof1 = [];
+      this.grupof2 = [];
+      this.grupoinit1 = [];
+      this.grupoinit2 = [];
+      this.gru2 = false;
+      this.gru1 = false;
+      this.ida = false;
+      this.vuelta = false;
+    } else if (this.numero == 8) {
+      this.titulo = "Semifinal";
+      this.prueba("Semifinal");
+      this.pruebafina("Semifinal");
+      this.partidos_init("Semifinal");
+      this.partidos_ida_vuel_E("Semifinal");
+      this.partidos_ida_vuel_init("Semifinal");
+      this.partidos_ida_vuel_fina("Semifinal");
+      this.grupo1 = [];
+      this.grupo2 = [];
+      this.grupof1 = [];
+      this.grupof2 = [];
+      this.grupoinit1 = [];
+      this.grupoinit2 = [];
+      this.gru2 = false;
+      this.gru1 = false;
+      this.ida = false;
+      this.vuelta = false;
+    } else if (this.numero == 9) {
+      this.titulo = "Tercero y Cuarto";
+      this.prueba("Tercero y Cuarto");
+      this.pruebafina("Tercero y Cuarto");
+      this.partidos_init("Tercero y Cuarto");
+      this.partidos_ida_vuel_E("Tercero y Cuarto");
+      this.partidos_ida_vuel_init("Tercero y Cuarto");
+      this.partidos_ida_vuel_fina("Tercero y Cuarto");
+      this.grupoinit1 = [];
+      this.grupoinit2 = [];
+      this.grupo1 = [];
+      this.grupo2 = [];
+      this.grupof1 = [];
+      this.grupof2 = [];
+      this.gru2 = false;
+      this.gru1 = false;
+      this.ida = false;
+      this.vuelta = false;
+    } else if (this.numero == 10) {
+      this.titulo = "Final";
+      this.prueba("Final");
+      this.pruebafina("Final");
+      this.partidos_init("Final");
+      this.partidos_ida_vuel_E("Final");
+      this.partidos_ida_vuel_init("Final");
+      this.partidos_ida_vuel_fina("Final");
+      this.grupoinit1 = [];
+      this.grupoinit2 = [];
+      this.grupo1 = [];
+      this.grupo2 = [];
+      this.grupof1 = [];
+      this.grupof2 = [];
+      this.gru2 = false;
+      this.gru1 = false;
+      this.ida = false;
+      this.vuelta = false;
+    }
   }
-  
-  console.log(this.numero)
-  if(this.numero==1){
-    this.titulo="Fecha 1";
-    this.grupos("Fecha 1");
-    this.gruposfinalizados("Fecha 1");
-    this.partidos_init_fases("Fecha 1");
-    this.gene=[];
-    this.genef=[];
-    this.geneinit=[];
-    this.gru2=false;
-    this.gru1=false;
-  }else if(this.numero==2){
-    this.titulo="Fecha 2";
-    this.grupos("Fecha 2");
-    this.gruposfinalizados("Fecha 2");
-    this.partidos_init_fases("Fecha 2");
-    this.gene=[];
-    this.genef=[];
-    this.geneinit=[];
-    this.gru2=false;
-    this.gru1=false;
-  }else if(this.numero==3){
-    this.titulo="Fecha 3";
-    this.grupos("Fecha 3");
-    this.gruposfinalizados("Fecha 3");
-    this.partidos_init_fases("Fecha 3");
-    this.gene=[];
-    this.genef=[];
-    this.geneinit=[];
-    this.gru2=false;
-    this.gru1=false;
-  }else if(this.numero==4){
-    this.titulo="Fecha 4";
-    this.grupos("Fecha 4");
-    this.gruposfinalizados("Fecha 4");
-    this.partidos_init_fases("Fecha 4");
-    this.gene=[];
-    this.genef=[];
-    this.geneinit=[];
-    this.gru2=false;
-    this.gru1=false;
-  }else if(this.numero==5){
-    this.titulo="Fecha 5";
-    this.grupos("Fecha 5");
-    this.gruposfinalizados("Fecha 5");
-    this.partidos_init_fases("Fecha 5");
-    this.gene=[];
-    this.genef=[];
-    this.geneinit=[];
-    this.gru2=false;
-    this.gru1=false;
-  }else if(this.numero==6){
-    this.titulo="Fecha 6";
-    this.grupos("Fecha 6");
-    this.gruposfinalizados("Fecha 6");
-    this.partidos_init_fases("Fecha 6");
-    this.gene=[];
-    this.genef=[];
-    this.geneinit=[];
-    this.gru2=false;
-    this.gru1=false;
-  }else if(this.numero==7){
-    this.titulo="Cuartos de final"
-    this.prueba("Cuartos de final");
-    this.pruebafina("Cuartos de final");
-    this.partidos_init("Cuartos de final");
-    this.grupo1=[];
-    this.grupo2=[];
-    this.grupof1=[];
-    this.grupof2=[];
-    this.grupoinit1=[];
-    this.grupoinit2=[];
-    this.gru2=false;
-    this.gru1=false;
-  }else if(this.numero==8){
-    this.titulo="Semifinal";
-    this.prueba("Semifinal");
-    this.pruebafina("Semifinal");
-    this.partidos_init("Semifinal");
-    this.grupo1=[];
-    this.grupo2=[];
-    this.grupof1=[];
-    this.grupof2=[];
-    this.grupoinit1=[];
-    this.grupoinit2=[];
-    this.gru2=false;
-    this.gru1=false;
-  }else if(this.numero==9){
-    this.titulo="Final";
-    this.prueba("Final");
-    this.pruebafina("Final");
-    this.partidos_init("Final");
-    this.grupoinit1=[];
-    this.grupoinit2=[];
-    this.grupo1=[];
-    this.grupo2=[];
-    this.grupof1=[];
-    this.grupof2=[];
-    this.gru2=false;
-    this.gru1=false;
-  }
-}
 
-async siguiente(){
-  if(this.numero<9){
+  async siguiente() {
+    if (this.numero < 10) {
 
-    this.numero=this.numero+1;
+      this.numero = this.numero + 1;
 
+    }
+
+    console.log(this.numero)
+    if (this.numero >= 1 && this.numero < 6) {
+      this.titulo = "Fecha " + this.numero;
+      this.grupos("Fecha " + this.numero);
+      this.gruposfinalizados("Fecha " + this.numero);
+      this.partidos_init_fases("Fecha " + this.numero);
+      this.gene = [];
+      this.genef = [];
+      this.geneinit = [];
+      this.geneida = [];
+      this.geneidainit = [];
+      this.geneidaf = [];
+      this.genevuel = [];
+      this.genevuelinit = [];
+      this.genevuelf = [];
+      this.gru2 = false;
+      this.gru1 = false;
+      this.ida = false;
+      this.vuelta = false;
+    } else if (this.numero == 6) {
+
+      this.titulo = "Descenso"
+      this.prueba("Descenso");
+      this.pruebafina("Descenso");
+      this.partidos_init("Descenso");
+      this.grupo1 = [];
+      this.grupo2 = [];
+      this.grupof1 = [];
+      this.grupof2 = [];
+      this.grupoinit1 = [];
+      this.grupoinit2 = [];
+      this.geneida = [];
+      this.geneidainit = [];
+      this.geneidaf = [];
+      this.genevuel = [];
+      this.genevuelinit = [];
+      this.genevuelf = [];
+      this.gru2 = false;
+      this.gru1 = false;
+      this.ida = false;
+      this.vuelta = false;
+
+    } else if (this.numero == 7) {
+      this.titulo = "Cuartos de final"
+      this.prueba("Cuartos de final");
+      this.pruebafina("Cuartos de final");
+      this.partidos_init("Cuartos de final");
+      this.partidos_ida_vuel_E("Cuartos de final");
+      this.partidos_ida_vuel_init("Cuartos de final");
+      this.partidos_ida_vuel_fina("Cuartos de final");
+      this.grupo1 = [];
+      this.grupo2 = [];
+      this.grupof1 = [];
+      this.grupof2 = [];
+      this.grupoinit1 = [];
+      this.grupoinit2 = [];
+      this.gru2 = false;
+      this.gru1 = false;
+      this.ida = false;
+      this.vuelta = false;
+    } else if (this.numero == 8) {
+      this.titulo = "Semifinal";
+      this.prueba("Semifinal");
+      this.pruebafina("Semifinal");
+      this.partidos_init("Semifinal");
+      this.partidos_ida_vuel_E("Semifinal");
+      this.partidos_ida_vuel_init("Semifinal");
+      this.partidos_ida_vuel_fina("Semifinal");
+      this.grupo1 = [];
+      this.grupo2 = [];
+      this.grupof1 = [];
+      this.grupof2 = [];
+      this.grupoinit1 = [];
+      this.grupoinit2 = [];
+      this.gru2 = false;
+      this.gru1 = false;
+      this.ida = false;
+      this.vuelta = false;
+    } else if (this.numero == 9) {
+      this.titulo = "Tercero y Cuarto";
+      this.prueba("Tercero y Cuarto");
+      this.pruebafina("Tercero y Cuarto");
+      this.partidos_init("Tercero y Cuarto");
+      this.partidos_ida_vuel_E("Tercero y Cuarto");
+      this.partidos_ida_vuel_init("Tercero y Cuarto");
+      this.partidos_ida_vuel_fina("Tercero y Cuarto");
+      this.grupoinit1 = [];
+      this.grupoinit2 = [];
+      this.grupo1 = [];
+      this.grupo2 = [];
+      this.grupof1 = [];
+      this.grupof2 = [];
+      this.gru2 = false;
+      this.gru1 = false;
+      this.ida = false;
+      this.vuelta = false;
+    } else if (this.numero == 10) {
+      this.titulo = "Final";
+      this.prueba("Final");
+      this.pruebafina("Final");
+      this.partidos_init("Final");
+      this.partidos_ida_vuel_E("Final");
+      this.partidos_ida_vuel_init("Final");
+      this.partidos_ida_vuel_fina("Final");
+      this.grupoinit1 = [];
+      this.grupoinit2 = [];
+      this.grupo1 = [];
+      this.grupo2 = [];
+      this.grupof1 = [];
+      this.grupof2 = [];
+      this.gru2 = false;
+      this.gru1 = false;
+      this.ida = false;
+      this.vuelta = false;
+    }
   }
-  
-  console.log(this.numero)
-  if(this.numero==1){
-    this.titulo="Fecha 1";
-    this.grupos("Fecha 1");
-    this.gruposfinalizados("Fecha 1");
-    this.partidos_init_fases("Fecha 1");
-    this.gene=[];
-    this.genef=[];
-    this.geneinit=[];
-    this.gru2=false;
-    this.gru1=false;
-  }else if(this.numero==2){
-    this.titulo="Fecha 2";
-    this.grupos("Fecha 2");
-    this.gruposfinalizados("Fecha 2");
-    this.partidos_init_fases("Fecha 2");
-    this.gene=[];
-    this.genef=[];
-    this.geneinit=[];
-    this.gru2=false;
-    this.gru1=false;
-  }else if(this.numero==3){
-    this.titulo="Fecha 3";
-    this.grupos("Fecha 3");
-    this.gruposfinalizados("Fecha 3");
-    this.partidos_init_fases("Fecha 3");
-    this.gene=[];
-    this.genef=[];
-    this.geneinit=[];
-    this.gru2=false;
-    this.gru1=false;
-  }else if(this.numero==4){
-    this.titulo="Fecha 4";
-    this.grupos("Fecha 4");
-    this.gruposfinalizados("Fecha 4");
-    this.partidos_init_fases("Fecha 4");
-    this.gene=[];
-    this.genef=[];
-    this.geneinit=[];
-    this.gru2=false;
-    this.gru1=false;
-  }else if(this.numero==5){
-    this.titulo="Fecha 5";
-    this.grupos("Fecha 5");
-    this.gruposfinalizados("Fecha 5");
-    this.partidos_init_fases("Fecha 5");
-    this.gene=[];
-    this.genef=[];
-    this.geneinit=[];
-    this.gru2=false;
-    this.gru1=false;
-  }else if(this.numero==6){
-    this.titulo="Cuartos de final"
-    this.prueba("Cuartos de final");
-    this.pruebafina("Cuartos de final");
-    this.partidos_init("Cuartos de final");
-    this.grupo1=[];
-    this.grupo2=[];
-    this.grupof1=[];
-    this.grupof2=[];
-    this.grupoinit1=[];
-    this.grupoinit2=[];
-    this.gru2=false;
-    this.gru1=false;
-  }else if(this.numero==7){
-    this.titulo="Semifinal";
-    this.prueba("Semifinal");
-    this.pruebafina("Semifinal");
-    this.partidos_init("Semifinal");
-    this.grupo1=[];
-    this.grupo2=[];
-    this.grupof1=[];
-    this.grupof2=[];
-    this.grupoinit1=[];
-    this.grupoinit2=[];
-    this.gru2=false;
-    this.gru1=false;
-  }else if(this.numero==8){
-    this.titulo="Final";
-    this.prueba("Final");
-    this.pruebafina("Final");
-    this.partidos_init("Final");
-    this.grupoinit1=[];
-    this.grupoinit2=[];
-    this.grupo1=[];
-    this.grupo2=[];
-    this.grupof1=[];
-    this.grupof2=[];
-    this.gru2=false;
-    this.gru1=false;
-  }
-}
 
 
 

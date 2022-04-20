@@ -312,7 +312,7 @@ export class EditPartidoComponent implements OnInit, OnDestroy {
 
     } else if (this.encuentro.estado == "finalizado") {
       console.log("El partido ha finalizadoo");
-      if (this.encuentro.tipo == "Fase de grupos") {
+      if (this.encuentro.tipo == "Fase de grupos" || this.encuentro.tipo=="Descenso") {
         await this.actualizarpuntos(this.encuentro.uid_e1, this.encuentro.uid_e2);
         const path = 'Partidos';
         this.firestoreService.createDoc(this.encuentro, path, this.encuentro.uid).then(res => {

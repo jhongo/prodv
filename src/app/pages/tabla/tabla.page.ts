@@ -15,6 +15,8 @@ export class TablaPage implements OnInit {
   grupo1: Equipos[] = [];
   grupo2: Equipos[] = [];
   equipob: Equipos[]=[];
+
+  descenso:Equipos[]=[];
   equiposInfo1: Subscription;
   equiposInfo2: Subscription;
   opcion= "";
@@ -46,6 +48,7 @@ export class TablaPage implements OnInit {
     this.opcion="clasificacion";
     this.getGrupo1();
     this.getGrupo2();
+    this.getDescenso();
   }
 
   // getPosicionesEquipos(){
@@ -69,6 +72,16 @@ async getGrupo1(){
   const path= 'Equipos';
   this.firestoreService.getCollectionGru<Equipos>(path,'grupo','==', 'grupo1').subscribe(res =>{
     this.grupo1=res;
+    console.log(res);
+
+  });
+}
+
+async getDescenso(){
+
+  const path='Equipos';
+  this.firestoreService.getCollectionGru<Equipos>(path,'grupo','==', 'Descenso').subscribe(res =>{
+    this.descenso=res;
     console.log(res);
 
   });
