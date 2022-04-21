@@ -83,7 +83,7 @@ export class PartidosPage implements OnInit {
     this.equiposInfo = this.firestoreService.getPartidos<EncuentroPrueba>(path).subscribe(res => {
       
       this.encuentro=res[0];
-      if(this.encuentro.fechae==""){
+      if(this.encuentro.fechae == "ida" || this.encuentro.fechae == "vuelta" || this.encuentro.fechae == "unico"){
       this.titulo=this.encuentro.tipo;
       }else{
         this.titulo=this.encuentro.fechae;
@@ -91,10 +91,13 @@ export class PartidosPage implements OnInit {
        this.numero=this.encuentro.numero;
        this.fase = this.encuentro.fechae;
 
-       if(this.fase==""){
+       if(this.fase == "ida" || this.fase == "vuelta" || this.fase == "unico"){
          this.prueba(this.encuentro.tipo);
          this.pruebafina(this.encuentro.tipo);
          this.partidos_init(this.encuentro.tipo);
+        this.partidos_ida_vuel_E(this.encuentro.tipo);
+        this.partidos_ida_vuel_init(this.encuentro.tipo);
+        this.partidos_ida_vuel_fina(this.encuentro.tipo);
         }else{
         this.gene=[];
         this.gruposfinalizados(this.fase);

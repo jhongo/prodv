@@ -663,7 +663,7 @@ export class EncuentrosPage implements OnInit {
     this.equiposInfo = this.firestoreService.getPartidos<EncuentroPrueba>(path).subscribe(res => {
 
       this.encuentropri = res[0];
-      if (this.encuentropri.fechae == "") {
+      if (this.encuentropri.fechae == "ida" || this.encuentropri.fechae == "vuelta"|| this.encuentropri.fechae == "unico") {
         this.titulo = this.encuentropri.tipo;
       } else {
         this.titulo = this.encuentropri.fechae;
@@ -671,10 +671,13 @@ export class EncuentrosPage implements OnInit {
       this.numero = this.encuentropri.numero;
       this.fase = this.encuentropri.fechae;
 
-      if (this.fase == "") {
+      if (this.fase == "ida" || this.fase == "vuelta" || this.fase == "unico") {
         this.prueba(this.encuentropri.tipo);
         this.pruebafina(this.encuentropri.tipo);
         this.partidos_init(this.encuentropri.tipo);
+        this.partidos_ida_vuel_E(this.encuentropri.tipo);
+        this.partidos_ida_vuel_init(this.encuentropri.tipo);
+        this.partidos_ida_vuel_fina(this.encuentropri.tipo);
 
       } else {
         this.genee = [];
