@@ -383,7 +383,7 @@ export class HomePage implements OnInit {
   async partidos_ida_vuel_fina(tipo: string) {
     const path = 'Partidos';
     this.equiposInfo = this.firestoreService.get_partidos_ida_vuel_Fina<EncuentroPrueba>(path, 'tipo', '==', tipo, "ida").subscribe(res => {
-      this.geneidainit = res;
+      this.geneidaf = res;
       this.grupo1 = [];
       this.grupo2 = [];
       this.grupof1 = [];
@@ -395,7 +395,7 @@ export class HomePage implements OnInit {
       this.gru2 = false;
     });
     this.equiposInfo = this.firestoreService.get_partidos_ida_vuel_Fina<EncuentroPrueba>(path, 'tipo', '==', tipo, "vuelta").subscribe(res => {
-      this.genevuelinit = res;
+      this.genevuelf= res;
       this.grupo1 = [];
       this.grupo2 = [];
       this.grupof1 = [];
