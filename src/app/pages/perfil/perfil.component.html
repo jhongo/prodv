@@ -31,6 +31,7 @@
         Correo: {{datauser.email}}
       </ion-label>
     </ion-item>
+
     <!-- <ion-item lines="none" *ngIf="!DataUpdate" class="items">
       <ion-label class="normal">
         Celular: {{datauser.celular}}
@@ -101,6 +102,20 @@
     <ion-label class="text_referencia">{{this.refe.nombre}}</ion-label><br>
     <ion-label class="text_referencia">Usuarios con esta referencia: {{this.refe.total}}</ion-label>
 </ion-card>
+
+<div class="activeData" *ngIf="activeData" >
+  <ion-button [routerLink]="['/login'] ">
+    <ion-icon slot="icon-only" name="person"></ion-icon>
+    Acceder a la cuenta
+  </ion-button>
+</div>
+
+
+     <!-- <ion-buttons *ngIf="activeData" >
+      <ion-button [routerLink]="['/login']">
+        <ion-icon slot="icon-only" name="person-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
   
 
 </ion-content>

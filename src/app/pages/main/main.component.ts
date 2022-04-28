@@ -45,7 +45,7 @@ export class MainComponent implements OnInit {
         this.login = false;
         this.presentLoading('Espere...', 1500);
         setTimeout(() => {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/home']);
         this.menuL.enable(true);
         }, 1500);
         }

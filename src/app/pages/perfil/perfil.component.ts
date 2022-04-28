@@ -20,6 +20,9 @@ export class PerfilComponent implements OnInit {
   Usersinrefe=0;
 
   DataUpdate = false;
+  activeData = false;
+
+
   datauser: DataUser = {
     uid: '',
     email: '',
@@ -46,9 +49,11 @@ export class PerfilComponent implements OnInit {
                   if(res!=null){
                     this.uid = res.uid;
                     this.InfoUser(this.uid);
+                    this.activeData = false;
                   }else{
                     
                     this.initClient();
+                    this.activeData = true;
 
                   }
 

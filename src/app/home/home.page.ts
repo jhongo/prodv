@@ -11,33 +11,6 @@ import { FirestoreService } from 'src/app/services/firestore.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  // equiposInfo: Subscription;
-  // team: Encuentro[] = [];
-  // cuartos: Encuentro []=[];
-  // semi: Encuentro []=[];
-  // final: Encuentro []=[];
-
-  // cuarto=false;
-  // semis=false;
-  // fina=false;
-  // fases=false;
-
-  // encuentro: Encuentro = {
-  //   uid: '',
-  //   tipo: '',
-  //   fechae: '',
-  //   fecha: '',
-  //   grupo: '',
-  //   uid_e1: '',
-  //   uid_e2: '',
-  //   estado: 'iniciado',
-  //   res_e1: 0,
-  //   res_e2: 0,
-  //   escudo_e1: '',
-  //   escudo_e2: '',
-  //   nombre_e1: '',
-  //   nombre_e2: '',
-  // }
 
   matches = [];
   _category = 'sports';
