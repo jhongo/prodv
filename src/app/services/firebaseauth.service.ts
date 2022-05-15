@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { AngularFireAuth } from '@angular/fire/auth';
+// import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { User } from '../models';
 
 @Injectable({

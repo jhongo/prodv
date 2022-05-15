@@ -15,6 +15,8 @@ import { MenuController } from '@ionic/angular';
 })
 export class AppComponent {
 
+ isLogin = false;
+
   admin = false;
 
   usuario: User = { 
@@ -37,7 +39,7 @@ export class AppComponent {
 
       this.firebaseauthService.stateAuth().subscribe(res =>{
         if(res!=null){
-
+          this.isLogin = true;
           if (res.uid == 'LikZN15qNiQi1pFEAT8frapWt243' || res.uid == 'sYOl5vJntAWPUoDMoBZsrd05KAu1' ) {
             this.admin = true;
             this.getUserInfo(res.uid);
@@ -48,6 +50,7 @@ export class AppComponent {
         }else{
           this.admin = false;
           this.initClient();
+          this.isLogin = false;
 
         }
 
@@ -92,8 +95,8 @@ export class AppComponent {
 
     this.presentLoading('Cerrando Sesión',1000);
     setTimeout(() => {
-      this.router.navigate(['/login']);
-    this.menuL.enable(false);
+      this.router.navigate(['/home']);
+    this.menuL.enable(true);
     }, 1000);
  
   }

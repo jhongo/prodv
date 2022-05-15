@@ -8,12 +8,12 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { LoginComponent } from './pages/login/login.component';
-import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
-import {  AngularFireAuthModule } from '@angular/fire/compat/auth';
+import {  AngularFireAuthModule } from '@angular/fire/auth';
 import { FormsModule } from '@angular/forms';
 // import { AngularFirestoreModule } from '@angular/fire/storage';
 import { HeaderComponent } from './componentes/header/header.component';
