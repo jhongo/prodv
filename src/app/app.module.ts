@@ -29,6 +29,7 @@ import { EditPartidoComponent } from './pages/edit-partido/edit-partido.componen
 import { RecuperarComponent } from './pages/recuperar/recuperar.component';
 import { SwiperModule } from 'swiper/angular';
 import {HttpClientModule} from '@angular/common/http';
+import { NewcampeonatoComponent } from './pages/newcampeonato/newcampeonato.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import {HttpClientModule} from '@angular/common/http';
     NoticiasComponent, 
     EditEquipoComponent,
     EditPartidoComponent,
-    RecuperarComponent
+    RecuperarComponent,
+    NewcampeonatoComponent
   ],
   entryComponents: [],
   imports: [BrowserModule, 

@@ -13,6 +13,7 @@ import {canActivate} from '@angular/fire/auth-guard';
 import { EditEquipoComponent } from './pages/edit-equipo/edit-equipo.component';
 import { EditPartidoComponent } from './pages/edit-partido/edit-partido.component';
 import { RecuperarComponent } from './pages/recuperar/recuperar.component';
+import { NewcampeonatoComponent } from './pages/newcampeonato/newcampeonato.component';
 
 const isAdmin = (next:any ) => map( (user: any)=> !! user && 'LikZN15qNiQi1pFEAT8frapWt243' === user.uid);
 const isAdminS = (next:any ) => map( (user: any)=> !! user && 'LikZN15qNiQi1pFEAT8frapWt243' === user.uid);
@@ -76,7 +77,12 @@ const routes: Routes = [
   {
     path: 'recuperar',
     component: RecuperarComponent,
+  },{
+
+    path: 'newcampeonato',
+    component: NewcampeonatoComponent,
   },
+
   {
     path: 'tab-inicial',
     loadChildren: () => import('./pages/tab-inicial/tab-inicial.module').then( m => m.TabInicialPageModule)
