@@ -14,21 +14,6 @@
       "filename" : "Default@2x~universal~anyany-2.png",
       "idiom" : "universal",
       "scale" : "3x"
-    },
-    {
-      "filename" : "Default@2x~iphone-1.png",
-      "idiom" : "iphone",
-      "scale" : "1x"
-    },
-    {
-      "filename" : "Default@2x~iphone.png",
-      "idiom" : "iphone",
-      "scale" : "2x"
-    },
-    {
-      "filename" : "Default@2x~iphone-2.png",
-      "idiom" : "iphone",
-      "scale" : "3x"
     }
   ],
   "info" : {

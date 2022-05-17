@@ -29,28 +29,33 @@ export class MainComponent implements OnInit {
     public loadingCtrl: LoadingController,
   ) { 
 
-    this.firebaseauthService.stateAuth().subscribe( res=>{
-      if (res) {
+    // this.firebaseauthService.stateAuth().subscribe( res=>{
+    //   if (res) {
 
-        console.log('Esta logeado');
-        this.login =true;
-        this.presentLoading('Iniciando Sesión', 1500);
-        setTimeout(() => {
-        this.router.navigate(['/home']);
-        this.menuL.enable(true);
-        }, 1500);
+    //     console.log('Esta logeado');
+    //     this.login =true;
+    //     this.presentLoading('Iniciando Sesión', 1500);
+    //     setTimeout(() => {
+    //     this.router.navigate(['/home']);
+    //     this.menuL.enable(true);
+    //     }, 1500);
         
-      }else{
-        console.log('No esta logeado')
-        this.login = false;
-        this.presentLoading('Espere...', 1500);
-        setTimeout(() => {
-        this.router.navigate(['/home']);
-        this.menuL.enable(true);
-        }, 1500);
-        }
-      })
+    //   }else{
+    //     console.log('No esta logeado')
+    //     this.login = false;
+    //     this.presentLoading('Espere...', 1500);
+    //     setTimeout(() => {
+    //     this.router.navigate(['/home']);
+    //     this.menuL.enable(true);
+    //     }, 1500);
+    //     }
+    //   })
 
+    this.presentLoading('', 500);
+      setTimeout( () => {
+        this.router.navigate(['home']);
+        this.menuL.enable(true);
+      }, 1500);
 
     }
 

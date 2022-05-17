@@ -6,8 +6,8 @@ import { Router } from '@angular/router';
 import { format, parseISO } from 'date-fns';
 import { Subscription } from 'rxjs';
 import { EncuentroPrueba } from '../../models';
-import { clearScreenDown } from 'readline';
-import { chownSync } from 'fs';
+// import { clearScreenDown } from 'readline';
+// import { chownSync } from 'fs';
 @Component({
   selector: 'app-edit-partido',
   templateUrl: './edit-partido.component.html',

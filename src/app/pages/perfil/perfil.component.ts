@@ -3,8 +3,9 @@ import { DataUser } from 'src/app/models';
 import { FirestoreService } from '../../services/firestore.service';
 import { FirebaseauthService } from "../../services/firebaseauth.service";
 import { Subscription } from 'rxjs';
-import { clearScreenDown } from 'readline';
+// import { clearScreenDown } from 'readline';
 import { Referencia, Referencias } from '../../models';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-perfil',
@@ -44,7 +45,9 @@ export class PerfilComponent implements OnInit {
   uid= '';
   suscriberUserInfo : Subscription;
   constructor(public firestoreService: FirestoreService,
-              public firebaseauth: FirebaseauthService) {
+              public firebaseauth: FirebaseauthService,
+              public menuLateral: MenuController,
+              ) {
                 this.firebaseauth.stateAuth().subscribe(res =>{
                   if(res!=null){
                     this.uid = res.uid;
@@ -63,6 +66,7 @@ export class PerfilComponent implements OnInit {
   async ngOnInit() {
     const uid  = await this.firebaseauth.getUid();
     console.log(uid);
+    this.menuLateral.enable(true);
     
   }
   initClient(){  

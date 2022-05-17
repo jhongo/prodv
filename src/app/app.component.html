@@ -1,5 +1,5 @@
 <ion-app>
-  <ion-split-pane contentId="main" when="lg">
+  <ion-split-pane contentId="main" when="xl">
     <!--  the side menu  -->
     <ion-menu side="start" menuId="custom" contentId="main" class="my-custom-menu">
       <ion-header mode="ios">
@@ -109,7 +109,7 @@
           </ion-menu-toggle> -->
 
         </ion-list>
-        <div class="div_boton">
+        <div class="div_boton" *ngIf="isLogin" >
           <ion-button class="salir" (click)="Salir()">Cerrar Sesión</ion-button>
         </div>
       </ion-content>

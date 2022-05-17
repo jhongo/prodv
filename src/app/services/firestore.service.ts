@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { AngularFireStorage } from '@angular/fire/storage';
 import {AngularFirestore,
   AngularFirestoreDocument,
-  AngularFirestoreCollection} from '@angular/fire/compat/firestore';
+  AngularFirestoreCollection} from '@angular/fire/firestore';
 import {finalize} from 'rxjs/operators';
 import { Equipos, Encuentro, EncuentroPrueba } from '../models';
 
