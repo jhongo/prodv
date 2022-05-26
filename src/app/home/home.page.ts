@@ -85,19 +85,19 @@ export class HomePage implements OnInit {
 
 
     // API NOTICIAS DEPORTIVAS
-    this.http.get<any>('https://newsapi.org/v2/top-headlines',
-      {
-        params: {
-          'categories': this._category,
-          'languages': this._language,
-          'access_key': this._apiKey,
-        }
-      }
-    ).subscribe(resp => {
-      console.log(resp);
-      this.news = resp.articles
-      console.log(this.news);
-    });
+    // this.http.get<any>('https://newsapi.org/v2/top-headlines',
+    //   {
+    //     params: {
+    //       'categories': this._category,
+    //       'languages': this._language,
+    //       'access_key': this._apiKey,
+    //     }
+    //   }
+    // ).subscribe(resp => {
+    //   console.log(resp);
+    //   this.news = resp.articles
+    //   console.log(this.news);
+    // });
 
     //API RESULTADOS DEPORTIVOS
     this.http.get<any>('https://v3.football.api-sports.io/fixtures?live=all', {
