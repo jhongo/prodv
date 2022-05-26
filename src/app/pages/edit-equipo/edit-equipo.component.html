@@ -4,7 +4,9 @@
 
 
 <ion-content class="content_pri">
-  <ion-title class="titulo"> Información del equipo</ion-title>
+  <div class="encabezado">
+    <ion-label class="titulo"> Información del equipo</ion-label>
+  </div>
   <ion-card  class="Nuevo_equipo">
     <ion-item lines="none" class="IonInput">
       <ion-label>
@@ -47,7 +49,7 @@
     </ion-item>
 
     <ion-card-content class="botones">
-      <ion-button routerLink="/tab-campeonato/equipos"  (click)="restart()" class="button-cancelar">Cancelar</ion-button>
+      <ion-button   (click)="restart()" class="button-cancelar">Cancelar</ion-button>
       <ion-button (click)="saveTeam()" class="button-guardar">Actualizar</ion-button>
 
     </ion-card-content>

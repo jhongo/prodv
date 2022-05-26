@@ -13,10 +13,10 @@ const routes: Routes = [
         path: 'tabla',
         loadChildren: () => import('./../../pages/tabla/tabla.module').then( m => m.TablaPageModule)
       },
-      {
-        path: 'partidos',
-        loadChildren: () => import('./../../pages/partidos/partidos.module').then( m => m.PartidosPageModule)
-      },
+      // {
+      //   path: 'partidos',
+      //   loadChildren: () => import('./../../pages/partidos/partidos.module').then( m => m.PartidosPageModule)
+      // },
       {
         path: 'resultados',
         loadChildren: () => import('./../../pages/resultados/resultados.module').then( m => m.ResultadosPageModule)

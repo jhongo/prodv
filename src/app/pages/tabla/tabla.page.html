@@ -17,7 +17,30 @@
  
   </ion-toolbar>
 </ion-header>
+<div class="campeonatos">
+  <ion-toolbar class="toolbar_campeonato">
+    <ion-segment scrollable slot="start" class="segment_campeonatos" mode="md" (ionChange)="segment($event)" >
+      <ion-segment-button  mode="ios"  *ngFor="let campeonato of campeonatos"  class="segment_botones_campeonatos" (click)="getCampeonato(campeonato)" value={{campeonato.nombre}}>
+        <ion-label class="text_segment" >{{campeonato.nombre}}</ion-label> 
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</div>
+<div class="info_campeonato">
+  <ion-grid>
+    <ion-row>
+      <ion-col class="col_icon_encabezado" size="2">
+        <!-- <ion-icon class="icon_return" name="arrow-back-outline" routerLink="/newcampeonato" (click)="restart()"></ion-icon> -->
+      </ion-col>
+      <ion-col class="col_titulo_encabezado" size="8">
+        <ion-label class="titulocampeonato">{{infocampeonato.nombre}}</ion-label>
+      </ion-col>
+      <ion-col size="2">
 
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
 
 <ion-content class="content-resultados">
 
@@ -34,11 +57,11 @@
   </ion-segment>
 
 <!-- Grupo 1 -->
-  <ion-grid class="grid_encabezado" *ngIf="opcion=='clasificacion'">
-    <ion-row class="row_grupo">
+  <ion-grid class="grid_encabezado"  *ngIf="opcion=='clasificacion'">
+    <ion-row *ngIf="gru1" class="row_grupo">
       <ion-label class="titulo">Grupo A</ion-label>
     </ion-row>
-    <ion-row>
+    <ion-row *ngIf="gru1">
       <ion-col size="2" class="col_encabezado">
         <ion-label class="text_encabezado">  
         </ion-label>
@@ -75,10 +98,10 @@
 
 <!-- Grupos 2 -->
   <ion-grid class="grid_encabezado" *ngIf="opcion=='clasificacion'" >
-    <ion-row class="row_grupo">
+    <ion-row *ngIf="gru2" class="row_grupo">
       <ion-label class="titulo">Grupo B</ion-label>
     </ion-row>
-    <ion-row>
+    <ion-row *ngIf="gru2">
       <ion-col size="2" class="col_encabezado">
         <ion-label class="text_encabezado">  
         </ion-label>
@@ -118,10 +141,10 @@
 
   <!-- Descenso -->
   <ion-grid class="grid_encabezado" *ngIf="opcion=='clasificacion'">
-    <ion-row class="row_grupo">
+    <ion-row *ngIf="des" class="row_grupo">
       <ion-label class="titulo">Descenso</ion-label>
     </ion-row>
-    <ion-row>
+    <ion-row *ngIf="des">
       <ion-col size="2" class="col_encabezado">
         <ion-label class="text_encabezado">  
         </ion-label>
@@ -158,10 +181,10 @@
 
 
   <ion-grid class="grid_encabezado" *ngIf="opcion=='detalles'">
-    <ion-row class="row_grupo">
-      <ion-label class="titulo">Grupo A</ion-label>
+    <ion-row *ngIf="gru1" class="row_grupo">
+      <ion-label  class="titulo">Grupo A</ion-label>
     </ion-row>
-    <ion-row>
+    <ion-row *ngIf="gru1">
       <ion-col size="1" class="col_encabezado">
         <ion-label class="text_encabezado">  
         </ion-label>
@@ -236,10 +259,10 @@
   </ion-grid>
 
   <ion-grid class="grid_encabezado" *ngIf="opcion=='detalles'" >
-    <ion-row class="row_grupo">
+    <ion-row *ngIf="gru2" class="row_grupo">
       <ion-label class="titulo">Grupo B</ion-label>
     </ion-row>
-    <ion-row>
+    <ion-row *ngIf="gru2">
       <ion-col size="1" class="col_encabezado">
         <ion-label class="text_encabezado">  
         </ion-label>
@@ -314,10 +337,10 @@
   </ion-grid>
 
   <ion-grid class="grid_encabezado" *ngIf="opcion=='detalles'" >
-    <ion-row class="row_grupo">
-      <ion-label class="titulo">Descenso</ion-label>
+    <ion-row *ngIf="des" class="row_grupo">
+      <ion-label  class="titulo">Descenso</ion-label>
     </ion-row>
-    <ion-row>
+    <ion-row *ngIf="des">
       <ion-col size="1" class="col_encabezado">
         <ion-label class="text_encabezado">  
         </ion-label>

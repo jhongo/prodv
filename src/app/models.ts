@@ -85,3 +85,15 @@ export interface Referencias{
     correo:string,
 
 }
+
+export interface Campeonatos{
+
+    uid:string,
+    nombre:string,
+    fecha: Date,
+    tipo: string,
+    estado: string,
+    lugar:string,
+    grupos:number,
+
+}

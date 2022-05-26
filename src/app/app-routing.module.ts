@@ -13,6 +13,7 @@ import {canActivate} from '@angular/fire/auth-guard';
 import { EditEquipoComponent } from './pages/edit-equipo/edit-equipo.component';
 import { EditPartidoComponent } from './pages/edit-partido/edit-partido.component';
 import { RecuperarComponent } from './pages/recuperar/recuperar.component';
+import { NewcampeonatoComponent } from './pages/newcampeonato/newcampeonato.component';
 
 const isAdmin = (next:any ) => map( (user: any)=> !! user && 'LikZN15qNiQi1pFEAT8frapWt243' === user.uid);
 const isAdminS = (next:any ) => map( (user: any)=> !! user && 'LikZN15qNiQi1pFEAT8frapWt243' === user.uid);
@@ -76,7 +77,12 @@ const routes: Routes = [
   {
     path: 'recuperar',
     component: RecuperarComponent,
+  },{
+
+    path: 'newcampeonato',
+    component: NewcampeonatoComponent,
   },
+
   {
     path: 'tab-inicial',
     loadChildren: () => import('./pages/tab-inicial/tab-inicial.module').then( m => m.TabInicialPageModule)
@@ -89,6 +95,23 @@ const routes: Routes = [
     path: 'details/:id',
     loadChildren: () => import('./pages/details/details.module').then( m => m.DetailsPageModule)
   },
+  {
+    path: 'encuentros1',
+    loadChildren: () => import('./pages/encuentros1/encuentros1.module').then( m => m.Encuentros1PageModule)
+  },
+  {
+    path: 'equipos1',
+    loadChildren: () => import('./pages/equipos1/equipos1.module').then( m => m.Equipos1PageModule)
+  },
+  {
+    path: 'tab-newcampeonato',
+    loadChildren: () => import('./pages/tab-newcampeonato/tab-newcampeonato.module').then( m => m.TabNewcampeonatoPageModule)
+  },
+  {
+      path: 'partidos',
+      loadChildren: () => import('./pages/partidos/partidos.module').then( m => m.PartidosPageModule)
+    },
+
 
 
 

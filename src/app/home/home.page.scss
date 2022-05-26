@@ -53,6 +53,56 @@ ion-segment-button{
    font-weight: bold;
    
  }
+.campeonatos{
+  // margin-top: 10px;
+  // border: 1px white solid;
+}
+.toolbar_campeonato{
+  height: auto;
+  --background: #075E54;
+  width: auto;
+}
+.info_campeonato{ 
+  // padding-top: 10px;
+  // padding-bottom: 10px;
+  background: white;
+  text-align: center;
+  height: auto;
+}
+.titulocampeonato{
+  font-size: 16px;  
+    color: black;
+    font-weight: bold;
+    margin-left: 10px;
+
+}
+
+.segment_campeonatos{
+  --background: #075E54; 
+  border-radius: 0px;
+  width:auto;
+  
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+.segment_botones_campeonatos{
+  --indicator-color: transparent; 
+  // text-align: center;
+  margin-right: 10px;
+  --border-color: transparent;
+  border-radius: 30px;
+  border: 1px white solid ;
+  --color: white; 
+  
+}
+.text_segment{
+  font-weight: bold;
+  text-align: center;
+  font-size: 10px;
+  // border: 1px red solid;
+}
 
 .ion-label-item{
   color: white;
@@ -70,7 +120,6 @@ ion-segment-button{
   color: white;
   font-weight: bold;
   font-size: 16px;
-  
 
 }
 .col_fase_fecha{
@@ -328,7 +377,7 @@ text-align: center;
 // Css de partidos
 .page-content{
   --background: #f3eded;
-  --padding-bottom: 70px;
+   --padding-bottom: 40px;
 }
 ion-toolbar{
   --background: #075E54;

@@ -7,6 +7,35 @@ ion-toolbar{
     --background: #075E54;
     color: white;
 }
+
+.info_campeonato{ 
+    // padding-top: 10px;
+    // padding-bottom: 10px;
+    background: white;
+    text-align: center;
+    height: auto;
+}
+.titulocampeonato{
+    font-size: 16px;  
+      color: black;
+      font-weight: bold;
+      margin-left: 10px;
+
+}
+.col_icon_encabezado{
+    // border: 1px black so lid;
+    text-align: left;
+
+}
+.col_titulo_encabezado{
+    margin-top: auto;
+    margin-bottom: auto;
+    // border: 1px blue solid;
+}
+.icon_return{
+    color: black;
+    font-size: 25px;
+}
 .Nuevo_partido{
     --background: white; 
     padding: 2px;

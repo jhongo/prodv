@@ -1,77 +1,187 @@
 <ion-header>
+
   <ion-toolbar mode="md">
+    <ion-title style="text-align: center;">Prodv</ion-title>
+
     <ion-buttons slot="start">
       <ion-button>
-       <ion-menu-button ></ion-menu-button>
-     </ion-button>
-   </ion-buttons>
-    <ion-title style="text-align: center;">Prodv</ion-title> 
+        <ion-menu-button></ion-menu-button>
+      </ion-button>
+    </ion-buttons>
 
     <ion-buttons slot="end">
-      <ion-button [routerLink]="['/perfil']"> 
+      <ion-button [routerLink]="['/perfil']">
         <ion-icon slot="icon-only" name="person-circle-outline"></ion-icon>
       </ion-button>
-    </ion-buttons> 
- 
-  </ion-toolbar>
+    </ion-buttons>
 
+  </ion-toolbar>
 </ion-header>
 
-<div class="campeonatos">
-  <ion-toolbar class="toolbar_campeonato" mode="ios">
-    <ion-segment scrollable slot="start" class="segment_campeonatos" mode="md" (ionChange)="segment($event)" >
-      <ion-segment-button  mode="ios"  *ngFor="let campeonato of campeonatos"  class="segment_botones_campeonatos" (click)="getCampeonato(campeonato)" value={{campeonato.nombre}}>
-        <ion-label class="text_segment" >{{campeonato.nombre}}</ion-label> 
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar>
-</div>
-<div class="info_campeonato">
-  <ion-grid>
-    <ion-row>
-      <ion-col class="col_icon_encabezado" size="2">
-        <!-- <ion-icon class="icon_return" name="arrow-back-outline" routerLink="/newcampeonato" (click)="restart()"></ion-icon> -->
-      </ion-col>
-      <ion-col class="col_titulo_encabezado" size="8">
-        <ion-label class="titulocampeonato">{{infocampeonato.nombre}}</ion-label>
-      </ion-col>
-      <ion-col size="2">
-
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</div>
-
-<div class="div_segmet_de">
-
-  <ion-toolbar class="tolbar" mode="ios">
-    
-    <ion-segment class="segment_init"  slot="start" mode="md" (ionChange)="changeSegment($event)" value="Partidos">
-      <ion-segment-button  class="segment_seg"  value="Partidos">
-        <ion-label class="text-selected-item_pri">Partidos</ion-label>
-      </ion-segment-button>
-      
-      <ion-segment-button  class="segment_seg"  value="Clasificacion">
-        <ion-label class="text-selected-item_pri" >Clasificación</ion-label>
-      </ion-segment-button>
-      
-    </ion-segment>
-  </ion-toolbar>
+<ion-content class="content-resultados">
   
-</div>
+  <ion-fab class="boton_mas" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="success" (click)="estado=true">
+      <ion-icon color="light" name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
-
-<ion-content  class="page-content">
-
-  <div *ngIf="opcion=='Partidos'" >
-  <div class="encabezado">
-    <ion-label class="titulo"> Proximos partidos </ion-label>
+  <div class="info_campeonato">
+    <ion-grid>
+      <ion-row>
+        <ion-col class="col_icon_encabezado" size="3">
+          <ion-icon class="icon_return" name="arrow-back-outline" routerLink="/newcampeonato" (click)="restart()"></ion-icon>
+        </ion-col>
+        <ion-col class="col_titulo_encabezado" size="6">
+          <ion-label class="titulocampeonato">{{infocampeonato.nombre}}</ion-label>
+        </ion-col>
+        <ion-col size="3">
+  
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
-  
 
-<!-- Prueba de nuevo estilo -->
+  <ion-card *ngIf="estado" class="Nuevo_partido">
+    <ion-card-header>
+      <ion-card-title class="tittle_np">
+        Nuevo partido
+      </ion-card-title>
+    </ion-card-header>
 
-<div class="div_cuarto">
+   
+    <ion-item class="IonInput" id="open-modal" >
+        <ion-label class="ion-label-itemin" > Fecha: </ion-label>
+        <ion-input slot="end" class="campos_fecha" [(ngModel)]="encuentro.fecha">  {{formatedString}} </ion-input>
+        <!-- <ion-text >  {{formatedString}} </ion-text> -->
+    </ion-item>
+
+    <ion-modal trigger="open-modal" mode="md" >
+      <ng-template>
+        <ion-content>
+          <ion-datetime
+          #datetime 
+          [value]="dateValue"
+          size="cover"
+          (ionChange)="dateChanged(datetime.value)"
+          showDefaultButtons ="true"
+          (ionCancel) = "showPicker = false"
+          >
+            <ion-buttons slot="buttons" >
+              <ion-button (click)="close()">Cancelar</ion-button>
+              <ion-button (click)="select()" color="primary">Seleccionar</ion-button>
+            </ion-buttons>
+          </ion-datetime>
+          
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+
+    <ion-item lines="none" class="IonInput">
+      <ion-label class="ion-label-itemin">Tipo:</ion-label>
+      <ion-input slot="end" class="campos" (click)="newMatch()" [(ngModel)]="encuentro.tipo"
+        placeholder="Seleccione tipo de partido">
+      </ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="fecha" lines="none" class="IonInput">
+      <ion-label class="ion-label-itemin">Fase:</ion-label>
+      <ion-input slot="end" class="campos" (click)="newFecha()" [(ngModel)]="encuentro.fechae"
+        placeholder="Seleccione fase del partido">
+      </ion-input>    
+    </ion-item>
+
+    <ion-item *ngIf="grupo" lines="none" class="IonInput">
+      <ion-label class="ion-label-itemin">Grupo:</ion-label>
+      <ion-input slot="end" class="campos" (click)="newTeam()" [(ngModel)]="encuentro.grupo"
+        placeholder="Seleccione grupo">
+      </ion-input>
+    </ion-item>
+
+    <!-- Inicio Grupo 1 -->
+    <ion-item *ngIf="grupo1" lines="none" class="IonInput">
+      <ion-label class="ion-label-itemin">Equipo 1</ion-label>
+      <ion-select class="campos" [(ngModel)]="encuentro.nombre_e1" placeholder="Seleccione">
+        <ion-select-option *ngFor="let equipos of team1" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="grupo1" lines="none" class="IonInput">
+      <ion-label class="ion-label-itemin">Equipo 2</ion-label>
+      <ion-select class="campos" [(ngModel)]="encuentro.nombre_e2" placeholder="Seleccione">
+        <ion-select-option *ngFor="let equipos of team1" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Final Grupo 1 -->
+
+    <!-- Inicio Grupo 2 -->
+    <ion-item *ngIf="grupo2" lines="none" class="IonInput">
+      <ion-label class="ion-label-itemin">Equipo 1</ion-label>
+      <ion-select class="campos" [(ngModel)]="encuentro.nombre_e1" placeholder="Seleccione">
+        <ion-select-option *ngFor="let equipos of team2" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="grupo2" lines="none" class="IonInput">
+      <ion-label class="ion-label-itemin">Equipo 2</ion-label>
+      <ion-select class="campos" [(ngModel)]="encuentro.nombre_e2" placeholder="Seleccione">
+        <ion-select-option *ngFor="let equipos of team2" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <!-- Final Grupo 2 -->
+
+    <!-- Descenso -->
+    <ion-item *ngIf="descenso" lines="none" class="IonInput">
+      <ion-label class="ion-label-itemin">Equipo 1</ion-label>
+      <ion-select class="campos" [(ngModel)]="encuentro.nombre_e1" placeholder="Seleccione">
+        <ion-select-option *ngFor="let equipos of teamd" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="descenso" lines="none" class="IonInput">
+      <ion-label class="ion-label-itemin">Equipo 2</ion-label>
+      <ion-select class="campos" [(ngModel)]="encuentro.nombre_e2" placeholder="Seleccione">
+        <ion-select-option *ngFor="let equipos of teamd" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    
+     <!-- Inicio Semi o final -->
+
+     <ion-item  *ngIf="gene" lines="none" class="IonInput">
+      <ion-label class="ion-label-itemin">Encuentro</ion-label>
+      <ion-select class="campos" [(ngModel)]="encuentro.fechae" placeholder="Seleccione grupo">
+        <ion-select-option value="unico">Unico</ion-select-option>
+        <ion-select-option value="ida">Ida</ion-select-option>
+        <ion-select-option value="vuelta">Vuelta</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+     <ion-item *ngIf="gene" lines="none" class="IonInput">
+      <ion-label class="ion-label-itemin">Equipo 1</ion-label>
+      <ion-select class="campos" [(ngModel)]="encuentro.nombre_e1" placeholder="Seleccione">
+        <ion-select-option *ngFor="let equipos of teamg" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="gene" lines="none" class="IonInput">
+      <ion-label class="ion-label-itemin">Equipo 2</ion-label>
+      <ion-select class="campos" [(ngModel)]="encuentro.nombre_e2" placeholder="Seleccione">
+        <ion-select-option *ngFor="let equipos of teamg" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <!-- Final Semi o final -->
+
+    <ion-card-content class="botones">
+      <ion-button (click)="estado=false" (click)="reset()" class="button-cancelar">Cancelar</ion-button>
+      <ion-button (click)="saveMatch()" class="button-guardar">Guardar</ion-button>
+    </ion-card-content>
+
+  </ion-card>
+
+
+  <div class="encabezado">
+    <ion-label class="titulo"> Lista de partidos </ion-label>
+   </div>
+ 
+ <!-- Html de partidos de Final -->
+ <div class="div_cuarto">
   <ion-grid class="grid_cuarto">
     
     <ion-row class="row_cuarto">
@@ -107,7 +217,11 @@
     </ion-col>
     <ion-col class="col_icon" size="4">
          
-      
+      <ion-buttons class="button">
+        <ion-button  routerLink="/edit-partido" (click)="getMatch(equipo)" >
+          <ion-icon class="icon_edit" slot="icon-only" name="create-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
       
     </ion-col>
   </ion-row>
@@ -149,7 +263,7 @@
 </div>
 
 <!-- Espera -->
-<div *ngFor="let equipo of gene" class="partidos">
+<div *ngFor="let equipo of genee" class="partidos">
     <ion-grid>
     
     <ion-row class="row_fecha">
@@ -165,7 +279,11 @@
       </ion-col>
       <ion-col class="col_icon" size="4">
          
-        
+        <ion-buttons class="button">
+          <ion-button  routerLink="/edit-partido" (click)="getMatch(equipo)" >
+            <ion-icon class="icon_edit" slot="icon-only" name="create-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
         
       </ion-col>
     </ion-row>
@@ -293,7 +411,13 @@
       
     </ion-col>
     <ion-col class="col_icon" size="4">
-    
+         
+      <ion-buttons class="button">
+        <ion-button  routerLink="/edit-partido" (click)="getMatch(equipo)" >
+          <ion-icon class="icon_edit" slot="icon-only" name="create-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      
     </ion-col>
   </ion-row>
   
@@ -350,7 +474,11 @@
       </ion-col>
       <ion-col class="col_icon" size="4">
          
-       
+        <ion-buttons class="button">
+          <ion-button  routerLink="/edit-partido" (click)="getMatch(equipo)" >
+            <ion-icon class="icon_edit" slot="icon-only" name="create-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
         
       </ion-col>
     </ion-row>
@@ -478,7 +606,11 @@
     </ion-col>
     <ion-col class="col_icon" size="4">
          
-     
+      <ion-buttons class="button">
+        <ion-button  routerLink="/edit-partido" (click)="getMatch(equipo)" >
+          <ion-icon class="icon_edit" slot="icon-only" name="create-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
       
     </ion-col>
   </ion-row>
@@ -536,7 +668,12 @@
       </ion-col>
       <ion-col class="col_icon" size="4">
          
-     
+        <ion-buttons class="button">
+          <ion-button  routerLink="/edit-partido" (click)="getMatch(equipo)" >
+            <ion-icon class="icon_edit" slot="icon-only" name="create-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        
       </ion-col>
     </ion-row>
     
@@ -639,7 +776,11 @@
 
 
 
+
+
 <!-- Grupo 1 -->
+
+
 <div *ngIf="gru1"  class="div_grupo">
   <ion-grid class="grid_cuarto">
     <ion-row class="row_cuarto">
@@ -668,7 +809,11 @@
         
       </ion-col>
       <ion-col class="col_icon" size="4">
-         
+        <ion-buttons class="button">
+          <ion-button  routerLink="/edit-partido" (click)="getMatch(equipo)" >
+            <ion-icon class="icon_edit" slot="icon-only" name="create-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>         
       </ion-col>
     </ion-row>
 
@@ -711,20 +856,34 @@
 </div>
 
 <!-- Espera -->
-<div *ngFor="let equipo of grupo1" class="partidos">
+<div *ngFor="let equipo of grupoe1" class="partidos">
 
   <ion-grid>
 
     <ion-row class="row_fecha">
 
-      <ion-col class="col_tex_fecha" size="6">
+      <ion-col size="4">
+
+      </ion-col>
+      <ion-col class="col_tex_fecha" size="4">
         
         <ion-label  class="label_fecha">
           {{equipo.fecha | date : "dd/MM/yyy"}}
         </ion-label>
         
       </ion-col>
+      <ion-col class="col_icon" size="4">
+         
+        <ion-buttons class="button">
+          <ion-button  routerLink="/edit-partido" (click)="getMatch(equipo)" >
+            <ion-icon class="icon_edit" slot="icon-only" name="create-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        
+      </ion-col>
     </ion-row>
+
+
 
     <ion-row>
 
@@ -761,6 +920,7 @@
 
   </ion-grid>
 </div>
+
 <!-- finalizado -->
 <div *ngFor="let equipo of grupof1" class="partidos">
 
@@ -823,7 +983,6 @@
 
 
 
-
 <!-- Grupo 2 -->
 <div *ngIf="gru2" class="div_grupo">
   <ion-grid class="grid_cuarto">
@@ -834,6 +993,7 @@
     </ion-row>
   </ion-grid>
 </div>
+
 <!-- En juego  -->
 <div *ngFor="let equipo of grupoinit2" class="partidos">
   <ion-grid>
@@ -849,7 +1009,11 @@
         
       </ion-col>
       <ion-col class="col_icon" size="4">
-         
+        <ion-buttons class="button">
+          <ion-button  routerLink="/edit-partido" (click)="getMatch(equipo)" >
+            <ion-icon class="icon_edit" slot="icon-only" name="create-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
       </ion-col>
     </ion-row>
     <ion-row>
@@ -889,17 +1053,28 @@
 </div>
 
 <!-- Espera -->
-<div *ngFor="let equipo of grupo2" class="partidos">
+<div *ngFor="let equipo of grupoe2" class="partidos">
 
   <ion-grid>
 
     <ion-row class="row_fecha">
+      <ion-col size="4">
 
-      <ion-col class="col_tex_fecha" size="6">
+      </ion-col>
+      <ion-col class="col_tex_fecha" size="4">
         
         <ion-label  class="label_fecha">
-          {{equipo.fecha | date : "dd/MM/yyyy"}}
+          {{equipo.fecha | date : "dd/MM/yyy"}}
         </ion-label>
+        
+      </ion-col>
+      <ion-col class="col_icon" size="4">
+         
+        <ion-buttons class="button">
+          <ion-button  routerLink="/edit-partido" (click)="getMatch(equipo)" >
+            <ion-icon class="icon_edit" slot="icon-only" name="create-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
         
       </ion-col>
     </ion-row>
@@ -944,8 +1119,11 @@
 
 <!-- finalizado -->
 <div *ngFor="let equipo of grupof2" class="partidos">
+
   <ion-grid>
+
     <ion-row class="row_fecha">
+
       <ion-col class="col_finalizado" size="4">
         <ion-label class="text_finalizado">Finalizado</ion-label>
       </ion-col>
@@ -960,6 +1138,9 @@
          
       </ion-col>
     </ion-row>
+
+
+
     <ion-row>
 
       <ion-col class="col_nom_eq1" size="3">
@@ -996,399 +1177,4 @@
   </ion-grid>
 </div>
 
-</div>
-
-<div *ngIf="opcion=='Clasificacion'" class="content-resultados">
-
-  <ion-segment  mode="ios" (ionChange)="changeSegment2($event)" value="clasificacion">
-
-    <ion-segment-button value="clasificacion">
-      <ion-label class="text-selected-item">Clasificación</ion-label>
-    </ion-segment-button>
-
-    <ion-segment-button value="detalles">
-      <ion-label class="text-selected-item">Detalles</ion-label>
-    </ion-segment-button>
-
-  </ion-segment>
-
-<!-- Grupo 1 -->
-  <ion-grid class="grid_encabezado"  *ngIf="opcion2=='clasificacion'">
-    <ion-row *ngIf="grup1" class="row_grupo">
-      <ion-label class="tituloG">Grupo A</ion-label>
-    </ion-row>
-    <ion-row *ngIf="grup1">
-      <ion-col size="2" class="col_encabezado">
-        <ion-label class="text_encabezado">  
-        </ion-label>
-      </ion-col>
-      <ion-col size="1"></ion-col>
-      <ion-col size="3" class="col_encabezado">
-        <ion-label class="text_puntos">Equipo</ion-label>
-      </ion-col>
-      <ion-col size="2"></ion-col>
-      <ion-col size="2"class="col_encabezado"> 
-        <ion-label class="text_puntos">DG</ion-label>
-      </ion-col>
-      <ion-col size="2" class="col_encabezado">
-        <ion-label class="text_puntos">PT</ion-label>
-      </ion-col>
-    </ion-row>
-
-    
-    <div class="grupos"  >
-      <ion-row *ngFor="let equipo of grupoE1, let i = index">
-        <ion-col size="1" class="col_encabezado">
-          <ion-label class="text_puntos">{{i+1}} </ion-label>
-        </ion-col>
-        <ion-col class="col_escudo" size="2">
-          <img class="escudo" src={{equipo.escudo}} >
-        </ion-col>
-        <ion-col size="5" class="col_equipo">
-          <ion-label class="text_puntos">{{equipo.nombre}}</ion-label>
-        </ion-col>
-        <ion-col size="2"class="col_encabezado"> 
-          <ion-label class="text_puntos">{{equipo.d_g}}</ion-label>
-        </ion-col>
-        <ion-col size="2" class="col_encabezado">
-          <ion-label class="text_puntos">{{equipo.puntos}}</ion-label>
-        </ion-col>
-      </ion-row>     
-    </div>
-  </ion-grid>
-
-<!-- Grupos 2 -->
-  <ion-grid class="grid_encabezado" *ngIf="opcion2=='clasificacion'" >
-    <ion-row *ngIf="grup2" class="row_grupo">
-      <ion-label class="tituloG">Grupo B</ion-label>
-    </ion-row>
-    <ion-row *ngIf="grup2">
-      <ion-col size="2" class="col_encabezado">
-        <ion-label class="text_encabezado">  
-        </ion-label>
-      </ion-col>
-      <ion-col size="1"></ion-col>
-      <ion-col size="3" class="col_encabezado">
-        <ion-label class="text_puntos">Equipo</ion-label>
-      </ion-col>
-      <ion-col size="2"></ion-col>
-      <ion-col size="2"class="col_encabezado"> 
-        <ion-label class="text_puntos">DG</ion-label>
-      </ion-col>
-      <ion-col size="2" class="col_encabezado">
-        <ion-label class="text_puntos">PT</ion-label>
-      </ion-col>
-    </ion-row>
-
-    <!--  -->
-   
-    <div class="grupos"  >
-      <ion-row *ngFor="let equipo of grupoE2, let i = index">
-        <ion-col size="1" class="col_encabezado">
-          <ion-label class="text_puntos">{{i+1}} </ion-label>
-        </ion-col>
-        <ion-col class="col_escudo" size="2">
-          <img class="escudo" src={{equipo.escudo}} >
-        </ion-col>
-        <ion-col size="5" class="col_equipo">
-          <ion-label class="text_puntos">{{equipo.nombre}}</ion-label>
-        </ion-col>
-        <ion-col size="2"class="col_encabezado"> 
-          <ion-label class="text_puntos">{{equipo.d_g}}</ion-label>
-        </ion-col>
-        
-        <ion-col size="2" class="col_encabezado">
-          <ion-label class="text_puntos">{{equipo.puntos}}</ion-label>
-        </ion-col>
-      </ion-row>     
-    </div>
-    
-    
-  </ion-grid>
-
-  <!-- Descenso -->
-  <ion-grid class="grid_encabezado" *ngIf="opcion2=='clasificacion'">
-    <ion-row *ngIf="des" class="row_grupo">
-      <ion-label class="tituloG">Descenso</ion-label>
-    </ion-row>
-    <ion-row *ngIf="des">
-      <ion-col size="2" class="col_encabezado">
-        <ion-label class="text_encabezado">  
-        </ion-label>
-      </ion-col>
-      <ion-col size="1"></ion-col>
-      <ion-col size="3" class="col_encabezado">
-        <ion-label class="text_puntos">Equipo</ion-label>
-      </ion-col>
-      <ion-col size="2"></ion-col>
-      <ion-col size="2"class="col_encabezado"> 
-        <ion-label class="text_puntos">DG</ion-label>
-      </ion-col>
-      <ion-col size="2" class="col_encabezado">
-        <ion-label class="text_puntos">PT</ion-label>
-      </ion-col>
-    </ion-row>
-
-    
-    <div class="grupos"  >
-      <ion-row *ngFor="let equipo of descensoE, let i = index">
-        <ion-col size="1" class="col_encabezado">
-          <ion-label class="text_puntos">{{i+1}} </ion-label>
-        </ion-col>
-        <ion-col class="col_escudo" size="2">
-          <img class="escudo" src={{equipo.escudo}} >
-        </ion-col>
-        <ion-col size="5" class="col_equipo">
-          <ion-label class="text_puntos">{{equipo.nombre}}</ion-label>
-        </ion-col>
-        <ion-col size="2"class="col_encabezado"> 
-          <ion-label class="text_puntos">{{equipo.d_g}}</ion-label>
-        </ion-col>
-        
-        <ion-col size="2" class="col_encabezado">
-          <ion-label class="text_puntos">{{equipo.puntos}}</ion-label>
-        </ion-col>
-      </ion-row>     
-    </div>
-  </ion-grid>
-
-
-  <ion-grid class="grid_encabezado" *ngIf="opcion2=='detalles'">
-    <ion-row *ngIf="grup1" class="row_grupo">
-      <ion-label  class="tituloG">Grupo A</ion-label>
-    </ion-row>
-    <ion-row *ngIf="grup1">
-      <ion-col size="1" class="col_encabezado">
-        <ion-label class="text_encabezado">  
-        </ion-label>
-      </ion-col>
-      <ion-col size="3" class="col_encabezado">
-        <ion-label class="text_puntos">Equipo</ion-label>
-      </ion-col>
-      <ion-col size="1" class="col_encabezado_datos">
-        <ion-label class="text_puntos">PT</ion-label>
-      </ion-col>
-      <ion-col size="1" class="col_encabezado_datos">
-        <ion-label class="text_encabezado">PJ</ion-label>
-      </ion-col>
-      <ion-col size="1" class="col_encabezado_datos">
-        <ion-label class="text_encabezado">PG</ion-label>
-      </ion-col>
-      <ion-col size="1" class="col_encabezado_datos">
-        <ion-label class="text_encabezado">PE</ion-label>
-      </ion-col>
-      <ion-col size="1" class="col_encabezado_datos">
-        <ion-label class="text_encabezado">PP</ion-label>
-      </ion-col>
-      <ion-col size="1" class="col_encabezado_datos">
-        <ion-label class="text_encabezado">GF</ion-label>
-      </ion-col>
-      <ion-col size="1" class="col_encabezado_datos">
-        <ion-label class="text_encabezado">GC</ion-label>
-      </ion-col>
-      <ion-col size="1" class="col_encabezado_datos">
-        <ion-label class="text_encabezado">DG</ion-label>
-      </ion-col>
-      
-    </ion-row>
-    <div class="grupos" *ngFor="let equipo of grupoE1, let i = index" >
-      <ion-row >
-        <ion-col size="1" class="col_encabezado">
-          <ion-label class="text_puntos" >{{i+1}} </ion-label>
-        </ion-col>
-        <ion-col size="1" class="col_escudo">
-          <img class="escudo" src={{equipo.escudo}} >
-        </ion-col>
-        <ion-col size="2" class="col_equipo">
-          <ion-label class="text_equipo">{{equipo.nombre}}</ion-label>
-        </ion-col>
-        <ion-col size="1" class="col_encabezado_datos">
-          <ion-label class="text_puntos">{{equipo.puntos}}</ion-label>
-        </ion-col>
-        <ion-col size="1" class="col_encabezado_datos">
-          <ion-label class="text_encabezado">{{equipo.p_j}}</ion-label>
-        </ion-col>
-        <ion-col size="1" class="col_encabezado_datos">
-          <ion-label class="text_encabezado">{{equipo.p_g}}</ion-label>
-        </ion-col>
-        <ion-col size="1" class="col_encabezado_datos">
-          <ion-label class="text_encabezado">{{equipo.p_e}}</ion-label>
-        </ion-col>
-        <ion-col size="1" class="col_encabezado_datos">
-          <ion-label class="text_encabezado">{{equipo.p_p}}</ion-label>
-        </ion-col>
-        <ion-col size="1" class="col_encabezado_datos">
-          <ion-label class="text_encabezado">{{equipo.g_f}}</ion-label>
-        </ion-col>
-        <ion-col size="1" class="col_encabezado_datos">
-          <ion-label class="text_encabezado">{{equipo.g_c}}</ion-label>
-        </ion-col>
-        <ion-col size="1" class="col_encabezado_datos">
-          <ion-label class="text_encabezado">{{equipo.d_g}}</ion-label>
-        </ion-col>
-      </ion-row>
-
-    </div>
-  </ion-grid>
-
-  <ion-grid class="grid_encabezado" *ngIf="opcion2=='detalles'" >
-    <ion-row *ngIf="grup2" class="row_grupo">
-      <ion-label class="tituloG">Grupo B</ion-label>
-    </ion-row>
-    <ion-row *ngIf="grup2">
-      <ion-col size="1" class="col_encabezado">
-        <ion-label class="text_encabezado">  
-        </ion-label>
-      </ion-col>
-      <ion-col size="3" class="col_encabezado">
-        <ion-label class="text_puntos">Equipo</ion-label>
-      </ion-col>
-      <ion-col size="1" class="col_encabezado">
-        <ion-label class="text_puntos">PT</ion-label>
-      </ion-col>
-      <ion-col size="1" class="col_encabezado">
-        <ion-label class="text_encabezado">PJ</ion-label>
-      </ion-col>
-      <ion-col size="1" class="col_encabezado">
-        <ion-label class="text_encabezado">PG</ion-label>
-      </ion-col>
-      <ion-col size="1" class="col_encabezado">
-        <ion-label class="text_encabezado">PE</ion-label>
-      </ion-col>
-      <ion-col size="1" class="col_encabezado">
-        <ion-label class="text_encabezado">PP</ion-label>
-      </ion-col>
-      <ion-col size="1" class="col_encabezado">
-        <ion-label class="text_encabezado">GF</ion-label>
-      </ion-col>
-      <ion-col size="1" class="col_encabezado">
-        <ion-label class="text_encabezado">GC</ion-label>
-      </ion-col>
-      <ion-col size="1" class="col_encabezado">
-        <ion-label class="text_encabezado">DG</ion-label>
-      </ion-col>
-      
-    </ion-row>
-    <div class="grupos" *ngFor="let equipo2 of grupoE2, let i = index">
-      <ion-row>
-        <ion-col size="1" class="col_encabezado">
-          <ion-label class="text_puntos">{{i + 1}}</ion-label>
-        </ion-col>
-        <ion-col size="1" class="col_escudo">
-          <img class="escudo" src={{equipo2.escudo}} >
-        </ion-col>
-        <ion-col size="2" class="col_equipo">
-          <ion-label class="text_equipo">{{equipo2.nombre}}</ion-label>
-        </ion-col>
-        <ion-col size="1" class="col_encabezado">
-          <ion-label class="text_puntos">{{equipo2.puntos}}</ion-label>
-        </ion-col>
-        <ion-col size="1" class="col_encabezado">
-          <ion-label class="text_encabezado">{{equipo2.p_j}}</ion-label>
-        </ion-col>
-        <ion-col size="1" class="col_encabezado">
-          <ion-label class="text_encabezado">{{equipo2.p_g}}</ion-label>
-        </ion-col>
-        <ion-col size="1" class="col_encabezado">
-          <ion-label class="text_encabezado">{{equipo2.p_e}}</ion-label>
-        </ion-col>
-        <ion-col size="1" class="col_encabezado">
-          <ion-label class="text_encabezado">{{equipo2.p_p}}</ion-label>
-        </ion-col>
-        <ion-col size="1" class="col_encabezado">
-          <ion-label class="text_encabezado">{{equipo2.g_f}}</ion-label>
-        </ion-col>
-        <ion-col size="1" class="col_encabezado">
-          <ion-label class="text_encabezado">{{equipo2.g_c}}</ion-label>
-        </ion-col>
-        <ion-col size="1" class="col_encabezado">
-          <ion-label class="text_encabezado">{{equipo2.d_g}}</ion-label>
-        </ion-col>
-        
-      </ion-row>
-    </div>
-  </ion-grid>
-
-  <ion-grid class="grid_encabezado" *ngIf="opcion2=='detalles'" >
-    <ion-row *ngIf="des" class="row_grupo">
-      <ion-label  class="tituloG">Descenso</ion-label>
-    </ion-row>
-    <ion-row *ngIf="des">
-      <ion-col size="1" class="col_encabezado">
-        <ion-label class="text_encabezado">  
-        </ion-label>
-      </ion-col>
-      <ion-col size="3" class="col_encabezado">
-        <ion-label class="text_puntos">Equipo</ion-label>
-      </ion-col>
-      <ion-col size="1" class="col_encabezado">
-        <ion-label class="text_puntos">PT</ion-label>
-      </ion-col>
-      <ion-col size="1" class="col_encabezado">
-        <ion-label class="text_encabezado">PJ</ion-label>
-      </ion-col>
-      <ion-col size="1" class="col_encabezado">
-        <ion-label class="text_encabezado">PG</ion-label>
-      </ion-col>
-      <ion-col size="1" class="col_encabezado">
-        <ion-label class="text_encabezado">PE</ion-label>
-      </ion-col>
-      <ion-col size="1" class="col_encabezado">
-        <ion-label class="text_encabezado">PP</ion-label>
-      </ion-col>
-      <ion-col size="1" class="col_encabezado">
-        <ion-label class="text_encabezado">GF</ion-label>
-      </ion-col>
-      <ion-col size="1" class="col_encabezado">
-        <ion-label class="text_encabezado">GC</ion-label>
-      </ion-col>
-      <ion-col size="1" class="col_encabezado">
-        <ion-label class="text_encabezado">DG</ion-label>
-      </ion-col>
-      
-    </ion-row>
-    <div class="grupos" *ngFor="let equipo2 of descensoE, let i = index">
-      <ion-row>
-        <ion-col size="1" class="col_encabezado">
-          <ion-label class="text_puntos">{{i + 1}}</ion-label>
-        </ion-col>
-        <ion-col size="1" class="col_escudo">
-          <img class="escudo" src={{equipo2.escudo}} >
-        </ion-col>
-        <ion-col size="2" class="col_equipo">
-          <ion-label class="text_equipo">{{equipo2.nombre}}</ion-label>
-        </ion-col>
-        <ion-col size="1" class="col_encabezado">
-          <ion-label class="text_puntos">{{equipo2.puntos}}</ion-label>
-        </ion-col>
-        <ion-col size="1" class="col_encabezado">
-          <ion-label class="text_encabezado">{{equipo2.p_j}}</ion-label>
-        </ion-col>
-        <ion-col size="1" class="col_encabezado">
-          <ion-label class="text_encabezado">{{equipo2.p_g}}</ion-label>
-        </ion-col>
-        <ion-col size="1" class="col_encabezado">
-          <ion-label class="text_encabezado">{{equipo2.p_e}}</ion-label>
-        </ion-col>
-        <ion-col size="1" class="col_encabezado">
-          <ion-label class="text_encabezado">{{equipo2.p_p}}</ion-label>
-        </ion-col>
-        <ion-col size="1" class="col_encabezado">
-          <ion-label class="text_encabezado">{{equipo2.g_f}}</ion-label>
-        </ion-col>
-        <ion-col size="1" class="col_encabezado">
-          <ion-label class="text_encabezado">{{equipo2.g_c}}</ion-label>
-        </ion-col>
-        <ion-col size="1" class="col_encabezado">
-          <ion-label class="text_encabezado">{{equipo2.d_g}}</ion-label>
-        </ion-col>
-        
-      </ion-row>
-    </div>
-  </ion-grid>
-</div>
-
-
-
 </ion-content>
-

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { formatRelativeWithOptions, getWeekYearWithOptions } from 'date-fns/fp';
 import { Subscription } from 'rxjs';
-import { Encuentro } from 'src/app/models';
+import { Encuentro, Campeonatos, Equipos } from 'src/app/models';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { EncuentroPrueba } from '../../models';
 
@@ -18,6 +18,7 @@ export class PartidosPage implements OnInit {
   cuartos: Encuentro []=[];
   semi: Encuentro []=[];
   final: Encuentro []=[];
+  equipoInfo: Subscription;
 
   genef: EncuentroPrueba []=[];
   gene: EncuentroPrueba []=[];
@@ -34,6 +35,7 @@ export class PartidosPage implements OnInit {
   genevuel: EncuentroPrueba[] = [];
   genevuelinit: EncuentroPrueba[] = [];
   genevuelf: EncuentroPrueba[] = [];
+  
 
 
   cuarto=false;
@@ -43,11 +45,22 @@ export class PartidosPage implements OnInit {
   ida = false;
   vuelta = false;
   descenso = false;
-
+  opcion= "";
+  opcion2= "";
   titulo="";
   gru1=false;
   gru2=false;
 
+  campeonatos: Campeonatos[] = [];
+  infocampeonato: Campeonatos = {
+    uid: '',
+    nombre: '',
+    fecha: null,
+    tipo: '',
+    lugar: '',
+    estado: 'iniciado',
+    grupos: 0,
+  };
   encuentro: EncuentroPrueba = {
     uid: '',
     tipo: '',
@@ -69,17 +82,127 @@ export class PartidosPage implements OnInit {
 
   fase="";
   numero=0;
-  constructor(public firestoreService: FirestoreService,
-              public alertController: AlertController) { }
 
-  ngOnInit() {
-    this.getPartidos();
+
+
+// Tabla
+
+grupoE1: Equipos[] = [];
+grupoE2: Equipos[] = [];
+descensoE:Equipos[]=[];
+
+
+grup1= false;
+grup2= false;
+des=false;
+
+
+  constructor(public firestoreService: FirestoreService,
+              public alertController: AlertController) { 
+                
+
+              }
+
+  ngOnInit() {  
+    this.opcion="Partidos";
+    this.opcion2="Clasificacion";
+
+    const campeonatod = this.firestoreService.getCampeonato();
+    console.log(campeonatod);
+    if (campeonatod == undefined) {
+      this.infocampeonato.uid="3BuPLlNAQ7yA4yo8Karg";
+      this.infocampeonato.nombre="Copa Gualaquiza";
+    }else{
+      this.infocampeonato = campeonatod;
+    }
+    this.getPartidos(this.infocampeonato.uid);
+    this.getCampeonatos();
+
+    this.opcion2="clasificacion";
+    this.getGrupo1(this.infocampeonato.uid);
+    this.getGrupo2(this.infocampeonato.uid);
+    this.getDescenso(this.infocampeonato.uid);
+    this.getCampeonatos();
  
   }
+  changeSegment(event: any) {
+    const opc = event.detail.value;
+    console.log(opc);
+    this.opcion=opc;
+  }
+  changeSegment2(event: any) {
+    const opc = event.detail.value;
+    console.log(opc);
+    this.opcion2=opc;
+  }
+
+  getCampeonatos() {
+    const path = 'Campeonatos';
+    this.equipoInfo = this.firestoreService.getTeam<Campeonatos>(path).subscribe(res => {
+      this.campeonatos = res;
+    });
+
+  }
+
+  segment(event: any) {
+    const option = event.detail.value;
+    console.log(option);
+    // this.opciong = option;
+    
+    this.limpiar();
+    
+  }
+
+  async limpiar(){
+    this.gru2 = false;
+    this.gru1 = false;
+    this.ida = false;
+    this.vuelta = false;
+    this.gene = [];
+    this.genef = [];
+    this.geneinit = [];
+    this.geneida = [];
+    this.geneidainit = [];
+    this.geneidaf = [];
+    this.genevuel = [];
+    this.genevuelinit = [];
+    this.genevuelf = [];
+    this.grupo1 = [];
+      this.grupo2 = [];
+      this.grupof1 = [];
+      this.grupof2 = [];
+      this.grupoinit1 = [];
+      this.grupoinit2 = [];
+
+      this.grupoE1=[];
+      this.grupoE2=[];
+      this.descensoE=[];
+      this.grup1=false;
+      this.grup2=false,
+      this.des=false;
+  
 
 
-  async getPartidos() {
-    const path = 'Partidos';
+  }
+  async getCampeonato(campeonato: Campeonatos) {
+    console.log('Click en getEquipo');
+    console.log(campeonato);
+    this.firestoreService.setCampeonato(campeonato);
+
+    const campeonatod = this.firestoreService.getCampeonato();
+    if (campeonatod !== undefined) {
+      this.infocampeonato = campeonatod;
+    }
+    console.log(this.infocampeonato);
+    this.getPartidos(this.infocampeonato.uid);
+    this.getGrupo1(this.infocampeonato.uid);
+    this.getGrupo2(this.infocampeonato.uid);
+    this.getDescenso(this.infocampeonato.uid);
+
+  }
+
+  async getPartidos(uid:string) {
+    const path = 'Campeonatos/'+uid+'/Partidos'; 
     this.equiposInfo = this.firestoreService.getPartidos<EncuentroPrueba>(path).subscribe(res => {
       
       this.encuentro=res[0];
@@ -112,7 +235,7 @@ export class PartidosPage implements OnInit {
   }
 
   async prueba(tipo:string){
-    const path='Partidos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos'; 
     this.equiposInfo = this.firestoreService.getCollection<EncuentroPrueba>(path,'tipo','==', tipo,"unico").subscribe(res =>{
       this.gene = res;
       this.grupo1=[];
@@ -124,7 +247,7 @@ export class PartidosPage implements OnInit {
   });
   }
   async partidos_init(tipo:string){  
-    const path='Partidos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos'; 
     this.equiposInfo = this.firestoreService.getpartidos_init<EncuentroPrueba>(path,'tipo','==', tipo,"unico").subscribe(res =>{
         this.geneinit=res;
         this.grupo1=[];
@@ -137,7 +260,7 @@ export class PartidosPage implements OnInit {
     
   }
   async pruebafina(tipo:string){
-    const path='Partidos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos'; 
     this.equiposInfo = this.firestoreService.getCollectionfinalizados<EncuentroPrueba>(path,'tipo','==', tipo,"unico").subscribe(res =>{
       this.genef = res;
       this.grupo1=[];
@@ -150,7 +273,7 @@ export class PartidosPage implements OnInit {
   }
 
   async grupos(fase:string){
-    const path='Partidos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos'; 
     
       this.firestoreService.getCollectiongrupos<EncuentroPrueba>(path, 'grupo','==','Grupo 1',fase).subscribe(res=>{
         this.grupo1=res;
@@ -174,7 +297,7 @@ export class PartidosPage implements OnInit {
 
   }
   async gruposfinalizados(fase:string){
-    const path='Partidos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos'; 
     this.firestoreService.getCollectiongruposfinalizados<EncuentroPrueba>(path, 'grupo','==','Grupo 1',fase).subscribe(res=>{
       this.grupof1=res;
       if(res.length){
@@ -196,7 +319,7 @@ export class PartidosPage implements OnInit {
 
   }
   async partidos_init_fases(fase:string){
-    const path='Partidos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos'; 
     this.firestoreService.getgruposinit<EncuentroPrueba>(path, 'grupo','==','Grupo 1',fase).subscribe(res=>{
       this.grupoinit1=res;
       if(res.length){
@@ -220,7 +343,7 @@ export class PartidosPage implements OnInit {
   }
 
   async partidos_ida_vuel_E(tipo: string) {
-    const path = 'Partidos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos'; 
     this.equiposInfo = this.firestoreService.get_partidos_ida_vuel_E<EncuentroPrueba>(path, 'tipo', '==', tipo, "ida").subscribe(res => {
       this.geneida = res;
       this.grupo1 = [];
@@ -563,6 +686,48 @@ export class PartidosPage implements OnInit {
     }
   }
 
+
+  // Tabla codigo
+
+  async getGrupo1(uid:string){
+    const path = 'Campeonatos/'+uid+'/Equipos'; 
+    this.firestoreService.getCollectionGru<Equipos>(path,'grupo','==', 'grupo1').subscribe(res =>{
+      this.grupoE1=res;
+      console.log(res);
+      if(res.length){
+        this.grup1=true;
+      }
+  
+    });
+  }
+  
+  async getDescenso(uid:string){
+  
+    const path = 'Campeonatos/'+uid+'/Equipos'; 
+    this.firestoreService.getCollectionGru<Equipos>(path,'grupo','==', 'Descenso').subscribe(res =>{
+      this.descensoE=res;
+      console.log(res);
+      if(res.length){
+        this.des=true;
+      }
+  
+    });
+  }
+  
+  
+  
+  async getGrupo2(uid:string){
+    const path = 'Campeonatos/'+uid+'/Equipos'; 
+    this.firestoreService.getCollectionGru<Equipos>(path,'grupo','==', 'grupo2').subscribe(res =>{
+      this.grupoE2=res;
+      console.log(res);
+      if(res.length){
+        this.grup2=true;
+      }
+  
+        });
+  }
+  
 
 
 

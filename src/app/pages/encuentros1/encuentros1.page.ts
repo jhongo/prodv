@@ -1,17 +1,28 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AlertController, IonDatetime, LoadingController, ToastController } from '@ionic/angular';
-import { EncuentroPrueba, Equipos, Encuentro } from 'src/app/models';
+import { LoadingController, IonDatetime, AlertController, ToastController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
+import { Equipos, Campeonatos, EncuentroPrueba } from 'src/app/models';
 import { FirestoreService } from '../../services/firestore.service';
+import { Router } from '@angular/router';
 import { format, parseISO } from 'date-fns';
 
 @Component({
-  selector: 'app-encuentros',
-  templateUrl: './encuentros.page.html',
-  styleUrls: ['./encuentros.page.scss'],
+  selector: 'app-encuentros1',
+  templateUrl: './encuentros1.page.html',
+  styleUrls: ['./encuentros1.page.scss'],
 })
-export class EncuentrosPage implements OnInit {
+export class Encuentros1Page implements OnInit {
 
+  infocampeonato: Campeonatos = {
+    uid: '',
+    nombre: '',
+    fecha: null,
+    tipo: '',
+    lugar: '',
+    estado: 'iniciado',
+    grupos: 0,
+  };
+  
   estado = false;
   grupo = false;
   grupo1 = false;
@@ -126,37 +137,22 @@ export class EncuentrosPage implements OnInit {
     nombre_e1: '',
     nombre_e2: '',
   }
-  
-  // solo se uso este array para pasar datos a otro arreglo, no tiene otro uso
-  encuentronuevo: EncuentroPrueba = {
-    uid: '',
-    fechae: '',
-    numero: 0,
-    tipo: '',
-    fecha: null,
-    grupo: '',
-    uid_e1: '',
-    uid_e2: '',
-    estado: 'espera',
-    res_e1: 0,
-    res_e2: 0,
-    escudo_e1: '',
-    escudo_e2: '',
-    nombre_e1: '',
-    nombre_e2: '',
-  }
+
   @ViewChild(IonDatetime) datetime: IonDatetime;
   constructor(public alertController: AlertController,
     public firestoreService: FirestoreService,
     public loadingController: LoadingController,
     public toastController: ToastController,) { }
 
-  async ngOnInit() {
+  ngOnInit() {
 
-    console.log(this.encuentro.grupo);
+    const campeonato = this.firestoreService.getCampeonato();
+    if (campeonato !== undefined) {
+      this.infocampeonato = campeonato;
+
+    }
+    console.log(this.infocampeonato);
     this.getPartidos();
-
-
   }
   async anterior() {
 
@@ -408,39 +404,48 @@ export class EncuentrosPage implements OnInit {
     }
   }
 
-// Solo se uso esta funcion para mandar valores a otro arreglo
-  async guardarnuevo(equipo:any,uid:string){
+  async getPartidos() {
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos';
+    this.equiposInfo = this.firestoreService.getPartidos<EncuentroPrueba>(path).subscribe(res => {
+      console.log(res.length);
 
-    const path ='Campeonatos/3BuPLlNAQ7yA4yo8Karg/Partidos';
-    this.firestoreService.createDoc(equipo, path, uid).then(res => {
-      console.log('guardado con exito');
-      this.presentLoading('Guardando', 1000); 
-      this.encuentronuevo = {
-        uid: '',
-        tipo: '',
-        fechae: '',
-        numero: 0,
-        fecha: null,
-        grupo: '',
-        uid_e1: '',
-        uid_e2: '',
-        estado: 'espera',
-        res_e1: 0,
-        res_e2: 0,
-        escudo_e1: '',
-        escudo_e2: '',
-        nombre_e1: '',
-        nombre_e2: '',
-      };
-    }).catch(error => {
+      // for (let a=0; a<=res.length;a++){
+      //     this.encuentronuevo=res[a];
+      //     this.guardarnuevo(this.encuentronuevo,this.encuentronuevo.uid);
   
+      //   }
+      this.encuentropri = res[0];
+
+
+      if (this.encuentropri.fechae == "ida" || this.encuentropri.fechae == "vuelta"|| this.encuentropri.fechae == "unico") {
+        this.titulo = this.encuentropri.tipo;
+      } else {
+        this.titulo = this.encuentropri.fechae;
+      }
+      this.numero = this.encuentropri.numero;
+      this.fase = this.encuentropri.fechae;
+
+      if (this.fase == "ida" || this.fase == "vuelta" || this.fase == "unico") {
+        this.prueba(this.encuentropri.tipo);
+        this.pruebafina(this.encuentropri.tipo);
+        this.partidos_init(this.encuentropri.tipo);
+        this.partidos_ida_vuel_E(this.encuentropri.tipo);
+        this.partidos_ida_vuel_init(this.encuentropri.tipo);
+        this.partidos_ida_vuel_fina(this.encuentropri.tipo);
+
+      } else {
+        this.genee = [];
+        this.genef = [];
+        this.geneinit = [];
+        this.gruposfinalizados(this.fase);
+        this.grupos(this.fase);
+        this.partidos_init_fases(this.fase);
+      }
     });
-  
-  
-    }
+  }
 
   async prueba(tipo: string) {
-    const path = 'Partidos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos';
     this.equiposInfo = this.firestoreService.getCollection<EncuentroPrueba>(path, 'tipo', '==', tipo, "unico").subscribe(res => {
       this.genee = res;
       this.grupoe1 = [];
@@ -453,7 +458,7 @@ export class EncuentrosPage implements OnInit {
     });
   }
   async pruebafina(tipo: string) {
-    const path = 'Partidos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos';
     this.equiposInfo = this.firestoreService.getCollectionfinalizados<EncuentroPrueba>(path, 'tipo', '==', tipo, "unico").subscribe(res => {
       this.genef = res;
       this.grupoe1 = [];
@@ -466,7 +471,7 @@ export class EncuentrosPage implements OnInit {
     });
   }
   async partidos_init(tipo: string) {
-    const path = 'Partidos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos';
     this.equiposInfo = this.firestoreService.getpartidos_init<EncuentroPrueba>(path, 'tipo', '==', tipo, "unico").subscribe(res => {
 
       this.geneinit = res;
@@ -484,7 +489,7 @@ export class EncuentrosPage implements OnInit {
   }
 
   async partidos_ida_vuel_E(tipo: string) {
-    const path = 'Partidos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos';
     this.equiposInfo = this.firestoreService.get_partidos_ida_vuel_E<EncuentroPrueba>(path, 'tipo', '==', tipo, "ida").subscribe(res => {
       this.geneida = res;
       this.grupoe1 = [];
@@ -516,7 +521,7 @@ export class EncuentrosPage implements OnInit {
 
 
   async partidos_ida_vuel_init(tipo: string) {
-    const path = 'Partidos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos';
     this.equiposInfo = this.firestoreService.get_partidos_ida_vuel_Init<EncuentroPrueba>(path, 'tipo', '==', tipo, "ida").subscribe(res => {
       this.geneidainit = res;
       this.grupoe1 = [];
@@ -546,7 +551,7 @@ export class EncuentrosPage implements OnInit {
 
 
   async partidos_ida_vuel_fina(tipo: string) {
-    const path = 'Partidos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos';
     this.equiposInfo = this.firestoreService.get_partidos_ida_vuel_Fina<EncuentroPrueba>(path, 'tipo', '==', tipo, "ida").subscribe(res => {
       this.geneidaf = res;
       this.grupoe1 = [];
@@ -577,7 +582,7 @@ export class EncuentrosPage implements OnInit {
 
 
   async grupos(fase: string) {
-    const path = 'Partidos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos';
 
     this.firestoreService.getCollectiongrupos<EncuentroPrueba>(path, 'grupo', '==', 'Grupo 1', fase).subscribe(res => {
       this.grupoe1 = res;
@@ -599,7 +604,7 @@ export class EncuentrosPage implements OnInit {
 
   }
   async gruposfinalizados(fase: string) {
-    const path = 'Partidos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos';
     this.firestoreService.getCollectiongruposfinalizados<EncuentroPrueba>(path, 'grupo', '==', 'Grupo 1', fase).subscribe(res => {
       this.grupof1 = res;
       if (res.length) {
@@ -621,7 +626,7 @@ export class EncuentrosPage implements OnInit {
 
   }
   async partidos_init_fases(fase: string) {
-    const path = 'Partidos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos';
     this.firestoreService.getgruposinit<EncuentroPrueba>(path, 'grupo', '==', 'Grupo 1', fase).subscribe(res => {
       this.grupoinit1 = res;
       if (res.length) {
@@ -669,9 +674,31 @@ export class EncuentrosPage implements OnInit {
     this.datetime.confirm(true);
   }
 
+  async restart(){
+
+    this.encuentro = {
+      uid: '',
+      tipo: '',
+      fechae: '',
+      numero: 0,
+      fecha: null,
+      grupo: '',
+      uid_e1: '',
+      uid_e2: '',
+      estado: 'espera',
+      res_e1: 0,
+      res_e2: 0,
+      escudo_e1: '',
+      escudo_e2: '',
+      nombre_e1: '',
+      nombre_e2: '',
+    };
+
+  }
+
 
   async getEquiposG1() {
-    const path = 'Equipos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Equipos';
     this.equiposInfo = this.firestoreService.getgrupos<Equipos>(path, 'grupo', '==', 'grupo1').subscribe(res => {
       if (res.length) {
         this.team1 = res;
@@ -679,7 +706,7 @@ export class EncuentrosPage implements OnInit {
     });
   }
   async getEquiposG2() {
-    const path = 'Equipos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Equipos';
     this.equiposInfo = this.firestoreService.getgrupos<Equipos>(path, 'grupo', '==', 'grupo2').subscribe(res => {
       if (res.length) {
         this.team2 = res;
@@ -688,7 +715,7 @@ export class EncuentrosPage implements OnInit {
   }
 
   async getEquiposG() {
-    const path = 'Equipos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Equipos';
     this.equiposInfo = this.firestoreService.getgrupos<Equipos>(path, 'grupo', '!=', 'Descenso').subscribe(res => {
       if (res.length) {
         this.teamg = res;
@@ -697,59 +724,19 @@ export class EncuentrosPage implements OnInit {
   }
 
   async getEquiposDes() {
-    const path = 'Equipos';
+    ;const path = 'Campeonatos/'+this.infocampeonato.uid+'/Equipos';
     this.equiposInfo = this.firestoreService.getgrupos<Equipos>(path, 'grupo', '==', 'Descenso').subscribe(res => {
       if (res.length) {
         this.teamd = res;
       }
     });
   }
-  async getPartidos() {
-    const path = 'Partidos';
-    this.equiposInfo = this.firestoreService.getPartidos<EncuentroPrueba>(path).subscribe(res => {
-      console.log(res.length);
-
-      // for (let a=0; a<=res.length;a++){
-      //     this.encuentronuevo=res[a];
-      //     this.guardarnuevo(this.encuentronuevo,this.encuentronuevo.uid);
-  
-      //   }
-      this.encuentropri = res[0];
-
-
-      if (this.encuentropri.fechae == "ida" || this.encuentropri.fechae == "vuelta"|| this.encuentropri.fechae == "unico") {
-        this.titulo = this.encuentropri.tipo;
-      } else {
-        this.titulo = this.encuentropri.fechae;
-      }
-      this.numero = this.encuentropri.numero;
-      this.fase = this.encuentropri.fechae;
-
-      if (this.fase == "ida" || this.fase == "vuelta" || this.fase == "unico") {
-        this.prueba(this.encuentropri.tipo);
-        this.pruebafina(this.encuentropri.tipo);
-        this.partidos_init(this.encuentropri.tipo);
-        this.partidos_ida_vuel_E(this.encuentropri.tipo);
-        this.partidos_ida_vuel_init(this.encuentropri.tipo);
-        this.partidos_ida_vuel_fina(this.encuentropri.tipo);
-
-      } else {
-        this.genee = [];
-        this.genef = [];
-        this.geneinit = [];
-        this.gruposfinalizados(this.fase);
-        this.grupos(this.fase);
-        this.partidos_init_fases(this.fase);
-      }
-    });
-  }
-
-
+ 
 
   async completardatos(uid: string) {
 
-    const path = 'Equipos';
-    const pathp = 'Partidos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Equipos';
+    const pathp = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos';
     this.equiposInfo = this.firestoreService.getgrupos<Equipos>(path, 'nombre', '==', this.encuentro.nombre_e1).subscribe(res => {
       if (res.length) {
         this.equipo1 = res[0];
@@ -832,7 +819,7 @@ export class EncuentrosPage implements OnInit {
             this.encuentro.fechae = "unico";
           }
           if (this.encuentro.tipo == "Fase de grupos") {
-            const path = 'Partidos';
+            const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos';
             this.firestoreService.createDoc(this.encuentro, path, this.encuentro.uid).then(res => {
               console.log('guardado con exito');
               this.presentLoading('Guardando partido', 1500);
@@ -888,7 +875,7 @@ export class EncuentrosPage implements OnInit {
               this.presentToast("Eliga tipo de encuentro", 2000);
 
             } else {
-              const path = 'Partidos';
+              const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos';
               this.firestoreService.createDoc(this.encuentro, path, this.encuentro.uid).then(res => {
                 console.log('guardado con exito');
                 this.presentLoading('Guardando partido', 1500);
@@ -1276,6 +1263,5 @@ export class EncuentrosPage implements OnInit {
 
     await alert.present();
   }
-
 
 }
