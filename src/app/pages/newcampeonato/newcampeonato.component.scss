@@ -18,6 +18,13 @@ ion-toolbar{
     --background: white; 
     padding: 2px;
 }
+.icon_edit{
+    color: black;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 
 .tittle_np{
     font-size: 19px;
@@ -45,6 +52,52 @@ ion-toolbar{
     margin-left: auto;
     margin-right: auto;
 }
+
+.grid_general{
+
+    // border: 1px black solid;
+}
+
+.encabezado{
+    // border: 1px blue solid;
+}
+.col_text{
+    // border: 1px yellow solid;
+}
+.col_icon{
+
+    // border: 1px green solid;
+    margin-top: auto;
+    margin-bottom: auto;
+
+
+}
+.datos{
+    // border: 1px red solid;
+}
+.col_datos{
+    // border: 1px yellow solid;
+}
+.label_tittle{
+    font-size: 14px;
+    font-weight: bolder;
+}
+.label_text{
+    font-size: 14px;
+}
+.button{
+
+    // text-align: center;
+    display: block;
+   
+}
+
+
+// .col_boton{
+//     border: 1px purple solid;
+// }
+
+
 .botones{    
     display: inline-block;
     text-align: center;

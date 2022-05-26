@@ -47,7 +47,7 @@ import { NewcampeonatoComponent } from './pages/newcampeonato/newcampeonato.comp
     EditEquipoComponent,
     EditPartidoComponent,
     RecuperarComponent,
-    NewcampeonatoComponent
+    NewcampeonatoComponent,
   ],
   entryComponents: [],
   imports: [BrowserModule, 

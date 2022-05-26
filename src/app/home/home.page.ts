@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
-import { Encuentro, EncuentroPrueba } from 'src/app/models';
+import { Encuentro, EncuentroPrueba, Campeonatos } from 'src/app/models';
 import { FirestoreService } from 'src/app/services/firestore.service';
 
 @Component({
@@ -17,7 +17,8 @@ export class HomePage implements OnInit {
   _language = 'es';
   _apiKey = 'cbb27a56d7c0f51b7e10fca6afa34bbf';
   news = [];
-
+  equipoInfo: Subscription;
+  antsig=false;
   equiposInfo: Subscription;
 
 
@@ -73,31 +74,46 @@ export class HomePage implements OnInit {
   fase = "";
   numero = 0;
 
+  campeonatos: Campeonatos[] = [];
+
+  infocampeonato: Campeonatos = {
+    uid: '',
+    nombre: '',
+    fecha: null,
+    tipo: '',
+    lugar: '',
+    estado: 'iniciado',
+    grupos: 0,
+  };
+
   constructor(public firestoreService: FirestoreService,
     public alertController: AlertController,
     private http: HttpClient
   ) { }
 
   ngOnInit() {
-    this.getPartidos();
+    this.infocampeonato.uid="3BuPLlNAQ7yA4yo8Karg";
+    this.infocampeonato.nombre="Copa Gualaquiza";
+    this.getPartidos(this.infocampeonato.uid);
     this.opciong = "Noticias";
     this.opcion = "Copa_Gualaquiza";
+    this.getCampeonatos();
 
 
     // API NOTICIAS DEPORTIVAS
-    this.http.get<any>('https://newsapi.org/v2/top-headlines',
-      {
-        params: {
-          'categories': this._category,
-          'languages': this._language,
-          'access_key': this._apiKey,
-        }
-      }
-    ).subscribe(resp => {
-      console.log(resp);
-      this.news = resp.articles
-      console.log(this.news);
-    });
+    // this.http.get<any>('https://newsapi.org/v2/top-headlines',
+    //   {
+    //     params: {
+    //       'categories': this._category,
+    //       'languages': this._language,
+    //       'access_key': this._apiKey,
+    //     }
+    //   }
+    // ).subscribe(resp => {
+    //   console.log(resp);
+    //   this.news = resp.articles
+    //   console.log(this.news);
+    // });
 
     //API RESULTADOS DEPORTIVOS
     this.http.get<any>('https://v3.football.api-sports.io/fixtures?live=all', {
@@ -121,6 +137,22 @@ export class HomePage implements OnInit {
     this.opcion = opc;
 
   }
+  segment(event: any) {
+    const option = event.detail.value;
+    console.log(option);
+    // this.opciong = option;
+    
+    this.limpiar();
+    
+  }
+
+  getCampeonatos() {
+    const path = 'Campeonatos';
+    this.equipoInfo = this.firestoreService.getTeam<Campeonatos>(path).subscribe(res => {
+      this.campeonatos = res;
+    });
+
+  }
 
   segmentChange(event: any) {
     const option = event.detail.value;
@@ -133,10 +165,54 @@ export class HomePage implements OnInit {
     }
   }
 
+  async getCampeonato(campeonato: Campeonatos) {
+    console.log('Click en getEquipo');
+    console.log(campeonato);
+    this.firestoreService.setCampeonato(campeonato);
 
-  async getPartidos() {
-    const path = 'Partidos';
+    const campeonatod = this.firestoreService.getCampeonato();
+    if (campeonatod !== undefined) {
+      this.infocampeonato = campeonatod;
+    }
+    console.log(this.infocampeonato);
+    this.getPartidos(this.infocampeonato.uid);
+
+  }
+
+  async limpiar(){
+    this.antsig=false;
+    this.gru2 = false;
+    this.gru1 = false;
+    this.ida = false;
+    this.vuelta = false;
+    this.gene = [];
+    this.genef = [];
+    this.geneinit = [];
+    this.geneida = [];
+    this.geneidainit = [];
+    this.geneidaf = [];
+    this.genevuel = [];
+    this.genevuelinit = [];
+    this.genevuelf = [];
+    this.grupo1 = [];
+      this.grupo2 = [];
+      this.grupof1 = [];
+      this.grupof2 = [];
+      this.grupoinit1 = [];
+      this.grupoinit2 = [];
+
+
+  }
+
+
+  async getPartidos(uid:string) {
+    const path = 'Campeonatos/'+uid+'/Partidos';    
     this.equiposInfo = this.firestoreService.getPartidos<EncuentroPrueba>(path).subscribe(res => {
+      if(res.length){
+        this.antsig=true;
+      }else{
+        this.antsig=false;
+      }
 
       this.encuentro = res[0];
       if (this.encuentro.fechae == "ida" || this.encuentro.fechae == "vuelta" || this.encuentro.fechae == "unico") {
@@ -164,11 +240,13 @@ export class HomePage implements OnInit {
 
 
     });
+  
 
   }
 
   async prueba(tipo: string) {
-    const path = 'Partidos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos';
+
     this.equiposInfo = this.firestoreService.getCollection<EncuentroPrueba>(path, 'tipo', '==', tipo, "unico").subscribe(res => {
 
       this.gene = res;
@@ -183,7 +261,7 @@ export class HomePage implements OnInit {
     });
   }
   async partidos_init(tipo: string) {
-    const path = 'Partidos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos';
     this.equiposInfo = this.firestoreService.getpartidos_init<EncuentroPrueba>(path, 'tipo', '==', tipo, "unico").subscribe(res => {
 
       this.geneinit = res;
@@ -199,7 +277,7 @@ export class HomePage implements OnInit {
 
   }
   async pruebafina(tipo: string) {
-    const path = 'Partidos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos';
     this.equiposInfo = this.firestoreService.getCollectionfinalizados<EncuentroPrueba>(path, 'tipo', '==', tipo, "unico").subscribe(res => {
 
       this.genef = res;
@@ -216,7 +294,7 @@ export class HomePage implements OnInit {
 
 
   async grupos(fase: string) {
-    const path = 'Partidos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos';
 
     this.firestoreService.getCollectiongrupos<EncuentroPrueba>(path, 'grupo', '==', 'Grupo 1', fase).subscribe(res => {
       this.grupo1 = res;
@@ -245,7 +323,7 @@ export class HomePage implements OnInit {
   }
 
   async gruposfinalizados(fase: string) {
-    const path = 'Partidos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos';
     this.firestoreService.getCollectiongruposfinalizados<EncuentroPrueba>(path, 'grupo', '==', 'Grupo 1', fase).subscribe(res => {
       this.grupof1 = res;
       if (res.length) {
@@ -268,7 +346,7 @@ export class HomePage implements OnInit {
   }
 
   async partidos_init_fases(fase: string) {
-    const path = 'Partidos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos';
     this.firestoreService.getgruposinit<EncuentroPrueba>(path, 'grupo', '==', 'Grupo 1', fase).subscribe(res => {
       this.grupoinit1 = res;
       if (res.length) {
@@ -292,7 +370,7 @@ export class HomePage implements OnInit {
   }
 
   async partidos_ida_vuel_E(tipo: string) {
-    const path = 'Partidos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos';
     this.equiposInfo = this.firestoreService.get_partidos_ida_vuel_E<EncuentroPrueba>(path, 'tipo', '==', tipo, "ida").subscribe(res => {
       this.geneida = res;
       this.grupo1 = [];
@@ -324,7 +402,7 @@ export class HomePage implements OnInit {
 
 
   async partidos_ida_vuel_init(tipo: string) {
-    const path = 'Partidos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos';
     this.equiposInfo = this.firestoreService.get_partidos_ida_vuel_Init<EncuentroPrueba>(path, 'tipo', '==', tipo, "ida").subscribe(res => {
       this.geneidainit = res;
       this.grupo1 = [];
@@ -354,7 +432,7 @@ export class HomePage implements OnInit {
 
 
   async partidos_ida_vuel_fina(tipo: string) {
-    const path = 'Partidos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos';
     this.equiposInfo = this.firestoreService.get_partidos_ida_vuel_Fina<EncuentroPrueba>(path, 'tipo', '==', tipo, "ida").subscribe(res => {
       this.geneidaf = res;
       this.grupo1 = [];
@@ -513,9 +591,7 @@ export class HomePage implements OnInit {
 
   async siguiente() {
     if (this.numero < 10) {
-
       this.numero = this.numero + 1;
-
     }
 
     console.log(this.numero)

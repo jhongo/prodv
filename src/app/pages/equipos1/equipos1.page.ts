@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController, AlertController, ToastController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
-import { Equipos } from 'src/app/models';
+import { Equipos, Campeonatos } from 'src/app/models';
 import { FirestoreService } from '../../services/firestore.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-equipos',
-  templateUrl: './equipos.page.html',
-  styleUrls: ['./equipos.page.scss'],
+  selector: 'app-equipos1',
+  templateUrl: './equipos1.page.html',
+  styleUrls: ['./equipos1.page.scss'],
 })
-export class EquiposPage implements OnInit {
+export class Equipos1Page implements OnInit {
 
   estado = false;
   newFoto: any;
   equipoInfo: Subscription;
   team: Equipos[]=[];
-
+  
   equipo: Equipos = {
     uid: '',
     nombre: '',
@@ -31,21 +31,16 @@ export class EquiposPage implements OnInit {
     g_c: 0,
     d_g: 0
   };
-
-  equiponuevo: Equipos = {
+  infocampeonato: Campeonatos = {
     uid: '',
     nombre: '',
-    escudo: '',
-    grupo: '',
-    puntos: 0,
-    p_j: 0,
-    p_g: 0,
-    p_e: 0,
-    p_p: 0,
-    g_f: 0,
-    g_c: 0,
-    d_g: 0
+    fecha: null,
+    tipo: '',
+    lugar: '',
+    estado: 'iniciado',
+    grupos: 0,
   };
+
   constructor(public firestoreService: FirestoreService,
     public loadingController: LoadingController,
     public toastController: ToastController,
@@ -53,13 +48,18 @@ export class EquiposPage implements OnInit {
     public router: Router) { }
 
   ngOnInit() {
+    const campeonato = this.firestoreService.getCampeonato();
+    if (campeonato !== undefined) {
+      this.infocampeonato = campeonato;
 
+    }
+    console.log(this.infocampeonato);
     this.getEquipos();
   }
 
   async saveTeam() {
 
-    const path = 'Equipos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Equipos';  
     const equipo = this.equipo.nombre;
     if (this.equipo.nombre == "") {
       // this.presentAlert("Complete el nombre del equipo");
@@ -101,55 +101,20 @@ export class EquiposPage implements OnInit {
 
   }
 
-  async getEquipos(){
-    const path = 'Equipos'; 
-    this.equipoInfo = this.firestoreService.getTeam<Equipos>(path).subscribe(res =>{
-      this.team = res;
-      console.log(this.team);
-
-      // for (let a=0; a<=res.length;a++){
-      //   this.equiponuevo=res[a];
-      //   this.guardarnuevo(this.equiponuevo,this.equiponuevo.uid);
-
-      // }
-
-    });
-
-  } 
-
-  async guardarnuevo(equipo:any,uid:string){
-
-  const path ='Campeonatos/3BuPLlNAQ7yA4yo8Karg/Equipos';
-  this.firestoreService.createDoc(equipo, path, uid).then(res => {
-    console.log('guardado con exito');
-    this.presentLoading('Guardando', 1000); 
-    this.equiponuevo = {
-      uid: null,
-      nombre: null,
-      escudo: null,
-      grupo: null,
-      puntos: 0,
-      p_j: 0,
-      p_g: 0,
-      p_e: 0,
-      p_p: 0,
-      g_f: 0,
-      g_c: 0,
-      d_g: 0
-    };
-  }).catch(error => {
-
-  });
-
-
-  }
-
   async getEquipo(equipo:Equipos){
     console.log('Click en getEquipo'); 
     console.log(equipo);
     this.firestoreService.setEquipo(equipo); 
 
   }
+  async getEquipos(){
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Equipos'; 
+    this.equipoInfo = this.firestoreService.getTeam<Equipos>(path).subscribe(res =>{
+      this.team = res;
+      console.log(this.team);
+    });
+
+  } 
 
   async restart(){
 
@@ -168,7 +133,10 @@ export class EquiposPage implements OnInit {
       d_g: 0
     };
 
+   
+
   }
+
 
   async newImage(event: any) {
 
@@ -182,10 +150,7 @@ export class EquiposPage implements OnInit {
       });
       reader.readAsDataURL(event.target.files[0]);
     }
-
-
   }
-
 
   async presentToast(mensaje: string, tiempo: number) {
     const toast = await this.toastController.create({

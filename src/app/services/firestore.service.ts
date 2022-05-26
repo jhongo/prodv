@@ -4,7 +4,7 @@ import {AngularFirestore,
   AngularFirestoreDocument,
   AngularFirestoreCollection} from '@angular/fire/firestore';
 import {finalize} from 'rxjs/operators';
-import { Equipos, Encuentro, EncuentroPrueba } from '../models';
+import { Equipos, Encuentro, EncuentroPrueba, Campeonatos} from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +16,7 @@ export class FirestoreService {
 
   editEquipo: Equipos;
   editMatch : EncuentroPrueba;
+  editCampeonato: Campeonatos;
 
   createDoc<tipo>(data: tipo, enlace:string, id:string){
     const ref = this.FireStore.collection<tipo>(enlace);
@@ -99,6 +100,21 @@ export class FirestoreService {
       );
     return collection.valueChanges();
   }
+
+  // getcampeonatosprueba(path:string,id: string){
+
+  //   const collection = this.FireStore.collection(path,
+  //     ref => ref.orderBy('fecha','desc'),
+  //   );
+  //     return collection.doc(id).valueChanges();
+  // }
+  // getcampeonatospruebasinuid(path:string){
+
+  //   const collection = this.FireStore.collection(path,
+  //     ref => ref.orderBy('fecha','desc'),
+  //   );
+  //     return collection.valueChanges();
+  // }
 
   getDoc<tipo>(path: string, id: string){
     const collection = this.FireStore.collection<tipo>(path);
@@ -191,10 +207,22 @@ export class FirestoreService {
     return this.editEquipo;
   } 
 
+  setCampeonato(campeonato: Campeonatos){
+    this.editCampeonato= campeonato;
+  }
+  
+  getCampeonato(){
+    return this.editCampeonato;
+  }
+
   setMatch(match:EncuentroPrueba){
     return this.editMatch=match;
 
   }
+
+
+
+
   getMatch(){
     return this.editMatch;
   } 

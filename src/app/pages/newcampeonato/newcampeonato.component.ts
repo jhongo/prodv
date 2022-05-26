@@ -17,6 +17,7 @@ export class NewcampeonatoComponent implements OnInit {
   equipoInfo: Subscription;
   grupose: Campeonatos[] = [];
   grupo2: Equipos[] = [];
+  grupoT=[];
   campeonatos: Campeonatos[] = [];
 
   newcampeonato: Campeonatos = {
@@ -37,44 +38,44 @@ export class NewcampeonatoComponent implements OnInit {
   ngOnInit() {
     this.getCampeonatos();
     // this.getGrupo2();
-    this.sumagrupos();
+    // this.sumagrupos();
   }
 
   async getGrupo2(busqueda: string) {
 
     const path = 'Equipos';
-    // for (var a = 0; a <= 2; a++) {
-      this.firestoreService.getCollectionGru<Equipos>(path, 'grupo', '==', busqueda).subscribe(res => {
-        this.grupo2 =res;
+    //  for (let a = 0; a < this.numero.length; a++) {
+      //  const grupo= "grupo"+this.numero[a]
+    this.firestoreService.getCollectionGru<Equipos>(path, 'grupo', '==', busqueda).subscribe(res => {
+        this.grupo2 = res;
+        // this.grupo2 = [...this.grupoT, this.grupo2];
         console.log(res);
       });
-    // }
+    //  }
 
   }
 
+  // async gruposgeneral(){
+  //   const path = 'Campeonatos/';
+  //   this.firestoreService.getcampeonatosprueba(path,'zr4PWguRhpMrwncvyg6q').subscribe( res =>{
+  //     console.log(res);
+  //   });
 
+  // }
+
+  async getCampeonato(campeonato: Campeonatos) {
+    console.log('Click en getEquipo');
+    console.log(campeonato);
+    this.firestoreService.setCampeonato(campeonato);
+
+  }
 
 
   reset() {
     this.grupos = false;
   }
 
-  sumagrupos() {
 
-    const valor = 4;
-    for (var a = 1; a <= valor; a++) {
-      this.numero = [...this.numero, 'Grupo ' + a];
-      const text = "grupo" + a;
-      console.log(this.numero);
-      this.getGrupo2(text);
-
-
-    }
-
-
-
-
-  }
   getCampeonatos() {
     const path = 'Campeonatos';
     this.equipoInfo = this.firestoreService.getTeam<Campeonatos>(path).subscribe(res => {
@@ -107,14 +108,7 @@ export class NewcampeonatoComponent implements OnInit {
 
   }
 
-  async getGrupos() {
-    const path = 'Campeonatos/' + '';
-    this.firestoreService.getgrupos<Campeonatos>(path, 'grupo', '==', 'grupo1').subscribe(res => {
-      if (res.length) {
-        this.grupose = res;
-      }
-    });
-  }
+
 
   saveCampeonato() {
     console.log(this.newcampeonato);
@@ -129,7 +123,7 @@ export class NewcampeonatoComponent implements OnInit {
         this.presentToast("Especifique el numero de grupos", 2000);
       } else {
         const path = 'Campeonatos';
-        this.gruposnumero(this.newcampeonato.grupos, this.newcampeonato.uid);
+        // this.gruposnumero(this.newcampeonato.grupos, this.newcampeonato.uid);
         this.firestoreService.createDoc(this.newcampeonato, path, this.newcampeonato.uid).then(res => {
           this.presentLoading('Guardando campeonato', 1500);
 

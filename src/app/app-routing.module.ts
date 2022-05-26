@@ -95,6 +95,23 @@ const routes: Routes = [
     path: 'details/:id',
     loadChildren: () => import('./pages/details/details.module').then( m => m.DetailsPageModule)
   },
+  {
+    path: 'encuentros1',
+    loadChildren: () => import('./pages/encuentros1/encuentros1.module').then( m => m.Encuentros1PageModule)
+  },
+  {
+    path: 'equipos1',
+    loadChildren: () => import('./pages/equipos1/equipos1.module').then( m => m.Equipos1PageModule)
+  },
+  {
+    path: 'tab-newcampeonato',
+    loadChildren: () => import('./pages/tab-newcampeonato/tab-newcampeonato.module').then( m => m.TabNewcampeonatoPageModule)
+  },
+  {
+      path: 'partidos',
+      loadChildren: () => import('./pages/partidos/partidos.module').then( m => m.PartidosPageModule)
+    },
+
 
 
 
