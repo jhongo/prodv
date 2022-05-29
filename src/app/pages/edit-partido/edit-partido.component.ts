@@ -435,7 +435,7 @@ export class EditPartidoComponent implements OnInit, OnDestroy {
     this.firestoreService.deletepartido(path, this.encuentro.uid).then(res => {
       this.presentLoading('Eliminando', 1500);
       setTimeout(() => {
-        this.router.navigate(['/tab-campeonato/encuentros']);
+        this.router.navigate(['tab-newcampeonato/encuentros1']);
       }, 1000);
     }).catch(error => {
       console.log(error)
