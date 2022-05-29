@@ -28,6 +28,7 @@ export class NewcampeonatoComponent implements OnInit {
     lugar: '',
     estado: 'iniciado',
     grupos: 0,
+    fases: 0
   };
 
   constructor(public alertController: AlertController,
@@ -136,6 +137,7 @@ export class NewcampeonatoComponent implements OnInit {
             lugar: '',
             estado: 'iniciado',
             grupos: 0,
+            fases: 0
           };
           this.estado = false;
 

@@ -84,6 +84,7 @@ export class EditPartidoComponent implements OnInit, OnDestroy {
     lugar: '',
     estado: 'iniciado',
     grupos: 0,
+    fases: 0
   };
 
   @ViewChild(IonDatetime) datetime: IonDatetime;

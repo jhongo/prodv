@@ -39,6 +39,7 @@ export class Equipos1Page implements OnInit {
     lugar: '',
     estado: 'iniciado',
     grupos: 0,
+    fases: 0
   };
 
   constructor(public firestoreService: FirestoreService,
