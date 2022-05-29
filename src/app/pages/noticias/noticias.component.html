@@ -6,10 +6,10 @@
 <ion-content class="content_pri">
 
   <ion-card *ngFor="let new of news" class="news-card" mode="ios" >
-   <img class="new-image" src="{{new.urlToImage}}" >
+   <img class="new-image" src="{{new.media}}" >
    <ion-card-subtitle> 
     <ion-label class="label-new-name" >
-      {{new.source.name}}
+      {{new.clean_url}}
     </ion-label> </ion-card-subtitle>
 
    <ion-card-title class="label-new-title" > {{new.title}} </ion-card-title>
@@ -20,7 +20,7 @@
       <ion-col size="3">
         <ion-icon name="calendar-outline"></ion-icon>
         <ion-label class="label-new-publi" >
-          {{new.publishedAt}}
+          {{new.published_date}}
         </ion-label>
       </ion-col>
       <ion-col size="5" >
