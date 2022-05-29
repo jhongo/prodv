@@ -41,6 +41,7 @@ export class EditEquipoComponent implements OnInit {
     lugar: '',
     estado: 'iniciado',
     grupos: 0,
+    fases: 0
   };
   ngOnInit() {
     const team = this.firestoreService.getEquipo();

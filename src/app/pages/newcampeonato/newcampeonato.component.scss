@@ -87,8 +87,8 @@ ion-toolbar{
 }
 .button{
 
-    // text-align: center;
-    display: block;
+    display: inline-block;
+    text-align: center;
    
 }
 
@@ -104,6 +104,23 @@ ion-toolbar{
     width: 100%;
 }
 
+.button-cancelar{ 
+    --color: #075E54;
+    text-align: center;
+    --background: #ffffff;
+    --border-radius:10px;
+    width:40%;
+    font-weight: bold;
+} 
+.button-guardar{ 
+    --color: #ffffff;
+    margin-left: 10px;
+    text-align: center;
+    --border-radius:10px;
+    --background:#075E54;
+    font-weight: bold;
+    width: 40%;
+}
 ////
 
 .row_grupo{

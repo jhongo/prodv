@@ -95,5 +95,11 @@ export interface Campeonatos{
     estado: string,
     lugar:string,
     grupos:number,
+    fases:number
 
+}
+
+export interface fase{
+    num:number,
+    text:string,
 }

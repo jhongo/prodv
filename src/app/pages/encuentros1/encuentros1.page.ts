@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { LoadingController, IonDatetime, AlertController, ToastController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
-import { Equipos, Campeonatos, EncuentroPrueba } from 'src/app/models';
+import { Equipos, Campeonatos, EncuentroPrueba, fase} from 'src/app/models';
 import { FirestoreService } from '../../services/firestore.service';
 import { Router } from '@angular/router';
 import { format, parseISO } from 'date-fns';
+
 
 @Component({
   selector: 'app-encuentros1',
@@ -21,8 +22,13 @@ export class Encuentros1Page implements OnInit {
     lugar: '',
     estado: 'iniciado',
     grupos: 0,
+    fases: 0
   };
-  
+  antsig=false;
+
+
+  numerofases=[];
+
   estado = false;
   grupo = false;
   grupo1 = false;
@@ -138,11 +144,17 @@ export class Encuentros1Page implements OnInit {
     nombre_e2: '',
   }
 
+  items;
   @ViewChild(IonDatetime) datetime: IonDatetime;
   constructor(public alertController: AlertController,
     public firestoreService: FirestoreService,
     public loadingController: LoadingController,
-    public toastController: ToastController,) { }
+    public toastController: ToastController,) {
+      // this.numerofases.unshift({
+      //   id: -1,
+      //   name: 'Select All'
+      // });
+     }
 
   ngOnInit() {
 
@@ -153,7 +165,42 @@ export class Encuentros1Page implements OnInit {
     }
     console.log(this.infocampeonato);
     this.getPartidos();
+    this.fases();
   }
+
+  onChange(evt) {
+    if (evt == -1) {
+      this.items = this.numerofases.map(x => x.id);
+    } else {
+      let selectAllIndex = this.items.indexOf(-1);
+      this.items.splice(selectAllIndex, 1);
+      console.log(selectAllIndex);
+    }
+    console.log(this.items);
+  }
+
+ 
+  getItem(cod: number) {
+    const getSelectd = cod;//Aquí envío el valor seleccionado
+    this.encuentro.numero= cod;
+    console.log("index", cod);
+    // this.getInventoryList();//Ésta es la función que traerá el servicio que necesito
+  }
+
+  async fases(){
+    const n = this.infocampeonato.fases;
+    for(var a=1;a<=n;a++){
+      this.numerofases=[...this.numerofases,'Fecha '+a];
+    }
+    }
+
+  async pruebamensaje(num: number){
+    console.log("Numero es ",num);
+    this.encuentro.numero=num;
+
+  }
+
+
   async anterior() {
 
     if (this.numero > 1) {
@@ -164,7 +211,7 @@ export class Encuentros1Page implements OnInit {
 
     console.log(this.numero)
 
-    if (this.numero >= 1 && this.numero < 6) {
+    if (this.numero >= 1 && this.numero <= this.infocampeonato.fases) {
       this.titulo = "Fecha " + this.numero;
       this.grupos("Fecha " + this.numero);
       this.gruposfinalizados("Fecha " + this.numero);
@@ -182,7 +229,7 @@ export class Encuentros1Page implements OnInit {
       this.gru1 = false;
       this.ida = false;
       this.vuelta = false;
-    } else if (this.numero == 6) {
+    } else if (this.numero == this.infocampeonato.fases+1) {
 
       this.titulo = "Descenso"
       this.prueba("Descenso");
@@ -205,7 +252,7 @@ export class Encuentros1Page implements OnInit {
       this.ida = false;
       this.vuelta = false;
 
-    } else if (this.numero == 7) {
+    } else if (this.numero == this.infocampeonato.fases+2) {
       this.titulo = "Cuartos de final"
       this.prueba("Cuartos de final");
       this.pruebafina("Cuartos de final");
@@ -223,7 +270,7 @@ export class Encuentros1Page implements OnInit {
       this.gru1 = false;
       this.ida = false;
       this.vuelta = false;
-    } else if (this.numero == 8) {
+    } else if (this.numero == this.infocampeonato.fases+3) {
       this.titulo = "Semifinal";
       this.prueba("Semifinal");
       this.pruebafina("Semifinal");
@@ -241,7 +288,7 @@ export class Encuentros1Page implements OnInit {
       this.gru1 = false;
       this.ida = false;
       this.vuelta = false;
-    } else if (this.numero == 9) {
+    } else if (this.numero == this.infocampeonato.fases+4) {
       this.titulo = "Tercero y Cuarto";
       this.prueba("Tercero y Cuarto");
       this.pruebafina("Tercero y Cuarto");
@@ -259,7 +306,7 @@ export class Encuentros1Page implements OnInit {
       this.gru1 = false;
       this.ida = false;
       this.vuelta = false;
-    } else if (this.numero == 10) {
+    } else if (this.numero == this.infocampeonato.fases+5) {
       this.titulo = "Final";
       this.prueba("Final");
       this.pruebafina("Final");
@@ -281,14 +328,14 @@ export class Encuentros1Page implements OnInit {
   }
 
   async siguiente() {
-    if (this.numero < 10) {
+    if (this.numero < this.infocampeonato.fases+5) {
 
       this.numero = this.numero + 1;
 
     }
 
     console.log(this.numero)
-    if (this.numero >= 1 && this.numero < 6) {
+    if (this.numero >= 1 && this.numero <= this.infocampeonato.fases) {
       this.titulo = "Fecha " + this.numero;
       this.grupos("Fecha " + this.numero);
       this.gruposfinalizados("Fecha " + this.numero);
@@ -306,7 +353,7 @@ export class Encuentros1Page implements OnInit {
       this.gru1 = false;
       this.ida = false;
       this.vuelta = false;
-    } else if (this.numero == 6) {
+    } else if (this.numero == this.infocampeonato.fases+1) {
 
       this.titulo = "Descenso"
       this.prueba("Descenso");
@@ -329,7 +376,7 @@ export class Encuentros1Page implements OnInit {
       this.ida = false;
       this.vuelta = false;
 
-    } else if (this.numero == 7) {
+    } else if (this.numero == this.infocampeonato.fases+2) {
       this.titulo = "Cuartos de final"
       this.prueba("Cuartos de final");
       this.pruebafina("Cuartos de final");
@@ -347,7 +394,7 @@ export class Encuentros1Page implements OnInit {
       this.gru1 = false;
       this.ida = false;
       this.vuelta = false;
-    } else if (this.numero == 8) {
+    } else if (this.numero == this.infocampeonato.fases+3) {
       this.titulo = "Semifinal";
       this.prueba("Semifinal");
       this.pruebafina("Semifinal");
@@ -365,7 +412,7 @@ export class Encuentros1Page implements OnInit {
       this.gru1 = false;
       this.ida = false;
       this.vuelta = false;
-    } else if (this.numero == 9) {
+    } else if (this.numero == this.infocampeonato.fases+4) {
       this.titulo = "Tercero y Cuarto";
       this.prueba("Tercero y Cuarto");
       this.pruebafina("Tercero y Cuarto");
@@ -383,7 +430,7 @@ export class Encuentros1Page implements OnInit {
       this.gru1 = false;
       this.ida = false;
       this.vuelta = false;
-    } else if (this.numero == 10) {
+    } else if (this.numero == this.infocampeonato.fases+5) {
       this.titulo = "Final";
       this.prueba("Final");
       this.pruebafina("Final");
@@ -408,6 +455,11 @@ export class Encuentros1Page implements OnInit {
     const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos';
     this.equiposInfo = this.firestoreService.getPartidos<EncuentroPrueba>(path).subscribe(res => {
       console.log(res.length);
+      if(res.length){
+        this.antsig=true;
+      }else{
+        this.antsig=false;
+      }
 
       // for (let a=0; a<=res.length;a++){
       //     this.encuentronuevo=res[a];
@@ -803,6 +855,7 @@ export class Encuentros1Page implements OnInit {
 
   }
   async saveMatch() {
+    console.log(this.encuentro.fechae,this.encuentro.numero);
     this.encuentro.uid = this.firestoreService.getId();
     if (this.encuentro.tipo == "") {
       this.presentToast("Eliga el tipo de partido", 2000);
@@ -1100,7 +1153,7 @@ export class Encuentros1Page implements OnInit {
               this.fecha = false;
               this.grupo1 = false;
               this.grupo2 = false;
-              this.encuentro.numero = 6;
+              this.encuentro.numero = this.infocampeonato.fases +1;
               this.encuentro.nombre_e1 = "";
               this.encuentro.nombre_e2 = "";
               this.encuentro.fechae = "";
@@ -1116,7 +1169,7 @@ export class Encuentros1Page implements OnInit {
               this.fecha = false;
               this.grupo1 = false;
               this.grupo2 = false;
-              this.encuentro.numero = 7;
+              this.encuentro.numero = this.infocampeonato.fases +2;
               this.encuentro.nombre_e1 = "";
               this.encuentro.nombre_e2 = "";
               this.encuentro.fechae = "";
@@ -1131,7 +1184,7 @@ export class Encuentros1Page implements OnInit {
               this.fecha = false;
               this.grupo1 = false;
               this.grupo2 = false;
-              this.encuentro.numero = 8;
+              this.encuentro.numero = this.infocampeonato.fases +3;
               this.encuentro.nombre_e1 = "";
               this.encuentro.nombre_e2 = "";
               this.encuentro.fechae = "";
@@ -1147,7 +1200,7 @@ export class Encuentros1Page implements OnInit {
               this.fecha = false;
               this.grupo1 = false;
               this.grupo2 = false;
-              this.encuentro.numero = 6;
+              this.encuentro.numero = this.infocampeonato.fases +4;
               this.encuentro.nombre_e1 = "";
               this.encuentro.nombre_e2 = "";
               this.encuentro.fechae = "";
@@ -1162,7 +1215,7 @@ export class Encuentros1Page implements OnInit {
               this.fecha = false;
               this.grupo1 = false;
               this.grupo2 = false;
-              this.encuentro.numero = 9;
+              this.encuentro.numero = this.infocampeonato.fases +5;
               this.encuentro.nombre_e1 = "";
               this.encuentro.nombre_e2 = "";
               this.encuentro.fechae = "";

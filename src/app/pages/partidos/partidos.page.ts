@@ -50,6 +50,7 @@ export class PartidosPage implements OnInit {
   titulo="";
   gru1=false;
   gru2=false;
+  antsig=false;
 
   campeonatos: Campeonatos[] = [];
   infocampeonato: Campeonatos = {
@@ -60,6 +61,7 @@ export class PartidosPage implements OnInit {
     lugar: '',
     estado: 'iniciado',
     grupos: 0,
+    fases: 0
   };
   encuentro: EncuentroPrueba = {
     uid: '',
@@ -154,6 +156,9 @@ des=false;
   }
 
   async limpiar(){
+
+    this.antsig=false;
+    this.titulo="";
     this.gru2 = false;
     this.gru1 = false;
     this.ida = false;
@@ -204,7 +209,11 @@ des=false;
   async getPartidos(uid:string) {
     const path = 'Campeonatos/'+uid+'/Partidos'; 
     this.equiposInfo = this.firestoreService.getPartidos<EncuentroPrueba>(path).subscribe(res => {
-      
+      if(res.length){
+        this.antsig=true;
+      }else{
+        this.antsig=false;
+      }
       this.encuentro=res[0];
       if(this.encuentro.fechae == "ida" || this.encuentro.fechae == "vuelta" || this.encuentro.fechae == "unico"){
       this.titulo=this.encuentro.tipo;
@@ -375,7 +384,7 @@ des=false;
 
 
   async partidos_ida_vuel_init(tipo: string) {
-    const path = 'Partidos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos';
     this.equiposInfo = this.firestoreService.get_partidos_ida_vuel_Init<EncuentroPrueba>(path, 'tipo', '==', tipo, "ida").subscribe(res => {
       this.geneidainit = res;
       this.grupo1 = [];
@@ -405,7 +414,7 @@ des=false;
 
 
   async partidos_ida_vuel_fina(tipo: string) {
-    const path = 'Partidos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos';
     this.equiposInfo = this.firestoreService.get_partidos_ida_vuel_Fina<EncuentroPrueba>(path, 'tipo', '==', tipo, "ida").subscribe(res => {
       this.geneidaf = res;
       this.grupo1 = [];
@@ -446,7 +455,7 @@ des=false;
 
     console.log(this.numero)
 
-    if (this.numero >= 1 && this.numero < 6) {
+    if (this.numero >= 1 && this.numero <=this.infocampeonato.fases) {
       this.titulo = "Fecha " + this.numero;
       this.grupos("Fecha " + this.numero);
       this.gruposfinalizados("Fecha " + this.numero);
@@ -464,7 +473,7 @@ des=false;
       this.gru1 = false;
       this.ida = false;
       this.vuelta = false;
-    } else if (this.numero == 6) {
+    } else if (this.numero == this.infocampeonato.fases+1) {
 
       this.titulo = "Descenso"
       this.prueba("Descenso");
@@ -487,7 +496,7 @@ des=false;
       this.ida = false;
       this.vuelta = false;
 
-    } else if (this.numero == 7) {
+    } else if (this.numero == this.infocampeonato.fases+2) {
       this.titulo = "Cuartos de final"
       this.prueba("Cuartos de final");
       this.pruebafina("Cuartos de final");
@@ -505,7 +514,7 @@ des=false;
       this.gru1 = false;
       this.ida = false;
       this.vuelta = false;
-    } else if (this.numero == 8) {
+    } else if (this.numero == this.infocampeonato.fases+3) {
       this.titulo = "Semifinal";
       this.prueba("Semifinal");
       this.pruebafina("Semifinal");
@@ -523,7 +532,7 @@ des=false;
       this.gru1 = false;
       this.ida = false;
       this.vuelta = false;
-    } else if (this.numero == 9) {
+    } else if (this.numero == this.infocampeonato.fases+4) {
       this.titulo = "Tercero y Cuarto";
       this.prueba("Tercero y Cuarto");
       this.pruebafina("Tercero y Cuarto");
@@ -541,7 +550,7 @@ des=false;
       this.gru1 = false;
       this.ida = false;
       this.vuelta = false;
-    } else if (this.numero == 10) {
+    } else if (this.numero == this.infocampeonato.fases+5) {
       this.titulo = "Final";
       this.prueba("Final");
       this.pruebafina("Final");
@@ -563,14 +572,14 @@ des=false;
   }
 
   async siguiente() {
-    if (this.numero < 10) {
+    if (this.numero < this.infocampeonato.fases+5) {
 
       this.numero = this.numero + 1;
 
     }
 
     console.log(this.numero)
-    if (this.numero >= 1 && this.numero < 6) {
+    if (this.numero >= 1 && this.numero <=this.infocampeonato.fases) {
       this.titulo = "Fecha " + this.numero;
       this.grupos("Fecha " + this.numero);
       this.gruposfinalizados("Fecha " + this.numero);
@@ -588,7 +597,7 @@ des=false;
       this.gru1 = false;
       this.ida = false;
       this.vuelta = false;
-    } else if (this.numero == 6) {
+    } else if (this.numero == this.infocampeonato.fases+1) {
 
       this.titulo = "Descenso"
       this.prueba("Descenso");
@@ -611,7 +620,7 @@ des=false;
       this.ida = false;
       this.vuelta = false;
 
-    } else if (this.numero == 7) {
+    } else if (this.numero == this.infocampeonato.fases+2) {
       this.titulo = "Cuartos de final"
       this.prueba("Cuartos de final");
       this.pruebafina("Cuartos de final");
@@ -629,7 +638,7 @@ des=false;
       this.gru1 = false;
       this.ida = false;
       this.vuelta = false;
-    } else if (this.numero == 8) {
+    } else if (this.numero == this.infocampeonato.fases+3) {
       this.titulo = "Semifinal";
       this.prueba("Semifinal");
       this.pruebafina("Semifinal");
@@ -647,7 +656,7 @@ des=false;
       this.gru1 = false;
       this.ida = false;
       this.vuelta = false;
-    } else if (this.numero == 9) {
+    } else if (this.numero == this.infocampeonato.fases+4) {
       this.titulo = "Tercero y Cuarto";
       this.prueba("Tercero y Cuarto");
       this.pruebafina("Tercero y Cuarto");
@@ -665,7 +674,7 @@ des=false;
       this.gru1 = false;
       this.ida = false;
       this.vuelta = false;
-    } else if (this.numero == 10) {
+    } else if (this.numero == this.infocampeonato.fases+5) {
       this.titulo = "Final";
       this.prueba("Final");
       this.pruebafina("Final");

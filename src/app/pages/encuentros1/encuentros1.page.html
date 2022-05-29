@@ -90,6 +90,17 @@
         placeholder="Seleccione fase del partido">
       </ion-input>    
     </ion-item>
+<!-- 
+    <ion-item *ngIf="fecha" lines="none" class="IonInput">
+      <ion-label class="ion-label-itemin">Fase:</ion-label>
+      <ion-select class="campos" [(ngModel)]="encuentro.fechae" (ngModelChange)="onChange($event)" placeholder="Seleccione">
+        <div *ngFor="let fases of numerofases; let i = index" >
+          <ion-select-option value={{fases}}>{{fases}}</ion-select-option>
+          <ion-input [(ngModel)]="encuentro.numero" value="{{i+1}}"> </ion-input> (ionChange)="getItem(i)"
+        </div>
+      </ion-select>
+    </ion-item> 
+    -->
 
     <ion-item *ngIf="grupo" lines="none" class="IonInput">
       <ion-label class="ion-label-itemin">Grupo:</ion-label>
@@ -181,7 +192,7 @@
    </div>
  
  <!-- Html de partidos de Final -->
- <div class="div_cuarto">
+ <div *ngIf="antsig" class="div_cuarto">
   <ion-grid class="grid_cuarto">
     
     <ion-row class="row_cuarto">
