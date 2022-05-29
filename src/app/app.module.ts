@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -27,12 +27,14 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { EditEquipoComponent } from './pages/edit-equipo/edit-equipo.component';
 import { EditPartidoComponent } from './pages/edit-partido/edit-partido.component';
 import { RecuperarComponent } from './pages/recuperar/recuperar.component';
-import { SwiperModule } from 'swiper/angular';
+// import { SwiperModule } from 'swiper/angular';
 import {HttpClientModule} from '@angular/common/http';
 import { NewcampeonatoComponent } from './pages/newcampeonato/newcampeonato.component';
+// import { SwiperComponentComponent } from './componentes/swiper-component/swiper-component.component';
 
 
 @NgModule({
+
   declarations: [
     AppComponent,
     RegistroComponent,
@@ -48,10 +50,12 @@ import { NewcampeonatoComponent } from './pages/newcampeonato/newcampeonato.comp
     EditPartidoComponent,
     RecuperarComponent,
     NewcampeonatoComponent,
+    // SwiperComponentComponent
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   entryComponents: [],
   imports: [BrowserModule, 
-    IonicModule.forRoot(), 
+    IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule.enablePersistence(),
@@ -59,7 +63,6 @@ import { NewcampeonatoComponent } from './pages/newcampeonato/newcampeonato.comp
     AngularFireAuthModule,
     AngularFireStorageModule,
     FormsModule,
-    SwiperModule,
     HttpClientModule, 
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,

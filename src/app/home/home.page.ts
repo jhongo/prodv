@@ -4,12 +4,14 @@ import { AlertController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { Encuentro, EncuentroPrueba, Campeonatos } from 'src/app/models';
 import { FirestoreService } from 'src/app/services/firestore.service';
+import { SwiperComponent } from "swiper/angular";
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
+
 export class HomePage implements OnInit {
 
   matches = [];
