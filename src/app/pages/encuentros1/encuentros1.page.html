@@ -84,23 +84,20 @@
       </ion-input>
     </ion-item>
 
-    <ion-item *ngIf="fecha" lines="none" class="IonInput">
+    <!-- <ion-item *ngIf="fecha" lines="none" class="IonInput">
       <ion-label class="ion-label-itemin">Fase:</ion-label>
       <ion-input slot="end" class="campos" (click)="newFecha()" [(ngModel)]="encuentro.fechae"
         placeholder="Seleccione fase del partido">
       </ion-input>    
-    </ion-item>
-<!-- 
+    </ion-item> -->
+
     <ion-item *ngIf="fecha" lines="none" class="IonInput">
       <ion-label class="ion-label-itemin">Fase:</ion-label>
-      <ion-select class="campos" [(ngModel)]="encuentro.fechae" (ngModelChange)="onChange($event)" placeholder="Seleccione">
-        <div *ngFor="let fases of numerofases; let i = index" >
-          <ion-select-option value={{fases}}>{{fases}}</ion-select-option>
-          <ion-input [(ngModel)]="encuentro.numero" value="{{i+1}}"> </ion-input> (ionChange)="getItem(i)"
-        </div>
+      <ion-select class="campos" [(ngModel)]="encuentro.fechae"  placeholder="Seleccione fase">
+          <ion-select-option *ngFor="let fases of numerofases" value={{fases}}>{{fases}}</ion-select-option>
       </ion-select>
     </ion-item> 
-    -->
+   
 
     <ion-item *ngIf="grupo" lines="none" class="IonInput">
       <ion-label class="ion-label-itemin">Grupo:</ion-label>
