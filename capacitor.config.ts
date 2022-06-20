@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.bitec.prodv',
-  appName: 'Prodv',
+  appName: 'PRODV',
   webDir: 'www',
   bundledWebRuntime: false
 };
