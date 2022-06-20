@@ -1,0 +1,175 @@
+.content-resultados{
+    --background: #f3eded;
+    --padding-bottom:50px
+}
+
+ion-toolbar{
+    --background: #075E54;
+    color: white;
+    
+}
+
+
+.Nuevo_equipo{
+    --background: white; 
+    padding: 15px;
+    
+}
+.titulo_NE{
+
+    font-size: 18px;
+    color: black;
+
+
+}
+.boton_mas{
+
+    margin-bottom: 60px;
+   
+}
+.botones{
+    
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    
+}
+.IonInput{
+
+    --background: #FFF; 
+    --color:#333333;
+    font-weight: bold;
+    margin: 10px; 
+    border: 2px solid #FFF;
+    border-radius: 10px;
+}
+.icon_img{
+    color: black;
+}
+.con_img{
+
+   width: 45px;
+   height: 45px;
+}
+.button-cancelar{ 
+    --color: #075E54;
+    text-align: center;
+    --background: #ffffff;
+    --border-radius:10px;
+    width:42%;
+    font-weight: bold;
+} 
+.button-guardar{ 
+    --color: #ffffff;
+    margin-left: 10px;
+    text-align: center;
+    --border-radius:10px;
+    --background:#075E54;
+    font-weight: bold;
+    width: 40%;
+}
+.encabezado{
+    padding-top: 10px;
+   padding-bottom: 10px;
+   background: white;
+}
+.titulo{
+      font-size: 16px;  
+      color: black;
+      font-weight: bold;
+      text-align: left;
+      margin-left: 10px;
+}
+.info_campeonato{ 
+    // padding-top: 10px;
+    // padding-bottom: 10px;
+    background: white;
+    text-align: center;
+    height: auto;
+}
+.titulocampeonato{
+    font-size: 16px;  
+      color: black;
+      font-weight: bold;
+      margin-left: 10px;
+
+}
+.col_icon_encabezado{
+    // border: 1px black so lid;
+    text-align: left;
+
+}
+.col_titulo_encabezado{
+    margin-top: auto;
+    margin-bottom: auto;
+    // border: 1px blue solid;
+}
+.icon_return{
+    color: black;
+    font-size: 25px;
+}
+
+.equipos{
+    background: white;
+    border: 1px solid #f3eded;  
+    color: #000000;
+    font-size: 14px;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.col_img{
+
+    
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    // border: 1px blue solid
+}
+.col_text{
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    // border: 1px black solid
+}
+
+.item_avatar{
+
+    display: inline-block;
+    --background: white;
+    margin-left: auto;
+    margin-right: auto;
+   
+}
+.label_tittle{
+
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.label_text{
+    font-size: 14px;
+    
+}
+.col_icon{
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    // border: 1px red solid
+}
+.button{
+
+    text-align: center;
+    display: inline-block;
+   
+}
+.icon_edit{
+    color: black;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -22,7 +22,6 @@ export class EncuentrosPage implements OnInit {
   equipo2sInfo: Subscription;
   numero = 0;
   fecha = false;
-  team: Encuentro[] = [];
   team1: Equipos[] = [];
   team2: Equipos[] = [];
   teamg: Equipos[] = [];
@@ -127,7 +126,25 @@ export class EncuentrosPage implements OnInit {
     nombre_e1: '',
     nombre_e2: '',
   }
-
+  
+  // solo se uso este array para pasar datos a otro arreglo, no tiene otro uso
+  encuentronuevo: EncuentroPrueba = {
+    uid: '',
+    fechae: '',
+    numero: 0,
+    tipo: '',
+    fecha: null,
+    grupo: '',
+    uid_e1: '',
+    uid_e2: '',
+    estado: 'espera',
+    res_e1: 0,
+    res_e2: 0,
+    escudo_e1: '',
+    escudo_e2: '',
+    nombre_e1: '',
+    nombre_e2: '',
+  }
   @ViewChild(IonDatetime) datetime: IonDatetime;
   constructor(public alertController: AlertController,
     public firestoreService: FirestoreService,
@@ -391,7 +408,36 @@ export class EncuentrosPage implements OnInit {
     }
   }
 
+// Solo se uso esta funcion para mandar valores a otro arreglo
+  async guardarnuevo(equipo:any,uid:string){
 
+    const path ='Campeonatos/3BuPLlNAQ7yA4yo8Karg/Partidos';
+    this.firestoreService.createDoc(equipo, path, uid).then(res => {
+      console.log('guardado con exito');
+      this.presentLoading('Guardando', 1000); 
+      this.encuentronuevo = {
+        uid: '',
+        tipo: '',
+        fechae: '',
+        numero: 0,
+        fecha: null,
+        grupo: '',
+        uid_e1: '',
+        uid_e2: '',
+        estado: 'espera',
+        res_e1: 0,
+        res_e2: 0,
+        escudo_e1: '',
+        escudo_e2: '',
+        nombre_e1: '',
+        nombre_e2: '',
+      };
+    }).catch(error => {
+  
+    });
+  
+  
+    }
 
   async prueba(tipo: string) {
     const path = 'Partidos';
@@ -661,8 +707,16 @@ export class EncuentrosPage implements OnInit {
   async getPartidos() {
     const path = 'Partidos';
     this.equiposInfo = this.firestoreService.getPartidos<EncuentroPrueba>(path).subscribe(res => {
+      console.log(res.length);
 
+      // for (let a=0; a<=res.length;a++){
+      //     this.encuentronuevo=res[a];
+      //     this.guardarnuevo(this.encuentronuevo,this.encuentronuevo.uid);
+  
+      //   }
       this.encuentropri = res[0];
+
+
       if (this.encuentropri.fechae == "ida" || this.encuentropri.fechae == "vuelta"|| this.encuentropri.fechae == "unico") {
         this.titulo = this.encuentropri.tipo;
       } else {

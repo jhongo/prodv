@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { LoadingController, ToastController, AlertController, IonDatetime } from '@ionic/angular';
-import { Encuentro, Equipos } from 'src/app/models';
+import { Encuentro, Equipos, Campeonatos } from 'src/app/models';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { Router } from '@angular/router';
 import { format, parseISO } from 'date-fns';
@@ -76,6 +76,16 @@ export class EditPartidoComponent implements OnInit, OnDestroy {
     nombre_e2: '',
   }
 
+  infocampeonato: Campeonatos = {
+    uid: '',
+    nombre: '',
+    fecha: null,
+    tipo: '',
+    lugar: '',
+    estado: 'iniciado',
+    grupos: 0,
+    fases: 0
+  };
 
   @ViewChild(IonDatetime) datetime: IonDatetime;
   constructor(public firestoreService: FirestoreService,
@@ -83,6 +93,7 @@ export class EditPartidoComponent implements OnInit, OnDestroy {
     public toastController: ToastController,
     public alertController: AlertController,
     public router: Router) {
+
 
   }
 
@@ -95,6 +106,13 @@ export class EditPartidoComponent implements OnInit, OnDestroy {
 
     }
     console.log(this.encuentro);
+
+    const campeonatod = this.firestoreService.getCampeonato();
+    if (campeonatod !== undefined) {
+      this.infocampeonato = campeonatod;
+      
+    }
+    console.log(this.infocampeonato);
   }
 
   ngOnDestroy(): void {
@@ -126,7 +144,7 @@ export class EditPartidoComponent implements OnInit, OnDestroy {
 
 
   async actualizarpuntos(uid1: string, uid2: string) {
-    const path = 'Equipos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Equipos';
     this.equiposInfo = this.firestoreService.getgrupos<Equipos>(path, 'uid', '==', uid1).subscribe(res => {
       if (res.length) {
         this.equipo1 = res[0];
@@ -280,7 +298,7 @@ export class EditPartidoComponent implements OnInit, OnDestroy {
 
     if (this.encuentro.estado == "iniciado" || this.encuentro.estado == "espera") {
       console.log("El partido ha iniciado");
-      const path = 'Partidos';
+      const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos';
       this.firestoreService.createDoc(this.encuentro, path, this.encuentro.uid).then(res => {
         console.log('guardado con exito');
 
@@ -303,7 +321,7 @@ export class EditPartidoComponent implements OnInit, OnDestroy {
         };
         this.presentLoading('Actualizando datos', 1500);
         setTimeout(() => {
-          this.router.navigate(['/tab-campeonato/encuentros']);
+          this.router.navigate(['/tab-newcampeonato/encuentros1']);
         }, 1000);
 
       }).catch(error => {
@@ -314,7 +332,7 @@ export class EditPartidoComponent implements OnInit, OnDestroy {
       console.log("El partido ha finalizadoo");
       if (this.encuentro.tipo == "Fase de grupos" || this.encuentro.tipo=="Descenso") {
         await this.actualizarpuntos(this.encuentro.uid_e1, this.encuentro.uid_e2);
-        const path = 'Partidos';
+        const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos';
         this.firestoreService.createDoc(this.encuentro, path, this.encuentro.uid).then(res => {
           console.log('guardado con exito');
 
@@ -368,7 +386,7 @@ export class EditPartidoComponent implements OnInit, OnDestroy {
           
           this.presentLoading('Guardando partido', 1500);
           // setTimeout(() => {
-            this.router.navigate(['/tab-campeonato/encuentros']);
+            this.router.navigate(['/tab-newcampeonato/encuentros1']);
           // }, 1000);
 
         }).catch(error => {
@@ -376,7 +394,7 @@ export class EditPartidoComponent implements OnInit, OnDestroy {
         });
 
       } else {
-        const path = 'Partidos';
+        const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos';
         this.firestoreService.createDoc(this.encuentro, path, this.encuentro.uid).then(res => {
         console.log('guardado con exito');
   
@@ -399,7 +417,7 @@ export class EditPartidoComponent implements OnInit, OnDestroy {
           };
           this.presentLoading('Actualizando datos', 1500);
           // setTimeout(() => {
-            this.router.navigate(['/tab-campeonato/encuentros']);
+            this.router.navigate(['/tab-newcampeonato/encuentros1']);
           // }, 1000);
   
         }).catch(error => {
@@ -413,11 +431,11 @@ export class EditPartidoComponent implements OnInit, OnDestroy {
 
 
   async deleteMatch() {
-    const path = "Partidos";
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Partidos';
     this.firestoreService.deletepartido(path, this.encuentro.uid).then(res => {
       this.presentLoading('Eliminando', 1500);
       setTimeout(() => {
-        this.router.navigate(['/tab-campeonato/encuentros']);
+        this.router.navigate(['tab-newcampeonato/encuentros1']);
       }, 1000);
     }).catch(error => {
       console.log(error)
@@ -428,7 +446,7 @@ export class EditPartidoComponent implements OnInit, OnDestroy {
 
 
   async restart() {
-    this.router.navigate(['tab-campeonato/encuentros'])
+    this.router.navigate(['tab-newcampeonato/encuentros1'])
 
     this.encuentro = {
       uid: null,

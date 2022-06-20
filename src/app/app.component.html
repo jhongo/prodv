@@ -5,17 +5,17 @@
       <ion-header mode="ios">
         <ion-toolbar>
 
-          <ion-grid>
-            <ion-row>
-              <ion-col size="3">
-                <ion-thumbnail>
-                  <img src="assets/icons/icon-128x128.png">
+          <ion-grid class="grid_init">
+            <ion-row class="row-init">
+              <ion-col  class="col_img" size="4s">
+                <ion-thumbnail class="img-icon">
+                  <img class="img-icono-prodv" src="assets/icons/icon-128x128.png">
                 </ion-thumbnail>
               </ion-col>
-              <ion-col size="9">
+              <ion-col class="col_text" size="6">
 
                 <ion-row>
-                  <ion-col>PRODV</ion-col>
+                  <ion-col style="font-weight:bold">PRODV</ion-col>
                 </ion-row>
                 <!-- <ion-row><ion-col>TU APP DEPORTIVA</ion-col></ion-row> -->
 
@@ -33,15 +33,15 @@
 
           <ion-menu-toggle routerLink="/home">
             <ion-item class="item-menu" button details lines="none">
+              <ion-icon slot="start" color="black" name="home-outline"></ion-icon>
               <ion-label class="text_menu">
                 Inicio
               </ion-label>
 
-              <ion-icon slot="start" color="black" name="home-outline"></ion-icon>
             </ion-item>
           </ion-menu-toggle>
 
-          <ion-menu-toggle routerLink="/tab-inicial/partidos">
+          <ion-menu-toggle routerLink="/partidos">
             <ion-item class="item-menu" button details lines="none">
               
               <ion-img src="../assets/icon/Recurso 9logo_Gualaquiza.png" class="img_logo" slot="start"> </ion-img>
@@ -63,7 +63,7 @@
             
           </ion-menu-toggle>
 
-          <ion-menu-toggle routerLink="/tab-campeonato/equipos" *ngIf="admin">
+          <ion-menu-toggle routerLink="newcampeonato" *ngIf="admin">
             <ion-item class="item-menu" button lines="none">
               <ion-label class="text_menu">
                 Campeonato
@@ -90,6 +90,16 @@
             </ion-item>
           </ion-menu-toggle>
 
+
+          <ion-menu-toggle routerLink="/noticias">
+            <ion-item class="item-menu" button lines="none">
+              <ion-label class="text_menu">
+                Noticias
+              </ion-label>
+              <ion-icon class="iconos" slot="start" color="white" name="globe"></ion-icon>
+            </ion-item>
+          </ion-menu-toggle>
+          
           <!-- <ion-menu-toggle routerLink="/noticias">
             <ion-item class="item-menu" button lines="none">
               <ion-label>

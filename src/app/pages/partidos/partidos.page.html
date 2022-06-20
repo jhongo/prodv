@@ -17,8 +17,53 @@
 
 </ion-header>
 
+<div class="campeonatos">
+  <ion-toolbar class="toolbar_campeonato" mode="ios">
+    <ion-segment scrollable slot="start" class="segment_campeonatos" mode="md" (ionChange)="segment($event)" >
+      <ion-segment-button  mode="ios"  *ngFor="let campeonato of campeonatos"  class="segment_botones_campeonatos" (click)="getCampeonato(campeonato)" value={{campeonato.nombre}}>
+        <ion-label class="text_segment" >{{campeonato.nombre}}</ion-label> 
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</div>
+<div class="info_campeonato">
+  <ion-grid>
+    <ion-row>
+      <ion-col class="col_icon_encabezado" size="2">
+        <!-- <ion-icon class="icon_return" name="arrow-back-outline" routerLink="/newcampeonato" (click)="restart()"></ion-icon> -->
+      </ion-col>
+      <ion-col class="col_titulo_encabezado" size="8">
+        <ion-label class="titulocampeonato">{{infocampeonato.nombre}}</ion-label>
+      </ion-col>
+      <ion-col size="2">
 
-<ion-content class="page-content">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
+
+<div class="div_segmet_de">
+
+  <ion-toolbar class="tolbar" mode="ios">
+    
+    <ion-segment class="segment_init"  slot="start" mode="md" (ionChange)="changeSegment($event)" value="Partidos">
+      <ion-segment-button  class="segment_seg"  value="Partidos">
+        <ion-label class="text-selected-item_pri">Partidos</ion-label>
+      </ion-segment-button>
+      
+      <ion-segment-button  class="segment_seg"  value="Clasificacion">
+        <ion-label class="text-selected-item_pri" >Clasificación</ion-label>
+      </ion-segment-button>
+      
+    </ion-segment>
+  </ion-toolbar>
+  
+</div>
+
+
+<ion-content  class="page-content">
+
+  <div *ngIf="opcion=='Partidos'" >
   <div class="encabezado">
     <ion-label class="titulo"> Proximos partidos </ion-label>
   </div>
@@ -26,7 +71,7 @@
 
 <!-- Prueba de nuevo estilo -->
 
-<div class="div_cuarto">
+<div *ngIf="antsig" class="div_cuarto">
   <ion-grid class="grid_cuarto">
     
     <ion-row class="row_cuarto">
@@ -951,6 +996,399 @@
   </ion-grid>
 </div>
 
+</div>
+
+<div *ngIf="opcion=='Clasificacion'" class="content-resultados">
+
+  <ion-segment  mode="ios" (ionChange)="changeSegment2($event)" value="clasificacion">
+
+    <ion-segment-button value="clasificacion">
+      <ion-label class="text-selected-item">Clasificación</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="detalles">
+      <ion-label class="text-selected-item">Detalles</ion-label>
+    </ion-segment-button>
+
+  </ion-segment>
+
+<!-- Grupo 1 -->
+  <ion-grid class="grid_encabezado"  *ngIf="opcion2=='clasificacion'">
+    <ion-row *ngIf="grup1" class="row_grupo">
+      <ion-label class="tituloG">Grupo A</ion-label>
+    </ion-row>
+    <ion-row *ngIf="grup1">
+      <ion-col size="2" class="col_encabezado">
+        <ion-label class="text_encabezado">  
+        </ion-label>
+      </ion-col>
+      <ion-col size="1"></ion-col>
+      <ion-col size="3" class="col_encabezado">
+        <ion-label class="text_puntos">Equipo</ion-label>
+      </ion-col>
+      <ion-col size="2"></ion-col>
+      <ion-col size="2"class="col_encabezado"> 
+        <ion-label class="text_puntos">DG</ion-label>
+      </ion-col>
+      <ion-col size="2" class="col_encabezado">
+        <ion-label class="text_puntos">PT</ion-label>
+      </ion-col>
+    </ion-row>
+
+    
+    <div class="grupos"  >
+      <ion-row *ngFor="let equipo of grupoE1, let i = index">
+        <ion-col size="1" class="col_encabezado">
+          <ion-label class="text_puntos">{{i+1}} </ion-label>
+        </ion-col>
+        <ion-col class="col_escudo" size="2">
+          <img class="escudo" src={{equipo.escudo}} >
+        </ion-col>
+        <ion-col size="5" class="col_equipo">
+          <ion-label class="text_puntos">{{equipo.nombre}}</ion-label>
+        </ion-col>
+        <ion-col size="2"class="col_encabezado"> 
+          <ion-label class="text_puntos">{{equipo.d_g}}</ion-label>
+        </ion-col>
+        <ion-col size="2" class="col_encabezado">
+          <ion-label class="text_puntos">{{equipo.puntos}}</ion-label>
+        </ion-col>
+      </ion-row>     
+    </div>
+  </ion-grid>
+
+<!-- Grupos 2 -->
+  <ion-grid class="grid_encabezado" *ngIf="opcion2=='clasificacion'" >
+    <ion-row *ngIf="grup2" class="row_grupo">
+      <ion-label class="tituloG">Grupo B</ion-label>
+    </ion-row>
+    <ion-row *ngIf="grup2">
+      <ion-col size="2" class="col_encabezado">
+        <ion-label class="text_encabezado">  
+        </ion-label>
+      </ion-col>
+      <ion-col size="1"></ion-col>
+      <ion-col size="3" class="col_encabezado">
+        <ion-label class="text_puntos">Equipo</ion-label>
+      </ion-col>
+      <ion-col size="2"></ion-col>
+      <ion-col size="2"class="col_encabezado"> 
+        <ion-label class="text_puntos">DG</ion-label>
+      </ion-col>
+      <ion-col size="2" class="col_encabezado">
+        <ion-label class="text_puntos">PT</ion-label>
+      </ion-col>
+    </ion-row>
+
+    <!--  -->
+   
+    <div class="grupos"  >
+      <ion-row *ngFor="let equipo of grupoE2, let i = index">
+        <ion-col size="1" class="col_encabezado">
+          <ion-label class="text_puntos">{{i+1}} </ion-label>
+        </ion-col>
+        <ion-col class="col_escudo" size="2">
+          <img class="escudo" src={{equipo.escudo}} >
+        </ion-col>
+        <ion-col size="5" class="col_equipo">
+          <ion-label class="text_puntos">{{equipo.nombre}}</ion-label>
+        </ion-col>
+        <ion-col size="2"class="col_encabezado"> 
+          <ion-label class="text_puntos">{{equipo.d_g}}</ion-label>
+        </ion-col>
+        
+        <ion-col size="2" class="col_encabezado">
+          <ion-label class="text_puntos">{{equipo.puntos}}</ion-label>
+        </ion-col>
+      </ion-row>     
+    </div>
+    
+    
+  </ion-grid>
+
+  <!-- Descenso -->
+  <ion-grid class="grid_encabezado" *ngIf="opcion2=='clasificacion'">
+    <ion-row *ngIf="des" class="row_grupo">
+      <ion-label class="tituloG">Descenso</ion-label>
+    </ion-row>
+    <ion-row *ngIf="des">
+      <ion-col size="2" class="col_encabezado">
+        <ion-label class="text_encabezado">  
+        </ion-label>
+      </ion-col>
+      <ion-col size="1"></ion-col>
+      <ion-col size="3" class="col_encabezado">
+        <ion-label class="text_puntos">Equipo</ion-label>
+      </ion-col>
+      <ion-col size="2"></ion-col>
+      <ion-col size="2"class="col_encabezado"> 
+        <ion-label class="text_puntos">DG</ion-label>
+      </ion-col>
+      <ion-col size="2" class="col_encabezado">
+        <ion-label class="text_puntos">PT</ion-label>
+      </ion-col>
+    </ion-row>
+
+    
+    <div class="grupos"  >
+      <ion-row *ngFor="let equipo of descensoE, let i = index">
+        <ion-col size="1" class="col_encabezado">
+          <ion-label class="text_puntos">{{i+1}} </ion-label>
+        </ion-col>
+        <ion-col class="col_escudo" size="2">
+          <img class="escudo" src={{equipo.escudo}} >
+        </ion-col>
+        <ion-col size="5" class="col_equipo">
+          <ion-label class="text_puntos">{{equipo.nombre}}</ion-label>
+        </ion-col>
+        <ion-col size="2"class="col_encabezado"> 
+          <ion-label class="text_puntos">{{equipo.d_g}}</ion-label>
+        </ion-col>
+        
+        <ion-col size="2" class="col_encabezado">
+          <ion-label class="text_puntos">{{equipo.puntos}}</ion-label>
+        </ion-col>
+      </ion-row>     
+    </div>
+  </ion-grid>
+
+
+  <ion-grid class="grid_encabezado" *ngIf="opcion2=='detalles'">
+    <ion-row *ngIf="grup1" class="row_grupo">
+      <ion-label  class="tituloG">Grupo A</ion-label>
+    </ion-row>
+    <ion-row *ngIf="grup1">
+      <ion-col size="1" class="col_encabezado">
+        <ion-label class="text_encabezado">  
+        </ion-label>
+      </ion-col>
+      <ion-col size="3" class="col_encabezado">
+        <ion-label class="text_puntos">Equipo</ion-label>
+      </ion-col>
+      <ion-col size="1" class="col_encabezado_datos">
+        <ion-label class="text_puntos">PT</ion-label>
+      </ion-col>
+      <ion-col size="1" class="col_encabezado_datos">
+        <ion-label class="text_encabezado">PJ</ion-label>
+      </ion-col>
+      <ion-col size="1" class="col_encabezado_datos">
+        <ion-label class="text_encabezado">PG</ion-label>
+      </ion-col>
+      <ion-col size="1" class="col_encabezado_datos">
+        <ion-label class="text_encabezado">PE</ion-label>
+      </ion-col>
+      <ion-col size="1" class="col_encabezado_datos">
+        <ion-label class="text_encabezado">PP</ion-label>
+      </ion-col>
+      <ion-col size="1" class="col_encabezado_datos">
+        <ion-label class="text_encabezado">GF</ion-label>
+      </ion-col>
+      <ion-col size="1" class="col_encabezado_datos">
+        <ion-label class="text_encabezado">GC</ion-label>
+      </ion-col>
+      <ion-col size="1" class="col_encabezado_datos">
+        <ion-label class="text_encabezado">DG</ion-label>
+      </ion-col>
+      
+    </ion-row>
+    <div class="grupos" *ngFor="let equipo of grupoE1, let i = index" >
+      <ion-row >
+        <ion-col size="1" class="col_encabezado">
+          <ion-label class="text_puntos" >{{i+1}} </ion-label>
+        </ion-col>
+        <ion-col size="1" class="col_escudo">
+          <img class="escudo" src={{equipo.escudo}} >
+        </ion-col>
+        <ion-col size="2" class="col_equipo">
+          <ion-label class="text_equipo">{{equipo.nombre}}</ion-label>
+        </ion-col>
+        <ion-col size="1" class="col_encabezado_datos">
+          <ion-label class="text_puntos">{{equipo.puntos}}</ion-label>
+        </ion-col>
+        <ion-col size="1" class="col_encabezado_datos">
+          <ion-label class="text_encabezado">{{equipo.p_j}}</ion-label>
+        </ion-col>
+        <ion-col size="1" class="col_encabezado_datos">
+          <ion-label class="text_encabezado">{{equipo.p_g}}</ion-label>
+        </ion-col>
+        <ion-col size="1" class="col_encabezado_datos">
+          <ion-label class="text_encabezado">{{equipo.p_e}}</ion-label>
+        </ion-col>
+        <ion-col size="1" class="col_encabezado_datos">
+          <ion-label class="text_encabezado">{{equipo.p_p}}</ion-label>
+        </ion-col>
+        <ion-col size="1" class="col_encabezado_datos">
+          <ion-label class="text_encabezado">{{equipo.g_f}}</ion-label>
+        </ion-col>
+        <ion-col size="1" class="col_encabezado_datos">
+          <ion-label class="text_encabezado">{{equipo.g_c}}</ion-label>
+        </ion-col>
+        <ion-col size="1" class="col_encabezado_datos">
+          <ion-label class="text_encabezado">{{equipo.d_g}}</ion-label>
+        </ion-col>
+      </ion-row>
+
+    </div>
+  </ion-grid>
+
+  <ion-grid class="grid_encabezado" *ngIf="opcion2=='detalles'" >
+    <ion-row *ngIf="grup2" class="row_grupo">
+      <ion-label class="tituloG">Grupo B</ion-label>
+    </ion-row>
+    <ion-row *ngIf="grup2">
+      <ion-col size="1" class="col_encabezado">
+        <ion-label class="text_encabezado">  
+        </ion-label>
+      </ion-col>
+      <ion-col size="3" class="col_encabezado">
+        <ion-label class="text_puntos">Equipo</ion-label>
+      </ion-col>
+      <ion-col size="1" class="col_encabezado">
+        <ion-label class="text_puntos">PT</ion-label>
+      </ion-col>
+      <ion-col size="1" class="col_encabezado">
+        <ion-label class="text_encabezado">PJ</ion-label>
+      </ion-col>
+      <ion-col size="1" class="col_encabezado">
+        <ion-label class="text_encabezado">PG</ion-label>
+      </ion-col>
+      <ion-col size="1" class="col_encabezado">
+        <ion-label class="text_encabezado">PE</ion-label>
+      </ion-col>
+      <ion-col size="1" class="col_encabezado">
+        <ion-label class="text_encabezado">PP</ion-label>
+      </ion-col>
+      <ion-col size="1" class="col_encabezado">
+        <ion-label class="text_encabezado">GF</ion-label>
+      </ion-col>
+      <ion-col size="1" class="col_encabezado">
+        <ion-label class="text_encabezado">GC</ion-label>
+      </ion-col>
+      <ion-col size="1" class="col_encabezado">
+        <ion-label class="text_encabezado">DG</ion-label>
+      </ion-col>
+      
+    </ion-row>
+    <div class="grupos" *ngFor="let equipo2 of grupoE2, let i = index">
+      <ion-row>
+        <ion-col size="1" class="col_encabezado">
+          <ion-label class="text_puntos">{{i + 1}}</ion-label>
+        </ion-col>
+        <ion-col size="1" class="col_escudo">
+          <img class="escudo" src={{equipo2.escudo}} >
+        </ion-col>
+        <ion-col size="2" class="col_equipo">
+          <ion-label class="text_equipo">{{equipo2.nombre}}</ion-label>
+        </ion-col>
+        <ion-col size="1" class="col_encabezado">
+          <ion-label class="text_puntos">{{equipo2.puntos}}</ion-label>
+        </ion-col>
+        <ion-col size="1" class="col_encabezado">
+          <ion-label class="text_encabezado">{{equipo2.p_j}}</ion-label>
+        </ion-col>
+        <ion-col size="1" class="col_encabezado">
+          <ion-label class="text_encabezado">{{equipo2.p_g}}</ion-label>
+        </ion-col>
+        <ion-col size="1" class="col_encabezado">
+          <ion-label class="text_encabezado">{{equipo2.p_e}}</ion-label>
+        </ion-col>
+        <ion-col size="1" class="col_encabezado">
+          <ion-label class="text_encabezado">{{equipo2.p_p}}</ion-label>
+        </ion-col>
+        <ion-col size="1" class="col_encabezado">
+          <ion-label class="text_encabezado">{{equipo2.g_f}}</ion-label>
+        </ion-col>
+        <ion-col size="1" class="col_encabezado">
+          <ion-label class="text_encabezado">{{equipo2.g_c}}</ion-label>
+        </ion-col>
+        <ion-col size="1" class="col_encabezado">
+          <ion-label class="text_encabezado">{{equipo2.d_g}}</ion-label>
+        </ion-col>
+        
+      </ion-row>
+    </div>
+  </ion-grid>
+
+  <ion-grid class="grid_encabezado" *ngIf="opcion2=='detalles'" >
+    <ion-row *ngIf="des" class="row_grupo">
+      <ion-label  class="tituloG">Descenso</ion-label>
+    </ion-row>
+    <ion-row *ngIf="des">
+      <ion-col size="1" class="col_encabezado">
+        <ion-label class="text_encabezado">  
+        </ion-label>
+      </ion-col>
+      <ion-col size="3" class="col_encabezado">
+        <ion-label class="text_puntos">Equipo</ion-label>
+      </ion-col>
+      <ion-col size="1" class="col_encabezado">
+        <ion-label class="text_puntos">PT</ion-label>
+      </ion-col>
+      <ion-col size="1" class="col_encabezado">
+        <ion-label class="text_encabezado">PJ</ion-label>
+      </ion-col>
+      <ion-col size="1" class="col_encabezado">
+        <ion-label class="text_encabezado">PG</ion-label>
+      </ion-col>
+      <ion-col size="1" class="col_encabezado">
+        <ion-label class="text_encabezado">PE</ion-label>
+      </ion-col>
+      <ion-col size="1" class="col_encabezado">
+        <ion-label class="text_encabezado">PP</ion-label>
+      </ion-col>
+      <ion-col size="1" class="col_encabezado">
+        <ion-label class="text_encabezado">GF</ion-label>
+      </ion-col>
+      <ion-col size="1" class="col_encabezado">
+        <ion-label class="text_encabezado">GC</ion-label>
+      </ion-col>
+      <ion-col size="1" class="col_encabezado">
+        <ion-label class="text_encabezado">DG</ion-label>
+      </ion-col>
+      
+    </ion-row>
+    <div class="grupos" *ngFor="let equipo2 of descensoE, let i = index">
+      <ion-row>
+        <ion-col size="1" class="col_encabezado">
+          <ion-label class="text_puntos">{{i + 1}}</ion-label>
+        </ion-col>
+        <ion-col size="1" class="col_escudo">
+          <img class="escudo" src={{equipo2.escudo}} >
+        </ion-col>
+        <ion-col size="2" class="col_equipo">
+          <ion-label class="text_equipo">{{equipo2.nombre}}</ion-label>
+        </ion-col>
+        <ion-col size="1" class="col_encabezado">
+          <ion-label class="text_puntos">{{equipo2.puntos}}</ion-label>
+        </ion-col>
+        <ion-col size="1" class="col_encabezado">
+          <ion-label class="text_encabezado">{{equipo2.p_j}}</ion-label>
+        </ion-col>
+        <ion-col size="1" class="col_encabezado">
+          <ion-label class="text_encabezado">{{equipo2.p_g}}</ion-label>
+        </ion-col>
+        <ion-col size="1" class="col_encabezado">
+          <ion-label class="text_encabezado">{{equipo2.p_e}}</ion-label>
+        </ion-col>
+        <ion-col size="1" class="col_encabezado">
+          <ion-label class="text_encabezado">{{equipo2.p_p}}</ion-label>
+        </ion-col>
+        <ion-col size="1" class="col_encabezado">
+          <ion-label class="text_encabezado">{{equipo2.g_f}}</ion-label>
+        </ion-col>
+        <ion-col size="1" class="col_encabezado">
+          <ion-label class="text_encabezado">{{equipo2.g_c}}</ion-label>
+        </ion-col>
+        <ion-col size="1" class="col_encabezado">
+          <ion-label class="text_encabezado">{{equipo2.d_g}}</ion-label>
+        </ion-col>
+        
+      </ion-row>
+    </div>
+  </ion-grid>
+</div>
+
 
 
 </ion-content>
+

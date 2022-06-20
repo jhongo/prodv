@@ -15,12 +15,19 @@
     border: 2px solid #FFF;
     border-radius: 10px;
 }
-.titulo{
-    color: black;
-    font-weight: bold;
-    margin-top: 10px;
-    text-align: left;
-}
+.encabezado{
+    padding-top: 10px;
+   padding-bottom: 10px;
+   background: white;
+    }
+    .titulo{
+      font-size: 16px;  
+      color: black;
+      font-weight: bold;
+      text-align: left;
+      margin-left: 10px;
+    }
+
 .campos{
     --color: black; 
     padding: 10px;

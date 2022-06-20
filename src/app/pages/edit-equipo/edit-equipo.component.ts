@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController, ToastController, AlertController } from '@ionic/angular';
-import { Equipos } from 'src/app/models';
+import { Equipos, Campeonatos } from 'src/app/models';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { Router } from '@angular/router';
 
@@ -33,11 +33,28 @@ export class EditEquipoComponent implements OnInit {
     g_c: 0,
     d_g: 0
   };
+  infocampeonato: Campeonatos = {
+    uid: '',
+    nombre: '',
+    fecha: null,
+    tipo: '',
+    lugar: '',
+    estado: 'iniciado',
+    grupos: 0,
+    fases: 0
+  };
   ngOnInit() {
     const team = this.firestoreService.getEquipo();
     if (team !== undefined) {
       this.equipo = team;
     }
+
+    const campeonato = this.firestoreService.getCampeonato();
+    if (campeonato !== undefined) {
+      this.infocampeonato = campeonato;
+
+    }
+    console.log(this.infocampeonato);
   }
 
   async newImage(event: any) {
@@ -56,22 +73,33 @@ export class EditEquipoComponent implements OnInit {
 
   }
 
+  // async deleteTeam() {
+  //   const path = "Equipos";
+  //   this.firestoreService.deletepartido(path, this.equipo.uid).then(res => {
+  //     this.presentLoading('Eliminando', 1500);
+  //     setTimeout(() => {
+  //       this.router.navigate(['/tab-campeonato/equipos']);
+  //     }, 1000);
+  //   }).catch(error => {
+  //     console.log(error)
+  //   });
+  // }
+  
   async deleteTeam() {
-    const path = "Equipos";
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Equipos';
     this.firestoreService.deletepartido(path, this.equipo.uid).then(res => {
       this.presentLoading('Eliminando', 1500);
       setTimeout(() => {
-        this.router.navigate(['/tab-campeonato/equipos']);
+        this.router.navigate(['/tab-newcampeonato/equipos1']);
       }, 1000);
     }).catch(error => {
       console.log(error)
     });
   }
 
-
   async saveTeam() {
 
-    const path = 'Equipos';
+    const path = 'Campeonatos/'+this.infocampeonato.uid+'/Equipos';
     const equipo = this.equipo.nombre;
     if (this.equipo.nombre == "" || this.equipo.grupo == null) {
       // this.presentAlert("Complete el nombre del equipo");
@@ -90,7 +118,7 @@ export class EditEquipoComponent implements OnInit {
         console.log('guardado con exito');
         this.presentLoading('Actualizando', 1500);
         setTimeout(() => {
-          this.router.navigate(['/tab-campeonato/equipos']);
+          this.router.navigate(['/tab-newcampeonato/equipos1']);
         }, 1000);
         this.equipo = {
           uid: null,
@@ -117,7 +145,7 @@ export class EditEquipoComponent implements OnInit {
   }
 
   async restart() {
-    this.router.navigate(['tab-campeonato/equipos'])
+    this.router.navigate(['tab-newcampeonato/equipos1'])
     this.equipo = {
       uid: null,
       nombre: null,

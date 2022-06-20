@@ -31,6 +31,21 @@ export class EquiposPage implements OnInit {
     g_c: 0,
     d_g: 0
   };
+
+  equiponuevo: Equipos = {
+    uid: '',
+    nombre: '',
+    escudo: '',
+    grupo: '',
+    puntos: 0,
+    p_j: 0,
+    p_g: 0,
+    p_e: 0,
+    p_p: 0,
+    g_f: 0,
+    g_c: 0,
+    d_g: 0
+  };
   constructor(public firestoreService: FirestoreService,
     public loadingController: LoadingController,
     public toastController: ToastController,
@@ -90,8 +105,44 @@ export class EquiposPage implements OnInit {
     const path = 'Equipos'; 
     this.equipoInfo = this.firestoreService.getTeam<Equipos>(path).subscribe(res =>{
       this.team = res;
+      console.log(this.team);
+
+      // for (let a=0; a<=res.length;a++){
+      //   this.equiponuevo=res[a];
+      //   this.guardarnuevo(this.equiponuevo,this.equiponuevo.uid);
+
+      // }
+
     });
+
   } 
+
+  async guardarnuevo(equipo:any,uid:string){
+
+  const path ='Campeonatos/3BuPLlNAQ7yA4yo8Karg/Equipos';
+  this.firestoreService.createDoc(equipo, path, uid).then(res => {
+    console.log('guardado con exito');
+    this.presentLoading('Guardando', 1000); 
+    this.equiponuevo = {
+      uid: null,
+      nombre: null,
+      escudo: null,
+      grupo: null,
+      puntos: 0,
+      p_j: 0,
+      p_g: 0,
+      p_e: 0,
+      p_p: 0,
+      g_f: 0,
+      g_c: 0,
+      d_g: 0
+    };
+  }).catch(error => {
+
+  });
+
+
+  }
 
   async getEquipo(equipo:Equipos){
     console.log('Click en getEquipo'); 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-noticias',
@@ -8,9 +8,9 @@ import {HttpClient} from "@angular/common/http";
 })
 export class NoticiasComponent implements OnInit {
 
-  _category = 'sports';
+  _category = 'sport';
   _language = 'es';
-  _apiKey   = '154febca782d4153ab593e21a0a25248'; 
+  _apiKey   = 'hJ1gCvor21cSinUM0fLcXXNY08m0KKfubvkh3pI3tdE'; 
   news =[];
   
 
@@ -19,12 +19,15 @@ export class NoticiasComponent implements OnInit {
 
   ngOnInit() {
     
-    this.http.get<any>('https://newsapi.org/v2/top-headlines',
-    {
+    this.http.get<any>('https://api.newscatcherapi.com/v2/latest_headlines',
+    { 
+      headers:{
+        'x-api-key' : this._apiKey,
+      },
+
       params:{
-        'category' : this._category,
-        'language' : this._language, 
-        'apiKey'   : this._apiKey,
+        'topic' : this._category,
+        'lang' : this._language, 
       }
     }
     ).subscribe(resp =>{

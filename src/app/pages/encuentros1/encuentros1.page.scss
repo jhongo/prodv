@@ -1,0 +1,408 @@
+.content-resultados{
+    --background: #f3eded;;
+    --padding-bottom: 70px;
+}
+
+ion-toolbar{
+    --background: #075E54;
+    color: white;
+}
+
+.info_campeonato{ 
+    // padding-top: 10px;
+    // padding-bottom: 10px;
+    background: white;
+    text-align: center;
+    height: auto;
+}
+.titulocampeonato{
+    font-size: 16px;  
+      color: black;
+      font-weight: bold;
+      margin-left: 10px;
+
+}
+.col_icon_encabezado{
+    // border: 1px black so lid;
+    text-align: left;
+
+}
+.col_titulo_encabezado{
+    margin-top: auto;
+    margin-bottom: auto;
+    // border: 1px blue solid;
+}
+.icon_return{
+    color: black;
+    font-size: 25px;
+}
+.Nuevo_partido{
+    --background: white; 
+    padding: 2px;
+    }
+    
+.div_cuarto{
+    background: #075E54;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    width: 98%;
+    margin-right:auto;
+    margin-left: auto;
+}
+.div_encabezado{
+    background: #075E54;
+    margin-bottom: 5px;
+    width: 98%;
+    margin-right:auto;
+    margin-left: auto;
+}
+
+.col_ant{
+    //  border: 1px black solid;
+     text-align: left;
+     margin-top: auto;
+     margin-bottom: auto;
+  }
+  
+.text_ant{
+    font-size: 10px;
+    // border: 1px red solid;  
+  font-weight: bold;
+  color: white;
+  display: block;
+   }
+  
+.col_sig{
+    //  border: 1px black solid;  
+     text-align: right;     
+ margin-top: auto;
+ margin-bottom: auto;
+    
+  }
+.text_sig{
+    font-size: 10px;
+    // border: 1px red solid;
+    font-weight: bold;
+    display: block;
+    color: white;
+}
+.col_grupo1{
+    
+    text-align: left;
+}
+
+.col_init{
+    background: #20d347;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.text_enjuego{
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+}
+
+       .ion-label-item-grupo{
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+      
+}
+.div_grupo{
+    background: white;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    margin-top: 5px;
+    width: 97%;
+    margin-right:auto;
+    margin-left: auto;
+}
+.ion-label-itemin{
+    color: #000000;
+    font-weight: bold;
+    font-size: 17px;
+}
+.ion-label-item{
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+}
+.ion-label-item-cuarto{
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+  
+}
+.ion-label-item-fecha{
+    color: white;
+    font-weight: bold;
+    font-size: 16px;  
+}
+
+.col_fase_fecha{
+    background: #128C7E; 
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.label_fecha{
+    font-size: 13px;
+    font-weight: bold;  
+    color: black;  
+}
+.label_grupo{
+    font-size: 13px;
+    font-weight: bold;  
+    color: black;
+}  
+.label_e1{
+    font-size: 14px;
+    font-weight: normal;
+    text-align: right;
+    color: black;
+}
+.label_e2{
+    font-size: 14px;
+    font-weight: normal;
+    text-align: left;
+    color: black;
+}
+.col_vs{
+    margin-top: auto;
+  margin-bottom: auto;
+  text-align: center;
+  display: flex;
+  border-radius: 10px;
+  background: #075E54;
+  color: white ;
+}
+.col_grupo{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+    
+.col_tex{
+    // border: 1px black solid;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.col_tex_grupo{
+    // border: 1px blue solid;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+.col_tex_fecha{
+//  border: 1px blue solid;
+margin-top: auto;
+margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 9px;
+    text-align: center;  
+}
+
+.col_finalizado{
+ background: #9b2226;
+ text-align: center;
+
+}
+.text_finalizado{
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+}
+
+
+.col_nom_eq{
+//  border: 1px black solid;
+ text-align: center;
+}
+
+.fecha{
+    --placeholder-color:  #f3f4f7; 
+}
+.card-icon{
+    text-align: center;
+}
+
+.campos_fecha{
+    font-size: 15px;
+}
+
+.label_tittle{
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+.col_img{
+    // border: 1px black solid;
+    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+.partidos{
+    background: white;
+    border: 1px solid #f3eded;  
+    border-radius: 10px;  
+    --color: #000000;
+    width: 95%;
+    margin-top: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+}
+
+.item_avatar{
+    display: inline-block;
+    --background: white;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.IonInput{
+    --background: #FFF; 
+    --color:#333333;
+    font-weight: bold;
+    margin: 10px; 
+    border: 2px solid #FFF;
+    border-radius: 10px;
+}
+
+ion-card-title{
+    --color: #000000;
+    font-weight: bold;
+    
+    text-align: center;
+} 
+
+.col_icon{
+    //  border: 1px black solid;
+    margin-top: auto;
+    margin-bottom: auto;
+    
+    text-align: right;
+}
+
+.boton_mas{
+
+    margin-bottom: 60px;
+
+}   
+.icon_edit{
+    color: black;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    height: 22px;
+    width: 22px;
+}
+.label_tittle{
+
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+.label_tittle_vs{
+    margin-left: auto;
+ margin-right: auto;
+  font-size: 15px;
+  // border: 1px black solid;  
+  font-weight: bold;
+}
+.button{
+
+    text-align: center;
+    display: inline-block;
+   
+}
+.label_text{
+    font-size: 14px;
+    
+}
+
+
+
+.col_vs{
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+      //  border: 1px black solid;
+       background: #075E54;
+      color: white ;      
+}
+
+.col_nom_eq1{
+    //  border: 1px black solid;
+     text-align: right;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.col_nom_eq2{
+      // border: 1px black solid;
+      text-align: left;
+     margin-top: auto;
+     margin-bottom: auto;
+}
+
+.tittle_np{
+    font-size: 19px;
+    font-weight: bold;
+}
+.encabezado_cop{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: white;
+    text-align: center ;
+}
+.encabezado{
+   padding-top: 10px;
+   padding-bottom: 10px;
+   background: white;
+}
+
+.titulo{
+    font-size: 16px;
+      color: black;
+      font-weight: bold;
+      text-align: left;
+      margin-left: 10px;
+}
+
+.botones{    
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+
+.button-cancelar{ 
+    --color: #075E54;
+    text-align: center;
+    --background: #ffffff;
+    --border-radius:10px;
+    width:42%;
+    font-weight: bold;
+} 
+
+.button-guardar{ 
+    --color: #ffffff;
+    margin-left: 10px;
+    text-align: center;
+    --border-radius:10px;
+    --background:#075E54;
+    font-weight: bold;
+    width: 40%;
+}

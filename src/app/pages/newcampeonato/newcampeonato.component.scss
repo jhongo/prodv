@@ -1,0 +1,167 @@
+.page-content{
+    --background: #f3eded;
+    --padding-bottom:50px
+}
+
+ion-toolbar{
+    --background: #075E54;
+    color: white;
+    
+}
+.boton_mas{
+
+    // margin-bottom: 60px;
+
+}  
+
+.Nuevo_campeonato{
+    --background: white; 
+    padding: 2px;
+}
+.icon_edit{
+    color: black;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.tittle_np{
+    font-size: 19px;
+    color: black;
+    font-weight: bold;
+}
+
+.IonInput{
+    --background: #FFF; 
+    --color:#333333;
+    font-weight: bold;
+    margin: 10px; 
+    border: 2px solid #FFF;
+    border-radius: 10px;
+}
+.campeonatos{
+    margin-top: 10px;
+    background: white;
+    border-radius: 10px;
+
+    border: 1px solid #f3eded;  
+    color: #000000;
+    font-size: 14px;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.grid_general{
+
+    // border: 1px black solid;
+}
+
+.encabezado{
+    // border: 1px blue solid;
+}
+.col_text{
+    // border: 1px yellow solid;
+}
+.col_icon{
+
+    // border: 1px green solid;
+    margin-top: auto;
+    margin-bottom: auto;
+
+
+}
+.datos{
+    // border: 1px red solid;
+}
+.col_datos{
+    // border: 1px yellow solid;
+}
+.label_tittle{
+    font-size: 14px;
+    font-weight: bolder;
+}
+.label_text{
+    font-size: 14px;
+}
+.button{
+
+    display: inline-block;
+    text-align: center;
+   
+}
+
+
+// .col_boton{
+//     border: 1px purple solid;
+// }
+
+
+.botones{    
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+
+.button-cancelar{ 
+    --color: #075E54;
+    text-align: center;
+    --background: #ffffff;
+    --border-radius:10px;
+    width:40%;
+    font-weight: bold;
+} 
+.button-guardar{ 
+    --color: #ffffff;
+    margin-left: 10px;
+    text-align: center;
+    --border-radius:10px;
+    --background:#075E54;
+    font-weight: bold;
+    width: 40%;
+}
+////
+
+.row_grupo{
+    background: #075E54;
+    padding: 5px;
+}
+
+.text_encabezado{
+
+    font-size: 10px;
+    color: black;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.text_equipo{
+    font-weight: bold;
+    font-size: 9px;
+    color: black;
+}
+
+.col_equipo{
+    text-align: left;
+}
+
+.text_puntos{
+    font-size: 10px;
+    font-weight: bold;
+    color: black;
+
+}
+
+.col_encabezado{
+     
+    text-align: center;
+    
+}
+
+.col_encabezado_datos{
+    // border: 1px black solid;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    --width: 3px;
+}

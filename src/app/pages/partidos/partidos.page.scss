@@ -1,307 +1,453 @@
-.page-content{
-    --background: #f3eded;
-    --padding-bottom: 70px;
-  }
-  ion-toolbar{
-    --background: #075E54;
-    color: white; 
-  }
+.page-content {
+  --background: #f3eded;
+  --padding-bottom: 70px;
+}
 
-  
-  .encabezado_cop{
-    padding-top: 10px;
-    padding-bottom: 10px;
-    background: white;
-    text-align: center ;
-   }
-  .encabezado{
-   padding-top: 10px;
-   padding-bottom: 10px;
-   background: white;
-  }
-  .titulo{
-    font-size: 16px;
-    color: black;
-    font-weight: bold;
-    text-align: left;
-    margin-left: 10px;
-  }
-  
-  .col_vs{
-    margin-top: auto;
-    margin-bottom: auto;
-    text-align: center;
-    display: flex;
-    border-radius: 10px;
-    background: #075E54;
-    color: white ;
-  }
-  .ion-label-item{
-    color: white;
-    font-weight: bold;
-    font-size: 16px;
-    text-align: center;
-  }
-  .ion-label-item-cuarto{
-    color: white;
-    font-weight: bold;
-    font-size: 16px;
-  
-  }
-  .ion-label-item-fecha{
-    color: white;
-    font-weight: bold;
-    font-size: 16px;
-    
-  
-  }
-  .col_fase_fecha{
-    background: #128C7E; 
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    border-radius: 5px;
-  }
-  .label_tem{
-  
-    font-size: 14px;
-  }
-  .row_fecha{
-    // border: 1px black solid;
-    
-    text-align: center;
-  }
-  .col_tex{
-    margin-left: auto;
-    margin-right: auto;
-  //  border: 1px black solid;
-    font-size: 9px;
-    text-align: right;
-    // height: 30px;
-  }
-  .col_tex_fecha{
-  
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 9px;
-    text-align: center;
-  
-  }
-  .col_tex_grupo{
-    margin-left: auto;
-    margin-right: auto;
-  //  border: 1px black solid;
-    font-size: 9px;
-    text-align: left;
-  
-    // height: 30px;
-  }
-  .card_fecha{
-  
-    // border: 1px red solid;
-   height: 100%;
-    margin-top: auto;
-    margin-bottom: auto;
-  
-  }
-  
-  .label_fecha{
-  
-    font-size: 13px;
-    font-weight: bold;  
-    color: black;
-  
-  
-  }
-  .label_grupo{
-    font-size: 13px;
-    font-weight: bold;  
-    color: black;
-  
-  }
-  .col_nom_eq1{
-  //  border: 1px black solid;
-   text-align: right;
+ion-toolbar {
+  --background: #075E54;
+  color: white;
+}
+
+
+ion-segment {
+  // margin-top: 15px;
+  --background: #075E54;
+  // border: 1px solid #ffffff;
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+
+  // margin-top: 3%;
+  // --color: black;
+}
+.div_segmet_de{
+
+  border: 1px white solid;
+}
+
+.tolbar {
+ 
+  --background: white;
+  border: 0px;
+
+}
+
+.segment_init {
+  // --height: 20px;
+  background: white;
+  // --color: black;
+  // height: 25px;
+  --height: auto;
+}
+
+.text-selected-item_pri {
+  // color: black;
+  font-size: 12px;
+}
+.text-selected-item{
+
+  font-size: 14px;
+}
+.segment_seg {
+  --color-checked:#075E54;
+  --border-radius: 0px;
+  --color: black;
+  --border-color: transparent;
+  --indicator-color: #075E54;
+}
+
+ion-segment-button {
+  font-size: 14px;
+  font-weight: bold;
+  --border-color: #404041;
+  --indicator-color: #128C7E;
+  --color: white;
+  // padding: 3px;
+}
+
+
+
+.toolbar_campeonato {
+  height: auto;
+  --background: #075E54;
+  width: auto;
+}
+
+.info_campeonato {
+  background: white;
+  text-align: center;
+  height: auto;
+}
+
+.segment_campeonatos {
+  --background: #075E54;
+  border-radius: 0px;
+  width: auto;
+
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.segment_botones_campeonatos {
+  --indicator-color: transparent;
+  // text-align: center;
+  margin-right: 10px;
+  --border-color: transparent;
+  border-radius: 30px;
+  border: 1px white solid;
+  --color: white;
+
+}
+
+.text_segment {
+  font-weight: bold;
+  text-align: center;
+  font-size: 10px;
+  // border: 1px red solid;
+}
+
+.info_campeonato {
+  // padding-top: 10px;
+  // padding-bottom: 10px;
+  background: white;
+  text-align: center;
+  height: auto;
+}
+
+.titulocampeonato {
+  font-size: 16px;
+  color: black;
+  font-weight: bold;
+  margin-left: 10px;
+
+}
+
+.encabezado_cop {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: white;
+  text-align: center;
+}
+
+.encabezado {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: white;
+}
+
+.titulo {
+  font-size: 16px;
+  color: black;
+  font-weight: bold;
+  text-align: left;
+  margin-left: 10px;
+}
+
+.col_vs {
   margin-top: auto;
   margin-bottom: auto;
-  }
-  .col_nom_eq2{
-    // border: 1px black solid;
-    text-align: left;
-   margin-top: auto;
-   margin-bottom: auto;
-   }
-  .fecha{
-    
-    --placeholder-color:  #f3f4f7; 
-  
-  }
-  .card-icon{
-    text-align: center;
-  }
-  .label_e1{
-    font-size: 14px;
-    font-weight: normal;
-    text-align: right;
-    color: black;
-    
-  }
-  .label_e2{
-    font-weight: normal;
-    font-size: 14px;
-    text-align: left;
-    color: black;
-  }
-  .label_tittle{
-  
-    font-size: 9px;
-    text-align: center;
-  }
-  
-  .col_img{
-    // border: 1px black solid;
-    height: auto;
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .partidos{
-    background: white;
-    border: 1px solid #f3eded;  
-    border-radius: 10px;  
-    --color: #000000;
-    width: 95%;
-    margin-top: 2px;
-    margin-left: auto;
-    margin-right: auto;
-    height: auto;
-    
-  }
-  
-  .item_avatar{
-  
-    display: inline-block;
-    --background: white;
-    margin-left: auto;
-    margin-right: auto;
-   
-    
-  }
-  
-  .con_img{
-    height: 21px;
-    width: 25px;
-
-  }
-
-.col_init{
-    background: #20d347;
-    text-align: center;
-    margin-top: auto;
-      margin-bottom: auto;  
+  text-align: center;
+  display: flex;
+  border-radius: 10px;
+  background: #075E54;
+  color: white;
 }
 
-.text_enjuego{
-    font-size: 14px;
-    color: white;
-    font-weight: bold;
+.ion-label-item {
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
 }
-   
-  
-  .col_icon{
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .boton_mas{
-  
-    margin-bottom: 60px;
-   
-    
-  }  
-  .ion-label-item-grupo{
-    color: black;
-    font-weight: bold;
-    font-size: 16px;
-  
-  }
-  .div_grupo{
-    background: white;
+
+.ion-label-item-cuarto {
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+
+}
+
+.ion-label-item-fecha {
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+
+
+}
+
+.col_fase_fecha {
+  background: #128C7E;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.label_tem {
+
+  font-size: 14px;
+}
+
+.row_fecha {
+  // border: 1px black solid;
+
+  text-align: center;
+}
+
+.col_tex {
+  margin-left: auto;
+  margin-right: auto;
+  //  border: 1px black solid;
+  font-size: 9px;
+  text-align: right;
+  // height: 30px;
+}
+
+.col_tex_fecha {
+
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 9px;
+  text-align: center;
+
+}
+
+.col_tex_grupo {
+  margin-left: auto;
+  margin-right: auto;
+  //  border: 1px black solid;
+  font-size: 9px;
+  text-align: left;
+
+  // height: 30px;
+}
+
+.card_fecha {
+
+  // border: 1px red solid;
+  height: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
+
+}
+
+.label_fecha {
+
+  font-size: 13px;
+  font-weight: bold;
+  color: black;
+
+
+}
+
+.label_grupo {
+  font-size: 13px;
+  font-weight: bold;
+  color: black;
+
+}
+
+.col_nom_eq1 {
+  //  border: 1px black solid;
+  text-align: right;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.col_nom_eq2 {
+  // border: 1px black solid;
+  text-align: left;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.fecha {
+
+  --placeholder-color: #f3f4f7;
+
+}
+
+.card-icon {
+  text-align: center;
+}
+
+.label_e1 {
+  font-size: 14px;
+  font-weight: normal;
+  text-align: right;
+  color: black;
+
+}
+
+.label_e2 {
+  font-weight: normal;
+  font-size: 14px;
+  text-align: left;
+  color: black;
+}
+
+.label_tittle {
+
+  font-size: 9px;
+  text-align: center;
+}
+
+.col_img {
+  // border: 1px black solid;
+  height: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.partidos {
+  background: white;
+  border: 1px solid #f3eded;
+  border-radius: 10px;
+  --color: #000000;
+  width: 95%;
+  margin-top: 2px;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+
+}
+
+.item_avatar {
+
+  display: inline-block;
+  --background: white;
+  margin-left: auto;
+  margin-right: auto;
+
+
+}
+
+.con_img {
+  height: 21px;
+  width: 25px;
+
+}
+
+.col_init {
+  background: #20d347;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.text_enjuego {
+  font-size: 14px;
+  color: white;
+  font-weight: bold;
+}
+
+
+.col_icon {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.boton_mas {
+
+  margin-bottom: 60px;
+
+
+}
+
+.ion-label-item-grupo {
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
+
+}
+
+.div_grupo {
+  background: white;
   margin-bottom: 5px;
   margin-top: 5px;
   border-radius: 10px;
   width: 97%;
-  margin-right:auto;
+  margin-right: auto;
   margin-left: auto;
-  }
-  .col_finalizado{
-    background: #9b2226;
-    text-align: center;
-   
-   }
-   .text_finalizado{
-   
-       font-size: 14px;
-       color: white;
-       font-weight: bold;
-   
-   }
-  .div_cuarto{
-    background: #075E54;
+}
+
+.col_finalizado {
+  background: #9b2226;
+  text-align: center;
+
+}
+
+.text_finalizado {
+
+  font-size: 14px;
+  color: white;
+  font-weight: bold;
+
+}
+
+.div_cuarto {
+  background: #075E54;
   margin-bottom: 5px;
   border-radius: 10px;
   width: 98%;
-  margin-right:auto;
+  margin-right: auto;
   margin-left: auto;
-  }
-  .div_encabezado{
-    background: #075E54;
-    margin-bottom: 5px;
-    width: 98%;
-    margin-right:auto;
-    margin-left: auto;
-  }
-  .grid_fase{
-    margin-top: 10px;
-  }
-  .grid_cuarto{
-    margin-top: 10px;
-    
-  }
-  .col_fase{
-  
-    margin-left: auto;
+}
+
+.div_encabezado {
+  background: #075E54;
+  margin-bottom: 5px;
+  width: 98%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.grid_fase {
+  margin-top: 10px;
+}
+
+.grid_cuarto {
+  margin-top: 10px;
+
+}
+
+.col_fase {
+
+  margin-left: auto;
   margin-right: auto;
   text-align: center;
-  }
-
-.col_ant{
-  //  border: 1px black solid;
-   text-align: left;
-   margin-top: auto;
-   margin-bottom: auto;
 }
 
-.text_ant{
+.col_ant {
+  //  border: 1px black solid;
+  text-align: left;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.text_ant {
   font-size: 10px;
   // border: 1px red solid;  
-font-weight: bold;
-color: white;
-display: block;
- }
-
- .col_sig{
-  //  border: 1px black solid;  
-   text-align: right;
- margin-top: auto;
- margin-bottom: auto;
-  
+  font-weight: bold;
+  color: white;
+  display: block;
 }
-.text_sig{
+
+.col_sig {
+  //  border: 1px black solid;  
+  text-align: right;
+  margin-top: auto;
+  margin-bottom: auto;
+
+}
+
+.text_sig {
   font-size: 10px;
   // border: 1px red solid;
   font-weight: bold;
@@ -309,57 +455,135 @@ display: block;
   color: white;
 }
 
-  .col_grupo{
+.col_grupo {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  }
-  
-  .col_grupo1{
-    
-    text-align: left;
-    }
-  .IonInput{
-  
-    --background: #FFF; 
-    --color:#333333;
-    font-weight: bold;
-   
-  } 
-  .icon_edit{
-    color: black;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .label_tittle{
-  
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-  }
-  .label_tittle_vs{
-    margin-left: auto;
-    margin-right: auto;
-     font-size: 15px;
-     // border: 1px black solid;  
-     font-weight: bold;
-  
-  }
-  .button{
-  
-    text-align: center;
-    display: inline-block;
-   
-  }
-  .label_text{
-    font-size: 14px;
-    
-  }
-  .titulo{
-    color: black;
-    font-weight: bold;
-    margin-top: 15px;
-    text-align: left;
-  }
-  
+}
+
+.col_grupo1 {
+
+  text-align: left;
+}
+
+.IonInput {
+
+  --background: #FFF;
+  --color: #333333;
+  font-weight: bold;
+
+}
+
+.icon_edit {
+  color: black;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.label_tittle {
+
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.label_tittle_vs {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 15px;
+  // border: 1px black solid;  
+  font-weight: bold;
+
+}
+
+.button {
+
+  text-align: center;
+  display: inline-block;
+
+}
+
+.label_text {
+  font-size: 14px;
+
+}
+
+// .titulo {
+//   color: black;
+//   font-weight: bold;
+//   margin-top: 15px;
+//   text-align: left;
+// }
+
+// tabla estilos
+
+.tituloG {
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: left;
+}
+.content-resultados {
+  --background: #f3eded;
+  --padding-bottom: 70px;
+}
+.grid_encabezado {
+
+  background: white;
+}
+.row_grupo {
+  background: #075E54;
+  padding: 5px;
+}
+.col_escudo {
+
+  // border: 1px solid black;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.escudo {
+  height: 20px;
+  width: 20px;
+}
+
+.text_encabezado {
+
+  font-size: 10px;
+  color: black;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.text_equipo {
+  font-weight: bold;
+  font-size: 9px;
+  color: black;
+}
+
+.col_equipo {
+  text-align: left;
+}
+
+.text_puntos {
+  font-size: 10px;
+  font-weight: bold;
+  color: black;
+
+}
+
+.col_encabezado {
+
+  text-align: center;
+
+}
+
+.col_encabezado_datos {
+  // border: 1px black solid;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  --width: 3px;
+}
