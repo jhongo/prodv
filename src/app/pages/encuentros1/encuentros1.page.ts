@@ -28,6 +28,7 @@ export class Encuentros1Page implements OnInit {
 
 
   numerofases = [];
+  numerogrupos=[];
 
   estado = false;
   grupo = false;
@@ -166,12 +167,21 @@ export class Encuentros1Page implements OnInit {
     console.log(this.infocampeonato);
     this.getPartidos();
     this.fases();
+    this.numerogrup();
 
     const name_1 = "Fecha 10";  
 
     console.log(this.obtenernumofstring(name_1));// Nos devolverá 136140
   }
 
+
+  async numerogrup() {
+    const n = this.infocampeonato.grupos;
+    this.numerogrupos=['Descenso'];
+    for (var a = 1; a <= n; a++) {
+      this.numerogrupos = [...this.numerogrupos, 'Grupo ' + a];
+    }
+  }
 
  obtenernumofstring(string) {
     var tmp = string.split("");
@@ -1177,6 +1187,8 @@ export class Encuentros1Page implements OnInit {
               this.fecha = true;
               this.encuentro.nombre_e1 = "";
               this.encuentro.nombre_e2 = "";
+              this.getEquiposG();
+              
 
             } if (data === 'Descenso') {
               this.encuentro.tipo = data;
@@ -1265,10 +1277,13 @@ export class Encuentros1Page implements OnInit {
   }
 
   async newTeam() {
+
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Partido del grupo: ',
+      
       inputs: [
+        
         {
           name: 'radio1',
           type: 'radio',

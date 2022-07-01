@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import {AngularFirestore,
   AngularFirestoreDocument,
@@ -166,6 +166,12 @@ export class FirestoreService {
 
   getTeam<tipo>(path: string){
     const collection = this.FireStore.collection<tipo>(path);
+    return collection.valueChanges();
+  }
+
+  getTeamfecha<tipo>(path:string){
+    const collection = this.FireStore.collection<tipo>(path,
+      ref => ref.where('estado','==','iniciado').orderBy('fecha','desc'),);
     return collection.valueChanges();
   }
   getTeamsind<tipo>(path: string,  parametro: string, condicion: any, busqueda: string){

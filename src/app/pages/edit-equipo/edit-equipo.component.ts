@@ -19,6 +19,8 @@ export class EditEquipoComponent implements OnInit {
 
 
   newFoto: any;
+  
+  numerogrupos = [];
   equipo: Equipos = {
     uid: '',
     nombre: '',
@@ -44,6 +46,7 @@ export class EditEquipoComponent implements OnInit {
     fases: 0
   };
   ngOnInit() {
+    
     const team = this.firestoreService.getEquipo();
     if (team !== undefined) {
       this.equipo = team;
@@ -54,7 +57,17 @@ export class EditEquipoComponent implements OnInit {
       this.infocampeonato = campeonato;
 
     }
+    this.numerogrup();
     console.log(this.infocampeonato);
+  }
+
+  async numerogrup() {
+    const n = this.infocampeonato.grupos;
+    console.log('numero de grupos: '+n)
+    this.numerogrupos=['Descenso'];
+    for (var a = 1; a <= n; a++) {
+      this.numerogrupos = [...this.numerogrupos, 'Grupo ' + a];
+    }
   }
 
   async newImage(event: any) {

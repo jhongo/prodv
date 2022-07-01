@@ -16,6 +16,7 @@ export class Equipos1Page implements OnInit {
   newFoto: any;
   equipoInfo: Subscription;
   team: Equipos[]=[];
+  numerogrupos = [];
   
   equipo: Equipos = {
     uid: '',
@@ -56,6 +57,15 @@ export class Equipos1Page implements OnInit {
     }
     console.log(this.infocampeonato);
     this.getEquipos();
+    this.numerogrup();
+  }
+
+  async numerogrup() {
+    const n = this.infocampeonato.grupos;
+    this.numerogrupos=['Descenso'];
+    for (var a = 1; a <= n; a++) {
+      this.numerogrupos = [...this.numerogrupos, 'Grupo ' + a];
+    }
   }
 
   async saveTeam() {

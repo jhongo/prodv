@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Campeonatos, Equipos } from 'src/app/models';
-import { AlertController, LoadingController, ToastController } from '@ionic/angular';
+import { AlertController, LoadingController, ToastController, IonDatetime } from '@ionic/angular';
 import { FirestoreService } from '../../services/firestore.service';
 import { Subscription } from 'rxjs';
+import { format, parseISO } from 'date-fns';
 
 @Component({
   selector: 'app-newcampeonato',
@@ -31,6 +32,12 @@ export class NewcampeonatoComponent implements OnInit {
     fases: 0
   };
 
+
+  showPicker = false;
+  dateValue = format(new Date(), 'yyy-MM-dd') + 'T09:00:00.000Z'
+  formatedString = '';
+  
+  @ViewChild(IonDatetime) datetime: IonDatetime;
   constructor(public alertController: AlertController,
     public firestoreService: FirestoreService,
     public loadingController: LoadingController,
@@ -41,6 +48,23 @@ export class NewcampeonatoComponent implements OnInit {
     // this.getGrupo2();
     // this.sumagrupos();
   }
+
+  close() {
+    this.datetime.cancel(true);
+  }
+
+  select() {
+    this.datetime.confirm(true);
+  }
+
+  dateChanged(value) {
+    this.dateValue = value;
+    this.formatedString = format(parseISO(value), 'HH:mm, MMM d, yyy');
+    this.showPicker = false;
+    this.newcampeonato.fecha = value;
+    console.log(value);
+  }
+
 
   async getGrupo2(busqueda: string) {
 
@@ -74,6 +98,17 @@ export class NewcampeonatoComponent implements OnInit {
 
   reset() {
     this.grupos = false;
+    this.newcampeonato = {
+      uid: '',
+      nombre: '',
+      fecha: null,
+      tipo: '',
+      lugar: '',
+      estado: 'iniciado',
+      grupos: 0,
+      fases: 0
+    };
+    this.formatedString='';
   }
 
 

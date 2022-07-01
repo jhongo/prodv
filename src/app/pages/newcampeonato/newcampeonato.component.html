@@ -33,6 +33,33 @@
       <ion-input class="campos" [(ngModel)]="newcampeonato.nombre"></ion-input>
     </ion-item>
 
+    <ion-item class="IonInput" id="open-modal" >
+      <ion-label class="ion-label-itemin" > Fecha: </ion-label>
+      <ion-input slot="end" class="campos_fecha" [(ngModel)]="newcampeonato.fecha">  {{formatedString}} </ion-input>
+      <!-- <ion-text >  {{formatedString}} </ion-text> -->
+  </ion-item>
+
+  <ion-modal trigger="open-modal" mode="md" >
+    <ng-template>
+      <ion-content>
+        <ion-datetime
+        #datetime 
+        [value]="dateValue"
+        size="cover"
+        (ionChange)="dateChanged(datetime.value)"
+        showDefaultButtons ="true"
+        (ionCancel) = "showPicker = false"
+        >
+          <ion-buttons slot="buttons" >
+            <ion-button (click)="close()">Cancelar</ion-button>
+            <ion-button (click)="select()" color="primary">Seleccionar</ion-button>
+          </ion-buttons>
+        </ion-datetime>
+        
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
     <ion-item lines="none" class="IonInput">
       <ion-label>
         Fases:

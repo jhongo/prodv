@@ -40,18 +40,28 @@
 
             </ion-item>
           </ion-menu-toggle>
+          <ion-menu-toggle routerLink="/partidos">
+            <ion-item class="item-menu" button details lines="none">
+              <ion-icon slot="start" color="black" name="bar-chart-outline"></ion-icon>
+              
+              <ion-label class="text_menu">
+                Resultados
+              </ion-label>
 
+            </ion-item>
+          </ion-menu-toggle>
+<!-- 
           <ion-menu-toggle routerLink="/partidos">
             <ion-item class="item-menu" button details lines="none">
               
               <ion-img src="../assets/icon/Recurso 9logo_Gualaquiza.png" class="img_logo" slot="start"> </ion-img>
               <div class="div_gualaquiza">
-                <!-- <div class="text_gualaquiza">
+                <div class="text_gualaquiza">
                   <ion-label class="copa">
                     Copa
                   </ion-label>
 
-                </div> -->
+                </div>
                 <div class="div_imgcopa">
                   <img class="img_copa" src="../assets/icon/Copa.png">
                 </div>
@@ -61,7 +71,7 @@
               </div>
               </ion-item>
             
-          </ion-menu-toggle>
+          </ion-menu-toggle> -->
 
           <ion-menu-toggle routerLink="newcampeonato" *ngIf="admin">
             <ion-item class="item-menu" button lines="none">

@@ -99,12 +99,19 @@
     </ion-item> 
    
 
-    <ion-item *ngIf="grupo" lines="none" class="IonInput">
+    <!-- <ion-item *ngIf="grupo" lines="none" class="IonInput">
       <ion-label class="ion-label-itemin">Grupo:</ion-label>
       <ion-input slot="end" class="campos" (click)="newTeam()" [(ngModel)]="encuentro.grupo"
         placeholder="Seleccione grupo">
       </ion-input>
-    </ion-item>
+    </ion-item> -->
+
+    <ion-item *ngIf="grupo" lines="none" class="IonInput">
+      <ion-label class="ion-label-itemin">Grupo:</ion-label>
+      <ion-select class="campos" [(ngModel)]="encuentro.grupo"  placeholder="Seleccione fase">
+          <ion-select-option *ngFor="let fases of numerogrupos" value={{fases}}>{{fases}}</ion-select-option>
+      </ion-select>
+    </ion-item> 
 
     <!-- Inicio Grupo 1 -->
     <ion-item *ngIf="grupo1" lines="none" class="IonInput">
@@ -162,13 +169,13 @@
       </ion-select>
     </ion-item>
 
-     <ion-item *ngIf="gene" lines="none" class="IonInput">
+     <ion-item  lines="none" class="IonInput">
       <ion-label class="ion-label-itemin">Equipo 1</ion-label>
       <ion-select class="campos" [(ngModel)]="encuentro.nombre_e1" placeholder="Seleccione">
         <ion-select-option *ngFor="let equipos of teamg" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>
       </ion-select>
     </ion-item>
-    <ion-item *ngIf="gene" lines="none" class="IonInput">
+    <ion-item  lines="none" class="IonInput">
       <ion-label class="ion-label-itemin">Equipo 2</ion-label>
       <ion-select class="campos" [(ngModel)]="encuentro.nombre_e2" placeholder="Seleccione">
         <ion-select-option *ngFor="let equipos of teamg" value={{equipos.nombre}}>{{equipos.nombre}}</ion-select-option>

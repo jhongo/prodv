@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { LoadingController, AlertController, ToastController } from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { LoadingController, AlertController, ToastController, IonDatetime } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { Equipos, Campeonatos } from 'src/app/models';
 import { FirestoreService } from '../../services/firestore.service';
 import { Router } from '@angular/router';
+import { format, parseISO } from 'date-fns';
 @Component({
   selector: 'app-campeonatos',
   templateUrl: './campeonatos.component.html',
@@ -22,6 +23,11 @@ export class CampeonatosComponent implements OnInit {
     grupos: 0,
     fases: 0
   };
+  showPicker = false;
+  dateValue = format(new Date(), 'yyy-MM-dd') + 'T09:00:00.000Z'
+  formatedString = '';
+  
+  @ViewChild(IonDatetime) datetime: IonDatetime;
   constructor(public firestoreService: FirestoreService,
     public loadingController: LoadingController,
     public toastController: ToastController,
@@ -37,6 +43,22 @@ export class CampeonatosComponent implements OnInit {
     }
     console.log(this.infocampeonato);
 
+  }
+
+  close() {
+    this.datetime.cancel(true);
+  }
+
+  select() {
+    this.datetime.confirm(true);
+  }
+
+  dateChanged(value) {
+    this.dateValue = value;
+    this.formatedString = format(parseISO(value), 'HH:mm, MMM d, yyy');
+    this.showPicker = false;
+    this.infocampeonato.fecha = value;
+    console.log(value);
   }
 
   async tipocam() {
@@ -90,6 +112,7 @@ export class CampeonatosComponent implements OnInit {
       grupos: 0,
       fases: 0
     };
+    this.formatedString='';
   }
 
   saveCampeonato() {
