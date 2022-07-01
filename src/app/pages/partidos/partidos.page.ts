@@ -805,8 +805,16 @@ export class PartidosPage implements OnInit {
       this.genevuel = [];
       this.genevuelinit = [];
       this.genevuelf = [];
-      this.gru2 = false;
       this.gru1 = false;
+      this.gru2 = false;
+      this.gru3 = false;
+      this.gru4 = false;
+      this.gru5 = false;
+      this.gru6 = false;
+      this.gru7 = false;
+      this.gru8 = false;
+      this.gru9 = false;
+      this.gru10 = false;
       this.ida = false;
       this.vuelta = false;
     } else if (this.numero == this.infocampeonato.fases + 1) {
@@ -885,8 +893,16 @@ export class PartidosPage implements OnInit {
       this.genevuel = [];
       this.genevuelinit = [];
       this.genevuelf = [];
-      this.gru2 = false;
       this.gru1 = false;
+      this.gru2 = false;
+      this.gru3 = false;
+      this.gru4 = false;
+      this.gru5 = false;
+      this.gru6 = false;
+      this.gru7 = false;
+      this.gru8 = false;
+      this.gru9 = false;
+      this.gru10 = false;
       this.ida = false;
       this.vuelta = false;
     } else if (this.numero == this.infocampeonato.fases + 1) {
