@@ -3775,7 +3775,22 @@
   </ion-grid>
 </div>
 
-
-
 </ion-content>
 
+
+<div *ngIf="isActiveM1">
+  <ion-footer>
+    <!-- <ion-content class="content-publi"> -->
+    <ion-img src="../../../assets/imgs/dragon_wins.png"></ion-img>
+    <!-- </ion-content> -->
+  </ion-footer>
+</div>
+
+
+<div *ngIf="isActiveM2">
+  <ion-footer>
+    <ion-content class="content-publi">
+      <app-swiper-component></app-swiper-component>
+    </ion-content>
+  </ion-footer>
+</div>

@@ -83,6 +83,8 @@ export class PartidosPage implements OnInit {
   gru9 = false;
   gru10 = false;
   antsig = false;
+  isActiveM1 = false;
+  isActiveM2 = false;
 
   campeonatos: Campeonatos[] = [];
   infocampeonato: Campeonatos = {
@@ -156,7 +158,7 @@ export class PartidosPage implements OnInit {
   ngOnInit() {
     this.opcion = "Partidos";
     this.opcion2 = "Clasificacion";
-
+    this.isActiveM1 = true;
     this.getCampeonatos();
     const campeonatod = this.firestoreService.getCampeonato();
     console.log(campeonatod);
@@ -177,6 +179,11 @@ export class PartidosPage implements OnInit {
     const opc = event.detail.value;
     console.log(opc);
     this.opcion = opc;
+    console.log(this.opcion);
+    
+    (this.opcion == "Clasificacion") ? this.isActiveM2 = true : this.isActiveM2 = false;
+    (this.opcion == "Partidos") ? this.isActiveM1 = true : this.isActiveM1 = false;
+    
   }
   changeSegment2(event: any) {
     const opc = event.detail.value;

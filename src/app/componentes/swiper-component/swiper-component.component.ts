@@ -14,10 +14,7 @@ SwiperCore.use([Autoplay, Pagination, Navigation]);
 >
   <ng-template swiperSlide><img src="https://res.cloudinary.com/dnsjl4fpd/image/upload/v1653787488/prodv-publi/Papeleria_punto_net_Auspiciante_hnpac8.png"/></ng-template>
   <ng-template swiperSlide><img src="https://res.cloudinary.com/dnsjl4fpd/image/upload/v1653787481/prodv-publi/Gilberto_Brito_Auspiciante_hzh9fy.png"/></ng-template>
-  <ng-template swiperSlide><img src="https://res.cloudinary.com/dnsjl4fpd/image/upload/v1653787474/prodv-publi/Comercial_Vimar_kanz2m.png"/></ng-template>
   <ng-template swiperSlide><img src="https://res.cloudinary.com/dnsjl4fpd/image/upload/v1653787466/prodv-publi/Avias_fr8xec.png"/></ng-template>
-  <ng-template swiperSlide><img src="https://res.cloudinary.com/dnsjl4fpd/image/upload/v1653861395/prodv-publi/Aguardiente_el_Masharito_1_jrbfjc.png"/></ng-template>
-  <ng-template swiperSlide><img src="https://res.cloudinary.com/dnsjl4fpd/image/upload/v1653787454/prodv-publi/Agua_El_Remanso_Auspiciante_s4pzuv.png"/></ng-template>
 
 </swiper>`,
 
