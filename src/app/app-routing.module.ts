@@ -111,15 +111,11 @@ const routes: Routes = [
       path: 'partidos',
       loadChildren: () => import('./pages/partidos/partidos.module').then( m => m.PartidosPageModule)
     },
+  {
+    path: 'page-main-menu',
+    loadChildren: () => import('./pages/page-main-menu/page-main-menu.module').then( m => m.PageMainMenuPageModule)
+  },
 
-
-
-
-
-
-  
-
-  
 ];
 
 @NgModule({

@@ -1,0 +1,139 @@
+ion-toolbar{
+    --background: #075E54;
+    color: white; 
+  }
+
+  ion-menu-button{
+      color: white;
+  }
+.perfil{
+    --background: #075E54;
+    color: #ffffff;
+}
+.content_pri{
+
+    --background: white;
+    --padding-bottom: 70px;
+}
+
+.ionc-card{
+    --background: #f1faee;
+    padding: 4%;
+    
+}
+
+.ionic-content{
+    
+    --background: #e2eafc;
+    text-align: center;
+ 
+}
+.normal{
+    font-size: 15px;
+    font-weight: normal;
+}
+.ionic-sub{
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    color: black;
+}
+.items{
+
+    display: inline-flexbox;    
+    --background: #fff;
+    color: black;
+    font-size: 15px;
+    border-radius: 30px;
+    margin-left: auto;
+    margin-right: auto;  
+    margin-top: 3%;       
+    width: 100%;
+}   
+
+.botones{
+    
+    display: inline-block;
+   text-align: center;
+    width: 100%;
+    border-radius: 30px;
+}
+
+.botonEditar{
+    
+    --color: #ffffff;
+    margin-left: 10px;
+    text-align: center;
+    border-radius:10px;
+    --background:#075E54;
+    font-weight: bold;
+    
+
+}
+
+.botonGuardar{
+
+    --color: #ffffff;
+    margin-left: 10px;
+    text-align: center;
+    border-radius:10px;
+    --background:#075E54;
+    font-weight: bold;
+    
+}
+
+.botonCancelar{
+
+    --color: #075E54;
+    text-align: center;
+    --background: #ffffff;
+    border-radius:10px;
+    font-weight: bold;
+   
+    
+}
+
+.conten-admin{
+
+    --background: #f1faee;
+    padding: 4%;
+    color: black;
+    --font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.conten-referen{
+    --background: #f1faee;
+    color: black;
+    font-size: 17px;
+    font-weight: bold;
+    text-align: center;
+    padding: 4%;
+}
+.text_referencia{
+    font-size: 16px;
+}
+
+.activeData{
+    text-align: center;
+    margin: 30px;
+    width: auto;
+    height: 50px;
+    
+}
+.activeDataButton{
+    --background: #075E54;
+
+}
+.div_botonadmin{
+    width: auto;
+    text-align: center;
+}
+.botonadmin{
+    --background: #075E54;
+    margin-left: auto;
+    margin-right: auto;
+}
