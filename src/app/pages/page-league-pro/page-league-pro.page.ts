@@ -18,34 +18,34 @@ export class PageLeagueProPage implements OnInit {
 
   ngOnInit() {
 
-    // this.http.get<any>('https://api.b365api.com/v1/league',{
-    //   params:{
-    //     'sport_id' : '1',
-    //     'cc' : 'ec', 
-    //     'token': '135086-6tOga3UOkyFKVZ'
-    //   }
-    // }).subscribe( res =>{
-    //   // console.log(res);
-    //   // this.campeonatosEcuatorianos = res.results;
-    //   // console.log(this.campeonatosEcuatorianos);
+     this.http.get<any>('https://api.b365api.com/v1/league',{
+       params:{
+         'sport_id' : '1',
+         'cc' : 'ec', 
+         'token': '135086-6tOga3UOkyFKVZ'
+       }
+     }).subscribe( res =>{
+     console.log(res);
+     this.campeonatosEcuatorianos = res.results;
+     console.log(this.campeonatosEcuatorianos);
 
-    // });
+     });
 
 
 
     // Get Table Positions
 
-    this.http.get<any>('https://api.b365api.com/v2/league/table',{
-      params:{
-        'league_id' : '540',
-        'token': '135086-6tOga3UOkyFKVZ'
-      }
-    }).subscribe( res =>{
-      console.log(res);
-      this.positionsGroup = res.results;
-      console.log(this.positionsGroup);
+    // this.http.get<any>('https://api.b365api.com/v2/league/table',{
+    //   params:{
+    //     'league_id' : '540',
+    //     'token': '135086-6tOga3UOkyFKVZ'
+    //   }
+    // }).subscribe( res =>{
+    //   console.log(res);
+    //   this.positionsGroup = res.results;
+    //   console.log(this.positionsGroup);
 
-    });
+    // });
 
   }
 
