@@ -39,7 +39,6 @@ export class MainComponent implements OnInit {
     //     this.router.navigate(['/home']);
     //     this.menuL.enable(true);
     //     }, 1500);
-        
     //   }else{
     //     console.log('No esta logeado')
     //     this.login = false;

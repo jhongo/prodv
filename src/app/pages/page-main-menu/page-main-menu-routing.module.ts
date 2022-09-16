@@ -9,19 +9,19 @@ const routes: Routes = [
     component: PageMainMenuPage,
     children:[
       {
-        path: 'Local',
+        path: 'local',
         loadChildren: () => import('./../../pages/page-local/page-local.module').then( m => m.PageLocalPageModule)
       },
       {
-        path: 'LigaPro',
+        path: 'liga-pro',
         loadChildren: () => import('./../../pages/page-league-pro/page-league-pro.module').then( m => m.PageLeagueProPageModule)
       },
       {
-        path: 'Internacional',
+        path: 'internacional',
         loadChildren: () => import('./../../pages/page-internacional/page-internacional.module').then( m => m.PageInternacionalPageModule)
       },
       {
-        path: 'Perfil',
+        path: 'perfil',
         loadChildren: () => import('./../../pages/page-profile/page-profile.module').then( m => m.PageProfilePageModule)
       },
     ]
