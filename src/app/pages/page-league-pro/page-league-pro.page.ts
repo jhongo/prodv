@@ -18,18 +18,18 @@ export class PageLeagueProPage implements OnInit {
 
   ngOnInit() {
 
-    this.http.get<any>('https://api.b365api.com/v1/league',{
-      params:{
-        'sport_id' : '1',
-        'cc' : 'ec', 
-        'token': '135086-6tOga3UOkyFKVZ'
-      }
-    }).subscribe( res =>{
-      // console.log(res);
-      // this.campeonatosEcuatorianos = res.results;
-      // console.log(this.campeonatosEcuatorianos);
+    // this.http.get<any>('https://api.b365api.com/v1/league',{
+    //   params:{
+    //     'sport_id' : '1',
+    //     'cc' : 'ec', 
+    //     'token': '135086-6tOga3UOkyFKVZ'
+    //   }
+    // }).subscribe( res =>{
+    //   // console.log(res);
+    //   // this.campeonatosEcuatorianos = res.results;
+    //   // console.log(this.campeonatosEcuatorianos);
 
-    });
+    // });
 
 
 
