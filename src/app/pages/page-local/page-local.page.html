@@ -1,3 +1,4 @@
+<header>
 <div class="campeonatos">
   <ion-toolbar class="toolbar_campeonato" mode="ios">
     <ion-segment scrollable slot="start" class="segment_campeonatos" mode="md" (ionChange)="segment($event)" >
@@ -7,42 +8,48 @@
     </ion-segment>
   </ion-toolbar>
 </div>
-<div class="info_campeonato">
-  <ion-grid>
-    <ion-row>
-      <ion-col class="col_icon_encabezado" size="2">
-        <!-- <ion-icon class="icon_return" name="arrow-back-outline" routerLink="/newcampeonato" (click)="restart()"></ion-icon> -->
-      </ion-col>
-      <ion-col class="col_titulo_encabezado" size="8">
-        <ion-label class="titulocampeonato">{{infocampeonato.nombre}}</ion-label>
-      </ion-col>
-      <ion-col size="2">
 
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</div> 
-<div class="div_segmet_de">
-
-  <ion-toolbar class="tolbar" mode="ios">
-    
-    <ion-segment class="segment_init"  slot="start" mode="md" (ionChange)="changeSegment($event)" value="Partidos">
-      <ion-segment-button  class="segment_seg"  value="Partidos">
-        <ion-label class="text-selected-item_pri">Partidos</ion-label>
-      </ion-segment-button>
+</header>
+<!-- <ion-grid >
+  <ion-row class="row_infocampeonato">
+    <ion-col size="2">
+      <ion-icon class="icon_return" name="arrow-back-outline" routerLink="/newcampeonato" (click)="restart()"></ion-icon>
+    </ion-col>
+    <ion-col size="8">
+    </ion-col>
+    <ion-col size="2">
       
-      <ion-segment-button  class="segment_seg"  value="Clasificacion">
-        <ion-label class="text-selected-item_pri" >Clasificación</ion-label>
-      </ion-segment-button>
-      
-    </ion-segment>
-  </ion-toolbar>
-  
-</div>
+    </ion-col>
+  </ion-row>
+</ion-grid> -->
 
-   
+
+
+
+
 <ion-content  class="page-content">
+  <div class="info_campeonato">
+    <ion-label class="titulocampeonato">{{infocampeonato.nombre}}</ion-label>
+  </div> 
+  <div class="div_segmet_de">
+
+    <ion-toolbar class="tolbar" mode="ios">
+      
+      <ion-segment class="segment_init"  slot="start" mode="md" (ionChange)="changeSegment($event)" value="Partidos">
+        <ion-segment-button  class="segment_seg"  value="Partidos">
+          <ion-label class="text-selected-item_pri">Partidos</ion-label>
+        </ion-segment-button>
+        
+        <ion-segment-button  class="segment_seg"  value="Clasificacion">
+          <ion-label class="text-selected-item_pri" >Clasificación</ion-label>
+        </ion-segment-button>
+        
+      </ion-segment>
+    </ion-toolbar>
+    
+  </div>
   
+
     <div *ngIf="opcion=='Partidos'" >
     <div class="encabezado">
       <ion-label class="titulo"> Proximos partidos </ion-label>
@@ -715,7 +722,7 @@
         </ion-col>
   
         <ion-col class="col_img" size="2">
-          <ion-item lines="none" class="item_avatar">
+          <ion-item  lines="none" class="item_avatar">
             <img class="con_img" [src]="equipo.escudo_e1">
           </ion-item>
   
