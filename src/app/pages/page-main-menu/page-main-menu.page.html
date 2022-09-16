@@ -8,8 +8,8 @@
 
   <ion-tabs class="content_tabs">
 
-    <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="Local">
+    <ion-tab-bar (ionChange)="changeSegment($event)" value="local"  slot="bottom">
+      <ion-tab-button tab="local">
         <ion-icon name="football"></ion-icon>
         <!-- <div class="div_icon">
           <img class="img_icon" src="../../../assets/icon/Soccer Field 60px.png">
@@ -18,7 +18,7 @@
         <!-- <ion-badge>6</ion-badge> -->
       </ion-tab-button>
   
-      <ion-tab-button tab="LigaPro">
+      <ion-tab-button tab="liga-pro">
         <ion-icon name="ribbon"></ion-icon>
         <!-- <div class="div_icon">
           <img class="img_icon" src="../../../assets/icon/soccer-field-60px.png">
@@ -26,12 +26,12 @@
         <ion-label class="text-icon">Liga Pro</ion-label>
       </ion-tab-button>
   
-      <ion-tab-button tab="Internacional">
+      <ion-tab-button tab="internacional">
         <ion-icon name="earth"></ion-icon>
         <ion-label class="text-icon">Internacional</ion-label>
       </ion-tab-button>
   
-      <ion-tab-button tab="Perfil">
+      <ion-tab-button tab="perfil">
         <ion-icon name="person-circle-outline"></ion-icon>
         <ion-label class="text-icon">Perfil</ion-label>
       </ion-tab-button>

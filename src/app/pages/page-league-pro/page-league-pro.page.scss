@@ -1,3 +1,17 @@
 .content{
-    --background: white;
+    --background: rgb(180, 131, 131);
+}
+
+.content-header{
+    margin-top: 10px;
+    text-align: center;
+    height: auto;
+    width: 100%;
+    
+}
+
+.content-image{
+    height:80px;
+    width: 80px;
+    position: relative;
 }

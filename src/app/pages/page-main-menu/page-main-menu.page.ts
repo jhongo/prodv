@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageMainMenuPage implements OnInit {
 
+
+  optionMenu="";
+
   constructor() { }
 
   ngOnInit() {
+    this.optionMenu="local";
   }
+
+  changeSegment( event: any ){ 
+    // const opc = event.;
+    // this.opcion =opc;
+    console.log(event); 
+
+  } 
 
 }
