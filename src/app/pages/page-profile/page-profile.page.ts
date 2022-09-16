@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentChecked } from '@angular/core';
 import { DataUser } from 'src/app/models';
 import { FirestoreService } from '../../services/firestore.service';
 import { FirebaseauthService } from "../../services/firebaseauth.service";
@@ -118,7 +118,21 @@ export class PageProfilePage implements OnInit {
       password: '',
       referencia: '',
     };
-   }
+  }
+
+
+  toggleTheme(event){
+    console.log(event);
+    if(event.detail.checked){
+      document.body.setAttribute('color-theme','dark');
+    }else{
+      document.body.setAttribute('color-theme','light');
+    }
+  }
+
+
+
+
 
   async guardarUser() {
     const path = 'Usuarios';
