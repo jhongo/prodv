@@ -52,8 +52,8 @@ export class MainComponent implements OnInit {
 
     this.presentLoading('', 500);
       setTimeout( () => {
-        this.router.navigate(['home']);
-        this.menuL.enable(true);
+        this.router.navigate(['page-main-menu/local']);
+        this.menuL.enable(false);
       }, 1500);
 
     }

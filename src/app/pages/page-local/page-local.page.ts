@@ -4,6 +4,7 @@ import { AlertController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { EncuentroPrueba, Equipos } from 'src/app/models';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-page-local',
@@ -142,9 +143,11 @@ export class PageLocalPage implements OnInit {
   des = false;
 
   constructor(public firestoreService: FirestoreService,
-    public alertController: AlertController) { }
+    public alertController: AlertController,
+    public menuL: MenuController) { }
 
   ngOnInit() {
+    this.menuL.enable(false);
     this.opcion = "Partidos";
     this.opcion2 = "Clasificacion";
     this.isActiveM1 = true;
