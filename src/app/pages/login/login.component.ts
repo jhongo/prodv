@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     correo:'',
     total: 0,
     uid:''
-  }
+  };
 
   datauser: DataUser = {
     uid: '',
@@ -35,16 +35,16 @@ export class LoginComponent implements OnInit {
     celular: '',
     password: '',
     referencia: '',
-  }
+  };
 
   referencias: Referencias []=[];
   uid = '';
   referenciaInfo: Subscription;
   suscriberUserInfo: Subscription;
-  login: boolean = false;
+  login = false;
   refenciaInfo: Subscription;
   
-  opcion= "";
+  opcion= '';
 
   constructor(
     public firebaseauthService: FirebaseauthService,
@@ -55,15 +55,11 @@ export class LoginComponent implements OnInit {
     public menuL: MenuController,
     public router: Router,
     public loadingCtrl: LoadingController,
-    ) {   
-
-
-     }
+    ) {}
 
   ngOnInit() {
-
     this.menuL.enable(false);
-    this.opcion="entrar";
+    this.opcion='entrar';
     this.getReferencias();
   }
 
@@ -73,13 +69,13 @@ export class LoginComponent implements OnInit {
       if(this.datauser.email==""||this.datauser.password==""){
         this.presentToast('Datos incompletos',4000);
         //this.presentAlert('Datos incompletos');
-        console.log("Vacios los datos");
+        console.log('Vacios los datos');
       }else{
       const user = await this.firebaseauthService.registrar(email.value, password.value);
       this.consultarrefe(this.datauser.referencia);
       this.saveUser();
       this.presentToast('Cuenta creada con exito',4000);
-      this.opcion="entrar";
+      this.opcion='entrar';
 
       // this.router.navigate(['/login']);
       console.log('Registrado');
@@ -90,7 +86,7 @@ export class LoginComponent implements OnInit {
       }
 
     } catch (error) {
-      console.log("Error", error);
+      console.log('Error', error);
 
     }
   }
@@ -99,7 +95,6 @@ export class LoginComponent implements OnInit {
     const uid = await this.firebaseauthService.getUid();
     this.datauser.uid = uid;
     const path = 'Usuarios';
-    
     this.fireStore.createDoc(this.datauser, path, this.datauser.uid).then(res => {
       console.log('Guardado con exito');
       this.datauser = {
@@ -111,16 +106,15 @@ export class LoginComponent implements OnInit {
       };
     }).catch(res => {
       console.log('err=> ', res.message);
-      
     });
 
   }
 
-  consultarrefe(referencia:string){
-    const path= "Referencias"
-    this.refenciaInfo= this.fireStore.getrefencias<Referencia>(path,"nombre","==", referencia).subscribe(res =>{
+  consultarrefe(referencia: string){
+    const path= 'Referencias';
+    this.refenciaInfo= this.fireStore.getrefencias<Referencia>(path,'nombre','==', referencia).subscribe(res =>{
       this.refe=res[0];
-      console.log("Referencia "+this.refe.total);
+      console.log('Referencia '+this.refe.total);
       this.refe.total=this.refe.total+1;
 
       this.fireStore.actualizarrefe(this.refe,path,this.refe.uid);
@@ -130,13 +124,10 @@ export class LoginComponent implements OnInit {
         nombre:'',
         total:0,
         uid:''
-      }
-
-
+      };
     });
   }
 
-  
 
   async ingresar(email, password) {
 
@@ -157,16 +148,14 @@ export class LoginComponent implements OnInit {
       password.value="";
     }).catch(res => {
       console.log('error => ', res.message)
-      this.presentAlert("Verifique sus datos");
-    })
+      this.presentAlert('Verifique sus datos');
+    });
   }
 
   changeSegment(event: any) {
     const opc = event.detail.value;
     console.log(opc);
     this.opcion=opc;
-    
-
   }
 
   async getReferencias() {

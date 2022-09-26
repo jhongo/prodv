@@ -6,7 +6,6 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { RegistroComponent } from './pages/registro/registro.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
@@ -21,7 +20,6 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
 import { MainComponent } from './pages/main/main.component';
 import { CampeonatosComponent } from './pages/campeonatos/campeonatos.component';
 import { InternacionalComponent } from './pages/internacional/internacional.component';
-import { NacionalComponent } from './pages/nacional/nacional.component';
 import { NoticiasComponent } from './pages/noticias/noticias.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { EditEquipoComponent } from './pages/edit-equipo/edit-equipo.component';
@@ -37,14 +35,12 @@ import { NewcampeonatoComponent } from './pages/newcampeonato/newcampeonato.comp
 
   declarations: [
     AppComponent,
-    RegistroComponent,
     LoginComponent,
     HeaderComponent,
     PerfilComponent,
     MainComponent,
     CampeonatosComponent,
     InternacionalComponent,
-    NacionalComponent,
     NoticiasComponent, 
     EditEquipoComponent,
     EditPartidoComponent,

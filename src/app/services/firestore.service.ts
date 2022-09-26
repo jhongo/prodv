@@ -1,8 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
-import {AngularFirestore,
-  AngularFirestoreDocument,
-  AngularFirestoreCollection} from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection} from '@angular/fire/firestore';
 import {finalize} from 'rxjs/operators';
 import { Equipos, Encuentro, EncuentroPrueba, Campeonatos} from '../models';
 
@@ -10,15 +8,15 @@ import { Equipos, Encuentro, EncuentroPrueba, Campeonatos} from '../models';
   providedIn: 'root'
 })
 export class FirestoreService {
-
-  constructor(public FireStore: AngularFirestore,
-              public storage: AngularFireStorage) { }
-
   editEquipo: Equipos;
-  editMatch : EncuentroPrueba;
+  editMatch: EncuentroPrueba;
   editCampeonato: Campeonatos;
 
-  createDoc<tipo>(data: tipo, enlace:string, id:string){
+  constructor(public FireStore: AngularFirestore,
+    public storage: AngularFireStorage) { }
+
+
+  createDoc<tipo>(data: tipo, enlace: string, id: string){
     const ref = this.FireStore.collection<tipo>(enlace);
     return ref.doc(id).set(data);
   }
@@ -26,7 +24,7 @@ export class FirestoreService {
   getCollectiongrupos<tipo>(path: string,  parametro: string, condicion: any, busqueda: string, fecha:string){
     const date = new Date();
     const collection = this.FireStore.collection<tipo>(path,
-      ref => ref.where(parametro,condicion,busqueda).where("fechae","==",fecha).where("estado","==", "espera")
+      ref => ref.where(parametro,condicion,busqueda).where('fechae','==',fecha).where('estado','==', 'espera')
       // .orderBy('fecha','desc')
       // // .startAt(date)
       );
@@ -35,7 +33,7 @@ export class FirestoreService {
   getCollectiongruposfinalizados<tipo>(path: string,  parametro: string, condicion: any, busqueda: string, fecha:string){
     const date = new Date();
     const collection = this.FireStore.collection<tipo>(path,
-      ref => ref.where(parametro,condicion,busqueda).where("fechae","==",fecha).where("estado","==", "finalizado") 
+      ref => ref.where(parametro,condicion,busqueda).where('fechae','==',fecha).where('estado','==', 'finalizado') 
       // .orderBy('fecha','desc')
       // // .startAt(date)
       );
@@ -44,7 +42,7 @@ export class FirestoreService {
   getgruposinit<tipo>(path: string,  parametro: string, condicion: any, busqueda: string, fecha:string){
     const date = new Date();
     const collection = this.FireStore.collection<tipo>(path,
-      ref => ref.where(parametro,condicion,busqueda).where("fechae","==",fecha).where("estado","==", "iniciado") 
+      ref => ref.where(parametro,condicion,busqueda).where('fechae','==',fecha).where('estado','==', 'iniciado') 
       // .orderBy('fecha','desc')
       // // .startAt(date)
       );
@@ -53,7 +51,7 @@ export class FirestoreService {
   getCollection<tipo>(path: string,  parametro: string, condicion: any, busqueda: string,encuentro:string){
     const date = new Date();
     const collection = this.FireStore.collection<tipo>(path,
-      ref => ref.where(parametro,condicion,busqueda).where("fechae","==",encuentro).where("estado","==", "espera") 
+      ref => ref.where(parametro,condicion,busqueda).where('fechae','==',encuentro).where('estado','==', 'espera') 
       // .orderBy('fecha','desc')
       // // .startAt(date)
       );
@@ -71,7 +69,7 @@ export class FirestoreService {
   getCollectionfinalizados<tipo>(path: string,  parametro: string, condicion: any, busqueda: string,encuentro:string){
     const date = new Date();
     const collection = this.FireStore.collection<tipo>(path,
-      ref => ref.where(parametro,condicion,busqueda).where("fechae","==",encuentro).where("estado","==", "finalizado") 
+      ref => ref.where(parametro,condicion,busqueda).where('fechae','==',encuentro).where('estado','==', 'finalizado') 
       // .orderBy('fecha','desc')
       // // .startAt(date)
       );
@@ -81,14 +79,13 @@ export class FirestoreService {
   getpartidos_init<tipo>(path: string,  parametro: string, condicion: any, busqueda: string,encuentro:string){
     const date = new Date();
     const collection = this.FireStore.collection<tipo>(path,
-      ref => ref.where(parametro,condicion,busqueda).where("fechae","==",encuentro).where("estado","==", "iniciado") 
+      ref => ref.where(parametro,condicion,busqueda).where('fechae','==',encuentro).where('estado','==', 'iniciado') 
       // .orderBy('fecha','desc')
       // // .startAt(date)
       );
     return collection.valueChanges();
   }
   getCollectionGru<tipo>(path: string,  parametro: string, condicion: any, busqueda: string){
-    
     const collection= this.FireStore.collection<tipo>(path,
       ref => ref.where(parametro,condicion,busqueda).orderBy('puntos','desc').orderBy('d_g','desc').orderBy('nombre'));
     return collection.valueChanges();
@@ -159,10 +156,10 @@ export class FirestoreService {
     const collection = this.FireStore.collection(path);
     return collection.doc(id).delete();
   }
-  
+
   getId(){
     return this.FireStore.createId();
-  } 
+  }
 
   getTeam<tipo>(path: string){
     const collection = this.FireStore.collection<tipo>(path);
@@ -181,7 +178,7 @@ export class FirestoreService {
       // // .startAt(date)
       );
   }
-  
+
 
   uploadImage(file: any, path: string, nombre: string): Promise<string> {
     return new Promise(resolve => {
@@ -195,7 +192,7 @@ export class FirestoreService {
             resolve(downloadURL);
             return;
           })
-        })
+                })
 
 
       )
@@ -206,17 +203,17 @@ export class FirestoreService {
 
   }
 
-  setEquipo(equipo: Equipos){ 
+  setEquipo(equipo: Equipos){
     this.editEquipo = equipo;
-  }  
+  }
   getEquipo(){
     return this.editEquipo;
-  } 
+  }
 
   setCampeonato(campeonato: Campeonatos){
     this.editCampeonato= campeonato;
   }
-  
+
   getCampeonato(){
     return this.editCampeonato;
   }
@@ -231,31 +228,30 @@ export class FirestoreService {
 
   getMatch(){
     return this.editMatch;
-  } 
+  }
 
-
-  get_partidos_ida_vuel_E<tipo>(path: string,  parametro: string, condicion: any, busqueda: string,encuentro:string){
+  get_partidos_ida_vuel_E<tipo>(path: string,  parametro: string, condicion: any, busqueda: string,encuentro: string){
     const date = new Date();
     const collection = this.FireStore.collection<tipo>(path,
-      ref => ref.where(parametro,condicion,busqueda).where("fechae","==",encuentro).where("estado","==", "espera") 
+      ref => ref.where(parametro,condicion,busqueda).where('fechae','==',encuentro).where('estado','==', 'espera')
       // .orderBy('fecha','desc')
       // // .startAt(date)
       );
     return collection.valueChanges();
   }
-  get_partidos_ida_vuel_Init<tipo>(path: string,  parametro: string, condicion: any, busqueda: string,encuentro:string){
+  get_partidos_ida_vuel_Init<tipo>(path: string,  parametro: string, condicion: any, busqueda: string,encuentro: string){
     const date = new Date();
     const collection = this.FireStore.collection<tipo>(path,
-      ref => ref.where(parametro,condicion,busqueda).where("fechae","==",encuentro).where("estado","==", "iniciado") 
+      ref => ref.where(parametro,condicion,busqueda).where('fechae','==',encuentro).where('estado','==', 'iniciado') 
       // .orderBy('fecha','desc')
       // // .startAt(date)
       );
     return collection.valueChanges();
   }
-  get_partidos_ida_vuel_Fina<tipo>(path: string,  parametro: string, condicion: any, busqueda: string,encuentro:string){
+  get_partidos_ida_vuel_Fina<tipo>(path: string,  parametro: string, condicion: any, busqueda: string,encuentro: string){
     const date = new Date();
     const collection = this.FireStore.collection<tipo>(path,
-      ref => ref.where(parametro,condicion,busqueda).where("fechae","==",encuentro).where("estado","==", "finalizado") 
+      ref => ref.where(parametro,condicion,busqueda).where('fechae','==',encuentro).where('estado','==', 'finalizado') 
       // .orderBy('fecha','desc')
       // // .startAt(date)
       );
