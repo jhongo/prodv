@@ -1,37 +1,138 @@
-<div class="content-header" >
+<ion-header class="content-header" >
   <img class="content-image" src="https://www.fef.ec/wp-content/uploads/2020/08/Liga-Pro-Ecuador.png" alt="Logo Liga Pro">
-</div>
+
+
+  <div class="div_segmet_de">
+
+    <ion-toolbar class="tolbar" mode="ios">
+      
+      <ion-segment class="segment_init"  slot="start" mode="md" (ionChange)="changeSegment($event)" value="Partidos">
+        <ion-segment-button  class="segment_seg"  value="Partidos">
+          <ion-label class="text-selected-item_pri">Partidos</ion-label>
+        </ion-segment-button>
+        
+        <ion-segment-button  class="segment_seg"  value="Clasificacion">
+          <ion-label class="text-selected-item_pri" >Clasificación</ion-label>
+        </ion-segment-button>
+        
+      </ion-segment>
+    </ion-toolbar>
+    
+  </div>
+</ion-header >
+
+<ion-content class="content_pri">
 
 
 
-
-<div *ngFor="let campeonatos of campeonatosEcuatorianos" >
-
-
-  <ion-item>
-    <ion-label>{{campeonatos}}</ion-label>
-  </ion-item>
-
-</div>
-
+<div class="content-main-partidos" *ngIf="opcion=='Partidos'" >
 <!-- 
-<ion-tabs>
-  <ion-tab-bar mode="ios" slot="top">
-    <ion-tab-button tab="partidos">
-      <ion-label class="text-selected-item">Partidos</ion-label>
-    </ion-tab-button>
+[routerLink]="['/details/' + match.fixture.id ]" 
+
+ -->
+ <ion-row>
+    <ion-col size="4" >
+      <ion-label>Segunda etapa</ion-label>
+    </ion-col>
+
+    <ion-col size="8">
+      <ion-list>
+        <ion-item>
+          <ion-select interface="popover"  placeholder="Seleccione la fecha" (ionChange)="handleChange($event)" >
+            <ion-select-option value="12">Fecha 12</ion-select-option>
+            <ion-select-option value="13">Fecha 13</ion-select-option>
+            <ion-select-option value="14">Fecha 14</ion-select-option>
+            <ion-select-option value="15">Fecha 15</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+ </ion-row>
 
 
-    <ion-tab-button tab="tabla">
-      <ion-label class="text-selected-item">Clasificación</ion-label>
-    </ion-tab-button>
 
-  </ion-tab-bar>
-</ion-tabs> -->
+ <div *ngFor="let match of filterMatch, let i = index" class="div-partidos" >
 
-<!-- <ion-content class="content" >
+    <ion-row class="row_fecha">  
 
-  <div *ngFor="let campeonato of campeonatosEcuatorianos" >
+      <ion-col class="col_tex_country" size="4">
+        <ion-label  class="label_fecha">
+          {{match.league.cc}}
+        </ion-label>
+      </ion-col>
+      
+      <ion-col class="col_tex_fecha" size="4">
+        <ion-label  class="label_fecha">
+          {{match.time| date : "dd/MM/yyyy" }}
+        </ion-label>
+      </ion-col>
 
-  </div> -->
+      <ion-col class="col_tex_league" size="4">
+        <ion-label  class="label_fecha">
+          {{match.league.name}}
+        </ion-label>
+      </ion-col>
+    
+    </ion-row>
+      
+    <ion-row>
+      <ion-col class="col_nom_eq1" size="3">
+        <ion-label class="label_e1">
+          {{match.away.name}}
+        </ion-label>
+      </ion-col>
+      
+      <ion-col class="col_img" size="2">
+        <!-- <ion-item lines="none" class="item_avatar">
+          
+          <img class="con_img" src="{{match.teams.away.logo}}" >
+        </ion-item> -->
+        
+      </ion-col>
+      <ion-col class="col_vs" size="2">
+        <ion-label class="label_tittle_vs">
+          {{ (match.ss == null) ? '-' : match.ss }}
+        </ion-label>
+      </ion-col>
+      
+      <ion-col class="col_img" size="2">
+        <!-- <ion-item lines="none" class="item_avatar">
+          <img class="con_img" src="{{match.teams.home.logo}}" >
+        </ion-item> -->
+      </ion-col>
+      
+      <ion-col class="col_nom_eq2" size="3">
+        <ion-label class="label_e2">
+          {{match.home.name}}
+        </ion-label>
+      </ion-col>
+    </ion-row> 
 
+    <!-- <ion-row class="row_fecha">  
+      <ion-col class="col_tex_fecha" size="12">
+        <ion-label  class="label_estadio">
+          {{match.fixture.status.long}}
+        </ion-label>
+      </ion-col>
+    </ion-row> -->
+
+    <!-- <ion-row class="row_fecha">  
+      <ion-col class="col_tex_fecha" size="12">
+        <ion-label  class="label_estadio">
+          {{match.fixture.venue.name}}
+        </ion-label>
+      </ion-col>
+    </ion-row> -->
+
+  </div>
+
+</div>
+
+
+
+<div class="content-main-clasificacion" *ngIf="opcion=='Clasificacion'">
+
+
+</div>
+
+</ion-content>

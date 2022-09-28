@@ -9,8 +9,11 @@ import { HttpClient } from '@angular/common/http';
 export class PageLeagueProPage implements OnInit {
 
   campeonatosEcuatorianos=[];
-
+  nextMatch=[];
   positionsGroup = [];
+  filterMatch=[];
+  numberDate="";
+  opcion="";
 
   constructor(
     private http: HttpClient
@@ -18,18 +21,22 @@ export class PageLeagueProPage implements OnInit {
 
   ngOnInit() {
 
-     this.http.get<any>('https://api.b365api.com/v1/league',{
-       params:{
-         'sport_id' : '1',
-         'cc' : 'ec', 
-         'token': '135086-6tOga3UOkyFKVZ'
-       }
-     }).subscribe( res =>{
-     console.log(res);
-     this.campeonatosEcuatorianos = res.results;
-     console.log(this.campeonatosEcuatorianos);
+    this.opcion = "Partidos";
+    this.numberDate="12";
 
-     });
+    //Get Type of Campeonato
+    //  this.http.get<any>('https://api.b365api.com/v1/league',{
+    //    params:{
+    //      'sport_id' : '1',
+    //      'cc' : 'ec', 
+    //      'token': '135086-6tOga3UOkyFKVZ'
+    //    }
+    //  }).subscribe( res =>{
+    //  console.log(res);
+    //  this.campeonatosEcuatorianos = res.results;
+    //  console.log(this.campeonatosEcuatorianos);
+
+    //  });
 
 
 
@@ -47,6 +54,40 @@ export class PageLeagueProPage implements OnInit {
 
     // });
 
+        this.http.get<any>('https://api.b365api.com/v3/events/upcoming',{
+      params:{
+        'league_id' : '540',
+        'token': '135086-6tOga3UOkyFKVZ',
+        'sport_id': '1'
+      }
+    }).subscribe( res =>{
+      console.log(res);
+      // this.filterMatch = res.results;
+      // this.filterMatch.filter( match{
+      //   return match.round == 12;
+      // });
+      this.nextMatch = res.results;
+      // this.nextMatch.map( round => round == "12");
+      this.filterMatch = this.nextMatch.filter( results => results.round == this.numberDate);
+
+
+      console.log( this.nextMatch);
+      console.log(this.filterMatch);
+
+    });
+
+
+  }
+
+  changeSegment(event: any) {
+    const opc = event.detail.value;
+    console.log(opc);
+    this.opcion = opc;
+  }
+  handleChange(event: any){
+    const getDate = event.target.value;
+    this.numberDate = getDate;
+    console.log(getDate);
   }
 
 }
