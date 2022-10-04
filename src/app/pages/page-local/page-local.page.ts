@@ -6,6 +6,7 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 import { EncuentroPrueba, Equipos } from 'src/app/models';
 import { MenuController } from '@ionic/angular';
 
+
 @Component({
   selector: 'app-page-local',
   templateUrl: './page-local.page.html',
@@ -144,7 +145,9 @@ export class PageLocalPage implements OnInit {
 
   constructor(public firestoreService: FirestoreService,
     public alertController: AlertController,
-    public menuL: MenuController) { }
+    public menuL: MenuController) {
+    
+     }
 
   ngOnInit() {
     this.menuL.enable(false);
@@ -163,16 +166,19 @@ export class PageLocalPage implements OnInit {
     // this.getPartidos(this.infocampeonato.uid);
 
     this.opcion2 = "clasificacion";
-    
   }
 
-  
+
+
+  //codigo para publicidad
+
+  ///
+
   changeSegment(event: any) {
     const opc = event.detail.value;
     console.log(opc);
     this.opcion = opc;
     console.log(this.opcion);
-    
     (this.opcion == "Clasificacion") ? this.isActiveM2 = true : this.isActiveM2 = false;
     (this.opcion == "Partidos") ? this.isActiveM1 = true : this.isActiveM1 = false;
     

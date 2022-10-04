@@ -109,6 +109,14 @@ export class PageProfilePage implements OnInit {
     this.getReferencias();
     console.log(this.activeData);
   }
+
+///codigo para publicidad
+
+
+
+
+
+
   initializeApp(){
     this.getUid();
   }

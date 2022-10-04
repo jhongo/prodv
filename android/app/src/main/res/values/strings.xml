@@ -4,4 +4,5 @@
     <string name="title_activity_main">Prodv</string>
     <string name="package_name">com.bitec.prodv</string>
     <string name="custom_url_scheme">com.bitec.prodv</string>
+    <!-- <string name="admob_app_id">ca-app-pub-5829771712321261~5035795833</string> -->
 </resources>

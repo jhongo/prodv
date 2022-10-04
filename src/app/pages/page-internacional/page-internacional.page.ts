@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-page-internacional',
   templateUrl: './page-internacional.page.html',
@@ -7,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageInternacionalPage implements OnInit {
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
   }
