@@ -30,6 +30,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { NewcampeonatoComponent } from './pages/newcampeonato/newcampeonato.component';
 // import { SwiperComponentComponent } from './componentes/swiper-component/swiper-component.component';
 
+import { AdMobFree } from '@ionic-native/admob-free/ngx';
+import { AdmobService } from './services/admob.service';
 
 @NgModule({
 
@@ -68,7 +70,7 @@ import { NewcampeonatoComponent } from './pages/newcampeonato/newcampeonato.comp
     }),
 
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [AdMobFree,AdmobService,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

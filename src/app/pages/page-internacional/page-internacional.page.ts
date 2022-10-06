@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AdmobService } from 'src/app/services/admob.service';
+
+
 @Component({
   selector: 'app-page-internacional',
   templateUrl: './page-internacional.page.html',
@@ -6,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageInternacionalPage implements OnInit {
 
-  constructor() {}
+  constructor(private admobService: AdmobService,) {}
 
   ngOnInit() {
+    this.admobService.mostrarBanner();
+  }
+  mostrarInterstitial(){
+    this.admobService.mostrarInterstitial();
+  }
+  mostrarReward(){
+    this.admobService.mostrarRewardVideo();
   }
 
 }
